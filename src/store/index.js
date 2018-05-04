@@ -27,24 +27,15 @@ import rootReducer from '../reducers'
 const initialState = {};
 
 // whenever a action is dispatched it runs through the middleware fast
-const middleware = [
-  promise()
-];
+const middleware = [promise()];
 
-const devMiddleware = middleware.concat([
-  thunk,
-  createLogger() 
-]);
+const devMiddleware = [...middleware, thunk, createLogger()];
 
 // don't want dev tools running in production
-const getMiddleware = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return applyMiddleware(...middleware);
-  }
-  return composeWithDevTools(applyMiddleware(...devMiddleware));
-}
-
-composeWithDevTools(applyMiddleware(...middleware))
+const getMiddleware = () => 
+  process.env.NODE_ENV === 'production' 
+    ? applyMiddleware(...middleware)
+    : composeWithDevTools(applyMiddleware(...devMiddleware));
 
 // we pass our reducer, initial state, and middleware into the createStore to initialize it
 const store = createStore(
