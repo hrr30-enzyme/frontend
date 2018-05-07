@@ -1,1 +1,4 @@
-export const EXAMPLE_DISPATCH = 'EXAMPLE_DISPATCH'
+export const FETCH_POSTS = 'FETCH_POSTS'
+export const POST_QUESTION = 'POST_QUESTION'
+export const POST_ANSWER = 'POST_ANSWER'
+export const POST_COMMENT = 'POST_COMMENT'
