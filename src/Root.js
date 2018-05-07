@@ -12,7 +12,7 @@ const connectedApp = connect(
   mapDispatchToProps
 )(App);
 
-const Root = () => (
+const Root = ({store}) => (
   <Provider store={store}>
     <Router>
       <Route path="/" component={connectedApp} />

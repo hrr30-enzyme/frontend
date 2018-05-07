@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({
+//Import reducers below
 
+export default combineReducers({
+    //answers: answersReducer
 });

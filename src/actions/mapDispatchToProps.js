@@ -1,26 +1,62 @@
 import { bindActionCreators } from 'redux'
-
+import {getPosts, signIn, signOut} from './actions'
 import axios from 'axios'
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
-    postLineups: (lineup) => ({
-      type: 'POST_LINEUPS',
-      /*
-       *
-       * if we attatch a promise to the payload it allows redux-promise
-       * 
-       */
-      payload: axios.post('/lineups', {
-        lineups: []
-      }),
-    }),
+    postQuestion: function(question){
+      return function(dispatch) {
+        return axios.post('/questions', question)
+        .then((response) => {
+          dispatch(getPosts(response))
+        })
+      }
+    },
 
-    getLineups: () => ({
-      type: 'GET_LINEUPS',
-      payload: 'normally it is just a normal payload'
-    }),
-     
+    postAnswer: function(answer){
+      return function(dispatch) {
+        return axios.post(/*answers route*/, answer)
+        .then((response) => {
+          dispatch(getPosts(response))
+        })
+      }
+    },
+
+    postComment: function(comment){
+      return function(dispatch){
+        return axios.post(/*comments route*/, comment)
+        .then((response) => {
+          dispatch(getPosts(response))
+        })
+      }
+    },
+
+    getPosts: function(){
+      return function(dispatch){
+        return axios.get(/*posts route*/)
+        .then((response) => {
+          dispatch(getPosts(response))
+        })
+      }
+    },
+
+    signIn: function(credentials){
+      return function(dispatch){
+        return axios.post(/*sign-in route*/, credentials)
+        .then((response) => {
+          dispatch(signIn(response))
+        })
+      }
+    },
+
+    signOut: function(credentials){
+      return function(dispatch){
+        return axios.post(/*sign-out route*/)
+        .then((response) => {
+          dispatch(signOut(response))
+        })
+      }
+    }
     
   }, dispatch)
 ); 
