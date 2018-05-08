@@ -105,5 +105,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "fetch-mock": "^6.3.0",
+    "moxios": "^0.4.0",
+    "redux-mock-store": "^1.5.1"
   }
 }
