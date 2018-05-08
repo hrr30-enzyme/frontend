@@ -1,42 +1,34 @@
-import { POST_QUESTION, POST_ANSWER, POST_COMMENT, SIGN_OUT, SIGN_IN } from '../actions/types'
+import { SIGN_IN } from '../actions/types'
 
 const intialState = {
-    posts: [],
-    userInfo: {}
-    //Question title input
-    //Question body input
-    //Answer body input
-    //Comment body input
+    userInfo: {},
+    signingIn: false,
+    signedIn: false,
+    errorSigningIn: false
 }
 
-export default function (state = intialState, action){
+export function authenticationReducer (state = intialState, action){
+
   switch (action.type){
-      case POST_QUESTION:
-        return {
-          ...state, 
-          posts: action.payload
-        };
-      case POST_ANSWER:
+
+      case `${SIGN_IN}_PENDING`:
         return {
           ...state,
-          posts: action.payload
+          signingIn: true
         };
-      case POST_ANSWER:
+      case `${SIGN_IN}_FULFILLED`:
         return {
           ...state,
-          posts: action.payload
-        };
-      case SIGN_OUT:
-        return {
-          ...state,
-          userInfo: {}
-        };
-      case SIGN_IN:
-        return {
-          ...state,
+          signingIn: false,
+          signedIn: true,
           userInfo: action.payload
         };
-      default:
+      case `${SIGN_IN}_REJECTED`:
+        return {
+          ...state,
+          errorSigningIn: true
+        };
+      default: 
         return state;
   }
 }
