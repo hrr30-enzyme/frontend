@@ -4,11 +4,7 @@ import Home from './containers/Home';
 class App extends Component {
   render() {
     return (
-      <div>
-        <Home />
-      </div>
-    );
+      <div>Welcome to our App!</div>
+    )
   }
 }
-
-export default App;
