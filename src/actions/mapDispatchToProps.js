@@ -1,11 +1,12 @@
 import { bindActionCreators } from 'redux'
-import { signIn } from './signIn'
+import { signIn, signOut } from './authentication'
+import { submitQuestion } from './submitQuestion'
 import axios from 'axios'
 
 const mapDispatchToProps = (dispatch) => (
-  bindActionCreators({
-    signIn: signIn
-  }, dispatch)
+  signIn,
+  signOut,
+  submitQuestion
 ); 
 
 export default mapDispatchToProps
