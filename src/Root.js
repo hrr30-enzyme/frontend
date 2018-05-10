@@ -1,23 +1,16 @@
 import React from 'react'
-import { Provider, connect } from 'react-redux'
+
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import App from './App.js'
-import store from './store'
-import mapDispatchToProps from './actions/mapDispatchToProps'
-import mapStateToProps from './store/mapStateToProps'
+import App from './containers/App'
 
-const connectedApp = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
 
-const Root = () => (
-  <Provider store={store}>
+const Root = (props) => {
+  return (
     <Router>
-      <Route path="/" component={connectedApp} />
+      <Route {...props} path="/" render={(routeProps) => <App {...props} {...routeProps} />}/>
     </Router>
-  </Provider>
-);
+  )
+};
 
 export default Root
