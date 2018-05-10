@@ -1,9 +1,9 @@
-import { ADD_TEXT } from './types'
+import { INPUT_CHANGE } from './types'
 
 export const addText = function(inputType, input){
   console.log('This is the action')
   return {
-    type: 'ADD_TEXT',
+    type: INPUT_CHANGE,
     payload: {
       inputType,
       input

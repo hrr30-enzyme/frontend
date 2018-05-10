@@ -5,9 +5,6 @@ import Landing from './Landing'
 import LogIn from './LogIn'
 
 export default class App extends Component {
-  constructor(props){
-    super(props)
-  }
 
   render() {
 
@@ -25,9 +22,33 @@ export default class App extends Component {
 
     return (
       <Switch>
-        <Route exact path="/homepage" render={(props) => <Home { ...this.props } { ...props } onEnter={requireAuth}/>}/>
-        <Route exact path='/' render={(props) => <Landing { ...this.props } { ...props }/>}/>
-        <Route exact path='/log-in' render={(props) => <LogIn { ...this.props } { ...props } />}/>
+        <Route 
+          exact path="/homepage" 
+          render={(props) => (
+            <Home 
+              { ...this.props } 
+              { ...props } 
+              onEnter={requireAuth}
+            />)
+          }/>
+        <Route 
+          exact path='/' 
+          render={(props) => (
+            <Landing 
+              { ...this.props } 
+              { ...props }
+            />
+          )}
+        />
+        <Route 
+          exact path='/log-in' 
+          render={(props) => (
+            <LogIn 
+              { ...this.props } 
+              { ...props } 
+            />
+          )}
+        />
       </Switch>
     )
   }
