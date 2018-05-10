@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, onEnter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Home from './Home';
 import Landing from './Landing'
 import LogIn from './LogIn'
