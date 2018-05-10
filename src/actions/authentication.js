@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 function sendSignIn(credentials){
-    return axios.post('/user/sign-in', credentials)
+    return axios.post('http://localhost:8080/user/login', credentials)
 }
 
 export const signedIn = (userInfo) => ({

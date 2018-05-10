@@ -32,7 +32,7 @@ const LogIn = (props) => {
   const handleClick = function(e){
 
     e.preventDefault();
-    const username = textInput.username;
+    const username = textInput.userName;
     const password = textInput.password;
 
     signIn({username, password})
