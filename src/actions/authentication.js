@@ -4,19 +4,20 @@ function sendSignIn(credentials){
     return axios.post('/user/sign-in', credentials)
 }
 
-function signedIn (userInfo){
-    return {
-        type: 'SIGN_IN_SUCCESSFUL',
-        userInfo
-    }
-}
+export const signedIn = (userInfo) => ({
+  type: 'SIGN_IN_SUCCESSFUL',
+  payload: {
+    userInfo
+  }
+})
 
-function doNotSignIn (error){
-    return {
+export const doNotSignIn = (error) => ({
         type: 'SIGN_IN_FAILED',
-        error
+        payload: {
+            error
+        }
     }
-}
+)
 
 export function signIn (credentials){
     return function(dispatch){
@@ -32,14 +33,21 @@ function sendSignOut(credentials){
 }
 
 function signedOut (status){
-    type: 'SIGN_OUT_SUCCESSFUL',
-    status
+    return {
+        type: 'SIGN_OUT_SUCCESSFUL',
+        payload: {
+            status
+        }
+    }
 }
 
-function doNotSignOut (error){
+const doNotSignOut = (error) => ({
     type: 'SIGN_OUT_FAILED',
-    error
-}
+    payload: {
+        error
+    }
+})
+
 
 export const signOut = function(credentials){
     return function(dispatch){
