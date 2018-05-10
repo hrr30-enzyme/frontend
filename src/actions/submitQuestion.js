@@ -1,43 +1,42 @@
-import axios from 'axios'
+import axios from "axios";
 
-import {SUBMIT_QUESTION_SUCCESSFUL} from './types'
+import { SUBMIT_QUESTION_SUCCESSFUL } from "./types";
 
-import {SUBMIT_QUESTION_FAILED} from './types'
+import { SUBMIT_QUESTION_FAILED } from "./types";
 
-function sendQuestion(question){
-  return axios.post('/question/', question)
+function sendQuestion(question) {
+  return axios.post("/question/", question);
 }
 
-function returnQuestions (questions){
+function returnQuestions(questions) {
   return {
     type: SUBMIT_QUESTION_SUCCESSFUL,
     payload: {
       questions
     }
-  }
+  };
 }
 
-function handleQuestionSubmitError (error){
+function handleQuestionSubmitError(error) {
   return {
     type: SUBMIT_QUESTION_FAILED,
     payload: {
-        error
+      error
     }
-  }
+  };
 }
 
-export function submitQuestion (title, body, userId) {
-
+export function submitQuestion(title, body, userId) {
   const question = {
-    title, 
-    body, 
+    title,
+    body,
     userId
-  }
+  };
 
-  return function(dispatch){
+  return function(dispatch) {
     return sendQuestion(question).then(
       questions => dispatch(returnQuestions(questions)),
       error => dispatch(handleQuestionSubmitError(error))
-    )
-  }
+    );
+  };
 }

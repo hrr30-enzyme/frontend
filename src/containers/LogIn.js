@@ -42,15 +42,41 @@ const LogIn = (props) => {
     <Layout>
         <form>
             <div class="container">
-                <label for= "uname"><b>Username</b></label>
-                <input value={textInput.username} type="text" placeholder="Enter Username" name="uname" onChange={(e) => addText('userName', e.target.value)} required/>
+                <label for="uname">
+                  <b>Username</b>
+                </label>
+                <input 
+                  value={textInput.username} 
+                  type="text" 
+                  placeholder="Enter Username" 
+                  name="uname" 
+                  onChange={(e) => addText('userName', e.target.value)} 
+                  required
+                />
+                <label for="psw">
+                  <b>Password</b>
+                </label>
+                <input 
+                  value={textInput.password} 
+                  type="password" 
+                  placeholder="Enter Password" 
+                  name="psw" 
+                  required 
+                  onChange={(e) => addText('password', e.target.value)}/>
 
-                <label for="psw"><b>Password</b></label>
-                <input value={textInput.password} type="password" placeholder="Enter Password" name="psw" required onChange={(e) => addText('password', e.target.value)}/>
-
-                <Button><button type="submit" onClick={(e) => handleClick(e)}>Login</button></Button>
+                <Button>
+                  <button 
+                    type="submit" 
+                    onClick={(e) => handleClick(e)}>
+                      Login
+                    </button>
+                  </Button>
                 <label>
-                <input type="checkbox" checked="checked" name="remember"/> Remember me
+                <input 
+                  type="checkbox" 
+                  checked="checked" 
+                  name="remember"
+                /> Remember me
                 </label>
             </div>
 

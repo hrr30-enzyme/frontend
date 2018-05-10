@@ -1,3 +1,5 @@
+import { INPUT_CHANGE } from '../actions/types'
+
 const initialState = {
   userName: '',
   password: '',
@@ -10,7 +12,7 @@ const initialState = {
 
 export const textInput = (state = initialState, action) => {
   switch(action.type){
-    case 'ADD_TEXT':
+    case INPUT_CHANGE:
       return {
         ...state,
         [action.payload.inputType]: action.payload.input
