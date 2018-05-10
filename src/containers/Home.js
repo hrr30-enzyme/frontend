@@ -42,7 +42,7 @@ const Layout = styled.div`
 `
 
 const Home = (props) => {
-
+  
   return (
     <Layout>
       <div className="nav">

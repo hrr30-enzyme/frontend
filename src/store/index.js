@@ -44,4 +44,5 @@ const store = createStore(
   getMiddleware()
 );
 
+store.dispatch({type: 'ADD_TEXT', payload: {inputType: 131, input: 1324}})
 export default store;

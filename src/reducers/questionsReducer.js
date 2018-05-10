@@ -2,22 +2,24 @@ import { SUBMIT_QUESTION_FAILED, SUBMIT_QUESTION_SUCCESSFUL } from '../actions/t
 
 const initialState = {
     questions: [],
-    loadingQuestion: false
+    error: false
 }
 
-export function questions (state = intialState, action) {
+export function questions (state = initialState, action) {
     switch (action.type) {
         
         case `${SUBMIT_QUESTION_SUCCESSFUL}`:
             return {
-                questions: action.questions,
-                loadingQuestion: false
+                questions: action.payload.questions,
+                error: false
             }
         
         case `${SUBMIT_QUESTION_FAILED}`:
             return {
                 ...state, 
-                loadingQuestion: false
+                error: true
             }
+        default:
+        return state;
     }
 }
