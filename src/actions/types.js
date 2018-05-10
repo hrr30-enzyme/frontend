@@ -1,11 +1,9 @@
 
-export const SIGN_IN_SUCCESSFUL = 'SIGN_IN_SUCCESSFUL'
+export const SIGN_IN = 'SIGN_IN'
 
-export const SIGN_IN_FAILED = 'SIGN_IN_FAILED'
+export const SIGN_OUT = 'SIGN_OUT'
 
-export const SIGN_OUT_SUCCESSFUL = 'SIGN_OUT_SUCCESSFUL'
-
-export const SIGN_OUT_FAILED = 'SIGN_OUT_FAILED'
+export const SIGN_UP = 'SIGN_UP'
 
 export const INPUT_CHANGE = 'ADD_TEXT'
 

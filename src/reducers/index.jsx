@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
-import { authentication } from '../reducers/authenticationReducer'
-import { questions } from '../reducers/questionsReducer'
-import { textInput } from '../reducers/textInputReducer'
+import { routerReducer } from 'react-router-redux'
 
-//Import reducers below
+import authentication from '../reducers/authenticationReducer'
+import questions from '../reducers/questionsReducer'
+import textInput from '../reducers/textInputReducer'
 
 export default combineReducers({
     authentication,
     questions,
-    textInput
+    textInput,
+    routerReducer
 });

@@ -5,7 +5,7 @@ const initialState = {
     error: false
 }
 
-export function questions (state = initialState, action) {
+export default function questions (state = initialState, action) {
     switch (action.type) {
         
         case `${SUBMIT_QUESTION_SUCCESSFUL}`:
