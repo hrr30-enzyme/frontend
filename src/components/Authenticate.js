@@ -1,22 +1,30 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Authenticate = (props) => {
-  if(false){
+  console.log('authenticate', props)
+  const signedIn = props.authentication.signedIn;
+
+  if(signedIn){
     return (
       <div>
-        Log out
+        <Link to="/user" >
+          { props.authentication.userInfo.username }
+        </Link>
+        <span onClick={ props.signout }>logout</span>
       </div>
     )
   } else {
     return (
-      <Link to= "/log-in">
-        <div>
+      <div>
+        <div onClick={()=>(props.openModal('logIn'))}>
           Log In
         </div>
-      </Link>
+        signup
+      </div>
     )
   }
-}
+};
 
-export default Authenticate
+export default Authenticate;
+

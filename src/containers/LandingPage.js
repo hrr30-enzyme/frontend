@@ -2,6 +2,9 @@ import React from 'react'
 import Navbar from './Navbar'
 import styled from 'styled-components'
 
+import SignUp from '../components/SignUp'
+import LogIn from '../components/LogIn'
+
 const Layout = styled.div`
   display: grid;
   grid-template-columns: 7fr 3fr;
@@ -20,7 +23,9 @@ const Landing = props => {
   return (
     <Layout>
       <div className="nav">
-        <Navbar />
+        <Navbar {...props}/>
+        <LogIn {...props}/>
+        <SignUp {...props}/>
       </div>
     </Layout>
   )
