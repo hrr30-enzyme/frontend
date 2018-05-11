@@ -3,17 +3,15 @@ import styled from "styled-components";
 import React from "react";
 
 const Modal = styled.div`
+  display: ${props => (props.showModal.signUp ? "block" : "none")};
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(1.1);
-  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  background: rgba(0, 0, 0, 0.6);
 `;
+
 const ModalContent = styled.div`
   position: absolute;
   top: 50%;
@@ -45,26 +43,64 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-/* const handleClick = (e, cb) => {
-  console.log(props);
-  console.log(username)
+const handleClick = (e, cb, credentials) => {
   //You need to figure out how you want to access username, password, and email
   e.preventDefault();
-  cb();
-}; */
+  cb(credentials);
+};
 
-const SignUp = (props) => {
-  console.log(props)
+const handleClose = (e, cb) => {
+  e.preventDefault();
+  cb("signUp");
+};
+
+const handleChange = (cb, inputType, input) => {
+  cb(inputType, input);
+};
+
+const SignUp = ({
+  signup,
+  closeModal,
+  userName,
+  password,
+  showModal,
+  email,
+  addText
+}) => {
+  console.log('Sign Up:', password)
   return (
-    <Modal>
+    <Modal showModal={showModal}>
       <ModalContent>
-        <Input placeholder="Email" type="text" />
-        <Input placeholder="Username" type="text" />
-        <Input placeholder="Password" type="text" />
-        <Button /* onClick={e => handleClick(e, signUp)} */>Submit</Button>
+        <Input
+          value={email}
+          onChange={e => handleChange(addText, "email", e.target.value)}
+          placeholder="Email"
+          type="text"
+          required
+        />
+        <Input
+          value={userName}
+          onChange={e => handleChange(addText, "userName", e.target.value)}
+          placeholder="Username"
+          type="text"
+          required
+        />
+        <Input
+          value={password}
+          onChange={e => handleChange(addText, "password", e.target.value)}
+          placeholder="Password"
+          type="text"
+          required
+        />
+        <Button
+          onClick={e => handleClick(e, signup, { userName, password, email })}
+        >
+          Submit
+        </Button>
+        <Button onClick={e => handleClose(e, closeModal)}>Close</Button>
       </ModalContent>
     </Modal>
   );
 };
 
-export default SignUp
+export default SignUp;
