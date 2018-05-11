@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { signin, signout } from './authentication'
 import { addText } from './inputText'
+import { openModal, closeModal } from './modal'
 import {
   postQuestion,
   getQuestion,
@@ -20,7 +21,9 @@ const mapDispatchToProps = (dispatch) => (
     getQuestions,
     postAnswer,
     getAnswer,
-    getAnswers
+    getAnswers,
+    openModal,
+    closeModal
   }, dispatch)
 ); 
 
