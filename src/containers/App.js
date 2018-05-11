@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import HomePage from './HomePage';
 import LandingPage from './LandingPage'
-import LogIn from './LogIn'
 import QuestionPage from './QuestionPage'
 import QuestionsPage from './QuestionsPage'
 
@@ -18,7 +17,7 @@ export default class App extends Component {
 
     if(signedIn){
       replace({
-        pathname: '/homepage'
+        pathname: '/landing'
       })
     }
   }
@@ -28,7 +27,7 @@ export default class App extends Component {
     return (
       <Switch>
         <Route 
-          exact path="/homepage" 
+          exact path="/" 
           render={(props) => (
             <HomePage 
               { ...this.props } 
@@ -60,16 +59,6 @@ export default class App extends Component {
             <QuestionsPage
               { ...this.props } 
               { ...props }
-            />
-          )}
-        />
-     
-        <Route 
-          path='/log-in' 
-          render={(props) => (
-            <LogIn 
-              { ...this.props } 
-              { ...props } 
             />
           )}
         />

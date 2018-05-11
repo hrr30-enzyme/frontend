@@ -1,7 +1,7 @@
 import {OPEN_MODAL, CLOSE_MODAL} from '../actions/types'
 
 const initialState = {
-  signUp: false,
+  signup: false,
   logIn: false
 }
 
@@ -11,12 +11,11 @@ const showModal = (state = initialState, action) => {
       return {
         ...state,
         [action.payload.modal]: true
-      }
+      };
+      
     case CLOSE_MODAL:
-      return {
-        ...state,
-        [action.payload.modal]: false
-      }
+      return initialState;
+
     default:
       return state
   }

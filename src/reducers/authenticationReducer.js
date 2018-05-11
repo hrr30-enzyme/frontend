@@ -16,10 +16,11 @@ const intialState = {
 const authentication = (state = intialState, action) => {
   switch (action.type) {
     case `${SIGN_IN}_FULFILLED`:
+      console.log('sign in fulfilled', action)
       return {
         ...state,
         signedIn: true,
-        userInfo: action.payload.userInfo
+        userInfo: action.payload.data
       };
     case `${SIGN_IN}_REJECTED`:
       return {
@@ -44,11 +45,13 @@ const authentication = (state = intialState, action) => {
 
     case `${SIGN_UP}_FULFILLED`:
       return {
-
+        ...state,
       };
 
     case `${SIGN_UP}_REJECTED`:
-      return {};
+      return {
+        ...state
+      };
 
     default:
       return state;
