@@ -10,7 +10,7 @@ const initialState = {
   commentBody: ''
 };
 
-export const textInput = (state = initialState, action) => {
+const textInput = (state = initialState, action) => {
   switch(action.type){
     case INPUT_CHANGE:
       return {
@@ -22,4 +22,6 @@ export const textInput = (state = initialState, action) => {
       return state
   
   }
-} 
+}
+
+export default textInput
