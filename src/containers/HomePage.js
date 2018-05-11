@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Question from '../components/Question'
-import Answers from './Answers'
-import GiveAnswer from '../components/GiveAnswer'
-import AskQuestion from '../components/AskQuestion'
 import Navbar from '../components/Navbar'
 import QuestionPreview from '../components/QuestionPreview'
 
@@ -43,20 +38,24 @@ const Layout = styled.div`
   }
 `
 
-const Home = (props) => {
-  
-  console.log('questionsPage', props)
+export default class QuestionsPage extends Component {
+  componentDidMount() {
+    // TODO must get questions here
+  }
+
+  render() {
+    console.log('questionsPage', this.props)
 
 
-  return (
-    <Layout>
-      <div className="nav">
-        <Navbar { ...props }/>
-      </div>
-      { props.post.questions.map((question) => (
-        <QuestionPreview { ...props } />
-      )) }
-    </Layout>
-  );
-};
-export default Home
+    return (
+      <Layout>
+        <div className="nav">
+          <Navbar { ...this.props }/>
+        </div>
+        { this.props.post.questions.map((question) => (
+          <QuestionPreview { ...this.props } />
+        )) }
+      </Layout>
+    );
+  }
+} 

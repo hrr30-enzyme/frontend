@@ -11,7 +11,7 @@ export default class App extends Component {
   
     this.requireAuth = this.requireAuth.bind(this);
   }
-  
+
   requireAuth(nextState, replace) {
     const signedIn = this.props.authentication.signedIn;
 
