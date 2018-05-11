@@ -5,7 +5,9 @@ import {
   GET_QUESTIONS,
   POST_ANSWER,
   GET_ANSWER,
-  GET_ANSWERS
+  GET_ANSWERS,
+  GET_POSTS_BY_QUESTION,
+  GET_POST_BY_QUERY,
 } from "../actions/types";
 
 
@@ -39,7 +41,7 @@ const exampleState = {
   ]
 };
 
-const intialState = {
+const initialState = {
   posts: {}
 };
 
@@ -103,6 +105,27 @@ const authentication = (state = exampleState, action) => {
       };
 
     case `${GET_ANSWERS}_REJECTED`:
+      return {
+        ...state,
+      };
+    case `${GET_POSTS_BY_QUESTION}_FULFILLED`:
+      return {
+        ...state,
+        questions: action.payload.data
+      };
+
+    case `${GET_POSTS_BY_QUESTION}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${GET_POST_BY_QUERY}_FULFILLED`:
+      return {
+        ...state,
+        questions: action.payload.data,
+      };
+
+    case `${GET_POST_BY_QUERY}_REJECTED`:
       return {
         ...state,
       };

@@ -1,12 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import Question from '../components/Question'
-import Answers from './Answers'
-import GiveAnswer from '../components/GiveAnswer'
-import AskQuestion from '../components/AskQuestion'
 import Navbar from '../components/Navbar'
 import QuestionPreview from '../components/QuestionPreview'
+import { openModal } from '../actions/modal';
 
 const Layout = styled.div`
   display: grid;
@@ -41,10 +38,24 @@ const Layout = styled.div`
     grid-row: 2/3;
   }
 `
+const Button = styled.button`
+  background: red;
+  color: white;
 
-const QuestionsPage = (props) => {
-  console.log('questionsPage', props)
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`
 
+export default class QuestionsPage extends Component {
+  componentDidMount() {
+    // TODO must get questions here
+  }
+
+  render() {
+    console.log('questionsPage', this.props)
 
   return (
     <Layout>
@@ -54,8 +65,7 @@ const QuestionsPage = (props) => {
       { props.post.questions.map((question) => (
         <QuestionPreview { ...props } />
       )) }
+      <Button onClick={()=>props.openModal('ask')}>Ask a Question</Button>
     </Layout>
   );
 };
-
-export default QuestionsPage
