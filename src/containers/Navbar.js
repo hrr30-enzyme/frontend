@@ -2,7 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import Authenticate from '../components/Authenticate'
+import Authenticate from "../components/Authenticate";
+
+import LogIn from "../components/LogIn";
+import SignUp from "../components/SignUp";
 
 const Div = styled.div`
   display: grid;
@@ -19,6 +22,7 @@ const Div = styled.div`
 const AuthDiv = styled.div`
   margin: 1em;
   background-color: darkred;
+  color: white;
 `;
 
 const Navbar = (props) => {
@@ -36,6 +40,15 @@ const Navbar = (props) => {
       </Link>
       {/* the link to the User should bein authenticate */}
       <AuthDiv><Authenticate { ...props }/></AuthDiv>
+      <LogIn
+        userName={props.textInput.userName}
+        password={props.password}
+        openModal={props.openModal}
+        closeModal={props.closeModal}
+        signin={props.signin}
+        showModal={props.showModal}
+      />
+      <SignUp />
     </Div>
   );
 };

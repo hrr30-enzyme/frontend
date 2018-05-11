@@ -17,13 +17,14 @@ const Authenticate = (props) => {
   } else {
     return (
       <div>
-        <Link to="/log-in">
-          login
-        </Link>
+        <div onClick={()=>(props.openModal('logIn'))}>
+          Log In
+        </div>
         signup
       </div>
     )
   }
-}
+};
 
-export default Authenticate
+export default Authenticate;
+

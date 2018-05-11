@@ -28,7 +28,7 @@ export default class App extends Component {
     return (
       <Switch>
         <Route 
-          exact path="/" 
+          exact path="/homepage" 
           render={(props) => (
             <HomePage 
               { ...this.props } 
