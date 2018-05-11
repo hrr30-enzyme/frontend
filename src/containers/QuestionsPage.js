@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Navbar from '../components/Navbar'
 import QuestionPreview from '../components/QuestionPreview'
+import { openModal } from '../actions/modal';
 
 const Layout = styled.div`
   display: grid;
@@ -37,6 +38,16 @@ const Layout = styled.div`
     grid-row: 2/3;
   }
 `
+const Button = styled.button`
+  background: red;
+  color: white;
+
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`
 
 export default class QuestionsPage extends Component {
   componentDidMount() {
@@ -46,16 +57,15 @@ export default class QuestionsPage extends Component {
   render() {
     console.log('questionsPage', this.props)
 
-
-    return (
-      <Layout>
-        <div className="nav">
-          <Navbar { ...this.props }/>
-        </div>
-        { this.props.post.questions.map((question) => (
-          <QuestionPreview { ...this.props } />
-        )) }
-      </Layout>
-    );
-  }
-} 
+  return (
+    <Layout>
+      <div className="nav">
+        <Navbar { ...props }/>
+      </div>
+      { props.post.questions.map((question) => (
+        <QuestionPreview { ...props } />
+      )) }
+      <Button onClick={()=>props.openModal('ask')}>Ask a Question</Button>
+    </Layout>
+  );
+};
