@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
-import { authentication } from '../reducers/authenticationReducer'
-import { questions } from '../reducers/questionsReducer'
-import { textInput } from '../reducers/textInputReducer'
 
-//Import reducers below
+import authentication from '../reducers/authenticationReducer'
+import post from '../reducers/postReducer'
+import textInput from '../reducers/textInputReducer'
 
 export default combineReducers({
     authentication,
-    questions,
-    textInput
+    textInput,
+    post,    
 });
