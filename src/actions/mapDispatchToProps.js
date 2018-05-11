@@ -14,7 +14,7 @@ import {
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({ 
     signIn,
-    signOut,
+    signout,
     submitQuestion,
     addText,
     postQuestion,
