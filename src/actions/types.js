@@ -23,3 +23,7 @@ export const GET_ANSWER = 'GET_ANSWER'
 export const GET_ANSWERS = 'GET_ANSWERS'
 
 export const INPUT_CHANGE = 'ADD_TEXT'
+
+export const CLOSE_MODAL = 'CLOSE_MODAL'
+
+export const OPEN_MODAL = 'OPEN_MODAL'
