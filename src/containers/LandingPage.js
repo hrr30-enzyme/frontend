@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Navbar from '../components/Navbar'
+import AskQuestion from '../components/AskQuestion'
 
 const Layout = styled.div`
   display: grid;
@@ -22,6 +23,9 @@ const Landing = props => {
     <Layout>
       <div className="nav">
         <Navbar {...props}/>
+      </div>
+      <div className="ask">
+        <AskQuestion {...props}/>
       </div>
     </Layout>
   )
