@@ -23,7 +23,7 @@ export default class App extends Component {
     return (
       <Switch>
         <Route 
-          exact path="/" 
+          exact path="/homepage" 
           render={(props) => (
             <Home 
               { ...this.props } 
@@ -37,15 +37,6 @@ export default class App extends Component {
             <Landing 
               { ...this.props } 
               { ...props }
-            />
-          )}
-        />
-        <Route 
-          exact path='/log-in' 
-          render={(props) => (
-            <LogIn 
-              { ...this.props } 
-              { ...props } 
             />
           )}
         />

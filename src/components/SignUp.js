@@ -3,15 +3,17 @@ import styled from "styled-components";
 import React from "react";
 
 const Modal = styled.div`
-  display: ${props => props.showModal.logIn ? 'block' : 'none'};
   position: fixed;
-  top: 0;
   left: 0;
-  width:100%;
+  top: 0;
+  width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 `;
-
 const ModalContent = styled.div`
   position: absolute;
   top: 50%;
@@ -43,29 +45,26 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-const handleClick = (e, cb, credentials) => {
+/* const handleClick = (e, cb) => {
+  console.log(props);
+  console.log(username)
   //You need to figure out how you want to access username, password, and email
   e.preventDefault();
-  cb(credentials);
-};
+  cb();
+}; */
 
-const handleClose = (e, cb) => {
-  e.preventDefault();
-  cb('logIn')
-}
-
-const LogIn = ({signIn, closeModal, username, password, showModal}) => {
-  console.log(showModal)
+const SignUp = (props) => {
+  console.log(props)
   return (
-    <Modal showModal={showModal}>
+    <Modal>
       <ModalContent>
+        <Input placeholder="Email" type="text" />
         <Input placeholder="Username" type="text" />
         <Input placeholder="Password" type="text" />
-        <Button onClick={e => handleClick(e, signIn, {username, password})}>Submit</Button>
-        <Button onClick={(e) => handleClose(e, closeModal)}>Close</Button>
+        <Button /* onClick={e => handleClick(e, signUp)} */>Submit</Button>
       </ModalContent>
     </Modal>
   );
 };
 
-export default LogIn
+export default SignUp
