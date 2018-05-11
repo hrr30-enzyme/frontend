@@ -6,6 +6,7 @@ import Answers from './Answers'
 import GiveAnswer from '../components/GiveAnswer'
 import AskQuestion from '../components/AskQuestion'
 import Navbar from './Navbar'
+import QuestionPreview from '../components/QuestionPreview'
 
 const Layout = styled.div`
   display: grid;
@@ -42,28 +43,17 @@ const Layout = styled.div`
 `
 
 const QuestionsPage = (props) => {
-  
+  console.log('questionsPage', props)
+
+
   return (
     <Layout>
       <div className="nav">
         <Navbar { ...props }/>
       </div>
-      <div className="question">
-        <Question />
-      </div>
-
-      <div className="answers">
-        <Answers />
-
-      </div>
-      <div className="giveanswer">
-       <GiveAnswer /> 
-      </div>
-
-      <div className="ask">
-        <AskQuestion />
-      </div>
-      
+      { props.post.questions.map((question) => (
+        <QuestionPreview { ...props } />
+      )) }
     </Layout>
   );
 };

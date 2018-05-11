@@ -18,7 +18,7 @@ export default class App extends Component {
 
     if(signedIn){
       replace({
-        pathname: '/homepage'
+        pathname: '/landing'
       })
     }
   }
@@ -28,7 +28,7 @@ export default class App extends Component {
     return (
       <Switch>
         <Route 
-          exact path="/homepage" 
+          exact path="/" 
           render={(props) => (
             <HomePage 
               { ...this.props } 

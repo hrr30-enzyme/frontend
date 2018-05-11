@@ -3,11 +3,11 @@ import styled from "styled-components";
 import React from "react";
 
 const Modal = styled.div`
-  display: ${props => props.showModal.logIn ? 'block' : 'none'};
+  display: ${props => (props.showModal.logIn ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 `;
@@ -51,21 +51,45 @@ const handleClick = (e, cb, credentials) => {
 
 const handleClose = (e, cb) => {
   e.preventDefault();
-  cb('logIn')
-}
+  cb("logIn");
+};
 
-const LogIn = ({signIn, closeModal, username, password, showModal}) => {
-  console.log(showModal)
+const handleChange = (cb, inputType, input) => {
+  cb(inputType, input);
+};
+
+const LogIn = ({
+  signin,
+  closeModal,
+  userName,
+  password,
+  showModal,
+  addText
+}) => {
   return (
     <Modal showModal={showModal}>
       <ModalContent>
-        <Input placeholder="Username" type="text" />
-        <Input placeholder="Password" type="text" />
-        <Button onClick={e => handleClick(e, signIn, {username, password})}>Submit</Button>
-        <Button onClick={(e) => handleClose(e, closeModal)}>Close</Button>
+        <Input
+          value={userName}
+          onChange={e => handleChange(addText, "userName", e.target.value)}
+          placeholder="Username"
+          type="text"
+          required
+        />
+        <Input
+          value={password}
+          onChange={e => handleChange(addText, "password", e.target.value)}
+          placeholder="Password"
+          type="text"
+          required
+        />
+        <Button onClick={e => handleClick(e, signin, { userName, password })}>
+          Submit
+        </Button>
+        <Button onClick={e => handleClose(e, closeModal)}>Close</Button>
       </ModalContent>
     </Modal>
   );
 };
 
-export default LogIn
+export default LogIn;

@@ -17,14 +17,11 @@ const Authenticate = (props) => {
   } else {
     return (
       <div>
-        <div onClick={()=>(props.openModal('logIn'))}>
-          Log In
-        </div>
-        signup
+        <div onClick={() => props.openModal("signUp")}>Sign Up</div>
+        <div onClick={() => props.openModal("logIn")}>Log In</div>
       </div>
     )
   }
 };
 
 export default Authenticate;
-
