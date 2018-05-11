@@ -1,7 +1,7 @@
 import { INPUT_CHANGE } from '../actions/types'
 
 const initialState = {
-  userName: '',
+  username: '',
   password: '',
   email: '',
   questionTitle: '',

@@ -1,47 +1,71 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import Home from './Home';
-import Landing from './Landing'
+import HomePage from './HomePage';
+import LandingPage from './LandingPage'
 import LogIn from './LogIn'
+import QuestionPage from './QuestionPage'
+import QuestionsPage from './QuestionsPage'
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.requireAuth = this.requireAuth.bind(this);
+  }
+  
+  requireAuth(nextState, replace) {
+    const signedIn = this.props.authentication.signedIn;
+
+    if(signedIn){
+      replace({
+        pathname: '/homepage'
+      })
+    }
+  }
 
   render() {
-
-    const {authentication} = this.props
-    
-    var requireAuth = function(nextState, replace){
-      if(!authentication.signedIn){
-        replace({
-          pathname: '/homepage'
-        })
-      }
-
-    }
-
-
+    console.log('rerendering App with props', this.props)
     return (
       <Switch>
         <Route 
           exact path="/" 
           render={(props) => (
-            <Home 
+            <HomePage 
               { ...this.props } 
               { ...props } 
-              onEnter={requireAuth}
+              onEnter={this.requireAuth}
             />)
           }/>
-        <Route 
-          exact path='/' 
+        <Route
+          path='/landing' 
           render={(props) => (
-            <Landing 
+            <LandingPage
               { ...this.props } 
               { ...props }
             />
           )}
         />
         <Route 
-          exact path='/log-in' 
+          path='/question' 
+          render={(props) => (
+            <QuestionPage 
+              { ...this.props } 
+              { ...props }
+            />
+          )}
+        />
+         <Route 
+          path='/questions' 
+          render={(props) => (
+            <QuestionsPage
+              { ...this.props } 
+              { ...props }
+            />
+          )}
+        />
+     
+        <Route 
+          path='/log-in' 
           render={(props) => (
             <LogIn 
               { ...this.props } 
