@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 
 const Modal = styled.div`
-  display: ${props => (props.showModal.signUp ? "block" : "none")};
+  display: ${props => (props.showModal.logIn ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -51,36 +51,27 @@ const handleClick = (e, cb, credentials) => {
 
 const handleClose = (e, cb) => {
   e.preventDefault();
-  cb("signUp");
+  cb("logIn");
 };
 
 const handleChange = (cb, inputType, input) => {
   cb(inputType, input);
 };
 
-const SignUp = ({
-  signup,
+const Signin = ({
+  signin,
   closeModal,
-  userName,
+  username,
   password,
   showModal,
-  email,
   addText
 }) => {
-  console.log('Sign Up:', password)
   return (
     <Modal showModal={showModal}>
       <ModalContent>
         <Input
-          value={email}
-          onChange={e => handleChange(addText, "email", e.target.value)}
-          placeholder="Email"
-          type="text"
-          required
-        />
-        <Input
-          value={userName}
-          onChange={e => handleChange(addText, "userName", e.target.value)}
+          value={username}
+          onChange={e => handleChange(addText, "username", e.target.value)}
           placeholder="Username"
           type="text"
           required
@@ -92,9 +83,7 @@ const SignUp = ({
           type="text"
           required
         />
-        <Button
-          onClick={e => handleClick(e, signup, { userName, password, email })}
-        >
+        <Button onClick={e => handleClick(e, signin, { username, password })}>
           Submit
         </Button>
         <Button onClick={e => handleClose(e, closeModal)}>Close</Button>
@@ -103,4 +92,4 @@ const SignUp = ({
   );
 };
 
-export default SignUp;
+export default Signin;
