@@ -32,7 +32,6 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  /* Adapt the colours based on primary prop */
   background: red;
   color: white;
 

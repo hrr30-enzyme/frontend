@@ -7,6 +7,7 @@ import GiveAnswer from '../components/GiveAnswer'
 import AskQuestion from '../components/AskQuestion'
 import Navbar from '../components/Navbar'
 import QuestionPreview from '../components/QuestionPreview'
+import { openModal } from '../actions/modal';
 
 const Layout = styled.div`
   display: grid;
@@ -41,6 +42,16 @@ const Layout = styled.div`
     grid-row: 2/3;
   }
 `
+const Button = styled.button`
+  background: red;
+  color: white;
+
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`
 
 const QuestionsPage = (props) => {
   console.log('questionsPage', props)
@@ -54,6 +65,7 @@ const QuestionsPage = (props) => {
       { props.post.questions.map((question) => (
         <QuestionPreview { ...props } />
       )) }
+      <Button onClick={()=>props.openModal('ask')}>Ask a Question</Button>
     </Layout>
   );
 };
