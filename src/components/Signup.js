@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 
 const Modal = styled.div`
-  display: ${props => (props.showModal.signUp ? "block" : "none")};
+  display: ${props => (props.showModal.signup ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -51,23 +51,23 @@ const handleClick = (e, cb, credentials) => {
 
 const handleClose = (e, cb) => {
   e.preventDefault();
-  cb("signUp");
+  cb("signup");
 };
 
 const handleChange = (cb, inputType, input) => {
   cb(inputType, input);
 };
 
-const SignUp = ({
+const Signup = ({
   signup,
   closeModal,
-  userName,
+  username,
   password,
   showModal,
   email,
   addText
 }) => {
-  console.log('Sign Up:', password)
+  console.log('Sign Up:', showModal)
   return (
     <Modal showModal={showModal}>
       <ModalContent>
@@ -79,8 +79,8 @@ const SignUp = ({
           required
         />
         <Input
-          value={userName}
-          onChange={e => handleChange(addText, "userName", e.target.value)}
+          value={username}
+          onChange={e => handleChange(addText, "username", e.target.value)}
           placeholder="Username"
           type="text"
           required
@@ -93,7 +93,7 @@ const SignUp = ({
           required
         />
         <Button
-          onClick={e => handleClick(e, signup, { userName, password, email })}
+          onClick={e => handleClick(e, signup, { username, password, email })}
         >
           Submit
         </Button>
@@ -103,4 +103,4 @@ const SignUp = ({
   );
 };
 
-export default SignUp;
+export default Signup;

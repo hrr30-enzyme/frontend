@@ -5,7 +5,7 @@ import Question from '../components/Question'
 import Answers from './Answers'
 import GiveAnswer from '../components/GiveAnswer'
 import AskQuestion from '../components/AskQuestion'
-import Navbar from './Navbar'
+import Navbar from '../components/Navbar'
 import QuestionPreview from '../components/QuestionPreview'
 
 const Layout = styled.div`

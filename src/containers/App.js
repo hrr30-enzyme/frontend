@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import HomePage from './HomePage';
 import LandingPage from './LandingPage'
-import LogIn from './LogIn'
 import QuestionPage from './QuestionPage'
 import QuestionsPage from './QuestionsPage'
 
@@ -60,16 +59,6 @@ export default class App extends Component {
             <QuestionsPage
               { ...this.props } 
               { ...props }
-            />
-          )}
-        />
-     
-        <Route 
-          path='/log-in' 
-          render={(props) => (
-            <LogIn 
-              { ...this.props } 
-              { ...props } 
             />
           )}
         />

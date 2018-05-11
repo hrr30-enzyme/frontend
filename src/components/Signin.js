@@ -58,10 +58,10 @@ const handleChange = (cb, inputType, input) => {
   cb(inputType, input);
 };
 
-const LogIn = ({
+const Signin = ({
   signin,
   closeModal,
-  userName,
+  username,
   password,
   showModal,
   addText
@@ -70,8 +70,8 @@ const LogIn = ({
     <Modal showModal={showModal}>
       <ModalContent>
         <Input
-          value={userName}
-          onChange={e => handleChange(addText, "userName", e.target.value)}
+          value={username}
+          onChange={e => handleChange(addText, "username", e.target.value)}
           placeholder="Username"
           type="text"
           required
@@ -83,7 +83,7 @@ const LogIn = ({
           type="text"
           required
         />
-        <Button onClick={e => handleClick(e, signin, { userName, password })}>
+        <Button onClick={e => handleClick(e, signin, { username, password })}>
           Submit
         </Button>
         <Button onClick={e => handleClose(e, closeModal)}>Close</Button>
@@ -92,4 +92,4 @@ const LogIn = ({
   );
 };
 
-export default LogIn;
+export default Signin;
