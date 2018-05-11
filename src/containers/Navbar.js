@@ -22,25 +22,13 @@ const AuthDiv = styled.div`
 `;
 
 const Navbar = props => {
-  console.log(props);
   return (
-    <div>
       <Div>
         <h1>Catalyst</h1>
         <AuthDiv>
           <Authenticate openModal={props.openModal} />
         </AuthDiv>
-        </Div>
-          <LogIn
-            userName={props.textInput.userName}
-            password={props.password}
-            openModal={props.openModal}
-            closeModal={props.closeModal}
-            signin={props.signin}
-            showModal={props.showModal}
-          />
-          <SignUp />
-    </div>
+      </Div>
   );
 };
 
