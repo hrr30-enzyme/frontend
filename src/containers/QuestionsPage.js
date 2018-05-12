@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
 import AskQuestion from '../components/AskQuestion'
 import { openModal } from "../actions/modal";
+import { GET_QUESTION } from "../actions/types";
 
 const Layout = styled.div`
   display: grid;
@@ -51,11 +52,10 @@ const Button = styled.button`
 `;
 
 export default class QuestionsPage extends Component {
-
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
   }
-  
+
   componentDidMount() {
     // TODO must get questions here
   }
@@ -68,11 +68,18 @@ export default class QuestionsPage extends Component {
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-        <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
         <AskQuestion
           title={this.props.textInput.title}
           body={this.props.textInput.body}
           {...this.props}/>
+        {this.props.post.questions.map(question => (
+          <QuestionPreview
+            qid={41}
+            key={question.id}
+            {...this.props}
+          />
+        ))}
+        <Button onClick={() => props.openModal("ask")}>Ask a Question</Button>
       </Layout>
     );
   }

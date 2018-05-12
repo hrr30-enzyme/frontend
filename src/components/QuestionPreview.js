@@ -51,9 +51,16 @@ const qTitle = styled.h3`
   font-weight: 400;
 `;
 
-const QuestionPreview = props => {
+const handleClick = (e, cb, id) => {
+  e.preventDefault()
+
+  cb(id)
+}
+
+const QuestionPreview = ({...props}) => {
+  console.log(props.getQuestion)
   return (
-    <Question>
+    <Question onClick={(e)=>handleClick(e, props.getQuestion, props.qid)}>
       <Link to="/question">
         <qStats>
           <qVotes>
