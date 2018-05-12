@@ -62,16 +62,6 @@ const handleClose = (e, cb) => {
 const Ask = ({title, body, addText, authentication, showModal, closeModal}) => {
   const userId = authentication.userInfo.id
   return (
-<<<<<<< HEAD
-    <Div>
-      <div>Ask your own...</div>
-      <textarea 
-
-      />
-      <textarea placeholder="Enter question body here..." />
-      <button>Submit</button>
-    </Div>
-=======
     <Modal showModal={showModal}>
       <ModalContent>
         <div>Ask your own...</div>
@@ -97,7 +87,6 @@ const Ask = ({title, body, addText, authentication, showModal, closeModal}) => {
         <Button onClick={e => handleClose(e, closeModal)}>Close</Button>
       </ModalContent>
     </Modal>
->>>>>>> a618f5daac629314196392a1c76cdb5906787405
   );
 };
 
