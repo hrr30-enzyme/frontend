@@ -64,6 +64,10 @@ const Button = styled.button`
 >>>>>>> Add openModal for Ask Question on Questions Page
 
 export default class QuestionsPage extends Component {
+
+  constructor(props){
+    super(props)
+  }
   
   componentDidMount() {
     // TODO must get questions here
@@ -92,9 +96,9 @@ export default class QuestionsPage extends Component {
     return (
       <Layout>
         <div className="nav">
-          <Navbar {...props} />
+          <Navbar {...this.props} />
         </div>
-        {props.post.questions.map(question => <QuestionPreview {...props} />)}
+        {this.props.post.questions.map(question => <QuestionPreview {...this.props} />)}
         <Button onClick={() => props.openModal("ask")}>Ask a Question</Button>
       </Layout>
     );

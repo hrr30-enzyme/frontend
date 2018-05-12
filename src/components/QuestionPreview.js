@@ -2,6 +2,8 @@ import React from "react";
 
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 const Question = styled.div`
   padding: 12px 0;
   border-bottom: 1px solid #e4e6e8;
@@ -52,16 +54,18 @@ const qTitle = styled.h3`
 const QuestionPreview = props => {
   return (
     <Question>
-      <qStats>
-        <qVotes>
-          <qVoteCount>5</qVoteCount>Votes
-        </qVotes>
-        <qAnswers> Answers</qAnswers>
-        <qViews>6 Views</qViews>
-      </qStats>
-      <qSummary>
-        <qTitle>Question title and such and such and such and such</qTitle>
-      </qSummary>
+      <Link to="/question">
+        <qStats>
+          <qVotes>
+            <qVoteCount>5</qVoteCount>Votes
+          </qVotes>
+          <qAnswers> Answers</qAnswers>
+          <qViews>6 Views</qViews>
+        </qStats>
+        <qSummary>
+          <qTitle>Question title and such and such and such and such</qTitle>
+        </qSummary>
+      </Link>
     </Question>
   );
 };
