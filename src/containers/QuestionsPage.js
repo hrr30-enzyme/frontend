@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
 
-import Navbar from '../components/Navbar'
-import QuestionPreview from '../components/QuestionPreview'
-import { openModal } from '../actions/modal';
+import Navbar from "../components/Navbar";
+import QuestionPreview from "../components/QuestionPreview";
+import { openModal } from "../actions/modal";
 
 const Layout = styled.div`
   display: grid;
@@ -11,7 +11,7 @@ const Layout = styled.div`
   grid-template-rows: auto auto auto auto auto auto auto auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
-  
+
   > .nav {
     background-color: red;
     grid-column: 1/3;
@@ -37,7 +37,7 @@ const Layout = styled.div`
     grid-column: 2/3;
     grid-row: 2/3;
   }
-`
+`;
 const Button = styled.button`
   background: red;
   color: white;
@@ -47,25 +47,29 @@ const Button = styled.button`
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
-`
+`;
 
 export default class QuestionsPage extends Component {
+
+  constructor(props){
+    super(props)
+  }
+  
   componentDidMount() {
     // TODO must get questions here
   }
 
-  render() {
-    console.log('questionsPage', this.props)
+  render(props) {
+    console.log("questionsPage", this.props);
 
-  return (
-    <Layout>
-      <div className="nav">
-        <Navbar { ...props }/>
-      </div>
-      { props.post.questions.map((question) => (
-        <QuestionPreview { ...props } />
-      )) }
-      <Button onClick={()=>props.openModal('ask')}>Ask a Question</Button>
-    </Layout>
-  );
-};
+    return (
+      <Layout>
+        <div className="nav">
+          <Navbar {...this.props} />
+        </div>
+        {this.props.post.questions.map(question => <QuestionPreview {...this.props} />)}
+        <Button onClick={() => props.openModal("ask")}>Ask a Question</Button>
+      </Layout>
+    );
+  }
+}
