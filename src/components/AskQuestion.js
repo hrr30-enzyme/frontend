@@ -11,7 +11,9 @@ const Ask = (props) => {
   return (
     <Div>
       <div>Ask your own...</div>
-      <textarea placeholder="Enter question title..." />
+      <textarea 
+
+      />
       <textarea placeholder="Enter question body here..." />
       <button>Submit</button>
     </Div>
