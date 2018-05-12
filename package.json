@@ -40,6 +40,7 @@
     "react": "^16.3.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
+    "react-icons": "^2.2.7",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-test-renderer": "^16.3.2",
@@ -49,6 +50,7 @@
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.2.0",
     "resolve": "1.6.0",
+    "sinon": "^5.0.7",
     "socket.io-client": "^2.1.0",
     "style-loader": "0.19.0",
     "styled-components": "^3.2.6",
@@ -107,6 +109,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.15.0",
     "fetch-mock": "^6.3.0",
     "moxios": "^0.4.0",
     "redux-mock-store": "^1.5.1"

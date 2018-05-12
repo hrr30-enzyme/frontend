@@ -1,10 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
-import { postQuestion } from '../actions/posts';
+import styled from "styled-components";
 
+import React from "react";
 
 const Modal = styled.div`
-  display: ${props => (props.showModal.ask ? "block" : "none")};
+  display: ${props => (props.showModal.logIn ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -20,11 +19,9 @@ const ModalContent = styled.div`
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 1rem 1.5rem;
-  width: 40rem;
-  height: 45rem;
+  width: 24rem;
   border-radius: 0.5rem;
 `;
-
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
@@ -45,43 +42,47 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
-
-const handleClick = (e, cb, data) => {
+const handleClick = (e, cb, credentials) => {
+  //You need to figure out how you want to access username, password, and email
   e.preventDefault();
-  cb(data);
+  cb(credentials);
 };
 
 const handleClose = (e, cb) => {
   e.preventDefault();
-  cb("ask");
+  cb("logIn");
 };
 
-const Ask = ({title, body, addText, authentication, showModal, closeModal}) => {
-  const userId = authentication.userInfo.id
+const handleChange = (cb, inputType, input) => {
+  cb(inputType, input);
+};
+
+const Signin = ({
+  signin,
+  closeModal,
+  username,
+  password,
+  showModal,
+  addText
+}) => {
   return (
     <Modal showModal={showModal}>
       <ModalContent>
-        <div>Ask your own...</div>
         <Input
-            value={title}
-            onChange={e => handleChange(addText, "title", e.target.value)}
-            placeholder="Title"
-            type="text"
-            required
+          value={username}
+          onChange={e => handleChange(addText, "username", e.target.value)}
+          placeholder="Username"
+          type="text"
+          required
         />
         <Input
-            value={body}
-            onChange={e => handleChange(addText, "body", e.target.value)}
-            placeholder="Body"
-            type="text"
-            required
+          value={password}
+          onChange={e => handleChange(addText, "password", e.target.value)}
+          placeholder="Password"
+          type="text"
+          required
         />
-        <Button
-          onClick={e => handleClick(e, postQuestion, { title, body, userId})}
-        >
+        <Button onClick={e => handleClick(e, signin, { username, password })}>
           Submit
         </Button>
         <Button onClick={e => handleClose(e, closeModal)}>Close</Button>
@@ -90,4 +91,4 @@ const Ask = ({title, body, addText, authentication, showModal, closeModal}) => {
   );
 };
 
-export default Ask
+export default Signin;
