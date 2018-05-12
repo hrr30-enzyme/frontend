@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
+import AskQuestion from '../components/AskQuestion'
 import { openModal } from "../actions/modal";
 import { GET_QUESTION } from "../actions/types";
 
