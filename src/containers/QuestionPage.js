@@ -46,7 +46,7 @@ const QuestionPage = (props) => {
   return (
     <Layout>
       <div className="nav">
-        <Navbar />
+        <Navbar {...props}/>
       </div>
       <div className="question">
         <Question />
