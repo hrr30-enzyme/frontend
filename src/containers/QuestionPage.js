@@ -5,7 +5,7 @@ import Question from '../components/Question'
 import Answers from './Answers'
 import GiveAnswer from '../components/GiveAnswer'
 import AskQuestion from '../components/AskQuestion'
-import Navbar from './Navbar'
+import Navbar from '../components/Navbar'
 
 const Layout = styled.div`
   display: grid;
@@ -41,12 +41,12 @@ const Layout = styled.div`
   }
 `
 
-const Home = (props) => {
+const QuestionPage = (props) => {
   
   return (
     <Layout>
       <div className="nav">
-        <Navbar />
+        <Navbar {...props}/>
       </div>
       <div className="question">
         <Question />
@@ -55,11 +55,6 @@ const Home = (props) => {
       <div className="answers">
         <Answers />
 
-      </div>
-<div>
-      <img src="https://dweaay7e22a7h.cloudfront.net/wp-content_3/uploads/2018/01/blockchain-650x360.jpg"
-      />
-      <img width="360" src="https://cdn-images-1.medium.com/max/1200/1*QOS8cNI-A61sKwLJ8Nf8Iw.png" />
       </div>
       <div className="giveanswer">
        <GiveAnswer /> 
@@ -73,4 +68,4 @@ const Home = (props) => {
   );
 };
 
-export default Home
+export default QuestionPage

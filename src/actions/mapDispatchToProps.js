@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux'
-import { signin, signout } from './authentication'
+import { signin, signout, signup } from './authentication'
 import { addText } from './inputText'
+import { openModal, closeModal } from './modal'
 import {
   postQuestion,
   getQuestion,
@@ -14,13 +15,16 @@ const mapDispatchToProps = (dispatch) => (
   bindActionCreators({ 
     signin,
     signout,
+    signup,
     addText,
     postQuestion,
     getQuestion,
     getQuestions,
     postAnswer,
     getAnswer,
-    getAnswers
+    getAnswers,
+    openModal,
+    closeModal
   }, dispatch)
 ); 
 

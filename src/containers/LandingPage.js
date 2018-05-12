@@ -1,6 +1,7 @@
 import React from 'react'
-import Navbar from './Navbar'
 import styled from 'styled-components'
+
+import Navbar from '../components/Navbar'
 
 const Layout = styled.div`
   display: grid;
@@ -20,7 +21,7 @@ const Landing = props => {
   return (
     <Layout>
       <div className="nav">
-        <Navbar />
+        <Navbar {...props}/>
       </div>
     </Layout>
   )
