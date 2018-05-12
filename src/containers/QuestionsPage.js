@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
+import AskQuestion from '../components/AskQuestion'
 import { openModal } from "../actions/modal";
 
 const Layout = styled.div`
@@ -68,7 +69,8 @@ export default class QuestionsPage extends Component {
           <Navbar {...this.props} />
         </div>
         {this.props.post.questions.map(question => <QuestionPreview {...this.props} />)}
-        <Button onClick={() => props.openModal("ask")}>Ask a Question</Button>
+        <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
+        <AskQuestion {...this.props}/>
       </Layout>
     );
   }

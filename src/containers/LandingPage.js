@@ -24,9 +24,6 @@ const Landing = props => {
       <div className="nav">
         <Navbar {...props}/>
       </div>
-      <div className="ask">
-        <AskQuestion {...props}/>
-      </div>
     </Layout>
   )
 }
