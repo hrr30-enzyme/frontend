@@ -59,7 +59,7 @@ export const postQuestion = (question) => ({
 
 export const getQuestion = (id) => ({
   type: GET_QUESTION,
-  payload: axios.get(`${ORIGIN}/question/${id}`) 
+  payload: axios.get(`${ORIGIN}/questions/${id}`) 
 });
 
 export const getQuestions = (query) => {

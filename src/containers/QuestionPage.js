@@ -42,6 +42,7 @@ const Layout = styled.div`
 `
 
 const QuestionPage = (props) => {
+
   
   return (
     <Layout>
@@ -49,7 +50,7 @@ const QuestionPage = (props) => {
         <Navbar {...props}/>
       </div>
       <div className="question">
-        <Question />
+        <Question {...props}/>
       </div>
 
       <div className="answers">
@@ -61,7 +62,7 @@ const QuestionPage = (props) => {
       </div>
 
       <div className="ask">
-        <AskQuestion />
+        <AskQuestion {...props}/>
       </div>
       
     </Layout>

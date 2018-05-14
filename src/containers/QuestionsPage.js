@@ -70,7 +70,7 @@ export default class QuestionsPage extends Component {
         </div>
         {this.props.post.questions.map(question => (
           <QuestionPreview
-            qid={41}
+            qid={1}
             key={question.id}
             {...this.props}
           />
