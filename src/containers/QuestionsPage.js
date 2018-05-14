@@ -68,7 +68,6 @@ export default class QuestionsPage extends Component {
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-        {this.props.post.questions.map(question => <QuestionPreview {...this.props} />)}
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
         <AskQuestion {...this.props}/>
       </Layout>
