@@ -25,9 +25,21 @@ const ModalContent = styled.div`
   border-radius: 0.5rem;
 `;
 
-const Input = styled.input`
+const InputTitle = styled.input`
   padding: 0.5em;
   margin: 0.5em;
+  width: 80%;
+  color: palevioletred;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+`;
+
+const InputBody = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 80%;
+  height: 50%;
   color: palevioletred;
   background: papayawhip;
   border: none;
@@ -49,9 +61,9 @@ const handleChange = (cb, inputType, input) => {
   cb(inputType, input);
 };
 
-const handleClick = (e, cb, data) => {
+const handleClick = (e, cb, question) => {
   e.preventDefault();
-  cb(data);
+  cb(question);
 };
 
 const handleClose = (e, cb) => {
@@ -59,20 +71,29 @@ const handleClose = (e, cb) => {
   cb("ask");
 };
 
-const Ask = ({title, body, addText, authentication, showModal, closeModal}) => {
-  const userId = authentication.userInfo.id
+const Ask = ({
+  title, 
+  body, 
+  addText, 
+  authentication, 
+  showModal, 
+  closeModal
+}) => {
+  console.log(this.props);
+  const UserId = authentication.userInfo.id
+  console.log(title, body);
   return (
     <Modal showModal={showModal}>
       <ModalContent>
         <div>Ask your own...</div>
-        <Input
+        <InputTitle
             value={title}
             onChange={e => handleChange(addText, "title", e.target.value)}
             placeholder="Title"
             type="text"
             required
         />
-        <Input
+        <InputBody
             value={body}
             onChange={e => handleChange(addText, "body", e.target.value)}
             placeholder="Body"
@@ -80,7 +101,7 @@ const Ask = ({title, body, addText, authentication, showModal, closeModal}) => {
             required
         />
         <Button
-          onClick={e => handleClick(e, postQuestion, { title, body, userId})}
+          onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, type: 'Question', associatedQuestionId: null})}
         >
           Submit
         </Button>

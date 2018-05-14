@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 import LandingPage from './LandingPage'
 import QuestionPage from './QuestionPage'
 import QuestionsPage from './QuestionsPage'
+import UserPage from './UserPage'
 
 export default class App extends Component {
   constructor(props) {
@@ -57,6 +58,15 @@ export default class App extends Component {
           path='/questions' 
           render={(props) => (
             <QuestionsPage
+              { ...this.props } 
+              { ...props }
+            />
+          )}
+        />
+        <Route 
+          path='/user' 
+          render={(props) => (
+            <UserPage
               { ...this.props } 
               { ...props }
             />
