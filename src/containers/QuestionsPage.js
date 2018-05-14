@@ -69,7 +69,10 @@ export default class QuestionsPage extends Component {
           <Navbar {...this.props} />
         </div>
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
-        <AskQuestion {...this.props}/>
+        <AskQuestion
+          title={this.props.textInput.title}
+          body={this.props.textInput.body}
+          {...this.props}/>
       </Layout>
     );
   }
