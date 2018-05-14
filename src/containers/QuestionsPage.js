@@ -68,10 +68,13 @@ export default class QuestionsPage extends Component {
         <div className="nav">
           <Navbar {...this.props} />
         </div>
+<<<<<<< HEAD
         <AskQuestion
           title={this.props.textInput.title}
           body={this.props.textInput.body}
           {...this.props}/>
+=======
+>>>>>>> 215e0e4fb74cd17f971fef6804506a6f69b4c265
         {this.props.post.questions.map(question => (
           <QuestionPreview
             qid={1}
@@ -79,7 +82,11 @@ export default class QuestionsPage extends Component {
             {...this.props}
           />
         ))}
+<<<<<<< HEAD
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
+=======
+        <Button onClick={() => props.openModal("ask")}>Ask a Question</Button>
+>>>>>>> 215e0e4fb74cd17f971fef6804506a6f69b4c265
       </Layout>
     );
   }
