@@ -10,7 +10,7 @@ import {
 const intialState = {
   userInfo: {},
   signedIn: false,
-  error: false
+  error: false,
 };
 
 const authentication = (state = intialState, action) => {
@@ -26,7 +26,6 @@ const authentication = (state = intialState, action) => {
       return {
         ...state,
         error: action.payload.error,
-        loading: false
       };
 
     case `${SIGN_OUT}_FULFILLED`:

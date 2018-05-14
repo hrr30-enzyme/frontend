@@ -1,4 +1,4 @@
-import { INPUT_CHANGE } from '../actions/types'
+import { INPUT_CHANGE, CLEAR_ALL_INPUTS } from '../actions/types'
 
 const initialState = {
   username: '',
@@ -16,6 +16,10 @@ const textInput = (state = initialState, action) => {
       return {
         ...state,
         [action.payload.inputType]: action.payload.input
+      }
+    case CLEAR_ALL_INPUTS:
+      return {
+        ...initialState
       }
       
     default:
