@@ -4,8 +4,8 @@ const initialState = {
   username: '',
   password: '',
   email: '',
-  questionTitle: '',
-  questionBody: '',
+  title: '',
+  body: '',
   answerBody: '',
   commentBody: ''
 };

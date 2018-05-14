@@ -65,6 +65,7 @@ const Signin = ({
   showModal,
   addText
 }) => {
+  console.log(username, password);
   return (
     <Modal showModal={showModal}>
       <ModalContent>
