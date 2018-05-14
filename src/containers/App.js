@@ -46,7 +46,7 @@ export default class App extends Component {
           )}
         />
         <Route 
-          path='/question' 
+          path='/question/:id' 
           render={(props) => (
             <QuestionPage 
               { ...this.props } 
