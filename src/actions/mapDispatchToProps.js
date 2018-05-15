@@ -8,7 +8,8 @@ import {
   getQuestions,
   postAnswer,
   getAnswer,
-  getAnswers
+  getAnswers,
+  getAllQuestions
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -24,7 +25,8 @@ const mapDispatchToProps = (dispatch) => (
     getAnswer,
     getAnswers,
     openModal,
-    closeModal
+    closeModal,
+    getAllQuestions
   }, dispatch)
 ); 
 

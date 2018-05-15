@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-
+import React, {Component} from 'react'
+import styled  from 'styled-components'
+import moment from 'moment'
 import Navbar from '../components/Navbar'
 
 const Layout = styled.div`
@@ -16,23 +16,33 @@ const Layout = styled.div`
   }
 `
 
-const UserPage = props => {
-  const username = props.authentication.userInfo.username
-  const email = props.authentication.userInfo.email
+
+class UserPage extends Component {
+
+  componentDidMount(){
+    this.props.getQuestions({})
+  }
   
-  console.log(props);
-  return (
-    <Layout>
-      <div className="nav">
-        <Navbar {...props}/>
-      </div>
-      <div>
-        Username: {username}
-        <br/>
-        Email: {email}
-      </div>
-    </Layout>
-  )
+  render (){
+    return (
+      <Layout>
+        <div className="nav">
+          <Navbar {...this.props}/>
+        </div>
+        <div>
+          Username: {this.props.authentication.userInfo.username}
+          <br/>
+          Email: {this.props.authentication.userInfo.email}
+          <br/>
+          Joined: {moment(this.props.authentication.userInfo.createdAt).format('MMM Do YYYY')}
+          <br/>
+          
+        </div>
+        
+      </Layout>
+
+    )
+  }
 }
 
 export default UserPage;

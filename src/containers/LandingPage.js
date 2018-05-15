@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import Navbar from '../components/Navbar'
 import AskQuestion from '../components/AskQuestion'
+
+import QuestionPreview from '../components/QuestionPreview'
 
 const Layout = styled.div`
   display: grid;
@@ -17,16 +19,28 @@ const Layout = styled.div`
   }
 `
 
-const Landing = props => {
 
-  return (
-    <Layout>
-      <div className="nav">
-        <Navbar {...props}/>
-      </div>
-    </Layout>
-  )
-}
+
+class Landing extends Component {
+
+  componentDidMount(){
+    this.props.getQuestions({});
+  }
+
+  render(){
+    return (
+      <Layout>
+        <div className="nav">
+          <Navbar {...this.props}/>
+        </div>
+        <QuestionPreview/>
+      </Layout>
+    )
+  }
+
+} 
+
+
 
 export default Landing;
 

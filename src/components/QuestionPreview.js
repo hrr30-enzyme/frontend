@@ -55,16 +55,17 @@ const MiniCount = styled.div`
   line-height: 1;
 `;
 
-const handleClick = (e, cb, id) => {
+const handleClick = (e, callback, cb, id) => {
   e.preventDefault();
 
+  callback(id)
   cb(`/question/${id}`);
 };
 
 const QuestionPreview = ({ ...props }) => {
   console.log(props.getQuestion);
   return (
-    <Question onClick={e => handleClick(e, props.history.push, props.qid)}>
+    <Question onClick={e => handleClick(e, props.getQuestion, props.history.push, props.qid)}>
       <Link to="/question" />
       <Stats>
         <MiniCount>
