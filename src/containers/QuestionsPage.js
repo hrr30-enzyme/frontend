@@ -57,7 +57,7 @@ export default class QuestionsPage extends Component {
 
   componentDidMount() {
     // TODO must get questions here
-    this.props.getPostByQuery({postTypeId: 1})
+    this.props.getPostByQuery({sortBy: '-createdAt'})
   }
 
   render(props) {

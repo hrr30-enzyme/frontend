@@ -101,7 +101,7 @@ const Ask = ({
             required
         />
         <Button
-          onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, type: 'Question', associatedQuestionId: null})}
+          onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })}
         >
           Submit
         </Button>
