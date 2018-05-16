@@ -11,7 +11,7 @@ const Question = styled.div`
   width: 728px;
 `;
 
-/* const Stats = styled.div`
+const Stats = styled.div`
   float: left;
   vertical-align: top;
   margin-right: 50px;
@@ -53,7 +53,7 @@ const Inner = styled.div`
 const MiniCount = styled.div`
   padding: 8px 5px;
   line-height: 1;
-`; */
+`; 
 
 const handleClick = (e, callback, cb, id) => {
   e.preventDefault();
