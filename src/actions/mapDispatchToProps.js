@@ -6,9 +6,12 @@ import {
   postQuestion,
   getQuestion,
   getQuestions,
+  getPostByQuery,
   postAnswer,
   getAnswer,
-  getAnswers
+  getAnswers,
+  getAllQuestions,
+  queryPosts
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -20,11 +23,14 @@ const mapDispatchToProps = (dispatch) => (
     postQuestion,
     getQuestion,
     getQuestions,
+    getPostByQuery,
     postAnswer,
     getAnswer,
     getAnswers,
     openModal,
-    closeModal
+    closeModal,
+    getAllQuestions,
+    queryPosts
   }, dispatch)
 ); 
 

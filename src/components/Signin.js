@@ -65,6 +65,7 @@ const Signin = ({
   showModal,
   addText
 }) => {
+  console.log(username, password);
   return (
     <Modal showModal={showModal}>
       <ModalContent>
@@ -79,7 +80,7 @@ const Signin = ({
           value={password}
           onChange={e => handleChange(addText, "password", e.target.value)}
           placeholder="Password"
-          type="text"
+          type="password"
           required
         />
         <Button onClick={e => handleClick(e, signin, { username, password })}>

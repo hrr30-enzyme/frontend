@@ -31,3 +31,7 @@ export const INPUT_CHANGE = 'ADD_TEXT'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 
 export const OPEN_MODAL = 'OPEN_MODAL'
+
+export const CLEAR_ALL_INPUTS = 'CLEAR_ALL_INPUTS'
+
+export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS'

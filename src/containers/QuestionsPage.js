@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
-import AskQuestion from '../components/AskQuestion'
+import AskQuestion from "../components/AskQuestion";
 import { openModal } from "../actions/modal";
+import { GET_QUESTION } from "../actions/types";
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 7fr 3fr;
-  grid-template-rows: auto auto auto auto auto auto auto auto;
+  grid-template-rows: auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
@@ -51,26 +51,41 @@ const Button = styled.button`
 `;
 
 export default class QuestionsPage extends Component {
-
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
   }
-  
+
   componentDidMount() {
     // TODO must get questions here
+    this.props.getPostByQuery({postTypeId: 1})
   }
 
   render(props) {
     console.log("questionsPage", this.props);
-
+    console.log(this.props.post.questions);
+    
     return (
       <Layout>
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-        {this.props.post.questions.map(question => <QuestionPreview {...this.props} />)}
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
-        <AskQuestion {...this.props}/>
+        <AskQuestion
+          title={this.props.textInput.title}
+          body={this.props.textInput.body}
+          {...this.props}
+        />
+        {this.props.post.questions.map(question => (
+          <QuestionPreview
+            qid={1}
+            key={question.id}
+            title={question.title}
+            body={question.body}
+            UserId={question.UserId}
+            PostId={question.PostId}
+            {...this.props}
+          />
+        ))}
       </Layout>
     );
   }

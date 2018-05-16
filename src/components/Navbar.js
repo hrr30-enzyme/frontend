@@ -5,22 +5,24 @@ import { Link } from 'react-router-dom'
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 
-const Div = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
-  grid-row-gap: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  > span {
-    align-self: center;
-    justify-self: center;
+const Nav = styled.nav`
+  float: left;
+  width: 80%;
+  margin: 0 auto;
+  
+  > ul {
+    margin: 0;
+    float: right;
+    list-style: none;
+  }
+  > li {
+    display: inline-block
+    margin: left;
   }
 `;
 
 const AuthDiv = styled.div`
   margin: 1em;
-  background-color: darkred;
-  color: white;
 `;
 
 const Navbar = (props) => {
@@ -28,15 +30,13 @@ const Navbar = (props) => {
     const signedIn = props.authentication.signedIn;
 
     return (
-      <Div>
-        <Link to="/landing">
-          <h1>Catalyst</h1>
-        </Link>
+      <Nav>
         <Link to="/">
-          <span>Home</span>
+          Catalyst
         </Link>
+        <ul>
         <Link to="/questions">
-          <span>Questions</span>
+          <li>Questions</li>
         </Link>
         {/* the link to the User should bein authenticate */}
         <AuthDiv>
@@ -47,13 +47,13 @@ const Navbar = (props) => {
                 <Link to="/user" >
                   { props.authentication.userInfo.username }
                 </Link>
-                <span onClick={ props.signout }>logout</span>
+                <li onClick={ props.signout }>logout</li>
               </div>
             )
             : (
               <div>
-                <div onClick={() => props.openModal("signup")}>Sign Up</div>
-                <div onClick={() => props.openModal("logIn")}>Log In</div>
+                <li onClick={() => props.openModal("signup")}>Sign Up</li>
+                <li onClick={() => props.openModal("logIn")}>Log In</li>
               </div>
             )
           }
@@ -79,7 +79,8 @@ const Navbar = (props) => {
           showModal={props.showModal}
           addText={props.addText}
         />
-      </Div>
+        </ul>
+      </Nav>
     );
   };
 
