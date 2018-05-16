@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
 
-import Navbar from '../components/Navbar'
-import QuestionPreview from '../components/QuestionPreview'
+import Navbar from "../components/Navbar";
+import QuestionPreview from "../components/QuestionPreview";
+
+import AskQuestion from "../components/AskQuestion";
 
 const Layout = styled.div`
   display: grid;
@@ -10,7 +12,7 @@ const Layout = styled.div`
   grid-template-rows: auto auto auto auto auto auto auto auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
-  
+
   > .nav {
     background-color: red;
     grid-column: 1/3;
@@ -36,26 +38,30 @@ const Layout = styled.div`
     grid-column: 2/3;
     grid-row: 2/3;
   }
-`
+`;
 
-export default class QuestionsPage extends Component {
+export default class HomePage extends Component {
   componentDidMount() {
     // TODO must get questions here
   }
 
   render() {
-    console.log('questionsPage', this.props)
-
+    console.log("Home Page", this.props);
 
     return (
       <Layout>
         <div className="nav">
-          <Navbar { ...this.props }/>
+          <Navbar {...this.props} />
         </div>
-        { this.props.post.questions.map((question) => (
-          <QuestionPreview { ...this.props } />
-        )) }
+        <div className='question'>
+          {this.props.post.questions.map(question => (
+            <QuestionPreview {...this.props} />
+          ))}
+        </div>
+        <div>
+          <AskQuestion {...this.props} />
+        </div>
       </Layout>
     );
   }
-} 
+}

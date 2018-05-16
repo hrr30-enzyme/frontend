@@ -8,6 +8,7 @@ import {
   GET_ANSWERS,
   GET_POSTS_BY_QUESTION,
   GET_POST_BY_QUERY,
+  GET_ALL_QUESTIONS
 } from "../actions/types";
 
 
@@ -63,6 +64,7 @@ const authentication = (state = exampleState, action) => {
     case `${GET_QUESTION}_FULFILLED`:
       return {
         ...state,
+        posts: action.payload.data
       };
 
     case `${GET_QUESTION}_REJECTED`:
@@ -128,6 +130,17 @@ const authentication = (state = exampleState, action) => {
       };
 
     case `${GET_POST_BY_QUERY}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${GET_ALL_QUESTIONS}_FULFILLED`:
+      return {
+        ...state,
+        questions: action.payload.data
+      };
+
+    case `${GET_ALL_QUESTIONS}_REJECTED`:
       return {
         ...state,
       };

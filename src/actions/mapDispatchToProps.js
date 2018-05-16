@@ -9,7 +9,9 @@ import {
   getPostByQuery,
   postAnswer,
   getAnswer,
-  getAnswers
+  getAnswers,
+  getAllQuestions,
+  queryPosts
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -26,7 +28,9 @@ const mapDispatchToProps = (dispatch) => (
     getAnswer,
     getAnswers,
     openModal,
-    closeModal
+    closeModal,
+    getAllQuestions,
+    queryPosts
   }, dispatch)
 ); 
 

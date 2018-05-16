@@ -4,14 +4,14 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-const Question = styled.div`
+const Comment = styled.div`
   display: block
   padding: 12px;
   border-bottom: 1px solid #e4e6e8;
   width: 728px;
 `;
 
-/* const Stats = styled.div`
+const Stats = styled.div`
   float: left;
   vertical-align: top;
   margin-right: 50px;
@@ -53,20 +53,20 @@ const Inner = styled.div`
 const MiniCount = styled.div`
   padding: 8px 5px;
   line-height: 1;
-`; */
+`;
 
 const handleClick = (e, callback, cb, id) => {
   e.preventDefault();
 
-  callback(id);
-  cb(`/question/${id}`);
+  callback(id)
+  cb(`/Comment/${id}`);
 };
 
-const QuestionPreview = ({ ...props }) => {
-  console.log('QuestionPreview: ' + props.title);
+const CommentPreview = ({ ...props }) => {
+  
   return (
-    <Question onClick={e => handleClick(e, props.history.push, props.qid)}>
-      <Link to="/question" />
+    <Comment onClick={e => handleClick(e, props.getAnswer, props.history.push, props.qid)}>
+      <Link to="/Comment" />
       <Stats>
         <MiniCount>
           <Votes>
@@ -93,11 +93,9 @@ const QuestionPreview = ({ ...props }) => {
           </Views>
         </MiniCount>
       </Stats>
-      Title: {props.title}
-      <br/>
-      Body: {props.body}
-    </Question>
+      Comment title and such and such and such and such
+    </Comment>
   );
 };
 
-export default QuestionPreview;
+export default CommentPreview;

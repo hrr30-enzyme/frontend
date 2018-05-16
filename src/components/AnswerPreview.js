@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-const Question = styled.div`
+const Answer = styled.div`
   display: block
   padding: 12px;
   border-bottom: 1px solid #e4e6e8;
@@ -58,46 +58,18 @@ const MiniCount = styled.div`
 const handleClick = (e, callback, cb, id) => {
   e.preventDefault();
 
-  callback(id);
-  cb(`/question/${id}`);
+  callback(id)
+  cb(`/Answer/${id}`);
 };
 
-const QuestionPreview = ({ ...props }) => {
-  console.log('QuestionPreview: ' + props.title);
+const AnswerPreview = (props) => {
+  
   return (
-    <Question onClick={e => handleClick(e, props.history.push, props.qid)}>
-      <Link to="/question" />
-      <Stats>
-        <MiniCount>
-          <Votes>
-            <Inner>
-              <div display="block">1</div>
-            </Inner>{" "}
-            vote
-          </Votes>
-        </MiniCount>
-        <MiniCount>
-          <Answers>
-            <Inner>
-              <div display="block">2</div>
-            </Inner>{" "}
-            answers
-          </Answers>
-        </MiniCount>
-        <MiniCount>
-          <Views>
-            <Inner>
-              <div display="block">3</div>
-            </Inner>{" "}
-            views
-          </Views>
-        </MiniCount>
-      </Stats>
-      Title: {props.title}
-      <br/>
-      Body: {props.body}
-    </Question>
+    <Answer onClick={e => handleClick(e, props.getAnswer, props.history.push, props.qid)}>
+      <Link to="/Answer" />
+      {props.answer.body}
+    </Answer>
   );
 };
 
-export default QuestionPreview;
+export default AnswerPreview;

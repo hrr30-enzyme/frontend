@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
-import AskQuestion from '../components/AskQuestion'
+import AskQuestion from "../components/AskQuestion";
 import { openModal } from "../actions/modal";
 import { GET_QUESTION } from "../actions/types";
 
@@ -63,6 +63,7 @@ export default class QuestionsPage extends Component {
   render(props) {
     console.log("questionsPage", this.props);
     console.log(this.props.post.questions);
+    
     return (
       <Layout>
         <div className="nav">
@@ -72,7 +73,8 @@ export default class QuestionsPage extends Component {
         <AskQuestion
           title={this.props.textInput.title}
           body={this.props.textInput.body}
-          {...this.props}/>
+          {...this.props}
+        />
         {this.props.post.questions.map(question => (
           <QuestionPreview
             qid={1}

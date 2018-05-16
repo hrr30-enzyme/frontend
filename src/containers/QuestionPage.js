@@ -42,7 +42,7 @@ const Layout = styled.div`
 `
 
 const QuestionPage = (props) => {
-
+  console.log('Questions page:', props)
   
   return (
     <Layout>
