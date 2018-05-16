@@ -29,27 +29,12 @@ export const getPostsByQuestion = postref => {
   };
 };
 
-export const queryPosts = ({
-  userid,
-  title,
-  type
-  // sortedBy,
-  // sortDirection,
-  // TODO backend support
-  // sort by date
-  // sort by likes
-  // sort by relavence to user
-  // sort by views
-}) => {
-  const str = queryString({
-    userid,
-    title,
-    type
-  });
+export const queryPosts = (query) => {
+  const str = queryString(query);
 
   return {
     type: GET_POST_BY_QUERY,
-    payload: axios.post(`${ORIGIN}/post${str}`)
+    payload: axios.get(`${ORIGIN}/post${str}`)
   };
 };
 

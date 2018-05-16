@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
-import AskQuestion from '../components/AskQuestion'
+import AskQuestion from "../components/AskQuestion";
 import { openModal } from "../actions/modal";
 import { GET_QUESTION } from "../actions/types";
 
@@ -58,10 +58,11 @@ export default class QuestionsPage extends Component {
 
   componentDidMount() {
     // TODO must get questions here
+    this.props.queryPosts({ limitby: 5 });
   }
 
   render(props) {
-    console.log("questionsPage", this.props);
+    console.log("questionsPage", this.props.post.questions[0]);
 
     return (
       <Layout>
@@ -71,15 +72,22 @@ export default class QuestionsPage extends Component {
         <AskQuestion
           title={this.props.textInput.title}
           body={this.props.textInput.body}
-          {...this.props}/>
-        {this.props.post.questions.map(question => (
-          <QuestionPreview
-            qid={1}
-            key={question.id}
-            {...this.props}
-          />
-        ))}
-        <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
+          {...this.props}
+        />
+        <div className="question">
+          {this.props.post.questions.map(question => (
+            <QuestionPreview
+              qid={question.id}
+              key={question.id}
+              {...this.props}
+              question={question}
+              source={"questionspage"}
+            />
+          ))}
+        </div>
+        <Button onClick={() => this.props.openModal("ask")}>
+          Ask a Question
+        </Button>
       </Layout>
     );
   }

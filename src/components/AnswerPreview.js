@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-const Question = styled.div`
+const Answer = styled.div`
   display: block
   padding: 12px;
   border-bottom: 1px solid #e4e6e8;
@@ -58,39 +58,18 @@ const MiniCount = styled.div`
 const handleClick = (e, callback, cb, id) => {
   e.preventDefault();
 
-  callback(id);
-  cb(`/question/${id}`);
+  callback(id)
+  cb(`/Answer/${id}`);
 };
 
-const QuestionPreview = props => {
-  console.log("Question Preview...............", props);
-  //TO DO: Conditional rendering based on where the question preview is being rendered from.
-  //Landing Page or User Page or QUestions Page?
-
-  if (props.source === 'questionspage') {
-    return (
-      <Question
-        onClick={e =>
-          handleClick(e, props.getQuestion, props.history.push, props.qid)
-        }
-      >
-        <Link to="/question" />
-        {props.question.title}
-      </Question>
-    );
-  } else {
-    return props.post.questions.map(question => (
-      <Question
-        onClick={e =>
-          handleClick(e, props.getQuestion, props.history.push, props.qid)
-        }
-        qid={question.id}
-      >
-        <Link to="/question" />
-        {question.title}
-      </Question>
-    ));
-  }
+const AnswerPreview = (props) => {
+  
+  return (
+    <Answer onClick={e => handleClick(e, props.getAnswer, props.history.push, props.qid)}>
+      <Link to="/Answer" />
+      {props.answer.body}
+    </Answer>
+  );
 };
 
-export default QuestionPreview;
+export default AnswerPreview;

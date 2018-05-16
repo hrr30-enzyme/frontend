@@ -4,14 +4,14 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-const Question = styled.div`
+const Comment = styled.div`
   display: block
   padding: 12px;
   border-bottom: 1px solid #e4e6e8;
   width: 728px;
 `;
 
-/* const Stats = styled.div`
+const Stats = styled.div`
   float: left;
   vertical-align: top;
   margin-right: 50px;
@@ -53,44 +53,49 @@ const Inner = styled.div`
 const MiniCount = styled.div`
   padding: 8px 5px;
   line-height: 1;
-`; */
+`;
 
 const handleClick = (e, callback, cb, id) => {
   e.preventDefault();
 
-  callback(id);
-  cb(`/question/${id}`);
+  callback(id)
+  cb(`/Comment/${id}`);
 };
 
-const QuestionPreview = props => {
-  console.log("Question Preview...............", props);
-  //TO DO: Conditional rendering based on where the question preview is being rendered from.
-  //Landing Page or User Page or QUestions Page?
-
-  if (props.source === 'questionspage') {
-    return (
-      <Question
-        onClick={e =>
-          handleClick(e, props.getQuestion, props.history.push, props.qid)
-        }
-      >
-        <Link to="/question" />
-        {props.question.title}
-      </Question>
-    );
-  } else {
-    return props.post.questions.map(question => (
-      <Question
-        onClick={e =>
-          handleClick(e, props.getQuestion, props.history.push, props.qid)
-        }
-        qid={question.id}
-      >
-        <Link to="/question" />
-        {question.title}
-      </Question>
-    ));
-  }
+const CommentPreview = ({ ...props }) => {
+  
+  return (
+    <Comment onClick={e => handleClick(e, props.getAnswer, props.history.push, props.qid)}>
+      <Link to="/Comment" />
+      <Stats>
+        <MiniCount>
+          <Votes>
+            <Inner>
+              <div display="block">1</div>
+            </Inner>{" "}
+            vote
+          </Votes>
+        </MiniCount>
+        <MiniCount>
+          <Answers>
+            <Inner>
+              <div display="block">2</div>
+            </Inner>{" "}
+            answers
+          </Answers>
+        </MiniCount>
+        <MiniCount>
+          <Views>
+            <Inner>
+              <div display="block">3</div>
+            </Inner>{" "}
+            views
+          </Views>
+        </MiniCount>
+      </Stats>
+      Comment title and such and such and such and such
+    </Comment>
+  );
 };
 
-export default QuestionPreview;
+export default CommentPreview;

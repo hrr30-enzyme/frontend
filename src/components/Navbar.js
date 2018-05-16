@@ -31,11 +31,8 @@ const Navbar = (props) => {
 
     return (
       <Nav>
-        <Link to="/landing">
-          Catalyst
-        </Link>
         <Link to="/">
-          Home
+          Catalyst
         </Link>
         <ul>
         <Link to="/questions">
