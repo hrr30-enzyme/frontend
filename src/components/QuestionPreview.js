@@ -62,35 +62,42 @@ const handleClick = (e, callback, cb, id) => {
   cb(`/question/${id}`);
 };
 
-const QuestionPreview = props => {
-  console.log("Question Preview...............", props);
-  //TO DO: Conditional rendering based on where the question preview is being rendered from.
-  //Landing Page or User Page or QUestions Page?
-
-  if (props.source === 'questionspage') {
-    return (
-      <Question
-        onClick={e =>
-          handleClick(e, props.getQuestion, props.history.push, props.qid)
-        }
-      >
-        <Link to="/question" />
-        {props.question.title}
-      </Question>
-    );
-  } else {
-    return props.post.questions.map(question => (
-      <Question
-        onClick={e =>
-          handleClick(e, props.getQuestion, props.history.push, props.qid)
-        }
-        qid={question.id}
-      >
-        <Link to="/question" />
-        {question.title}
-      </Question>
-    ));
-  }
+const QuestionPreview = ({ ...props }) => {
+  console.log('QuestionPreview: ' + props.title);
+  return (
+    <Question onClick={e => handleClick(e, props.history.push, props.qid)}>
+      <Link to="/question" />
+      <Stats>
+        <MiniCount>
+          <Votes>
+            <Inner>
+              <div display="block">1</div>
+            </Inner>{" "}
+            vote
+          </Votes>
+        </MiniCount>
+        <MiniCount>
+          <Answers>
+            <Inner>
+              <div display="block">2</div>
+            </Inner>{" "}
+            answers
+          </Answers>
+        </MiniCount>
+        <MiniCount>
+          <Views>
+            <Inner>
+              <div display="block">3</div>
+            </Inner>{" "}
+            views
+          </Views>
+        </MiniCount>
+      </Stats>
+      Title: {props.title}
+      <br/>
+      Body: {props.body}
+    </Question>
+  );
 };
 
 export default QuestionPreview;

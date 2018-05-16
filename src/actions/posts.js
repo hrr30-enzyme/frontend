@@ -47,12 +47,17 @@ export const getQuestion = id => ({
   type: GET_QUESTION,
   payload: axios.get(`${ORIGIN}/questions/${id}`)
 });
+  
+export const getPostByQuery = (query) => ({
+  type: GET_POST_BY_QUERY,
+  payload: axios.get(`${ORIGIN}/post${queryString(query)}`) 
+});
 
-export const getQuestions = query => {
-  const str = queryString(query);
+export const getQuestions = () => {
+  //const str = queryString();
   return {
     type: GET_QUESTIONS,
-    payload: axios.get(`${ORIGIN}/questions${str}`)
+    payload: axios.get(`${ORIGIN}/questions/all`)
   };
 };
 
