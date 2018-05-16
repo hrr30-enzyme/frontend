@@ -6,82 +6,112 @@ import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 
 const Nav = styled.nav`
-  float: left;
-  width: 80%;
-  margin: 0 auto;
-  
-  > ul {
-    margin: 0;
-    float: right;
-    list-style: none;
+  display: grid;
+  padding-left: .6em;
+  grid-template-columns: 5em auto 5em 5em;
+  height: 2.3em;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: solid #888;
+  border-width: 1px;
+  font-weight: bold;
+  > .nav-item {
+    display: inline
   }
-  > li {
-    display: inline-block
-    margin: left;
+  > .nav-title {
+    grid-column: 1 / 2;
+  }
+  > .nav-questions {
+    grid-column: 2 / 3;
+  }
+  > .nav-auth {
+    cursor: pointer;
+    color: gray;
+  }
+  > .nav-auth:hover {
+    color: #666666;
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: gray
+  &:hover {
+    color: #666666;
+  }
+`
+
 const AuthDiv = styled.div`
-  margin: 1em;
 `;
 
 const Navbar = (props) => {
-    console.log('nav bar', props)
-    const signedIn = props.authentication.signedIn;
+  console.log('nav bar', props)
+  const signedIn = props.authentication.signedIn;
 
-    return (
+  return (
+    <div>
       <Nav>
-        <Link to="/">
-          Catalyst
-        </Link>
-        <ul>
-        <Link to="/questions">
-          <li>Questions</li>
-        </Link>
-        {/* the link to the User should bein authenticate */}
-        <AuthDiv>
-
-          {signedIn 
-            ? (
-              <div>
-                <Link to="/user" >
-                  { props.authentication.userInfo.username }
-                </Link>
-                <li onClick={ props.signout }>logout</li>
-              </div>
-            )
-            : (
-              <div>
-                <li onClick={() => props.openModal("signup")}>Sign Up</li>
-                <li onClick={() => props.openModal("logIn")}>Log In</li>
-              </div>
-            )
-          }
-
+        <div className="nav-title nav-item">
+          <StyledLink to="/">
+            Catalyst
+          </StyledLink>
+        </div>
+        <div className="nav-questions nav-item">
+          <StyledLink to="/questions">
+            Questions
+          </StyledLink>
+        </div>
         
-        </AuthDiv>
-        <Signin
-          username={props.textInput.username}
-          password={props.textInput.password}
-          openModal={props.openModal}
-          closeModal={props.closeModal}
-          signin={props.signin}
-          showModal={props.showModal}
-          addText={props.addText}
-        />
-        <Signup
-          username={props.textInput.username}
-          password={props.textInput.password}
-          email={props.textInput.email}
-          openModal={props.openModal}
-          closeModal={props.closeModal}
-          signup={props.signup}
-          showModal={props.showModal}
-          addText={props.addText}
-        />
-        </ul>
+        {signedIn 
+          ? (
+            <div>
+              <div className="nav-item">
+                <StyledLink to="/user" >
+                  { props.authentication.userInfo.username }
+                </StyledLink>
+              </div>
+              <div className="nav-item">
+                <div onClick={ props.signout }>logout</div>
+              </div>
+            </div>
+          )
+          : [
+              <div 
+                className="nav-auth"
+                onClick={() => props.openModal("signup")}
+              >
+                Sign Up
+              </div>,
+              <div
+                className="nav-auth" 
+                onClick={() => props.openModal("logIn")}
+              >
+                Log In
+              </div>
+          ]
+        }
       </Nav>
-    );
-  };
+      <Signin
+        username={props.textInput.username}
+        password={props.textInput.password}
+        openModal={props.openModal}
+        closeModal={props.closeModal}
+        signin={props.signin}
+        showModal={props.showModal}
+        addText={props.addText}
+      />
+      <Signup
+        username={props.textInput.username}
+        password={props.textInput.password}
+        email={props.textInput.email}
+        openModal={props.openModal}
+        closeModal={props.closeModal}
+        signup={props.signup}
+        showModal={props.showModal}
+        addText={props.addText}
+      />
+    </div>
+  );
+};
 
 export default Navbar
