@@ -62,7 +62,7 @@ const handleClick = (e, cb, id) => {
 };
 
 const QuestionPreview = ({ ...props }) => {
-  console.log(props.getQuestion);
+  console.log('QuestionPreview: ' + props.title);
   return (
     <Question onClick={e => handleClick(e, props.history.push, props.qid)}>
       <Link to="/question" />
@@ -92,7 +92,9 @@ const QuestionPreview = ({ ...props }) => {
           </Views>
         </MiniCount>
       </Stats>
-      Question title and such and such and such and such
+      Title: {props.title}
+      <br/>
+      Body: {props.body}
     </Question>
   );
 };

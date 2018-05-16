@@ -42,7 +42,8 @@ const exampleState = {
 };
 
 const initialState = {
-  posts: {}
+  posts: {},
+  questions: []
 };
 
 /*
@@ -72,6 +73,7 @@ const authentication = (state = exampleState, action) => {
     case `${GET_QUESTIONS}_FULFILLED`:
       return {
         ...state,
+        questions: action.payload.data        
       };
 
     case `${GET_QUESTIONS}_REJECTED`:
