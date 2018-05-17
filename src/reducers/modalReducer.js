@@ -2,7 +2,7 @@ import {OPEN_MODAL, CLOSE_MODAL} from '../actions/types'
 
 const initialState = {
   signup: false,
-  logIn: false,
+  signin: false,
   ask: false
 }
 

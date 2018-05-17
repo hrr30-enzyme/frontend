@@ -25,7 +25,6 @@ class UserPage extends Component {
   }
 
   render() {
-    console.log('xxxxxxxxxxx----------USER PAGE: ', this.props)
 
     return (
       <Layout>

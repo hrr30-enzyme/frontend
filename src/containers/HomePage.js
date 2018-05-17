@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import Navbar from "../components/Navbar";
-import QuestionPreview from "../components/QuestionPreview";
 
+import Navbar from "../components/Navbar";
 import AskQuestion from "../components/AskQuestion";
+
+import QuestionPreview from "../components/QuestionPreview";
 
 const Layout = styled.div`
   display: grid;
@@ -17,51 +18,29 @@ const Layout = styled.div`
     background-color: red;
     grid-column: 1/3;
   }
-
   > .question {
     background-color: orange;
     grid-column: 1/2;
   }
-
-  > .answers {
-    background-color: green;
-    grid-column: 1/2;
-  }
-
-  > .giveanswer {
-    background-color: blue;
-    grid-column: 1/2;
-  }
-
-  > .ask {
-    background-color: yellow;
-    grid-column: 2/3;
-    grid-row: 2/3;
-  }
 `;
 
-export default class HomePage extends Component {
+class HomePage extends Component {
   componentDidMount() {
-    // TODO must get questions here
+    this.props.queryPosts({});
   }
 
   render() {
-    console.log("Home Page", this.props);
-
     return (
       <Layout>
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-        <div className='question'>
-          {this.props.post.questions.map(question => (
-            <QuestionPreview {...this.props} />
-          ))}
-        </div>
-        <div>
-          <AskQuestion {...this.props} />
+        <div className="question">
+          <QuestionPreview {...this.props} />
         </div>
       </Layout>
     );
   }
 }
+
+export default HomePage;

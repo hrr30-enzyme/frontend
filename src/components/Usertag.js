@@ -8,7 +8,6 @@ const Div = styled.div`
 `;
 
 const Usertag = (props) => {
-
   return (
     <Div>
       <div>Username</div>
