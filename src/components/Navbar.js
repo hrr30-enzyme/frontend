@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import Signin from "../components/Signin";
-import Signup from "../components/Signup";
+import Signin from './Signin'
+import Signup from './Signup'
 
 const Nav = styled.nav`
   display: grid;
@@ -33,7 +33,7 @@ const Nav = styled.nav`
   }
 `;
 
-const StyledLink = styled(Link)`
+const StyledNavLink = styled(Link)`
   text-decoration: none;
   color: gray
   &:hover {
@@ -41,8 +41,19 @@ const StyledLink = styled(Link)`
   }
 `
 
-const AuthDiv = styled.div`
-`;
+const handleClick = (e, cb, credentials) => {
+  e.preventDefault();
+  cb(credentials);
+};
+
+const handleClose = (e, cb) => {
+  e.preventDefault();
+  cb("signin");
+};
+
+const handleChange = (cb, inputType, input) => {
+  cb(inputType, input);
+};
 
 const Navbar = (props) => {
   console.log('nav bar', props)
@@ -52,23 +63,23 @@ const Navbar = (props) => {
     <div>
       <Nav>
         <div className="nav-title nav-item">
-          <StyledLink to="/">
+          <StyledNavLink to="/">
             Catalyst
-          </StyledLink>
+          </StyledNavLink>
         </div>
         <div className="nav-questions nav-item">
-          <StyledLink to="/questions">
+          <StyledNavLink to="/questions">
             Questions
-          </StyledLink>
+          </StyledNavLink>
         </div>
         
         {signedIn 
           ? (
             <div>
               <div className="nav-item">
-                <StyledLink to="/user" >
+                <StyledNavLink to="/user" >
                   { props.authentication.userInfo.username }
-                </StyledLink>
+                </StyledNavLink>
               </div>
               <div className="nav-item">
                 <div onClick={ props.signout }>logout</div>
@@ -76,41 +87,45 @@ const Navbar = (props) => {
             </div>
           )
           : [
+              <div
+                className="nav-auth" 
+                onClick={ () => props.openModal("signin") }
+              >
+                login
+              </div>,
               <div 
                 className="nav-auth"
                 onClick={() => props.openModal("signup")}
               >
-                Sign Up
+                signup
               </div>,
-              <div
-                className="nav-auth" 
-                onClick={() => props.openModal("logIn")}
-              >
-                Log In
-              </div>
           ]
         }
       </Nav>
-      <Signin
-        username={props.textInput.username}
-        password={props.textInput.password}
-        openModal={props.openModal}
-        closeModal={props.closeModal}
-        signin={props.signin}
-        showModal={props.showModal}
-        addText={props.addText}
-      />
-      <Signup
-        username={props.textInput.username}
-        password={props.textInput.password}
-        email={props.textInput.email}
-        openModal={props.openModal}
-        closeModal={props.closeModal}
-        signup={props.signup}
-        showModal={props.showModal}
-        addText={props.addText}
-      />
-    </div>
+      {/*
+       * signin/signout modals
+       *
+       */}
+       <Signin
+          username={ props.textInput.username }
+          password={ props.textInput.password }
+          openModal={ props.openModal }
+          closeModal={ props.closeModal }
+          signin={ props.signin }
+          showModal={ props.showModal.signin }
+          addText={ props.addText }
+        />
+        <Signup
+          username={ props.textInput.username }
+          password={ props.textInput.password }
+          email={ props.textInput.email }
+          openModal={ props.openModal }
+          closeModal={ props.closeModal }
+          signup={ props.signup }
+          showModal={ props.showModal.signup }
+          addText={ props.addText }
+        />
+      </div>
   );
 };
 
