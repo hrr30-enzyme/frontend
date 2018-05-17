@@ -13,27 +13,28 @@ const Layout = styled.div`
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
-  > .nav {
+  .nav {
     background-color: red;
     grid-column: 1/3;
   }
 
-  > .question {
-    background-color: orange;
+  .question {
+    background-color: lightgrey;
+    border: 2px solid grey;
     grid-column: 1/2;
   }
 
-  > .answers {
+  .answers {
     background-color: green;
     grid-column: 1/2;
   }
 
-  > .giveanswer {
+  .giveanswer {
     background-color: blue;
     grid-column: 1/2;
   }
 
-  > .ask {
+  .ask {
     background-color: yellow;
     grid-column: 2/3;
     grid-row: 2/3;
@@ -57,7 +58,7 @@ export default class QuestionsPage extends Component {
 
   componentDidMount() {
     // TODO must get questions here
-    this.props.getPostByQuery({postTypeId: 1})
+    this.props.getPostByQuery({sortBy: '-createdAt'})
   }
 
   render(props) {
@@ -76,15 +77,21 @@ export default class QuestionsPage extends Component {
           {...this.props}
         />
         {this.props.post.questions.map(question => (
-          <QuestionPreview
-            qid={1}
-            key={question.id}
-            title={question.title}
-            body={question.body}
-            UserId={question.UserId}
-            PostId={question.PostId}
-            {...this.props}
-          />
+          <div className="question">
+            <QuestionPreview
+              qid={1}
+              key={question.id}
+              title={question.title}
+              body={question.body}
+              UserId={question.UserId}
+              PostId={question.PostId}
+              votes={question.upvoteCount}
+              answers={question.answerCount}
+              comments={question.commentCount}
+              views={question.viewCount}
+              {...this.props}
+            />
+          </div>
         ))}
       </Layout>
     );
