@@ -21,6 +21,7 @@ const Signin = ({
   password,
   showModal,
   addText,
+  error,
 }) => {
   
   return modal({ 
@@ -29,6 +30,7 @@ const Signin = ({
   })(
     [
       <div className="modal-title">LOGIN</div>,
+      <div className="error">{ error }</div>,
       <Input
         value={ username }
         onChange={ e => handleChange(addText, "username", e.target.value) }

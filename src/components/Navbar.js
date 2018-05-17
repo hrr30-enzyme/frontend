@@ -151,6 +151,7 @@ const Navbar = (props) => {
           signin={ props.signin }
           showModal={ props.showModal.signin }
           addText={ props.addText }
+          error={ props.authentication.error }
         />
         <Signup
           username={ props.textInput.username }
@@ -161,6 +162,7 @@ const Navbar = (props) => {
           signup={ props.signup }
           showModal={ props.showModal.signup }
           addText={ props.addText }
+          error={ props.authentication.error }
         />
       </div>
   );

@@ -20,12 +20,13 @@ const authentication = (state = intialState, action) => {
       return {
         ...state,
         signedIn: true,
-        userInfo: action.payload.data
+        userInfo: action.payload.data,
+        error: 'login successful',
       };
     case `${SIGN_IN}_REJECTED`:
       return {
         ...state,
-        error: action.payload.error,
+        error: action.payload.response.data,
       };
 
     case `${SIGN_OUT}_FULFILLED`:
@@ -45,11 +46,13 @@ const authentication = (state = intialState, action) => {
     case `${SIGN_UP}_FULFILLED`:
       return {
         ...state,
+        error: 'signup successful'
       };
 
     case `${SIGN_UP}_REJECTED`:
       return {
-        ...state
+        ...state,
+        error: action.payload.response.data,
       };
 
     default:

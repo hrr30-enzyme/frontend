@@ -21,6 +21,7 @@ const Signup = ({
   showModal,
   email,
   addText,
+  error,
 }) => {
 
   return modal({
@@ -29,6 +30,7 @@ const Signup = ({
   })(
     [
       <div className="modal-title">SIGNUP</div>,
+      <div className="error">{ error }</div>,
       <Input
         value={ email }
         onChange={ e => handleChange(addText, "email", e.target.value) }
