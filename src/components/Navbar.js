@@ -33,11 +33,13 @@ const Nav = styled.nav`
   }
 `;
 
+
+
 const StyledNavLink = styled(Link)`
   text-decoration: none;
-  color: gray
+  color: ${(props) => props.linkColor || 'gray'}
   &:hover {
-    color: #666666;
+    color: ${(props) => props.linkColorHover || '#666666'};
   }
 `
 
@@ -59,16 +61,35 @@ const Navbar = (props) => {
   console.log('nav bar', props)
   const signedIn = props.authentication.signedIn;
 
+  let NavStyle = props.NavStyle || Nav;
+  let linkColor = 'gray';
+  let linkColorHover = '#666666';
+  if (props.NavStyle) {
+    NavStyle = props.NavStyle;
+    linkColor = NavStyle.linkColor;
+    linkColorHover = NavStyle.linkColorHover;
+  } else {
+    NavStyle = Nav;
+  }
+
   return (
     <div>
-      <Nav>
+      <NavStyle>
         <div className="nav-title nav-item">
-          <StyledNavLink to="/">
+          <StyledNavLink 
+            to="/"
+            linkColor={ linkColor }
+            linkColorHover={ linkColorHover }
+          >
             Catalyst
           </StyledNavLink>
         </div>
         <div className="nav-questions nav-item">
-          <StyledNavLink to="/questions">
+          <StyledNavLink 
+            to="/questions"
+            linkColor={ linkColor }
+            linkColorHover={ linkColorHover }
+          >
             Questions
           </StyledNavLink>
         </div>
@@ -77,7 +98,11 @@ const Navbar = (props) => {
           ? (
             <div>
               <div className="nav-item">
-                <StyledNavLink to="/user" >
+                <StyledNavLink 
+                  to="/user" 
+                  linkColor={ linkColor }
+                  linkColorHOver={ linkColorHover }
+                >
                   { props.authentication.userInfo.username }
                 </StyledNavLink>
               </div>
@@ -101,7 +126,7 @@ const Navbar = (props) => {
               </div>,
           ]
         }
-      </Nav>
+      </NavStyle>
       {/*
        * signin/signout modals
        *

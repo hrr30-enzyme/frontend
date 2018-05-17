@@ -6,7 +6,6 @@ export const BORDER_ORANGE = `#F19100`
 export const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  color: white;
   background: white;
   border: none;
   border-radius: 3px;

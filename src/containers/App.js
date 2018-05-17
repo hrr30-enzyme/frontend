@@ -8,9 +8,6 @@ import UserPage from "./UserPage";
 import PrivateRoute from "../components/PrivateRoute";
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     console.log("rerendering App with props", this.props);
@@ -22,7 +19,7 @@ export default class App extends Component {
           render={props => <LandingPage {...this.props} {...props} />}
         />
         <PrivateRoute
-          path="/homepage"
+          path="/"
           component={HomePage}
           {...this.props}
         />
