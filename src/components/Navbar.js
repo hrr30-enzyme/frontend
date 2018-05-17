@@ -8,7 +8,7 @@ import Signup from './Signup'
 const Nav = styled.nav`
   display: grid;
   padding-left: .6em;
-  grid-template-columns: 5em auto 5em 5em;
+  grid-template-columns: 6em 6em auto  5em 5em 5em;
   height: 2.3em;
   align-items: center;
   background-color: #ffffff;
@@ -16,12 +16,15 @@ const Nav = styled.nav`
   border-width: 1px;
   font-weight: bold;
   > .nav-item {
-    display: inline
+    display: inline;
   }
   > .nav-title {
     grid-column: 1 / 2;
   }
   > .nav-questions {
+    grid-column: 3 / 4;
+  }
+  > .nav-home {
     grid-column: 2 / 3;
   }
   > .nav-auth {
@@ -82,6 +85,15 @@ const Navbar = (props) => {
             linkColorHover={ linkColorHover }
           >
             Catalyst
+          </StyledNavLink>
+        </div>
+        <div className="nav-home nav-item">
+          <StyledNavLink 
+            to="/home"
+            linkColor={ linkColor }
+            linkColorHover={ linkColorHover }
+          >
+            Home
           </StyledNavLink>
         </div>
         <div className="nav-questions nav-item">

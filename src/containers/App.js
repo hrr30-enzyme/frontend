@@ -19,7 +19,7 @@ export default class App extends Component {
           render={props => <LandingPage {...this.props} {...props} />}
         />
         <PrivateRoute
-          path="/"
+          path="/home"
           component={HomePage}
           {...this.props}
         />
