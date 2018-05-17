@@ -23,7 +23,6 @@ const Votes = styled.div`
   min-width: 38px;
   margin: 0 3px 0 0;
   font-size: 11px;
-  color: #848d95;
 `;
 
 const Answers = styled.div`
@@ -40,7 +39,6 @@ const Views = styled.div`
   min-width: 40px;
   margin: 0 7px 0 0;
   font-size: 11px;
-  color: #848d95;
 `;
 
 const Inner = styled.div`
@@ -63,7 +61,7 @@ const handleClick = (e, callback, cb, id) => {
 };
 
 const QuestionPreview = ({ ...props }) => {
-  console.log('QuestionPreview: ' + props.title);
+  console.log('QuestionPreview: ' + props);
   return (
     <Question onClick={e => handleClick(e, props.history.push, props.qid)}>
       <Link to="/question" />
@@ -71,7 +69,7 @@ const QuestionPreview = ({ ...props }) => {
         <MiniCount>
           <Votes>
             <Inner>
-              <div display="block">1</div>
+              <div display="block">{props.votes}</div>
             </Inner>{" "}
             vote
           </Votes>
@@ -79,7 +77,7 @@ const QuestionPreview = ({ ...props }) => {
         <MiniCount>
           <Answers>
             <Inner>
-              <div display="block">2</div>
+              <div display="block">{props.answers}</div>
             </Inner>{" "}
             answers
           </Answers>
@@ -87,7 +85,7 @@ const QuestionPreview = ({ ...props }) => {
         <MiniCount>
           <Views>
             <Inner>
-              <div display="block">3</div>
+              <div display="block">{props.views}</div>
             </Inner>{" "}
             views
           </Views>
