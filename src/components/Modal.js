@@ -14,7 +14,7 @@ import { MAIN_ORANGE } from './StyledComponents'
  * 
  */
 const Modal = styled.div`
-  display: ${ props => (props.showModal ? "block" : "none") };
+  display: ${ props => props.showModal ? "block" : "none"};
   position: fixed;
   top: 0;
   left: 0;

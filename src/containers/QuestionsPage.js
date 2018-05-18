@@ -52,43 +52,36 @@ const Button = styled.button`
 `;
 
 export default class QuestionsPage extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
-    // TODO must get questions here
-    this.props.getPostByQuery({sortBy: '-createdAt'})
+    this.props.getPostByQuery({postTypeId: 1, sortBy: '-createdAt'})
   }
 
   render(props) {
     console.log("questionsPage", this.props);
     console.log(this.props.post.questions);
-    
     return (
       <Layout>
-        <div className="nav">
+        {/*<div className="nav">
           <Navbar {...this.props} />
-        </div>
+        </div>*/}
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
         <AskQuestion
           title={this.props.textInput.title}
           body={this.props.textInput.body}
-          {...this.props}
+          showModal={(() => {
+            console.log('this.props.showMOda.ask', this.props.showModal.ask)
+            return this.props.showModal.ask
+          })()}
+          closeModal={this.props.closeModal}
+          userInfo ={this.props.authentication.userInfo}
+          authentication = {this.props.authentication}
         />
         {this.props.post.questions.map(question => (
           <div className="question">
             <QuestionPreview
               qid={1}
-              key={question.id}
-              title={question.title}
-              body={question.body}
-              UserId={question.UserId}
-              PostId={question.PostId}
-              votes={question.upvoteCount}
-              answers={question.answerCount}
-              comments={question.commentCount}
-              views={question.viewCount}
+              {...question}
               {...this.props}
             />
           </div>
