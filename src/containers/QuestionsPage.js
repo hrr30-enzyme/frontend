@@ -3,37 +3,36 @@ import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
-import AskQuestion from '../components/AskQuestion'
-import { openModal } from "../actions/modal";
+import AskQuestion from "../components/AskQuestion";
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 7fr 3fr;
-  grid-template-rows: auto auto auto auto auto auto auto auto;
+  grid-template-rows: auto;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
-  > .nav {
+  .nav {
     background-color: red;
     grid-column: 1/3;
   }
 
-  > .question {
-    background-color: orange;
+  .question {
+    background-color: lightgrey;
+    border: 2px solid grey;
     grid-column: 1/2;
   }
 
-  > .answers {
+  .answers {
     background-color: green;
     grid-column: 1/2;
   }
 
-  > .giveanswer {
+  .giveanswer {
     background-color: blue;
     grid-column: 1/2;
   }
 
-  > .ask {
+  .ask {
     background-color: yellow;
     grid-column: 2/3;
     grid-row: 2/3;
@@ -52,25 +51,41 @@ const Button = styled.button`
 
 export default class QuestionsPage extends Component {
 
-  constructor(props){
-    super(props)
-  }
-  
   componentDidMount() {
-    // TODO must get questions here
+    this.props.getPostByQuery({postTypeId: 1, sortBy: '-createdAt'})
   }
 
   render(props) {
     console.log("questionsPage", this.props);
-
+    console.log(this.props.post.questions);
     return (
       <Layout>
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-        {this.props.post.questions.map(question => <QuestionPreview {...this.props} />)}
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
-        <AskQuestion {...this.props}/>
+        <AskQuestion
+          title={this.props.textInput.title}
+          body={this.props.textInput.body}
+          showModal={(() => {
+            console.log('this.props.showMOda.ask', this.props.showModal.ask)
+            return this.props.showModal.ask
+          })()}
+          closeModal={this.props.closeModal}
+          userInfo ={this.props.authentication.userInfo}
+          authentication = {this.props.authentication}
+          addText={ this.props.addText }
+          postQuestion= { this.props.postQuestion }
+        />
+        {this.props.post.questions.map(question => (
+          <div className="question">
+            <QuestionPreview
+              qid={1}
+              {...question}
+              {...this.props}
+            />
+          </div>
+        ))}
       </Layout>
     );
   }
