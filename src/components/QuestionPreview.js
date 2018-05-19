@@ -60,16 +60,17 @@ const handleClick = (e, callback, cb, id) => {
   cb(`/question/${id}`);
 };
 
-const QuestionPreview = ({ ...props }) => {
+
+const QuestionPreview = (props) => {
   console.log('QuestionPreview: ' + props);
   return (
-    <Question onClick={e => handleClick(e, props.history.push, props.qid)}>
-      <Link to="/question" />
+    <Link to={`/question/${props.id}`} >
+      <Question >
       <Stats>
         <MiniCount>
           <Votes>
             <Inner>
-              <div display="block">{props.votes}</div>
+              <div display="block">{props.upvoteCount}</div>
             </Inner>{" "}
             vote
           </Votes>
@@ -77,7 +78,7 @@ const QuestionPreview = ({ ...props }) => {
         <MiniCount>
           <Answers>
             <Inner>
-              <div display="block">{props.answers}</div>
+              <div display="block">{props.answerCount}</div>
             </Inner>{" "}
             answers
           </Answers>
@@ -85,7 +86,7 @@ const QuestionPreview = ({ ...props }) => {
         <MiniCount>
           <Views>
             <Inner>
-              <div display="block">{props.views}</div>
+              <div display="block">{props.viewCount}</div>
             </Inner>{" "}
             views
           </Views>
@@ -95,6 +96,7 @@ const QuestionPreview = ({ ...props }) => {
       <br/>
       Body: {props.body}
     </Question>
+    </Link>
   );
 };
 

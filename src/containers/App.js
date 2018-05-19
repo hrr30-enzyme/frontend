@@ -8,6 +8,9 @@ import UserPage from "./UserPage";
 import PrivateRoute from "../components/PrivateRoute";
 
 export default class App extends Component {
+  componentDidMount() {
+    this.props.checkSignin();
+  }
 
   render() {
     console.log("rerendering App with props", this.props);

@@ -20,6 +20,7 @@ const exampleState = {
     with extra details for example.
     chance we don't need it though
   */
+  posts: [],
   view: null, 
   questions: [
     {
@@ -43,19 +44,20 @@ const exampleState = {
 };
 
 const initialState = {
-  posts: {},
+  posts: [],
   questions: []
 };
 
 /*
  * We might not need a lot of these reducers to do anything
  */
-const authentication = (state = exampleState, action) => {
+const postReducer = (state = exampleState, action) => {
   switch (action.type) {
     case `${POST_QUESTION}_FULFILLED`:
       return {
         ...state,
       };
+
     case `${POST_QUESTION}_REJECTED`:
       return {
         ...state,
@@ -84,8 +86,11 @@ const authentication = (state = exampleState, action) => {
       };
 
     case `${POST_ANSWER}_FULFILLED`:
+      const newPost = action.payload.data.post;
       return {
         ...state,
+        posts: [...state.posts, newPost], //, newPost],
+        questions: [...state.questions, newPost] //, newPost]
       };
 
     case `${POST_ANSWER}_REJECTED`:
@@ -126,6 +131,7 @@ const authentication = (state = exampleState, action) => {
     case `${GET_POST_BY_QUERY}_FULFILLED`:
       return {
         ...state,
+        posts: action.payload.data,
         questions: action.payload.data,
       };
 
@@ -150,4 +156,4 @@ const authentication = (state = exampleState, action) => {
   }
 }
 
-export default authentication
+export default postReducer

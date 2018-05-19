@@ -1,5 +1,7 @@
 
 // requests to express server
+export const CHECK_SIGN_IN = 'CHECK_SIGN_IN'
+
 export const SIGN_IN = 'SIGN_IN'
 
 export const SIGN_OUT = 'SIGN_OUT'

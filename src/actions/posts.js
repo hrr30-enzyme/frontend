@@ -38,7 +38,7 @@ export const queryPosts = (query) => {
   };
 };
 
-export const postQuestion = question => ({
+export const postQuestion = (question) => ({
   type: POST_QUESTION,
   payload: axios.post(`${ORIGIN}/question`, question)
 });
@@ -66,9 +66,9 @@ export const getAllQuestions = () => ({
   payload: axios.get(`${ORIGIN}/questions/all`)
 });
 
-export const postAnswer = id => ({
+export const postAnswer = answer => ({
   type: POST_ANSWER,
-  payload: axios.post(`${ORIGIN}/answer/${id}`)
+  payload: axios.post(`${ORIGIN}/answer`, answer)
 });
 
 export const getAnswer = id => ({

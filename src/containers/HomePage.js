@@ -27,6 +27,7 @@ const Layout = styled.div`
 class HomePage extends Component {
   componentDidMount() {
     this.props.queryPosts({});
+    this.props.checkSignin(); ///delete me
   }
 
   render() {

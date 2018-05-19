@@ -1,5 +1,5 @@
 import { bindActionCreators } from 'redux'
-import { signin, signout, signup } from './authentication'
+import { signin, signout, signup, checkSignin } from './authentication'
 import { addText } from './inputText'
 import { openModal, closeModal } from './modal'
 import {
@@ -16,6 +16,7 @@ import {
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({ 
+    checkSignin,
     signin,
     signout,
     signup,
