@@ -26,23 +26,16 @@ const Div = styled.div`
   }
 `;
 
-class Question extends React.Component {
-
-  componentDidMount(){
-    this.props.getQuestion(this.props.match.params.id)
-
-  }
+const  Question = ({ question }) => {
   
-  render(){
-    console.log('Question page: ', this.props.post)
-    return (
-      <Div>
-        {/* <div className="title">{this.props.post.posts.question.title}</div>
-        <div className="username">{this.props.post.posts.question.UserId}</div>
-        <p>{this.props.post.posts.question.body}</p> */}
-      </Div>
-    );
-  }
+  console.log('Question component: ', question)
+  return (
+    <Div>
+      <div className="title">{ question && question.title }</div>
+      <div className="username">{ question && question.UserId }</div>
+      <p>{ question && question.body }</p> 
+    </Div>
+  );
 };
 
 

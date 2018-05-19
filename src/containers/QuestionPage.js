@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import Question from '../components/Question'
@@ -41,32 +41,39 @@ const Layout = styled.div`
   }
 `
 
-const QuestionPage = (props) => {
-  console.log('Questions page:', props)
-  
-  return (
-    <Layout>
-      <div className="nav">
-        <Navbar {...props}/>
-      </div>
-      <div className="question">
-        <Question {...props}/>
-      </div>
+class QuestionPage extends Component {
+  componentDidMount() {
+    this.props.getPostByQuery({
+      PostId: this.props.match.params.id,
+    });
+  }
 
-      <div className="answers">
-        <Answers />
+  render() {
+    console.log('Questions page:', this.props)
 
-      </div>
-      <div className="giveanswer">
-       <GiveAnswer /> 
-      </div>
+    return (
+      <Layout>
+        <div className="nav">
+          <Navbar { ...this.props }/>
+        </div>
+        <div className="question">
+          <Question 
+            question={ this.props.post.posts.filter(post => post.PostTypeId === 1)[0] } 
+          />
+        </div>
 
-      <div className="ask">
-        <AskQuestion {...props}/>
-      </div>
-      
-    </Layout>
-  );
+        <div className="answers">
+          <Answers 
+            answers={ this.props.post.posts.filter(post => post.PostTypeId === 2) }
+          />
+
+        </div>
+        <div className="giveanswer">
+        <GiveAnswer /> 
+        </div>
+      </Layout>
+    );
+  }
 };
 
 export default QuestionPage

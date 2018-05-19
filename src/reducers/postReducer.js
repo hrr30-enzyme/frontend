@@ -20,6 +20,7 @@ const exampleState = {
     with extra details for example.
     chance we don't need it though
   */
+  posts: [],
   view: null, 
   questions: [
     {
@@ -43,7 +44,7 @@ const exampleState = {
 };
 
 const initialState = {
-  posts: {},
+  posts: [],
   questions: []
 };
 
@@ -126,6 +127,7 @@ const postReducer = (state = exampleState, action) => {
     case `${GET_POST_BY_QUERY}_FULFILLED`:
       return {
         ...state,
+        posts: action.payload.data,
         questions: action.payload.data,
       };
 
