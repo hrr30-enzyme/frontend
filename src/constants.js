@@ -3,7 +3,7 @@ let ORIGIN;
 
 export const HOSTNAME = window && window.location && window.location.hostname;
 
-export const LOCALHOST = `http://127.0.0.1:8080`;
+export const LOCALHOST = `localhost`;
 
 if (HOSTNAME === LOCALHOST) {
   ORIGIN = LOCALHOST;
