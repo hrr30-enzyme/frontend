@@ -24,13 +24,9 @@ const Div = styled.div`
   > p {
     grid-column: 1/3;
   }
-
-`
+`;
 
 class Question extends React.Component {
-  constructor(props){
-    super(props)
-  }
 
   componentDidMount(){
     this.props.getQuestion(this.props.match.params.id)

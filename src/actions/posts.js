@@ -38,7 +38,7 @@ export const queryPosts = (query) => {
   };
 };
 
-export const postQuestion = question => ({
+export const postQuestion = (question) => ({
   type: POST_QUESTION,
   payload: axios.post(`${ORIGIN}/question`, question)
 });

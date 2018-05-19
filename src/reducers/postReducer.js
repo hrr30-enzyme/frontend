@@ -50,7 +50,7 @@ const initialState = {
 /*
  * We might not need a lot of these reducers to do anything
  */
-const authentication = (state = exampleState, action) => {
+const postReducer = (state = exampleState, action) => {
   switch (action.type) {
     case `${POST_QUESTION}_FULFILLED`:
       return {
@@ -150,4 +150,4 @@ const authentication = (state = exampleState, action) => {
   }
 }
 
-export default authentication
+export default postReducer

@@ -4,8 +4,6 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
 import AskQuestion from "../components/AskQuestion";
-import { openModal } from "../actions/modal";
-import { GET_QUESTION } from "../actions/types";
 
 const Layout = styled.div`
   display: grid;
@@ -62,9 +60,9 @@ export default class QuestionsPage extends Component {
     console.log(this.props.post.questions);
     return (
       <Layout>
-        {/*<div className="nav">
+        <div className="nav">
           <Navbar {...this.props} />
-        </div>*/}
+        </div>
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
         <AskQuestion
           title={this.props.textInput.title}
@@ -76,6 +74,8 @@ export default class QuestionsPage extends Component {
           closeModal={this.props.closeModal}
           userInfo ={this.props.authentication.userInfo}
           authentication = {this.props.authentication}
+          addText={ this.props.addText }
+          postQuestion= { this.props.postQuestion }
         />
         {this.props.post.questions.map(question => (
           <div className="question">

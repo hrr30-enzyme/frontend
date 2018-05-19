@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { postQuestion } from '../actions/posts';
 import modal from './Modal'
 
 const InputTitle = styled.input`
@@ -55,10 +54,10 @@ const Ask = ({
   addText, 
   authentication, 
   showModal, 
-  closeModal
+  closeModal,
+  postQuestion,
 }) => {
-  debugger
-  console.log(this.props);
+  console.log('askquestion component', addText);
   const UserId = authentication.userInfo.id
   console.log(title, body);
   console.log('show moda', showModal);
@@ -83,11 +82,10 @@ const Ask = ({
         required
     />,
     <Button
-      onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, type: 'Question', PostTypeId: 1 })}
+      onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })}
     >
       Submit
     </Button>,
-    <Button onClick={e => handleClose(e, closeModal)}>Close</Button>
    ]);
 };
 
