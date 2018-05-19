@@ -66,9 +66,9 @@ export const getAllQuestions = () => ({
   payload: axios.get(`${ORIGIN}/questions/all`)
 });
 
-export const postAnswer = id => ({
+export const postAnswer = answer => ({
   type: POST_ANSWER,
-  payload: axios.post(`${ORIGIN}/answer/${id}`)
+  payload: axios.post(`${ORIGIN}/answer`, answer)
 });
 
 export const getAnswer = id => ({

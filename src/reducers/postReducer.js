@@ -57,6 +57,7 @@ const postReducer = (state = exampleState, action) => {
       return {
         ...state,
       };
+
     case `${POST_QUESTION}_REJECTED`:
       return {
         ...state,
@@ -85,8 +86,11 @@ const postReducer = (state = exampleState, action) => {
       };
 
     case `${POST_ANSWER}_FULFILLED`:
+      const newPost = action.payload.data.post;
       return {
         ...state,
+        posts: [...state.posts, newPost], //, newPost],
+        questions: [...state.questions, newPost] //, newPost]
       };
 
     case `${POST_ANSWER}_REJECTED`:

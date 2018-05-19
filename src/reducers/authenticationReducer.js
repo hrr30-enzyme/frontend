@@ -1,5 +1,4 @@
 
-import store from '../store'
 
 import {
   SIGN_IN,
@@ -8,7 +7,13 @@ import {
 } from "../actions/types";
 
 const intialState = {
-  userInfo: {},
+  userInfo: {
+    createdAt: undefined,
+    email: 'notloggedin@gmail.com',
+    id: 1,
+    updatedAt: undefined,
+    username: 'not logged in!',
+  },
   signedIn: false,
   error: false,
 };

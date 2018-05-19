@@ -50,7 +50,6 @@ class QuestionPage extends Component {
 
   render() {
     console.log('Questions page:', this.props)
-
     return (
       <Layout>
         <div className="nav">
@@ -69,7 +68,7 @@ class QuestionPage extends Component {
 
         </div>
         <div className="giveanswer">
-        <GiveAnswer /> 
+        <GiveAnswer { ...this.props }/> 
         </div>
       </Layout>
     );
