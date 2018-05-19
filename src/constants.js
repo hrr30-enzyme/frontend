@@ -1,9 +1,14 @@
 
 let ORIGIN;
-if (process.env.NODE_ENV === 'production') {
-  ORIGIN `https://hrr30-enzyme-backend.herokuapp.com/`;
+
+export const HOSTNAME = window && window.location && window.location.hostname;
+
+export const LOCALHOST = `localhost`;
+
+if (HOSTNAME === LOCALHOST) {
+  ORIGIN = LOCALHOST;
 } else {
-  ORIGIN = `http://127.0.0.1:8080`;
+  ORIGIN = `https://hrr30-enzyme-backend.herokuapp.com/`;
 }
 
 export { ORIGIN }
