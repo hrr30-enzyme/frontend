@@ -1,0 +1,78 @@
+import React, { Component } from 'react'
+import styled from 'styled-components'
+
+import Question from '../components/Question'
+import Answers from './Answers'
+import GiveAnswer from '../components/GiveAnswer'
+import AskQuestion from '../components/AskQuestion'
+import Navbar from '../components/Navbar'
+
+const Layout = styled.div`
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  grid-template-rows: auto auto auto auto auto auto auto auto;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  
+  > .nav {
+    background-color: red;
+    grid-column: 1/3;
+  }
+
+  > .question {
+    background-color: orange;
+    grid-column: 1/2;
+  }
+
+  > .answers {
+    background-color: green;
+    grid-column: 1/2;
+  }
+
+  > .giveanswer {
+    background-color: blue;
+    grid-column: 1/2;
+  }
+
+  > .ask {
+    background-color: yellow;
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+`
+
+class QuestionPage extends Component {
+  componentDidMount() {
+    this.props.getPostByQuery({
+      PostId: this.props.match.params.id,
+    });
+  }
+
+  render() {
+    console.log('Questions page:', this.props)
+    return (
+      <Layout>
+        <div className="nav">
+          <Navbar { ...this.props }/>
+        </div>
+        <div className="question">
+          <Question 
+            question={ this.props.post.posts.filter(post => post.PostTypeId === 1)[0] } 
+          />
+        </div>
+
+        <div className="answers">
+          <Answers 
+            answers={ this.props.post.posts.filter(post => post.PostTypeId === 2) }
+          />
+
+        </div>
+        <div className="giveanswer">
+        <GiveAnswer { ...this.props }/> 
+        </div>
+      </Layout>
+    );
+  }
+};
+
+export default QuestionPage

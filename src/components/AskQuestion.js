@@ -1,21 +1,92 @@
 import React from 'react'
 import styled from 'styled-components'
+import modal from './Modal'
 
-const Div = styled.div`
-  padding: 1em;
-  display: grid;
-  grid-template-rows: 2em 2em 11em 2em;
-`
-const Ask = (props) => {
+const InputTitle = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 80%;
+  color: palevioletred;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+`;
 
-  return (
-    <Div>
-      <div>Ask your own...</div>
-      <textarea placeholder="Enter question title..." />
-      <textarea placeholder="Enter question body here..." />
-      <button>Submit</button>
-    </Div>
-  );
+const InputBody = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 80%;
+  height: 50%;
+  color: palevioletred;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+`;
+
+const Button = styled.button`
+  background: red;
+  color: white;
+
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+const handleChange = (cb, inputType, input) => {
+  cb(inputType, input);
+};
+
+const handleClick = (e, cb, question) => {
+  e.preventDefault();
+  cb(question);
+};
+
+const handleClose = (e, cb) => {
+  e.preventDefault();
+  cb("ask");
+};
+
+const Ask = ({
+  title, 
+  body, 
+  addText, 
+  authentication, 
+  showModal, 
+  closeModal,
+  postQuestion,
+}) => {
+  console.log('askquestion component', addText);
+  const UserId = authentication.userInfo.id
+  console.log(title, body);
+  console.log('show moda', showModal);
+  return modal ({
+    showModal,
+    handleClose: () => closeModal('ask')
+   })(
+   [
+    <div>Ask your own...</div>,
+    <InputTitle
+        value={title}
+        onChange={e => handleChange(addText, "title", e.target.value)}
+        placeholder="Title"
+        type="text"
+        required
+    />,
+    <InputBody
+        value={body}
+        onChange={e => handleChange(addText, "body", e.target.value)}
+        placeholder="Body"
+        type="text"
+        required
+    />,
+    <Button
+      onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })}
+    >
+      Submit
+    </Button>,
+   ]);
 };
 
 export default Ask

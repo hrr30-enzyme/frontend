@@ -13,20 +13,13 @@ const Div = styled.div`
    }
 `;
 
-const Answers = (props) => {
-
+const Answers = ({ answers }) => {
+  console.log('answers', answers)
   return (
-    <Div>
-      <div>
-        <Answer />
-      </div>
-      <div>
-        <Answer />
-      </div>
-      <div>
-        <Answer />
-      </div>
-    </Div>
+    answers.length > 0 &&
+        <Div>
+          { answers.map(answer => <div><Answer {...answer} /></div>) }
+        </Div>
   )
 };
 

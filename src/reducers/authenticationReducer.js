@@ -1,5 +1,4 @@
 
-import store from '../store'
 
 import {
   SIGN_IN,
@@ -8,24 +7,31 @@ import {
 } from "../actions/types";
 
 const intialState = {
-  userInfo: {},
+  userInfo: {
+    createdAt: undefined,
+    email: 'notloggedin@gmail.com',
+    id: 1,
+    updatedAt: undefined,
+    username: 'not logged in!',
+  },
   signedIn: false,
-  error: false
+  error: false,
 };
 
 const authentication = (state = intialState, action) => {
   switch (action.type) {
     case `${SIGN_IN}_FULFILLED`:
+      console.log('sign in fulfilled', action)
       return {
         ...state,
         signedIn: true,
-        userInfo: action.payload.userInfo
+        userInfo: action.payload.data,
+        error: 'login successful',
       };
     case `${SIGN_IN}_REJECTED`:
       return {
         ...state,
-        error: action.payload.error,
-        loading: false
+        error: action.payload.response.data,
       };
 
     case `${SIGN_OUT}_FULFILLED`:
@@ -44,11 +50,15 @@ const authentication = (state = intialState, action) => {
 
     case `${SIGN_UP}_FULFILLED`:
       return {
-
+        ...state,
+        error: 'signup successful'
       };
 
     case `${SIGN_UP}_REJECTED`:
-      return {};
+      return {
+        ...state,
+        error: action.payload.response.data,
+      };
 
     default:
       return state;

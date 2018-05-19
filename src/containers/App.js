@@ -1,55 +1,45 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom'
-import Home from './Home';
-import Landing from './Landing'
-import LogIn from './LogIn'
+import React, { Component } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import HomePage from "./HomePage";
+import LandingPage from "./LandingPage";
+import QuestionPage from "./QuestionPage";
+import QuestionsPage from "./QuestionsPage";
+import UserPage from "./UserPage";
+import PrivateRoute from "../components/PrivateRoute";
 
 export default class App extends Component {
+  componentDidMount() {
+    this.props.checkSignin();
+  }
 
   render() {
-
-    const {authentication} = this.props
-    
-    var requireAuth = function(nextState, replace){
-      if(!authentication.signedIn){
-        replace({
-          pathname: '/homepage'
-        })
-      }
-
-    }
-
-
+    console.log("rerendering App with props", this.props);
     return (
       <Switch>
-        <Route 
-          exact path="/" 
-          render={(props) => (
-            <Home 
-              { ...this.props } 
-              { ...props } 
-              onEnter={requireAuth}
-            />)
-          }/>
-        <Route 
-          exact path='/' 
-          render={(props) => (
-            <Landing 
-              { ...this.props } 
-              { ...props }
-            />
-          )}
+        <Route
+          exact
+          path="/"
+          render={props => <LandingPage {...this.props} {...props} />}
         />
-        <Route 
-          exact path='/log-in' 
-          render={(props) => (
-            <LogIn 
-              { ...this.props } 
-              { ...props } 
-            />
-          )}
+        <PrivateRoute
+          path="/home"
+          component={HomePage}
+          {...this.props}
+        />
+        <Route
+          path="/question/:id"
+          render={props => <QuestionPage {...this.props} {...props} />}
+        />
+        <Route
+          path="/questions"
+          render={props => <QuestionsPage {...this.props} {...props} />}
+        />
+        <PrivateRoute
+          path="/user"
+          component={UserPage}
+          {...this.props}
         />
       </Switch>
-    )
+    );
   }
 }

@@ -5,7 +5,10 @@ import {
   GET_QUESTIONS,
   POST_ANSWER,
   GET_ANSWER,
-  GET_ANSWERS
+  GET_ANSWERS,
+  GET_POSTS_BY_QUESTION,
+  GET_POST_BY_QUERY,
+  GET_ALL_QUESTIONS
 } from "../actions/types";
 
 
@@ -17,6 +20,7 @@ const exampleState = {
     with extra details for example.
     chance we don't need it though
   */
+  posts: [],
   view: null, 
   questions: [
     {
@@ -39,19 +43,21 @@ const exampleState = {
   ]
 };
 
-const intialState = {
-  posts: {}
+const initialState = {
+  posts: [],
+  questions: []
 };
 
 /*
  * We might not need a lot of these reducers to do anything
  */
-const authentication = (state = exampleState, action) => {
+const postReducer = (state = exampleState, action) => {
   switch (action.type) {
     case `${POST_QUESTION}_FULFILLED`:
       return {
         ...state,
       };
+
     case `${POST_QUESTION}_REJECTED`:
       return {
         ...state,
@@ -60,6 +66,7 @@ const authentication = (state = exampleState, action) => {
     case `${GET_QUESTION}_FULFILLED`:
       return {
         ...state,
+        posts: action.payload.data
       };
 
     case `${GET_QUESTION}_REJECTED`:
@@ -70,6 +77,7 @@ const authentication = (state = exampleState, action) => {
     case `${GET_QUESTIONS}_FULFILLED`:
       return {
         ...state,
+        questions: action.payload.data        
       };
 
     case `${GET_QUESTIONS}_REJECTED`:
@@ -78,8 +86,11 @@ const authentication = (state = exampleState, action) => {
       };
 
     case `${POST_ANSWER}_FULFILLED`:
+      const newPost = action.payload.data.post;
       return {
         ...state,
+        posts: [...state.posts, newPost], //, newPost],
+        questions: [...state.questions, newPost] //, newPost]
       };
 
     case `${POST_ANSWER}_REJECTED`:
@@ -106,10 +117,43 @@ const authentication = (state = exampleState, action) => {
       return {
         ...state,
       };
+    case `${GET_POSTS_BY_QUESTION}_FULFILLED`:
+      return {
+        ...state,
+        questions: action.payload.data
+      };
+
+    case `${GET_POSTS_BY_QUESTION}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${GET_POST_BY_QUERY}_FULFILLED`:
+      return {
+        ...state,
+        posts: action.payload.data,
+        questions: action.payload.data,
+      };
+
+    case `${GET_POST_BY_QUERY}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${GET_ALL_QUESTIONS}_FULFILLED`:
+      return {
+        ...state,
+        questions: action.payload.data
+      };
+
+    case `${GET_ALL_QUESTIONS}_REJECTED`:
+      return {
+        ...state,
+      };
 
     default:
       return state;
   }
 }
 
-export default authentication
+export default postReducer
