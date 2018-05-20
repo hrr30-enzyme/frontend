@@ -1,8 +1,14 @@
-import {OPEN_MODAL, CLOSE_MODAL} from '../actions/types'
+import {
+  OPEN_MODAL, 
+  CLOSE_MODAL,
+  SIGN_IN,
+  SIGN_UP,
+  POST_QUESTION,
+} from '../actions/types'
 
 const initialState = {
   signup: false,
-  logIn: false,
+  signin: false,
   ask: false
 }
 
@@ -15,6 +21,15 @@ const showModal = (state = initialState, action) => {
       };
       
     case CLOSE_MODAL:
+      return initialState;
+    
+    case `${SIGN_IN}_FULFILLED`:
+      return initialState;
+
+    case `${SIGN_UP}_FULFILLED`:
+      return initialState;
+
+    case `${POST_QUESTION}_FULFILLED`:
       return initialState;
 
     default:

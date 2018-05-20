@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Usertag from "./Usertag";
-
 const Div = styled.div`
   display: grid;
   grid-template-columns: auto auto;
@@ -15,20 +13,38 @@ const Div = styled.div`
   }
 `;
 
-const Answer = props => {
+const UserTag = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+`;
+
+const Answer = ({ 
+  PostId, 
+  PostTypeId, 
+  UserId,
+  answerCount,
+  body,
+  closedDate,
+  commentCount,
+  createdAt,
+  favoriteCount,
+  id,
+  isTopAnswer,
+  title,
+  updatedAt,
+  upvoteCount,
+  viewCount,
+}) => {
   return (
     <Div>
       <div className="usertag">
-        <Usertag />
+        <UserTag>
+          <div>{UserId} TODO make this Username</div>
+          <div>User description TODO</div>
+        </UserTag>
       </div>
       <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum."
+        { body }
       </p>
     </Div>
   );

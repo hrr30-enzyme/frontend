@@ -1,11 +1,18 @@
-import { INPUT_CHANGE } from '../actions/types'
+import { 
+  INPUT_CHANGE, 
+  CLEAR_ALL_INPUTS, 
+  CLOSE_MODAL, 
+  SIGN_IN,
+  SIGN_UP,
+  POST_QUESTION,
+} from '../actions/types'
 
 const initialState = {
   username: '',
   password: '',
   email: '',
-  questionTitle: '',
-  questionBody: '',
+  title: '',
+  body: '',
   answerBody: '',
   commentBody: ''
 };
@@ -17,6 +24,22 @@ const textInput = (state = initialState, action) => {
         ...state,
         [action.payload.inputType]: action.payload.input
       }
+    case CLEAR_ALL_INPUTS:
+      return {
+        ...initialState
+      }
+
+    case CLOSE_MODAL:
+      return initialState;
+
+    case `${SIGN_IN}_FULFILLED`:
+      return initialState;
+
+    case `${SIGN_UP}_FULFILLED`:
+      return initialState;
+      
+    case `${POST_QUESTION}_FULFILLED`:
+      return initialState;
       
     default:
       return state

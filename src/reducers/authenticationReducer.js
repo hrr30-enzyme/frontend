@@ -1,16 +1,22 @@
 
-import store from '../store'
 
 import {
   SIGN_IN,
   SIGN_OUT,
   SIGN_UP,
+  CLOSE_MODAL,
 } from "../actions/types";
 
 const intialState = {
-  userInfo: {},
+  userInfo: {
+    createdAt: undefined,
+    email: 'notloggedin@gmail.com',
+    id: 1,
+    updatedAt: undefined,
+    username: 'not logged in!',
+  },
   signedIn: false,
-  error: false
+  error: false,
 };
 
 const authentication = (state = intialState, action) => {
@@ -20,13 +26,13 @@ const authentication = (state = intialState, action) => {
       return {
         ...state,
         signedIn: true,
-        userInfo: action.payload.data
+        userInfo: action.payload.data,
+        error: 'login successful',
       };
     case `${SIGN_IN}_REJECTED`:
       return {
         ...state,
-        error: action.payload.error,
-        loading: false
+        error: action.payload.response.data,
       };
 
     case `${SIGN_OUT}_FULFILLED`:
@@ -46,11 +52,19 @@ const authentication = (state = intialState, action) => {
     case `${SIGN_UP}_FULFILLED`:
       return {
         ...state,
+        error: 'signup successful'
       };
 
     case `${SIGN_UP}_REJECTED`:
       return {
-        ...state
+        ...state,
+        error: action.payload.response.data,
+      };
+
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        error: '',
       };
 
     default:

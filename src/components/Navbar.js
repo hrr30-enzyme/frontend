@@ -2,85 +2,170 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import Signin from "../components/Signin";
-import Signup from "../components/Signup";
+import Signin from './Signin'
+import Signup from './Signup'
 
-const Div = styled.div`
+const Nav = styled.nav`
   display: grid;
-  grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
-  grid-row-gap: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  > span {
-    align-self: center;
-    justify-self: center;
+  padding-left: 2em;
+  grid-template-columns: 6em 6em auto  5em 5em 5em;
+  height: 4em;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: solid #888;
+  border-width: 1px;
+  font-weight: bold;
+  > .nav-item {
+    display: inline;
+  }
+  > .nav-title {
+    grid-column: 1 / 2;
+  }
+  > .nav-questions {
+    grid-column: 3 / 4;
+  }
+  > .nav-home {
+    grid-column: 2 / 3;
+  }
+  > .nav-auth {
+    cursor: pointer;
+    color: gray;
+  }
+  > .nav-auth:hover {
+    color: #666666;
   }
 `;
 
-const AuthDiv = styled.div`
-  margin: 1em;
-  background-color: darkred;
-  color: white;
-`;
+
+
+const StyledNavLink = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => props.linkColor || 'gray'}
+  &:hover {
+    color: ${(props) => props.linkColorHover || '#666666'};
+  }
+`
+
+const handleClick = (e, cb, credentials) => {
+  e.preventDefault();
+  cb(credentials);
+};
+
+const handleClose = (e, cb) => {
+  e.preventDefault();
+  cb("signin");
+};
+
+const handleChange = (cb, inputType, input) => {
+  cb(inputType, input);
+};
 
 const Navbar = (props) => {
-    console.log('nav bar', props)
-    const signedIn = props.authentication.signedIn;
+  console.log('nav bar', props)
+  const signedIn = props.authentication.signedIn;
 
-    return (
-      <Div>
-        <Link to="/landing">
-          <h1>Catalyst</h1>
-        </Link>
-        <Link to="/">
-          <span>Home</span>
-        </Link>
-        <Link to="/questions">
-          <span>Questions</span>
-        </Link>
-        {/* the link to the User should bein authenticate */}
-        <AuthDiv>
+  let NavStyle = props.NavStyle || Nav;
+  let linkColor = 'gray';
+  let linkColorHover = '#666666';
+  if (props.NavStyle) {
+    NavStyle = props.NavStyle;
+    linkColor = NavStyle.linkColor;
+    linkColorHover = NavStyle.linkColorHover;
+  } else {
+    NavStyle = Nav;
+  }
 
-          {signedIn 
-            ? (
-              <div>
-                <Link to="/user" >
-                  { props.authentication.userInfo.username }
-                </Link>
-                <span onClick={ props.signout }>logout</span>
-              </div>
-            )
-            : (
-              <div>
-                <div onClick={() => props.openModal("signup")}>Sign Up</div>
-                <div onClick={() => props.openModal("logIn")}>Log In</div>
-              </div>
-            )
-          }
-
+  return (
+    <div>
+      <NavStyle>
+        <div className="nav-title nav-item">
+          <StyledNavLink 
+            to="/"
+            linkColor={ linkColor }
+            linkColorHover={ linkColorHover }
+          >
+            Catalyst
+          </StyledNavLink>
+        </div>
+        <div className="nav-home nav-item">
+          <StyledNavLink 
+            to="/home"
+            linkColor={ linkColor }
+            linkColorHover={ linkColorHover }
+          >
+            Home
+          </StyledNavLink>
+        </div>
+        <div className="nav-questions nav-item">
+          <StyledNavLink 
+            to="/questions"
+            linkColor={ linkColor }
+            linkColorHover={ linkColorHover }
+          >
+            Questions
+          </StyledNavLink>
+        </div>
         
-        </AuthDiv>
-        <Signin
-          username={props.textInput.username}
-          password={props.textInput.password}
-          openModal={props.openModal}
-          closeModal={props.closeModal}
-          signin={props.signin}
-          showModal={props.showModal}
-          addText={props.addText}
+        {signedIn 
+          ? (
+            <div>
+              <div className="nav-item">
+                <StyledNavLink 
+                  to={ `/user/${props.authentication.userInfo.username}` }
+                  linkColor={ linkColor }
+                  linkColorHOver={ linkColorHover }
+                >
+                  { props.authentication.userInfo.username }
+                </StyledNavLink>
+              </div>
+              <div className="nav-item">
+                <div onClick={ props.signout }>logout</div>
+              </div>
+            </div>
+          )
+          : [
+              <div
+                className="nav-auth" 
+                onClick={ () => props.openModal("signin") }
+              >
+                login
+              </div>,
+              <div 
+                className="nav-auth"
+                onClick={() => props.openModal("signup")}
+              >
+                signup
+              </div>,
+          ]
+        }
+      </NavStyle>
+      {/*
+       * signin/signout modals
+       *
+       */}
+       <Signin
+          username={ props.textInput.username }
+          password={ props.textInput.password }
+          openModal={ props.openModal }
+          closeModal={ props.closeModal }
+          signin={ props.signin }
+          showModal={ props.showModal.signin }
+          addText={ props.addText }
+          error={ props.authentication.error }
         />
         <Signup
-          username={props.textInput.username}
-          password={props.textInput.password}
-          email={props.textInput.email}
-          openModal={props.openModal}
-          closeModal={props.closeModal}
-          signup={props.signup}
-          showModal={props.showModal}
-          addText={props.addText}
+          username={ props.textInput.username }
+          password={ props.textInput.password }
+          email={ props.textInput.email }
+          openModal={ props.openModal }
+          closeModal={ props.closeModal }
+          signup={ props.signup }
+          showModal={ props.showModal.signup }
+          addText={ props.addText }
+          error={ props.authentication.error }
         />
-      </Div>
-    );
-  };
+      </div>
+  );
+};
 
 export default Navbar
