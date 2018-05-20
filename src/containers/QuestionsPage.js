@@ -74,24 +74,28 @@ const Tag2 = styled.h4`
   grid-column: 3;
   color: #750104; 
   padding: 1em;
+  cursor: pointer;
 `
 const Tag3 = styled.h4`
   grid-column: 4;
   color: #750104;
   padding: 1em;
   border-left: 1px solid black;
+  cursor: pointer;
 `
 const Tag4 = styled.h4`
   grid-column: 5;
   color: #990004;
   padding: 1em;
   border-left: 1px solid black;
+  cursor: pointer;
 `
 const Tag5 = styled.h4`
   grid-column: 6;
   color: #DEBB8A;
   padding: 1em;
   border-left: 1px solid black;
+  cursor: pointer;
 `
 
 const Sidebar = styled.div`
@@ -129,17 +133,37 @@ export default class QuestionsPage extends Component {
           <Tag1>
             All Questions
           </Tag1>
-          <Tag2>
+          <Tag2
+            onClick={ () => this.props.sortBy({
+              sortBy: '-createdAt',
+              PostTypeId: 1,
+            })}
+          >
             Newest
           </Tag2>
-          <Tag3>
-            Featured
+          <Tag3
+            onClick={ () => this.props.sortBy({
+              sortBy: '-viewCount',
+              PostTypeId: 1,  
+            })}
+          >
+            Popular
           </Tag3>
-          <Tag4>
-            Frequent
+          <Tag4
+            onClick={ () => this.props.sortBy({
+              sortBy: '-bounty',
+              PostTypeId: 1,
+            })}
+          >
+            Bounty
           </Tag4>
-          <Tag5>
-            Unanswered
+          <Tag5
+            onClick={ () => this.props.sortBy({
+              special: 'recomended',
+              PostTYpeId: 1,
+            })}
+          >
+            Recomended
           </Tag5>
         </Heading>
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>

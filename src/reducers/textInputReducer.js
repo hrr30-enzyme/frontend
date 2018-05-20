@@ -4,6 +4,7 @@ import {
   CLOSE_MODAL, 
   SIGN_IN,
   SIGN_UP,
+  POST_QUESTION,
 } from '../actions/types'
 
 const initialState = {
@@ -35,6 +36,9 @@ const textInput = (state = initialState, action) => {
       return initialState;
 
     case `${SIGN_UP}_FULFILLED`:
+      return initialState;
+      
+    case `${POST_QUESTION}_FULFILLED`:
       return initialState;
       
     default:
