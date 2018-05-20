@@ -7,7 +7,9 @@ import Answers from './Answers'
 import GiveAnswer from '../components/GiveAnswer'
 import AskQuestion from '../components/AskQuestion'
 import Navbar from '../components/Navbar'
-import Ask from '../components/AskQuestion';
+import Ask from '../components/AskQuestion'
+
+import MarkdownInput from '@opuscapita/react-markdown'
 
 const Layout = styled.div`
   display: grid;
@@ -133,6 +135,7 @@ class QuestionPage extends Component {
           answer={ this.props.post.posts.filter(post => post.PostTypeId === 2)[0] }
         />
         <YourAnswerDiv>Your Answer</YourAnswerDiv>
+        <GiveAnswer {...this.props}/>
       </Layout>
     );
   }

@@ -42,7 +42,7 @@ const Downvote = styled.div`
   grid-row: 3;
   justify-self: center;
 `
-const Star = styled.div`
+const Check = styled.div`
   grid-row: 4;
   justify-self: center;
   font-size: 40px;
@@ -66,7 +66,7 @@ const Answer = ({ answer }) => {
         <Upvote>▲</Upvote>
         <VoteCount>0</VoteCount>
         <Downvote>▼</Downvote>
-        <Star>★</Star>
+        <Check>✓</Check>
       </Actions>
       <Body>{ answer && answer.body }</Body>
     </Layout>
