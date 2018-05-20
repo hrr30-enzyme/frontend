@@ -4,6 +4,7 @@ import {
   SIGN_IN,
   SIGN_OUT,
   SIGN_UP,
+  CLOSE_MODAL,
 } from "../actions/types";
 
 const intialState = {
@@ -58,6 +59,12 @@ const authentication = (state = intialState, action) => {
       return {
         ...state,
         error: action.payload.response.data,
+      };
+
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        error: '',
       };
 
     default:

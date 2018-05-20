@@ -5,7 +5,7 @@ import promise from 'redux-promise-middleware'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 
-import { ORIGIN, LOCALHOST } from '../constants'
+import { PRODUCTION } from '../constants'
 import rootReducer from '../reducers'
 
 const initialState = {};
@@ -14,10 +14,10 @@ const getMiddleware = () => {
   const middleware = [promise(), thunk];
   const devMiddleware = [...middleware, createLogger()];
 
-  if (ORIGIN === LOCALHOST) {
-    return composeWithDevTools(applyMiddleware(...devMiddleware));
-  } else {
+  if (PRODUCTION) {
     return applyMiddleware(...middleware)
+  } else {
+    return composeWithDevTools(applyMiddleware(...devMiddleware));
   }
 };
 

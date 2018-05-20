@@ -13,6 +13,7 @@ const handleChange = (cb, inputType, input) => {
   cb(inputType, input);
 };
 
+
 const Signup = ({
   signup,
   closeModal,
@@ -23,6 +24,11 @@ const Signup = ({
   addText,
   error,
 }) => {
+
+  const enterInput =
+    (e) =>
+    e.key === 'Enter'
+    && handleClick(e, signup, { username, password, email });
 
   return modal({
     showModal,
@@ -37,6 +43,7 @@ const Signup = ({
         placeholder="Email"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Input
         value={ username }
@@ -44,6 +51,7 @@ const Signup = ({
         placeholder="Username"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Input
         value={ password }
@@ -51,6 +59,7 @@ const Signup = ({
         placeholder="Password"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Button
         onClick={ e => 
