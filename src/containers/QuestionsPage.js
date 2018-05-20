@@ -131,37 +131,49 @@ export default class QuestionsPage extends Component {
         </div>
         <Heading>
           <Tag1>
-            All Questions
+            { this.props.post.sortedBy }
           </Tag1>
           <Tag2
-            onClick={ () => this.props.getPostByQuery({
-              sortBy: '-createdAt',
-              PostTypeId: 1,
-            })}
+            onClick={ () => {
+              this.props.changeSortedBy('Newest');
+              this.props.getPostByQuery({
+                sortBy: '-createdAt',
+                PostTypeId: 1,
+              });
+            }}
           >
             Newest
           </Tag2>
           <Tag3
-            onClick={ () => this.props.getPostByQuery({
-              sortBy: '-viewCount',
-              PostTypeId: 1,  
-            })}
+            onClick={ () => {
+              this.props.changeSortedBy('Popular');
+              this.props.getPostByQuery({
+                sortBy: '-viewCount',
+                PostTypeId: 1,  
+              });
+            } }
           >
             Popular
           </Tag3>
           <Tag4
-            onClick={ () => this.props.getPostByQuery({
-              sortBy: '-bounty',
-              PostTypeId: 1,
-            })}
+            onClick={ () => {
+              this.props.changeSortedBy('Bounty');
+              this.props.getPostByQuery({
+                sortBy: '-bounty',
+                PostTypeId: 1,
+              })
+            } }
           >
             Bounty
           </Tag4>
           <Tag5
-            onClick={ () => this.props.getPostByQuery({
-              special: 'recomended',
-              PostTYpeId: 1,
-            })}
+            onClick={ () => {
+              this.props.changeSortedBy('Recomended');
+              this.props.getPostByQuery({
+                special: 'recomended',
+                PostTYpeId: 1,
+              })
+            }}
           >
             Recomended
           </Tag5>
@@ -169,7 +181,7 @@ export default class QuestionsPage extends Component {
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
         <Sidebar>
           <Hot>
-            Hottest Questions
+            FOR YOU
           </Hot>
         </Sidebar>
         <AskQuestion
