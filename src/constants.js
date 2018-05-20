@@ -7,7 +7,7 @@ export const HOSTNAME = window && window.location && window.location.hostname;
 export const LOCALHOST = `localhost`;
 
 if (HOSTNAME === LOCALHOST) {
-  ORIGIN = `http://localhost:3000`;
+  ORIGIN = `http://localhost:8080`;
   PRODUCTION = false;
 } else {
   ORIGIN = `http://hrr30-enzyme-backend.herokuapp.com`;
