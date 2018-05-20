@@ -1,4 +1,4 @@
-import { INPUT_CHANGE, CLEAR_ALL_INPUTS } from '../actions/types'
+import { INPUT_CHANGE, CLEAR_ALL_INPUTS, CLOSE_MODAL } from '../actions/types'
 
 const initialState = {
   username: '',
@@ -21,6 +21,9 @@ const textInput = (state = initialState, action) => {
       return {
         ...initialState
       }
+
+    case CLOSE_MODAL:
+      return initialState;
       
     default:
       return state
