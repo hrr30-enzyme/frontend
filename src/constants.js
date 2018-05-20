@@ -10,7 +10,7 @@ if (HOSTNAME === LOCALHOST) {
   ORIGIN = `http://localhost:8080`;
   PRODUCTION = false;
 } else {
-  ORIGIN = `http://hrr30-enzyme-backend.herokuapp.com`;
+  ORIGIN = `https://hrr30-enzyme-backend.herokuapp.com`;
   PRODUCTION = true;
 }
 
