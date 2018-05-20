@@ -28,7 +28,7 @@ export const GET_POSTS_BY_QUESTION = 'GET_POSTS_BY_QUESTION'
 
 export const GET_POST_BY_QUERY = 'GET_POST_BY_QUERY'
 
-export const INPUT_CHANGE = 'ADD_TEXT'
+export const INPUT_CHANGE = 'INPUT_CHANGE'
 
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 

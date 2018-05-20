@@ -14,7 +14,8 @@ const initialState = {
   title: '',
   body: '',
   answerBody: '',
-  commentBody: ''
+  commentBody: '',
+  search: ''
 };
 
 const textInput = (state = initialState, action) => {

@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom'
 import Signin from './Signin'
 import Signup from './Signup'
 
+import Search from '../components/Search'
+
 const Nav = styled.nav`
   display: grid;
-  padding-left: 2em;
-  grid-template-columns: 6em 6em auto  5em 5em 5em;
-  height: 4em;
+  padding-left: .6em;
+  grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
+  height: 2.3em;
   align-items: center;
   background-color: #ffffff;
   border-bottom: solid #888;
@@ -27,6 +29,10 @@ const Nav = styled.nav`
   > .nav-home {
     grid-column: 2 / 3;
   }
+  > .nav-searchbar {
+    grid-column: 4 / 5
+    width: 65%
+  }
   > .nav-auth {
     cursor: pointer;
     color: gray;
@@ -35,7 +41,6 @@ const Nav = styled.nav`
     color: #666666;
   }
 `;
-
 
 
 const StyledNavLink = styled(Link)`
@@ -104,6 +109,11 @@ const Navbar = (props) => {
           >
             Questions
           </StyledNavLink>
+        </div>
+        <div className="nav-searchbar nav-item">
+            <Search {...props} />
+
+
         </div>
         
         {signedIn 
