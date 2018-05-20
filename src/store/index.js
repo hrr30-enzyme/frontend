@@ -5,6 +5,7 @@ import promise from 'redux-promise-middleware'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 
+import { PRODUCTION } from '../constants'
 import rootReducer from '../reducers'
 
 const initialState = {};
@@ -13,7 +14,7 @@ const getMiddleware = () => {
   const middleware = [promise(), thunk];
   const devMiddleware = [...middleware, createLogger()];
 
-  if (process.env.NODE_ENV === 'production') {
+  if (PRODUCTION) {
     return applyMiddleware(...middleware)
   } else {
     return composeWithDevTools(applyMiddleware(...devMiddleware));

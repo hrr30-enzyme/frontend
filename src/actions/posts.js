@@ -83,3 +83,8 @@ export const getAnswers = query => {
     payload: axios.get(`${ORIGIN}/answers/${str}`)
   };
 };
+
+export const changeSortedBy = parameter => ({
+  type: 'CHANGE_SORTED_BY',
+  payload: parameter,
+});
