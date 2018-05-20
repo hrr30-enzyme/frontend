@@ -7,9 +7,9 @@ import Signup from './Signup'
 
 const Nav = styled.nav`
   display: grid;
-  padding-left: .6em;
+  padding-left: 2em;
   grid-template-columns: 6em 6em auto  5em 5em 5em;
-  height: 2.3em;
+  height: 4em;
   align-items: center;
   background-color: #ffffff;
   border-bottom: solid #888;
