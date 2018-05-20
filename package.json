@@ -49,6 +49,7 @@
     "react-transition-group": "^2.3.1",
     "rebass": "^2.0.0-2",
     "redux": "^4.0.0",
+    "redux-auth-wrapper": "^2.0.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.1.1",
