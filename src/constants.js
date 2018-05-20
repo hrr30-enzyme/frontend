@@ -7,10 +7,10 @@ export const HOSTNAME = window && window.location && window.location.hostname;
 export const LOCALHOST = `localhost`;
 
 if (HOSTNAME === LOCALHOST) {
-  ORIGIN = `localhost:3000`;
+  ORIGIN = `http://localhost:3000`;
   PRODUCTION = false;
 } else {
-  ORIGIN = `https://hrr30-enzyme-backend.herokuapp.com`;
+  ORIGIN = `http://hrr30-enzyme-backend.herokuapp.com`;
   PRODUCTION = true;
 }
 
