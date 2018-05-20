@@ -11,7 +11,7 @@ import {
   getAnswer,
   getAnswers,
   getAllQuestions,
-  queryPosts
+  queryPosts,
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (

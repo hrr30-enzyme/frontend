@@ -134,7 +134,7 @@ export default class QuestionsPage extends Component {
             All Questions
           </Tag1>
           <Tag2
-            onClick={ () => this.props.sortBy({
+            onClick={ () => this.props.getPostByQuery({
               sortBy: '-createdAt',
               PostTypeId: 1,
             })}
@@ -142,7 +142,7 @@ export default class QuestionsPage extends Component {
             Newest
           </Tag2>
           <Tag3
-            onClick={ () => this.props.sortBy({
+            onClick={ () => this.props.getPostByQuery({
               sortBy: '-viewCount',
               PostTypeId: 1,  
             })}
@@ -150,7 +150,7 @@ export default class QuestionsPage extends Component {
             Popular
           </Tag3>
           <Tag4
-            onClick={ () => this.props.sortBy({
+            onClick={ () => this.props.getPostByQuery({
               sortBy: '-bounty',
               PostTypeId: 1,
             })}
@@ -158,7 +158,7 @@ export default class QuestionsPage extends Component {
             Bounty
           </Tag4>
           <Tag5
-            onClick={ () => this.props.sortBy({
+            onClick={ () => this.props.getPostByQuery({
               special: 'recomended',
               PostTYpeId: 1,
             })}
