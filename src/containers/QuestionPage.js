@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import Question from '../components/Question'
+import Answer from '../components/Answer'
 import Answers from './Answers'
 import GiveAnswer from '../components/GiveAnswer'
 import AskQuestion from '../components/AskQuestion'
@@ -19,25 +20,7 @@ const Layout = styled.div`
     background-color: red;
     grid-column: 1/4;
   }
-
-  .question {
-    background-color: oldlace;
-    border: 2px solid grey;
-    grid-column: 2;
-    min-width: 650px;
-  }
-
-  .answers {
-    background-color: green;
-    grid-column: 1/2;
-  }
-
-  .ask {
-    background-color: yellow;
-    grid-column: 2/3;
-    grid-row: 2/3;
-  }
-`;
+`
 
 const Stats = styled.div`
   grid-row: 2;
@@ -47,7 +30,6 @@ const Stats = styled.div`
   grid-template-rows: auto;
   justify-self: left;
 `
-
 const Stat = styled.p`
   color: grey;
   grid-column: 1;
@@ -56,7 +38,6 @@ const Value = styled.p`
   color: black;
   grid-column: 2;
 `
-
 const Button = styled.button`
   grid-row: 2;
   grid-column: 3;
@@ -71,8 +52,7 @@ const Button = styled.button`
   align-self: center;
   height: 60px;
   min-width: 145px;
-`;
-
+`
 const Sidebar = styled.div`
   display: grid;
   grid-column: 3;
@@ -80,8 +60,8 @@ const Sidebar = styled.div`
   grid-template-rows: 10% auto;
   grid-template-columns: 1;  
   border: solid grey 2px;
-`;
-
+  min-width: 250px;
+`
 const Hot = styled.h2`
   grid-row: 1;
   color: #990004;
@@ -90,7 +70,22 @@ const Hot = styled.h2`
   justify-self: center;
   padding-top: 1em;
 `
-
+const AnswerDiv = styled.div`
+  grid-column: 1 / span 2;
+  border-bottom: solid lightgrey 1px;
+  padding: 1em;
+  margin: 2em;
+  font-weight: bold;
+  font-size: 20px;
+`
+const YourAnswerDiv = styled.div`
+  grid-column: 1 / span 2;
+  border-top: solid lightgrey 1px;
+  padding: 1em;
+  margin: 2em;
+  font-weight: bold;
+  font-size: 20px;
+`
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -133,6 +128,11 @@ class QuestionPage extends Component {
         <Question 
           question={ this.props.post.posts.filter(post => post.PostTypeId === 1)[0] } 
         />
+        <AnswerDiv>Answers</AnswerDiv>
+        <Answer 
+          answer={ this.props.post.posts.filter(post => post.PostTypeId === 2)[0] }
+        />
+        <YourAnswerDiv>Your Answer</YourAnswerDiv>
       </Layout>
     );
   }
