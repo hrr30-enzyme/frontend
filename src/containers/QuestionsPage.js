@@ -12,9 +12,9 @@ const Layout = styled.div`
   grid-column-gap: 30px;
   grid-row-gap: 15px;
 
-  .nav {
+  > .nav {
     background-color: red;
-    grid-column: 1/5;
+    grid-column: 1/ 4;
   }
 
   .question {
@@ -29,11 +29,6 @@ const Layout = styled.div`
     grid-column: 1/2;
   }
 
-  .giveanswer {
-    background-color: blue;
-    grid-column: 1/2;
-  }
-
   .ask {
     background-color: yellow;
     grid-column: 2/3;
@@ -42,6 +37,7 @@ const Layout = styled.div`
 `;
 
 const Button = styled.button`
+  grid-row: 2;
   grid-column: 3;
   background: #980104;
   color: white;
