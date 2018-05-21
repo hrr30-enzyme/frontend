@@ -1,37 +1,71 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
-import Usertag from "./Usertag";
 
-const Div = styled.div`
+const Layout = styled.div`
+  grid-column: 2;
+  min-width: 650px;
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 2em auto;
+  padding-left: 2em;
+  grid-template-rows: auto;
+  grid-template-columns: 10% 80% auto;
+`
+const Username = styled.h4`
+  grid-row: 1;
+  grid-column: 3;
+  justify-self: right;
   padding: 1em;
+`
+const Actions = styled.div`
+  grid-row: 2;
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 15px;
+  font-size: 28px;
+`
+const Upvote = styled.div`
+  grid-row: 1;
+  justify-self: center;
+`
+const VoteCount = styled.div`
+  grid-row: 2;
+  justify-self: center;
+`
+const Downvote = styled.div`
+  grid-row: 3;
+  justify-self: center;
+`
+const Check = styled.div`
+  grid-row: 4;
+  justify-self: center;
+  font-size: 40px;
+  color: grey;
+`
+const Body = styled.p`
+  grid-row: 2;
+  grid-column: 2 / span 3;
+  background-color: oldlace;
+  border: 2px solid grey;
+  font-size: 20px;
+`
 
-  > .usertag {
-    background-color: white;
-    grid-column: 1/3;
-  }
-`;
-
-const Answer = props => {
+const Answer = ({ answer }) => {
+  
+  console.log('Answer component: ', answer)
   return (
-    <Div>
-      <div className="usertag">
-        <Usertag />
-      </div>
-      <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum."
-      </p>
-    </Div>
+    <Layout>
+      <Username>{ answer && answer.User.username }</Username>
+      <Actions>
+        <Upvote>▲</Upvote>
+        <VoteCount>0</VoteCount>
+        <Downvote>▼</Downvote>
+        <Check>✓</Check>
+      </Actions>
+      <Body>{ answer && answer.body }</Body>
+    </Layout>
   );
 };
 
-export default Answer;
+
+export default Answer

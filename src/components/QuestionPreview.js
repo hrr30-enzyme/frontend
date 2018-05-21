@@ -5,68 +5,200 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Question = styled.div`
-  padding: 12px 0;
-  border-bottom: 1px solid #e4e6e8;
-  overflow: hidden;
-  width: 728px;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 20% 10% auto auto;
+  grid-column-gap: 35px;
+  grid-row-gap: 1em;
+  text-decoration: none;
+  width: auto;
+  height: auto;
+  margin: 2px 2px;
 `;
 
-const qStats = styled.div`
-  vertical-align: top;
-  float: left;
-  margin-right: 10px;
+const Stats = styled.div`
+  display: grid;
+  grid-template-columns: 40px 50px 50px;
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  grid-column-gap: 5px;
+  justify-self: left;
+  align-self: center;
+  margin-bottom: 10px;
 `;
 
-const qSummary = styled.div`
-  width: 530px;
-  padding: 0;
-  float: left;
+const Votes = styled.div`
+  display: inline-block;
+  grid-column: 1;
+  font-size: 14px;
 `;
-const qVotes = styled.div`
+
+const Answers = styled.div`
+  display: inline-block;
+  grid-column: 2;
+  font-size: 14px;
+`;
+
+const Views = styled.div`
+  display: inline-block;
+  grid-column: 3;
+  font-size: 14px;
+`;
+
+const Inner = styled.div`
+  font-size: 22px;
+  font-weight: 300;
+  color: #6a737c;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+`;
+
+const MiniCount = styled.div`
   padding: 8px 5px;
   line-height: 1;
-`;
-const qVoteCount = styled.div`
-  margin-bottom: 2px;
-`;
-const qAnswers = styled.div`
-  display: inline-block;
-  margin: 0 3px 0 0;
-  min-width: 44px;
-  height: auto;
-  font-size: 11px;
-  padding: 6px;
-`;
+`; 
 
-const qViews = styled.div`
-  display: inline-block;
-  height: 38px;
-  min-width: 40px;
-  margin: 0 7px 0 0;
-  font-size: 11px;
-  color: #848d95;
-  padding: 5px 5px 6px;
-`;
-const qTitle = styled.h3`
-  font-weight: 400;
-`;
+const Bounty = styled.div`
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: left;
+  align-self: center;
+  font-weight: bolder;
+  font-size: 18px;
+  font-style: italic;
+`
 
-const QuestionPreview = props => {
+const Reward = styled.div`
+  grid-row: 2;
+  grid-column: 2;
+  border-bottom: solid 1px #A50104;
+  margin-bottom: 10px;
+  justify-self: left;  
+`
+
+const Title = styled.div`
+  grid-row: 1;
+  grid-column: 3;
+  font-size: 24px;
+  text-decoration: none;
+`
+
+const User = styled.div`
+  grid-row: 1;
+  grid-column: 4;
+  font-size: 18px;
+  text-decoration: none;
+  justify-self: right;
+`
+
+const Tags = styled.div`
+  grid-row: 2;
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: auto;
+  grid-column-gap: 5px;
+  margin-bottom: 10px;
+`
+
+const Tag1 = styled.div`
+  grid-column: 1;
+  border: solid 2px yellow;
+  border-radius: 4px;
+`
+
+const Tag2 = styled.div`
+  grid-column: 2;
+  border: solid 2px #FCBA04;
+  border-radius: 4px;  
+`
+
+const Tag3 = styled.div`
+  grid-column: 3;
+  border: solid 2px #A50104;
+  border-radius: 4px;  
+`
+
+const Tag4 = styled.div`
+  grid-column: 4;
+  border: solid 2px #590004;
+  border-radius: 4px;  
+`
+
+const Tag5 = styled.div`
+  grid-column: 5;
+  border: solid 2px #250001;
+  border-radius: 4px;  
+`
+
+const Tag6 = styled.div`
+  grid-column: 6;
+  border: solid 2px #000000;
+  border-radius: 4px;  
+`
+
+const handleClick = (e, callback, cb, id) => {
+  e.preventDefault();
+
+  callback(id);
+  cb(`/question/${id}`);
+};
+
+
+const QuestionPreview = ({question}) => {
+  console.log('QuestionPreview: ' + JSON.stringify(question));
+  const username = question.User ? question.User.username : 'fake';
   return (
-    <Question>
-      <Link to="/question">
-        <qStats>
-          <qVotes>
-            <qVoteCount>5</qVoteCount>Votes
-          </qVotes>
-          <qAnswers> Answers</qAnswers>
-          <qViews>6 Views</qViews>
-        </qStats>
-        <qSummary>
-          <qTitle>Question title and such and such and such and such</qTitle>
-        </qSummary>
-      </Link>
-    </Question>
+    <Link to={`/question/${question.id}`} style={{textDecoration: 'none'}}>
+      <Question >
+        <Stats>
+          <MiniCount>
+            <Votes>
+              <Inner>
+                <div display="block">{question.upvoteCount}</div>
+              </Inner>{" "}
+              votes
+            </Votes>
+          </MiniCount>
+          <MiniCount>
+            <Answers>
+              <Inner>
+                {question.answerCount}
+              </Inner>
+              answers
+            </Answers>
+          </MiniCount>
+          <MiniCount>
+            <Views>
+              <Inner>
+                <div display="block">{question.viewCount}</div>
+              </Inner>{" "}
+              views
+            </Views>
+          </MiniCount>
+        </Stats>
+        <Bounty>
+          Bounty
+        </Bounty>
+        <Reward>
+          {Math.round(question.bounty * 100) / 100} ETH
+        </Reward>
+        <Title>
+          {question.title}
+        </Title>
+        <User>
+          {username}
+        </User>
+        <Tags>
+          <Tag1>TAG1</Tag1>
+          <Tag2>TAG2</Tag2>
+          <Tag3>TAG3</Tag3>
+          <Tag4>TAG4</Tag4> 
+          <Tag5>TAG5</Tag5>
+          <Tag6>TAG6</Tag6>       
+        </Tags>
+      </Question>
+    </Link>
   );
 };
 
