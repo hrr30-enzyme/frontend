@@ -11,14 +11,14 @@ import Ask from '../components/AskQuestion'
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 7fr 3fr;
-  grid-template-rows: auto auto auto auto auto auto auto auto;
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
-  
+  grid-template-rows: auto;
+  grid-template-columns: 5% auto auto 5%;
+  grid-column-gap: 30px;
+  grid-row-gap: 15px;
+
   > .nav {
     background-color: red;
-    grid-column: 1/3;
+    grid-column: 1/5;
   }
 `
 
@@ -109,7 +109,7 @@ class QuestionPage extends Component {
         </Stats>
         <Sidebar>
           <Hot>
-            Hottest Questions
+            FOR YOU
           </Hot>
         </Sidebar>
         <AskQuestion
