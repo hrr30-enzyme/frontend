@@ -10,12 +10,6 @@ const Layout = styled.div`
   grid-template-rows: auto;
   grid-template-columns: 10% 80% auto;
 `
-const Title = styled.h2`
-  grid-row: 1;
-  grid-column: 1 / span 2;
-  border-bottom: solid lightgrey 1px;
-  margin: 1em;
-`
 const Username = styled.h4`
   grid-row: 1;
   grid-column: 3;
@@ -61,7 +55,7 @@ const Answer = ({ answer }) => {
   console.log('Answer component: ', answer)
   return (
     <Layout>
-      <Username>{ answer && answer.UserId }</Username>
+      <Username>{ answer && answer.User.username }</Username>
       <Actions>
         <Upvote>▲</Upvote>
         <VoteCount>0</VoteCount>

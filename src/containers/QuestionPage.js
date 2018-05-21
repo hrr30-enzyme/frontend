@@ -56,7 +56,7 @@ const Button = styled.button`
 const Sidebar = styled.div`
   display: grid;
   grid-column: 3;
-  grid-row: 3 / span 6;
+  grid-row: 3;
   grid-template-rows: 10% auto;
   grid-template-columns: 1;  
   border: solid grey 2px;
@@ -68,7 +68,6 @@ const Hot = styled.h2`
   border-bottom: 1px solid black;
   align-self: center;
   justify-self: center;
-  padding-top: 1em;
 `
 const AnswerDiv = styled.div`
   grid-column: 1 / span 2;
@@ -95,7 +94,7 @@ class QuestionPage extends Component {
   }
 
   render() {
-    console.log('Questions page:', this.props)
+    console.log('Question page:', this.props)
     return (
       <Layout>
         <div className="nav">
@@ -129,8 +128,8 @@ class QuestionPage extends Component {
           question={ this.props.post.posts.filter(post => post.PostTypeId === 1)[0] } 
         />
         <AnswerDiv>Answers</AnswerDiv>
-        <Answer 
-          answer={ this.props.post.posts.filter(post => post.PostTypeId === 2)[0] }
+        <Answers 
+          answers={ this.props.post.posts.filter(post => post.PostTypeId === 2) }
         />
         <YourAnswerDiv>Your Answer</YourAnswerDiv>
         <GiveAnswer {...this.props}/>

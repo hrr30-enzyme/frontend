@@ -182,7 +182,8 @@ export default class QuestionsPage extends Component {
           <div className="question">
             <QuestionPreview
               qid={1}
-              {...question}
+              question={question}
+              style={{textDecoration: 'none'}}
               {...this.props}
             />
           </div>

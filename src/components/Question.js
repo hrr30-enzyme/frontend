@@ -62,7 +62,7 @@ const  Question = ({ question }) => {
   return (
     <Layout>
       <Title>{ question && question.title }</Title>
-      <Username>{ question && question.UserId }</Username>
+      <Username>{ question && question.User.username }</Username>
       <Actions>
         <Upvote>▲</Upvote>
         <VoteCount>0</VoteCount>
