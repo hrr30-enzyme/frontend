@@ -39,3 +39,5 @@ export const CLEAR_ALL_INPUTS = 'CLEAR_ALL_INPUTS'
 export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS'
 
 export const CHANGE_SORTED_BY = 'CHANGE_SORTED_BY'
+
+export const SEARCH = 'SEARCH'

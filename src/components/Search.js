@@ -25,9 +25,10 @@ const Search = (props) => {
     cb('search', e.target.value);
   };
 
-  const handleEnter = (e, cb) => {
+  const handleEnter = (e, func, cb) => {
     if (e.charCode === 13) {
       console.log("Searching for...");
+      func(e.target.value)
       cb('search');
     }
   };
@@ -39,7 +40,7 @@ const Search = (props) => {
         type="text"
         value={props.textInput.search}
         onChange={e => handleChange(e, props.addText)}
-        onKeyPress={e => handleEnter(e, props.clearText)}
+        onKeyPress={e => handleEnter(e, props.search, props.clearText)}
       />
       <FaSearch onClick={e => handleClick(e, props.clearText)} />
     </div>
