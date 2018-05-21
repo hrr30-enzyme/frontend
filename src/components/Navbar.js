@@ -111,7 +111,7 @@ const Navbar = (props) => {
             <div>
               <div className="nav-item">
                 <StyledNavLink 
-                  to="/user" 
+                  to={ `/user/${props.authentication.userInfo.username}` }
                   linkColor={ linkColor }
                   linkColorHOver={ linkColorHover }
                 >

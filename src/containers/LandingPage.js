@@ -138,7 +138,6 @@ export default class LandingPage extends Component {
 
   componentDidMount() {
     window.onscroll = () => {
-      console.log(window.pageYOffset);
       if (window.pageYOffset > 20) {
         this.setState({
           scrolled: true,

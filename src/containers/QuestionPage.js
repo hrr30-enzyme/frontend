@@ -9,18 +9,16 @@ import AskQuestion from '../components/AskQuestion'
 import Navbar from '../components/Navbar'
 import Ask from '../components/AskQuestion'
 
-import MarkdownInput from '@opuscapita/react-markdown'
-
 const Layout = styled.div`
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 5% auto auto 5%;
-  grid-column-gap: 30px;
-  grid-row-gap: 15px;
-
+  grid-template-columns: 7fr 3fr;
+  grid-template-rows: auto auto auto auto auto auto auto auto;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  
   > .nav {
     background-color: red;
-    grid-column: 1/4;
+    grid-column: 1/3;
   }
 `
 

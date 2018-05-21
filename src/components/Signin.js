@@ -14,6 +14,8 @@ const handleChange = (cb, inputType, input) => {
 };
 
 
+  
+
 const Signin = ({
   signin,
   closeModal,
@@ -24,6 +26,11 @@ const Signin = ({
   error,
 }) => {
   
+  const enterInput = 
+    (e) => 
+    e.key === 'Enter' 
+    && handleClick(e, signin, { username, password });
+
   return modal({ 
     showModal,
     handleClose: () => closeModal('signin')
@@ -37,13 +44,15 @@ const Signin = ({
         placeholder="Username"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Input
-        value={password}
+        value={ password }
         onChange={ e => handleChange(addText, "password", e.target.value) }
         placeholder="Password"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Button 
         onClick={ (e) => 

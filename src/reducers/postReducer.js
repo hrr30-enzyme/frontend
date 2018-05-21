@@ -8,7 +8,8 @@ import {
   GET_ANSWERS,
   GET_POSTS_BY_QUESTION,
   GET_POST_BY_QUERY,
-  GET_ALL_QUESTIONS
+  GET_ALL_QUESTIONS,
+  CHANGE_SORTED_BY,
 } from "../actions/types";
 
 
@@ -21,7 +22,7 @@ const exampleState = {
     chance we don't need it though
   */
   posts: [],
-  view: null, 
+  sortedBy: 'Newest', 
   questions: [
     {
       question: {
@@ -128,6 +129,13 @@ const postReducer = (state = exampleState, action) => {
         ...state,
       };
 
+    case `${GET_POST_BY_QUERY}_PENDING`:
+      console.log('getpostbyquery', action);
+      return {
+        sortedBy: 'pending',
+        ...state,
+      }
+
     case `${GET_POST_BY_QUERY}_FULFILLED`:
       return {
         ...state,
@@ -137,6 +145,7 @@ const postReducer = (state = exampleState, action) => {
 
     case `${GET_POST_BY_QUERY}_REJECTED`:
       return {
+        sortedBy: 'unable to find posts',
         ...state,
       };
 
@@ -150,7 +159,13 @@ const postReducer = (state = exampleState, action) => {
       return {
         ...state,
       };
-
+    
+    case CHANGE_SORTED_BY:
+      return {
+        ...state,
+        sortedBy: action.payload,
+      };
+      
     default:
       return state;
   }

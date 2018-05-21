@@ -21,7 +21,8 @@ const Layout = styled.div`
 
 class UserPage extends Component {
   componentDidMount() {
-    this.props.queryPosts({ userId: this.props.authentication.userInfo.id });
+    const username = this.props.location.pathname.split('/')[2]
+    this.props.queryPosts({username});
   }
 
   render() {
