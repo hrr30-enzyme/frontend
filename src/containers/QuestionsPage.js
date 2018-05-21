@@ -23,23 +23,7 @@ const Layout = styled.div`
     grid-column: 2;
     min-width: 650px;
   }
-
-  .answers {
-    background-color: green;
-    grid-column: 1/2;
-  }
-
-  .giveanswer {
-    background-color: blue;
-    grid-column: 1/2;
-  }
-
-  .ask {
-    background-color: yellow;
-    grid-column: 2/3;
-    grid-row: 2/3;
-  }
-`;
+`
 
 const Button = styled.button`
   grid-column: 3;
@@ -54,8 +38,7 @@ const Button = styled.button`
   align-self: center;
   height: 60px;
   min-width: 145px;
-`;
-
+`
 const Heading = styled.div`
   display: grid;
   grid-template-columns: 20% 15% auto;
@@ -64,8 +47,7 @@ const Heading = styled.div`
   font-size: 16px;
   align-self: center;
   border-bottom: 1px solid black;
-`;
-
+`
 const Tag1 = styled.h2`
   grid-column: 1;
   min-width: 200px;
@@ -97,7 +79,6 @@ const Tag5 = styled.h4`
   border-left: 1px solid black;
   cursor: pointer;
 `
-
 const Sidebar = styled.div`
   display: grid;
   grid-column: 3;
@@ -105,8 +86,8 @@ const Sidebar = styled.div`
   grid-template-rows: 10% auto;
   grid-template-columns: 1;  
   border: solid grey 2px;
-`;
-
+  min-width: 250px;
+`
 const Hot = styled.h2`
   grid-row: 1;
   color: #990004;
@@ -201,7 +182,8 @@ export default class QuestionsPage extends Component {
           <div className="question">
             <QuestionPreview
               qid={1}
-              {...question}
+              question={question}
+              style={{textDecoration: 'none'}}
               {...this.props}
             />
           </div>

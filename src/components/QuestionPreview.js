@@ -23,6 +23,7 @@ const Stats = styled.div`
   grid-column: 1;
   grid-column-gap: 5px;
   justify-self: left;
+  align-self: center;
   margin-bottom: 10px;
 `;
 
@@ -71,7 +72,7 @@ const Bounty = styled.div`
 const Reward = styled.div`
   grid-row: 2;
   grid-column: 2;
-  border: solid 2px #A50104;
+  border-bottom: solid 1px #A50104;
   margin-bottom: 10px;
   justify-self: left;  
 `
@@ -88,7 +89,7 @@ const User = styled.div`
   grid-column: 4;
   font-size: 18px;
   text-decoration: none;
-  justify-self: left;
+  justify-self: right;
 `
 
 const Tags = styled.div`
@@ -144,58 +145,59 @@ const handleClick = (e, callback, cb, id) => {
 };
 
 
-const QuestionPreview = (props) => {
-  console.log('QuestionPreview: ' + props);
+const QuestionPreview = ({question}) => {
+  console.log('QuestionPreview: ' + JSON.stringify(question));
+  const username = question.User ? question.User.username : 'fake';
   return (
-    <Link to={`/question/${props.id}`} style={{textDecoration: 'none'}}>
+    <Link to={`/question/${question.id}`} style={{textDecoration: 'none'}}>
       <Question >
-      <Stats>
-        <MiniCount>
-          <Votes>
-            <Inner>
-              <div display="block">{props.upvoteCount}</div>
-            </Inner>{" "}
-            votes
-          </Votes>
-        </MiniCount>
-        <MiniCount>
-          <Answers>
-            <Inner>
-              {props.answerCount}
-            </Inner>
-            answers
-          </Answers>
-        </MiniCount>
-        <MiniCount>
-          <Views>
-            <Inner>
-              <div display="block">{props.viewCount}</div>
-            </Inner>{" "}
-            views
-          </Views>
-        </MiniCount>
-      </Stats>
-      <Bounty>
-        Bounty
-      </Bounty>
-      <Reward>
-        100 ETH
-      </Reward>
-      <Title>
-        {props.title}
-      </Title>
-      <User>
-        User
-      </User>
-      <Tags>
-        <Tag1>TAG1</Tag1>
-        <Tag2>TAG2</Tag2>
-        <Tag3>TAG3</Tag3>
-        <Tag4>TAG4</Tag4> 
-        <Tag5>TAG5</Tag5>
-        <Tag6>TAG6</Tag6>       
-      </Tags>
-    </Question>
+        <Stats>
+          <MiniCount>
+            <Votes>
+              <Inner>
+                <div display="block">{question.upvoteCount}</div>
+              </Inner>{" "}
+              votes
+            </Votes>
+          </MiniCount>
+          <MiniCount>
+            <Answers>
+              <Inner>
+                {question.answerCount}
+              </Inner>
+              answers
+            </Answers>
+          </MiniCount>
+          <MiniCount>
+            <Views>
+              <Inner>
+                <div display="block">{question.viewCount}</div>
+              </Inner>{" "}
+              views
+            </Views>
+          </MiniCount>
+        </Stats>
+        <Bounty>
+          Bounty
+        </Bounty>
+        <Reward>
+          {Math.round(question.bounty * 100) / 100} ETH
+        </Reward>
+        <Title>
+          {question.title}
+        </Title>
+        <User>
+          {username}
+        </User>
+        <Tags>
+          <Tag1>TAG1</Tag1>
+          <Tag2>TAG2</Tag2>
+          <Tag3>TAG3</Tag3>
+          <Tag4>TAG4</Tag4> 
+          <Tag5>TAG5</Tag5>
+          <Tag6>TAG6</Tag6>       
+        </Tags>
+      </Question>
     </Link>
   );
 };

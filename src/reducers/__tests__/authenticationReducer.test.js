@@ -4,7 +4,13 @@ import authentication from "../authenticationReducer";
 describe("Authentication Reducer", () => {
   it("should return a default state", () => {
     const state = {
-      userInfo: {},
+      userInfo: {
+        "createdAt": undefined, 
+        "email": "notloggedin@gmail.com", 
+        "id": 1, 
+        "updatedAt": undefined, 
+        "username": "not logged in!"
+      },
       signedIn: false,
       error: false
     };
@@ -47,7 +53,13 @@ describe("Authentication Reducer", () => {
   });*/
   it("should return signIn: false for 'SIGN_OUT_REJECTED", () => {
     const state = {
-      userInfo: {},
+      userInfo: {
+        "createdAt": undefined, 
+        "email": "notloggedin@gmail.com", 
+        "id": 1, 
+        "updatedAt": undefined, 
+        "username": "not logged in!"
+      },
       signedIn: false,
       error: false
     };
