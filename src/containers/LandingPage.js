@@ -37,7 +37,7 @@ const transparentNav = styled.nav`
   position: fixed;  
   display: grid;
   padding-left: .6em;
-  grid-template-columns: 5em 5em auto 5em 5em 5em;
+  grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
   height: 2.3em;
   align-items: center;
   border-bottom: solid transparent;
@@ -60,6 +60,10 @@ const transparentNav = styled.nav`
   > .nav-questions {
     grid-column: 3 / 4;
   }
+  > .nav-searchbar {
+    grid-column: 4 / 5
+    width: 65%
+  }
   > .nav-auth {
     cursor: pointer;
     color: #00b273;
@@ -75,7 +79,7 @@ const mainNav = styled.nav`
   width: 100%;
   margin-top: 0px;
   padding-left: .6em;
-  grid-template-columns: 5em 5em auto 5em 5em 5em;
+  grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
   height: 2.3em;
   align-items: center;
   background-color: #ffffff;
@@ -94,6 +98,10 @@ const mainNav = styled.nav`
   }
   > .nav-questions {
     grid-column: 3 / 4;
+  }
+  > .nav-searchbar {
+    grid-column: 4 / 5
+    width: 65%
   }
   > .nav-auth {
     cursor: pointer;

@@ -14,7 +14,7 @@ import {
 
 import { ORIGIN } from "../constants";
 
-const queryString = params =>
+export const queryString = params =>
   "?" +
   Object.keys(params)
     .filter(key => params[key] !== undefined)
