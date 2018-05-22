@@ -43,3 +43,7 @@ export const CHANGE_SORTED_BY = 'CHANGE_SORTED_BY'
 export const WEB3_INITIALIZED = 'WEB3_INITIALIZED' 
 
 export const NO_METAMASK = 'NO_METAMASK'
+
+export const ETH_VIEW = 'ETH_VIEW'
+
+export const ETH_PAYABLE = 'ETH_PAYABLE'

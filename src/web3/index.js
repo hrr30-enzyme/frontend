@@ -24,7 +24,7 @@ let getWeb3 = new Promise(function(resolve, reject) {
       resolve(store.dispatch(web3Initialized(results)))
     } else {
 
-      resolve(store.dispatch(noMetaMask(results)));
+      resolve(store.dispatch(noMetaMask('onLoad')));
     }
   })
 })

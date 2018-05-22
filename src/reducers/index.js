@@ -4,12 +4,12 @@ import authentication from '../reducers/authenticationReducer'
 import post from '../reducers/postReducer'
 import textInput from '../reducers/textInputReducer'
 import showModal from '../reducers/modalReducer'
-import web3Reducer from './web3Reducer'
+import web3 from './web3Reducer'
 
 export default combineReducers({
     authentication,
     textInput,
     post,
     showModal,
-    web3: web3Reducer, 
+    web3,
 });
