@@ -2,7 +2,7 @@ import store from '../store'
 import Web3 from 'web3'
 import { abi, address } from './contractAbi'
 
-import { web3Initialized, noMetaMask } from '../actions/blockchain'
+import { web3Initialized, noMetaMask } from '../actions/web3'
 
 let getWeb3 = new Promise((resolve, reject) => {
 
