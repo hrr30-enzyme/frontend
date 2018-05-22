@@ -30,7 +30,7 @@ let getWeb3 = new Promise(function(resolve, reject) {
 })
 
 export const getContract = (web3) => {
-  let contract = web3.eth.Contract(abi);
+  let contract = new web3.eth.Contract(abi);
   contract.options.address = address;
   return contract;
 }

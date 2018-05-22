@@ -1,4 +1,4 @@
-import { WEB3_INITIALIZED, NO_METAMASK, ETH_VIEW, ETH_PAYABLE } from './actions/types'
+import { WEB3_INITIALIZED, NO_METAMASK, ETH_VIEW, ETH_PAYABLE } from './types'
 
 /*
  *  dispatch as soon as web3 is initializes
@@ -172,5 +172,5 @@ export const createQuestion = send('createQuestion');
 // possible TODO contract.events.eventName([options][, callback]) allows us to subscribe
 // to events similar to a socket.  Might be a backend thing.
 
-//
+// the send method should be used on backend to approve users to be able to vote.
 
