@@ -45,6 +45,10 @@ const InnerDiv = styled.div`
   > modal-title {
     align-self: center;
   }
+  > error {
+    color: red;
+    font-size: 40%
+  }
 `
 
 const modal = ({ showModal, handleClose }) => (component) => (

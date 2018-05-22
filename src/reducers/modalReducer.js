@@ -9,7 +9,8 @@ import {
 const initialState = {
   signup: false,
   signin: false,
-  ask: false
+  ask: false,
+  message: ''
 }
 
 const showModal = (state = initialState, action) => {
@@ -17,7 +18,8 @@ const showModal = (state = initialState, action) => {
     case OPEN_MODAL:
       return {
         ...state,
-        [action.payload.modal]: true
+        [action.payload.modal]: true,
+        message: action.payload.message
       };
       
     case CLOSE_MODAL:
