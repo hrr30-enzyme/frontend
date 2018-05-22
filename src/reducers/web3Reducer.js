@@ -89,7 +89,7 @@ const web3Reducer = (state = initialState, action) => {
         ...state, 
       };
    
-   case `${UP_VOTE}_PENDING`:
+    case `${UP_VOTE}_PENDING`:
       return {
         ...state,
       }
@@ -113,7 +113,8 @@ const web3Reducer = (state = initialState, action) => {
       return {
         ...state,
       }
-      case `${PAYOUT_WINNER}_PENDING`:
+    
+    case `${PAYOUT_WINNER}_PENDING`:
       return {
         ...state,
       }
@@ -138,7 +139,7 @@ const web3Reducer = (state = initialState, action) => {
         ...state,
       }
 
-      case `${CREATE_ANSWER}_PENDING`:
+    case `${CREATE_ANSWER}_PENDING`:
       return {
         ...state,
       }
@@ -163,7 +164,7 @@ const web3Reducer = (state = initialState, action) => {
         ...state,
       }
 
-      case `${CREATE_QUESTION}_PENDING`:
+    case `${CREATE_QUESTION}_PENDING`:
       return {
         ...state,
       }
