@@ -160,6 +160,7 @@ const Navbar = (props) => {
           closeModal={ props.closeModal }
           signin={ props.signin }
           showModal={ props.showModal.signin }
+          message={props.showModal.message}
           addText={ props.addText }
           error={ props.authentication.error }
         />
@@ -171,6 +172,7 @@ const Navbar = (props) => {
           closeModal={ props.closeModal }
           signup={ props.signup }
           showModal={ props.showModal.signup }
+          message={props.showModal.message}
           addText={ props.addText }
           error={ props.authentication.error }
         />
