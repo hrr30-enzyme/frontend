@@ -1,4 +1,15 @@
-import { WEB3_INITIALIZED, NO_METAMASK, ETH_VIEW, ETH_PAYABLE } from './types'
+import { 
+  WEB3_INITIALIZED, 
+  NO_METAMASK,  
+  GET_MIN_BOUNTY,
+  GET_DURATION,
+  GET_ANSWER_FEE,
+  GET_QUESTIONS_COUNT,
+  UP_VOTE,
+  PAYOUT_WINNER,
+  CREATE_ANSWER,
+  CREATE_QUESTION,
+} from './types'
 
 /*
  *  dispatch as soon as web3 is initializes
@@ -32,14 +43,14 @@ export const noMetaMask = (payload) => {
  * 
  */
 
-const call = (method) => () => (dispatch, getState) => {
+const call = (actionName) => (method) => () => (dispatch, getState) => {
   const contract = getState().contract;
   
   if (contract === null) {
     return dispatch({type: NO_METAMASK});
   }
   dispatch({
-    type: `${ETH_VIEW}_PENDING`,
+    type: `${actionName}_PENDING`,
     method
   });
 
@@ -47,14 +58,14 @@ const call = (method) => () => (dispatch, getState) => {
     .methods[method]
     .call()
     .then((response) => dispatch({
-      type: `${ETH_VIEW}_FULFILLED`,
+      type: `${actionName}_FULFILLED`,
       payload: {
         method,
         response
       }
     }))
     .catch((err) => dispatch({
-      type: `${ETH_VIEW}_REJECTED`,
+      type: `${actionName}_REJECTED`,
       payload: {
         method,
         err,
@@ -65,10 +76,10 @@ const call = (method) => () => (dispatch, getState) => {
 /*
  * These view functions all come from teh QuestionFactory contract.
  */
-export const getMinBounty = call('getMinBounty');
-export const getDuration = call('getDuration');
-export const getAnswerFee = call('getAnswerFee');
-export const getQuestionsCount = call('getQuestionsCount');
+export const getMinBounty = call(GET_MIN_BOUNTY)('getMinBounty');
+export const getDuration = call(GET_DURATION)('getDuration');
+export const getAnswerFee = call(GET_ANSWER_FEE)('getAnswerFee');
+export const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount');
 
 /*
  * a send function is one that requires gas to run because it changes the blockchain
@@ -91,7 +102,7 @@ export const getQuestionsCount = call('getQuestionsCount');
  * TODO handle for when the user does not pay the min balance before
  * sending to the blockchain.
  */
-const send = (method) => (value, ...args) => (dispatch, getState) => {
+const send = (actionName) => (method) => (value, ...args) => (dispatch, getState) => {
   const contract = getState().contract;
   
   if (contract === null) {
@@ -99,7 +110,7 @@ const send = (method) => (value, ...args) => (dispatch, getState) => {
   }
 
   dispatch({
-    action: `${ETH_PAYABLE}_DISPATCHED`,
+    action: `${actionName}_DISPATCHED`,
     payload: {
       method,
       valueSent: value,
@@ -111,7 +122,7 @@ const send = (method) => (value, ...args) => (dispatch, getState) => {
     .send({value})
     .on('transactionHash', (hash) => {
       dispatch({
-        action: `${ETH_PAYABLE}_HASHED`,
+        action: `${actionName}_HASHED`,
         payload: {
           method,
           hash,
@@ -122,7 +133,7 @@ const send = (method) => (value, ...args) => (dispatch, getState) => {
     })
     .on('confirmation', (confirmationNumber, reciept) => {
       dispatch({
-        action: `${ETH_PAYABLE}_CONFIRMED`,
+        action: `${actionName}_CONFIRMED`,
         payload: {
           method,
           confirmationNumber,
@@ -134,7 +145,7 @@ const send = (method) => (value, ...args) => (dispatch, getState) => {
     })
     .on('reciept', (receipt) => {
       dispatch({
-        action: `${ETH_PAYABLE}_RECIEPT`,
+        action: `${actionName}_RECIEPT`,
         payload: {
           method,
           receipt,
@@ -145,7 +156,7 @@ const send = (method) => (value, ...args) => (dispatch, getState) => {
     })
     .on('error', (err) => {
       dispatch({
-        action: `${ETH_PAYABLE}_REJECTED`,
+        action: `${actionName}_REJECTED`,
         payload: {
           method,
           valueSent: value,
@@ -162,10 +173,10 @@ const send = (method) => (value, ...args) => (dispatch, getState) => {
  * documentation for more.
  */
 
-export const upVote = send('upVote'); 
-export const payoutWinner = send('payoutWinner');
-export const createAnswer = send('createAnswer');
-export const createQuestion = send('createQuestion');
+export const upVote = send(UP_VOTE)('upVote'); 
+export const payoutWinner = send(PAYOUT_WINNER)('payoutWinner');
+export const createAnswer = send(CREATE_ANSWER)('createAnswer');
+export const createQuestion = send(CREATE_QUESTION)('createQuestion');
 // possible TODO contract.methods.myMethod.estimateGas estimates the gas a execution will take.
 
 

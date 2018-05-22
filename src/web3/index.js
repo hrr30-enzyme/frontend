@@ -4,9 +4,9 @@ import { abi, address } from './contractAbi'
 
 import { web3Initialized, noMetaMask } from '../actions/blockchain'
 
-let getWeb3 = new Promise(function(resolve, reject) {
+let getWeb3 = new Promise((resolve, reject) => {
 
-  window.addEventListener('load', function(dispatch) {
+  window.addEventListener('load', (dispatch) => {
     var results
     var web3 = window.web3
 
