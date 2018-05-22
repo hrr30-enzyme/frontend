@@ -28,7 +28,7 @@ export const GET_POSTS_BY_QUESTION = 'GET_POSTS_BY_QUESTION'
 
 export const GET_POST_BY_QUERY = 'GET_POST_BY_QUERY'
 
-export const INPUT_CHANGE = 'ADD_TEXT'
+export const INPUT_CHANGE = 'INPUT_CHANGE'
 
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 
@@ -41,3 +41,10 @@ export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS'
 export const CHANGE_SORTED_BY = 'CHANGE_SORTED_BY'
 
 export const WEB3_INITIALIZED = 'WEB3_INITIALIZED' 
+
+export const NO_METAMASK = 'NO_METAMASK'
+
+export const ETH_VIEW = 'ETH_VIEW'
+
+export const ETH_PAYABLE = 'ETH_PAYABLE'
+export const SEARCH = 'SEARCH'
