@@ -40,4 +40,24 @@ export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS'
 
 export const CHANGE_SORTED_BY = 'CHANGE_SORTED_BY'
 
+export const WEB3_INITIALIZED = 'WEB3_INITIALIZED' 
+
+export const NO_METAMASK = 'NO_METAMASK'
+
+export const GET_MIN_BOUNTY = 'GET_MIN_BOUNTY'
+
+export const GET_DURATION = 'GET_DURATION'
+
+export const GET_ANSWER_FEE = 'GET_ANSWER_FEE'
+
+export const GET_QUESTIONS_COUNT = 'GET_QUESTIONS_COUNT'
+
+export const UP_VOTE = 'UP_VOTE'
+
+export const PAYOUT_WINNER = 'PAYOUT_WINNER'
+
+export const CREATE_ANSWER = 'CREATE_ANSWER'
+
+export const CREATE_QUESTION = 'CREATE_QUESTION'
+
 export const SEARCH = 'SEARCH'
