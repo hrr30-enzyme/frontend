@@ -6,6 +6,7 @@ import QuestionPage from "./QuestionPage";
 import QuestionsPage from "./QuestionsPage";
 import UserPage from "./UserPage";
 import PrivateRoute from "../components/PrivateRoute";
+import SearchResults from '../containers/SearchResults'
 
 export default class App extends Component {
   componentDidMount() {
@@ -39,6 +40,9 @@ export default class App extends Component {
           component={UserPage}
           {...this.props}
         />
+        <Route
+          path="/search"
+          render={props => <SearchResults {...this.props} {...props} />}/>
       </Switch>
     );
   }

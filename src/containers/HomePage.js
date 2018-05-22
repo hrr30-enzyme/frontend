@@ -25,6 +25,10 @@ const Layout = styled.div`
 `;
 
 class HomePage extends Component {
+  constructor (props){
+    super(props)
+    this.props.queryPosts({})
+  }
   componentDidMount() {
     this.props.queryPosts({});
     this.props.checkSignin(); ///delete me
@@ -36,9 +40,16 @@ class HomePage extends Component {
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-        <div className="question">
-          <QuestionPreview {...this.props} />
-        </div>
+        {this.props.post.questions.map(question => (
+          <div className="question">
+            <QuestionPreview
+              qid={question.id}
+              question={question}
+              style={{textDecoration: 'none'}}
+              {...this.props}
+            />
+          </div>
+        ))} />
       </Layout>
     );
   }

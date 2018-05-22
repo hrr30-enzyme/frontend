@@ -8,4 +8,4 @@ const SearchResult = () => {
   )
 }
 
-export default Search
+export default SearchResult

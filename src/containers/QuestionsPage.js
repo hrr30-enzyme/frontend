@@ -181,7 +181,7 @@ export default class QuestionsPage extends Component {
         {this.props.post.questions.map(question => (
           <div className="question">
             <QuestionPreview
-              qid={1}
+              qid={question.id}
               question={question}
               style={{textDecoration: 'none'}}
               {...this.props}
