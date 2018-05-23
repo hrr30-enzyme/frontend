@@ -9,7 +9,12 @@ import {
   GET_ANSWERS,
   GET_POSTS_BY_QUESTION,
   GET_POST_BY_QUERY,
-  GET_ALL_QUESTIONS
+  GET_ALL_QUESTIONS,
+  VOTE_QUESTION,
+  VOTE_QUESTION_DOWN,  
+  VOTE_ANSWER_DOWN,  
+  VOTE_ANSWER,
+  UPDATE_VIEWS
 } from "./types";
 
 import { ORIGIN } from "../constants";
@@ -47,6 +52,16 @@ export const getQuestion = id => ({
   type: GET_QUESTION,
   payload: axios.get(`${ORIGIN}/questions/${id}`)
 });
+
+export const updateQuestionVote = (post) => ({
+  type: VOTE_QUESTION,
+  payload: axios.patch(`${ORIGIN}/post/upvotes`, post)
+});
+
+export const downvoteQuestionVote = (post) => ({
+  type: VOTE_QUESTION_DOWN,
+  payload: axios.patch(`${ORIGIN}/post/downvotes`, post)
+});
   
 export const getPostByQuery = (query) => ({
   type: GET_POST_BY_QUERY,
@@ -76,11 +91,33 @@ export const getAnswer = id => ({
   payload: axios.get(`${ORIGIN}/answer/${id}`)
 });
 
-export const getAnswers = query => {
+export const updateAnswerVote = (post, id) => ({
+  type: VOTE_ANSWER,
+  payload: axios.patch(`${ORIGIN}/post/upvotes`, post),
+  meta: {
+    id: id
+  }
+});
+
+export const downvoteAnswerVote = (post, id) => ({
+  type: VOTE_ANSWER_DOWN,
+  payload: axios.patch(`${ORIGIN}/post/downvotes`, post),
+  meta: {
+    id: id
+  }
+});
+
+export const updateViews = (post) => ({
+  type: UPDATE_VIEWS,
+  payload: axios.patch(`${ORIGIN}/post/views`, post)
+})
+
+export const getAnswers = (query) => {
   const str = queryString(query);
+
   return {
     type: GET_ANSWERS,
-    payload: axios.get(`${ORIGIN}/answers/${str}`)
+    payload: axios.get(`${ORIGIN}/post${str}`)
   };
 };
 

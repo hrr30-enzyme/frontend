@@ -22,18 +22,6 @@ const Layout = styled.div`
   }
 `
 
-const Stats = styled.div`
-  grid-row: 2;
-  grid-column: 2;
-  display: grid;
-  grid-template-columns: 75px 75px;
-  grid-template-rows: auto;
-  justify-self: left;
-`
-const Stat = styled.p`
-  color: grey;
-  grid-column: 1;
-`
 const Value = styled.p`
   color: black;
   grid-column: 2;
@@ -49,18 +37,19 @@ const Button = styled.button`
   border: 2px solid oldlace;
   border-radius: 3px;
   justify-self: right;
-  align-self: center;
+  align-self: top;
   height: 60px;
   min-width: 145px;
 `
 const Sidebar = styled.div`
   display: grid;
   grid-column: 3;
-  grid-row: 3;
+  grid-row: 2;
   grid-template-rows: 10% auto;
   grid-template-columns: 1;  
   border: solid grey 2px;
   min-width: 250px;
+  margin-top: 100px;
 `
 const Hot = styled.h2`
   grid-row: 1;
@@ -68,6 +57,7 @@ const Hot = styled.h2`
   border-bottom: 1px solid black;
   align-self: center;
   justify-self: center;
+  margin-top: 2em;
 `
 const AnswerDiv = styled.div`
   grid-column: 1 / span 2;
@@ -89,23 +79,28 @@ const YourAnswerDiv = styled.div`
 class QuestionPage extends Component {
   componentDidMount() {
     this.props.getPostByQuery({
-      PostId: this.props.match.params.id,
+      id: this.props.match.params.id,
+      include: 'all'
     });
+    this.props.getAnswers({
+      PostId: this.props.match.params.id,
+      PostTypeId: 2,
+      sortBy: '-upvoteCount',
+      include: 'all'
+    })
+    this.props.updateViews({id: this.props.match.params.id, UserId: this.props.authentication.userInfo.id })
   }
 
   render() {
     console.log('Question page:', this.props)
+    const question = this.props.post.posts.filter(post => post.PostTypeId === 1)[0]
+    console.log(question);
     return (
       <Layout>
         <div className="nav">
           <Navbar { ...this.props }/>
         </div>        
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
-        <Stats>
-          <Stat>Asked</Stat><Value>Today</Value>
-          <Stat>Viewed</Stat><Value>16 times</Value>
-          <Stat>Active</Stat><Value>Today</Value>
-        </Stats>
         <Sidebar>
           <Hot>
             FOR YOU
@@ -125,11 +120,13 @@ class QuestionPage extends Component {
           postQuestion= { this.props.postQuestion }
         />
         <Question 
-          question={ this.props.post.posts.filter(post => post.PostTypeId === 1)[0] } 
+          question={ this.props.post.questions[0] }
+          {...this.props} 
         />
         <AnswerDiv>Answers</AnswerDiv>
         <Answers 
-          answers={ this.props.post.posts.filter(post => post.PostTypeId === 2) }
+          answers={ this.props.post.answers || [] }
+          {...this.props}
         />
         <YourAnswerDiv>Your Answer</YourAnswerDiv>
         <GiveAnswer {...this.props}/>

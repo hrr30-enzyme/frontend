@@ -7,13 +7,18 @@ import {
   postQuestion,
   getQuestion,
   getQuestions,
+  updateQuestionVote,
   getPostByQuery,
   postAnswer,
   getAnswer,
   getAnswers,
+  updateAnswerVote,
   getAllQuestions,
   queryPosts,
   changeSortedBy,
+  updateViews,
+  downvoteAnswerVote,
+  downvoteQuestionVote
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -26,10 +31,12 @@ const mapDispatchToProps = (dispatch) => (
     postQuestion,
     getQuestion,
     getQuestions,
+    updateQuestionVote,
     getPostByQuery,
     postAnswer,
     getAnswer,
     getAnswers,
+    updateAnswerVote,
     openModal,
     closeModal,
     getAllQuestions,
@@ -37,7 +44,10 @@ const mapDispatchToProps = (dispatch) => (
     changeSortedBy,
     clearText,
     clearAll,
-    search
+    search,
+    updateViews,
+    downvoteAnswerVote,
+    downvoteQuestionVote
   }, dispatch)
 ); 
 

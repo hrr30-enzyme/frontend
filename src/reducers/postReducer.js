@@ -10,6 +10,10 @@ import {
   GET_POST_BY_QUERY,
   GET_ALL_QUESTIONS,
   CHANGE_SORTED_BY,
+  VOTE_QUESTION,
+  VOTE_QUESTION_DOWN,
+  VOTE_ANSWER,
+  VOTE_ANSWER_DOWN
 } from "../actions/types";
 
 
@@ -81,7 +85,8 @@ const initialState = {
     username: 'not logged in!',
   },
   posts: [],
-  questions: []
+  questions: [],
+  answers: []
 };
 
 /*
@@ -124,11 +129,11 @@ const postReducer = (state = exampleState, action) => {
     case `${POST_ANSWER}_FULFILLED`:
       const newPost = action.payload.data.post;
       newPost.User = state.User;
+      newPost.upvoteCount = 0
       return {
         ...state,
         User: state.User,
-        posts: [...state.posts, newPost], //, newPost],
-        questions: [...state.questions, newPost] //, newPost]
+        answers: [...state.answers, newPost] //, newPost]
       };
 
     case `${POST_ANSWER}_REJECTED`:
@@ -136,9 +141,69 @@ const postReducer = (state = exampleState, action) => {
         ...state,
       };
 
+    case `${VOTE_QUESTION}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${VOTE_ANSWER}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${VOTE_QUESTION}_FULFILLED`:
+      let newQuestions = []
+      newQuestions.push(state.questions[0])
+      newQuestions[0].upvoteCount++
+      return {
+        ...state, 
+        questions: newQuestions //, newPost],              
+      };
+
+    case `${VOTE_QUESTION_DOWN}_FULFILLED`:
+      let newQuestionsDown = []
+      newQuestionsDown.push(state.questions[0])
+      newQuestionsDown[0].upvoteCount--
+      return {
+        ...state, 
+        questions: newQuestionsDown //, newPost],              
+      };
+
+
+    case `${VOTE_ANSWER}_FULFILLED`:
+      let answerCopy = []
+      for (let i = 0; i < state.answers.length; i++) {
+        if (state.answers[i].id === action.meta.id) {
+          answerCopy[i] = state.answers[i]
+          answerCopy[i].upvoteCount++
+        } else {
+          answerCopy[i] = state.answers[i]
+        }
+      }
+      return {
+        ...state,   
+        answers: answerCopy       
+      };
+
+    case `${VOTE_ANSWER_DOWN}_FULFILLED`:
+      let answerCopyDown = []
+      for (let i = 0; i < state.answers.length; i++) {
+        if (state.answers[i].id === action.meta.id) {
+          answerCopyDown[i] = state.answers[i]
+          answerCopyDown[i].upvoteCount--
+        } else {
+          answerCopyDown[i] = state.answers[i]
+        }
+      }
+      return {
+        ...state,   
+        answers: answerCopyDown       
+      };
+
     case `${GET_ANSWER}_FULFILLED`:
       return {
         ...state,
+        
       };
     
     case `${GET_ANSWER}_REJECTED`:
@@ -149,6 +214,7 @@ const postReducer = (state = exampleState, action) => {
     case `${GET_ANSWERS}_FULFILLED`:
       return {
         ...state,
+        answers: action.payload.data
       };
 
     case `${GET_ANSWERS}_REJECTED`:

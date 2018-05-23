@@ -21,5 +21,5 @@ export const signup = (credentials) => ({
 
 export const checkSignin = () => ({
   type: CHECK_SIGN_IN,
-  payload: axios.get(`${ORIGIN}/user`)
+  payload: axios.get(`${ORIGIN}/user`, {withCredentials: true})
 });
