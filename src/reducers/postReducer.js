@@ -10,6 +10,8 @@ import {
   GET_POST_BY_QUERY,
   GET_ALL_QUESTIONS,
   CHANGE_SORTED_BY,
+  VOTE_QUESTION,
+  VOTE_ANSWER
 } from "../actions/types";
 
 
@@ -81,7 +83,8 @@ const initialState = {
     username: 'not logged in!',
   },
   posts: [],
-  questions: []
+  questions: [],
+  answers: []
 };
 
 /*
@@ -124,11 +127,11 @@ const postReducer = (state = exampleState, action) => {
     case `${POST_ANSWER}_FULFILLED`:
       const newPost = action.payload.data.post;
       newPost.User = state.User;
+      newPost.upvoteCount = 0
       return {
         ...state,
         User: state.User,
-        posts: [...state.posts, newPost], //, newPost],
-        questions: [...state.questions, newPost] //, newPost]
+        answers: [...state.answers, newPost] //, newPost]
       };
 
     case `${POST_ANSWER}_REJECTED`:
@@ -136,9 +139,47 @@ const postReducer = (state = exampleState, action) => {
         ...state,
       };
 
+    case `${VOTE_QUESTION}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${VOTE_ANSWER}_REJECTED`:
+      return {
+        ...state,
+      };
+
+    case `${VOTE_QUESTION}_FULFILLED`:
+      const votedPost = action.payload.data[0]
+      let newQuestions = state.questions
+      newQuestions[0] = votedPost[0]
+      newQuestions[0][0].User = state.questions[0].User   
+      
+      return {
+        ...state, 
+        questions: newQuestions[0] //, newPost],              
+      };
+
+
+    case `${VOTE_ANSWER}_FULFILLED`:
+      const votedAnswer = action.payload.data[0][0][0]
+      let newAnswers = []
+      for (let i = 0; i < state.answers.length; i++) {
+        if (state.answers[i].id === votedAnswer.id) {
+          newAnswers[i] = votedAnswer
+        } else {
+          newAnswers[i] = state.answers[i]
+        }
+      }
+      return {
+        ...state, 
+        answers: newAnswers //, newPost],              
+      };
+
     case `${GET_ANSWER}_FULFILLED`:
       return {
         ...state,
+        
       };
     
     case `${GET_ANSWER}_REJECTED`:
@@ -149,6 +190,7 @@ const postReducer = (state = exampleState, action) => {
     case `${GET_ANSWERS}_FULFILLED`:
       return {
         ...state,
+        answers: action.payload.data
       };
 
     case `${GET_ANSWERS}_REJECTED`:

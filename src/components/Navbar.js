@@ -9,7 +9,8 @@ import Search from '../components/Search'
 
 const Nav = styled.nav`
   display: grid;
-  padding-left: .6em;
+  padding-left: 2em;
+  padding-bottom: 1em;
   grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
   height: 2.3em;
   align-items: center;
