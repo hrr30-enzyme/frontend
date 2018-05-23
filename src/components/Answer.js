@@ -61,11 +61,11 @@ const Answer = (props) => {
   console.log('Answer component: ', answer)
   return (
     <Layout>
-      <Username>{ answer === typeof Object && answer.User.username }</Username>
+      <Username>{ answer.User.username }</Username>
       <Actions>
-        <Upvote onClick={() => props.updateAnswerVote(id, {type: 'up'})}>▲</Upvote>
+        <Upvote onClick={() => props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▲</Upvote>
         <VoteCount>{answer && answer.upvoteCount}</VoteCount>
-        <Downvote onClick={() => props.updateAnswerVote(id, {type: 'down'})}>▼</Downvote>
+        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▼</Downvote>
         <Check>✓</Check>
       </Actions>
       <Body>{ answer && answer.body }</Body>

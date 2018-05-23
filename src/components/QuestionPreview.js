@@ -163,7 +163,7 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Answers>
               <Inner>
-                {question.answerCount}
+                {question.commentCount}
               </Inner>
               answers
             </Answers>

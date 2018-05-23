@@ -89,9 +89,9 @@ const  Question = (props) => {
       </Stats>
       <Username>{ question.User && question.User.username }</Username>
       <Actions>
-        <Upvote onClick={() => props.updateQuestionVote(props.match.params.id, {type: 'up'})}>▲</Upvote>
+        <Upvote onClick={() => props.updateQuestionVote({id: question.id, UserId: props.authentication.userInfo.id})}>▲</Upvote>
         <VoteCount>{question && question.upvoteCount}</VoteCount>
-        <Downvote onClick={() => {props.updateQuestionVote(props.match.params.id, {type: 'down'})}}>▼</Downvote>
+        <Downvote onClick={() => {props.downvoteQuestionVote({id: question.id, UserId: props.authentication.userInfo.id})}}>▼</Downvote>
         <Star>★</Star>
       </Actions>
       <Title>{ question && question.title }</Title>

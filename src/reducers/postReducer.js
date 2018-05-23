@@ -11,7 +11,9 @@ import {
   GET_ALL_QUESTIONS,
   CHANGE_SORTED_BY,
   VOTE_QUESTION,
-  VOTE_ANSWER
+  VOTE_QUESTION_DOWN,
+  VOTE_ANSWER,
+  VOTE_ANSWER_DOWN
 } from "../actions/types";
 
 
@@ -150,30 +152,52 @@ const postReducer = (state = exampleState, action) => {
       };
 
     case `${VOTE_QUESTION}_FULFILLED`:
-      const votedPost = action.payload.data[0]
-      let newQuestions = state.questions
-      newQuestions[0] = votedPost[0]
-      newQuestions[0][0].User = state.questions[0].User   
-      
+      let newQuestions = []
+      newQuestions.push(state.questions[0])
+      newQuestions[0].upvoteCount++
       return {
         ...state, 
-        questions: newQuestions[0] //, newPost],              
+        questions: newQuestions //, newPost],              
+      };
+
+    case `${VOTE_QUESTION_DOWN}_FULFILLED`:
+      let newQuestionsDown = []
+      newQuestionsDown.push(state.questions[0])
+      newQuestionsDown[0].upvoteCount--
+      return {
+        ...state, 
+        questions: newQuestionsDown //, newPost],              
       };
 
 
     case `${VOTE_ANSWER}_FULFILLED`:
-      const votedAnswer = action.payload.data[0][0][0]
-      let newAnswers = []
+      let answerCopy = []
       for (let i = 0; i < state.answers.length; i++) {
-        if (state.answers[i].id === votedAnswer.id) {
-          newAnswers[i] = votedAnswer
+        if (state.answers[i].id === action.meta.id) {
+          answerCopy[i] = state.answers[i]
+          answerCopy[i].upvoteCount++
         } else {
-          newAnswers[i] = state.answers[i]
+          answerCopy[i] = state.answers[i]
         }
       }
       return {
-        ...state, 
-        answers: newAnswers //, newPost],              
+        ...state,   
+        answers: answerCopy       
+      };
+
+    case `${VOTE_ANSWER_DOWN}_FULFILLED`:
+      let answerCopyDown = []
+      for (let i = 0; i < state.answers.length; i++) {
+        if (state.answers[i].id === action.meta.id) {
+          answerCopyDown[i] = state.answers[i]
+          answerCopyDown[i].upvoteCount--
+        } else {
+          answerCopyDown[i] = state.answers[i]
+        }
+      }
+      return {
+        ...state,   
+        answers: answerCopyDown       
       };
 
     case `${GET_ANSWER}_FULFILLED`:
