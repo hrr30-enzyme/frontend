@@ -110,7 +110,7 @@ const send = (actionName) => (method) => (value, ...args) => (dispatch, getState
   }
 
   dispatch({
-    action: `${actionName}_DISPATCHED`,
+    action: `${actionName}_PENDING`,
     payload: {
       method,
       valueSent: value,
