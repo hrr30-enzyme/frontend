@@ -60,9 +60,9 @@ const mapDispatchToProps = (dispatch) => (
     clearText,
     clearAll,
     search,
-<<<<<<< HEAD
     updateViews,
     downvoteAnswerVote,
+<<<<<<< HEAD
 <<<<<<< HEAD
     downvoteQuestionVote,
     noMetaMask,
@@ -82,6 +82,10 @@ const mapDispatchToProps = (dispatch) => (
     suggest
 >>>>>>> Add functionality for search suggestions
 >>>>>>> Add functionality for search suggestions
+=======
+    downvoteQuestionVote,
+    suggest
+>>>>>>> Fix merge conflicts
   }, dispatch)
 ); 
 
