@@ -160,18 +160,18 @@ const postReducer = (state = exampleState, action) => {
 
 
     case `${VOTE_ANSWER}_FULFILLED`:
-      const votedAnswer = action.payload.data[0][0][0]
-      let newAnswers = []
+      let answerCopy = []
       for (let i = 0; i < state.answers.length; i++) {
-        if (state.answers[i].id === votedAnswer.id) {
-          newAnswers[i] = votedAnswer
+        if (state.answers[i].id === action.meta.id) {
+          answerCopy[i] = state.answers[i]
+          answerCopy[i].upvoteCount++
         } else {
-          newAnswers[i] = state.answers[i]
+          answerCopy[i] = state.answers[i]
         }
       }
       return {
-        ...state, 
-        answers: newAnswers //, newPost],              
+        ...state,   
+        answers: answerCopy       
       };
 
     case `${GET_ANSWER}_FULFILLED`:

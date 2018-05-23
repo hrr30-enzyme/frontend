@@ -63,7 +63,7 @@ const Answer = (props) => {
     <Layout>
       <Username>{ answer === typeof Object && answer.User.username }</Username>
       <Actions>
-        <Upvote onClick={() => props.updateAnswerVote(id, {type: 'up'})}>▲</Upvote>
+        <Upvote onClick={() => props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▲</Upvote>
         <VoteCount>{answer && answer.upvoteCount}</VoteCount>
         <Downvote onClick={() => props.updateAnswerVote(id, {type: 'down'})}>▼</Downvote>
         <Check>✓</Check>

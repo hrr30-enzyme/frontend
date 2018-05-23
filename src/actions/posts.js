@@ -83,9 +83,12 @@ export const getAnswer = id => ({
   payload: axios.get(`${ORIGIN}/answer/${id}`)
 });
 
-export const updateAnswerVote = (id, type) => ({
+export const updateAnswerVote = (post, id) => ({
   type: VOTE_ANSWER,
-  payload: axios.patch(`${ORIGIN}/answers/${id}`, type)
+  payload: axios.patch(`${ORIGIN}/post/upvotes`, post),
+  meta: {
+    id: id
+  }
 });
 
 export const getAnswers = (query) => {
