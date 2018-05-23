@@ -150,14 +150,12 @@ const postReducer = (state = exampleState, action) => {
       };
 
     case `${VOTE_QUESTION}_FULFILLED`:
-      const votedPost = action.payload.data[0]
-      let newQuestions = state.questions
-      newQuestions[0] = votedPost[0]
-      newQuestions[0][0].User = state.questions[0].User   
-      
+      let newQuestions = []
+      newQuestions.push(state.questions[0])
+      newQuestions[0].upvoteCount++
       return {
         ...state, 
-        questions: newQuestions[0] //, newPost],              
+        questions: newQuestions //, newPost],              
       };
 
 

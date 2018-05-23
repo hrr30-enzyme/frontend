@@ -50,9 +50,9 @@ export const getQuestion = id => ({
   payload: axios.get(`${ORIGIN}/questions/${id}`)
 });
 
-export const updateQuestionVote = (id, vote) => ({
+export const updateQuestionVote = (post) => ({
   type: VOTE_QUESTION,
-  payload: axios.patch(`${ORIGIN}/questions/${id}`, vote)
+  payload: axios.patch(`${ORIGIN}/post/upvotes`, post)
 });
   
 export const getPostByQuery = (query) => ({
