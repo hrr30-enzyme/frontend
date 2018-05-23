@@ -16,7 +16,9 @@ import {
   getAllQuestions,
   queryPosts,
   changeSortedBy,
-  updateViews
+  updateViews,
+  downvoteAnswerVote,
+  downvoteQuestionVote
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -43,7 +45,9 @@ const mapDispatchToProps = (dispatch) => (
     clearText,
     clearAll,
     search,
-    updateViews
+    updateViews,
+    downvoteAnswerVote,
+    downvoteQuestionVote
   }, dispatch)
 ); 
 

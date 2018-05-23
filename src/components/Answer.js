@@ -65,7 +65,7 @@ const Answer = (props) => {
       <Actions>
         <Upvote onClick={() => props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▲</Upvote>
         <VoteCount>{answer && answer.upvoteCount}</VoteCount>
-        <Downvote onClick={() => props.updateAnswerVote(id, {type: 'down'})}>▼</Downvote>
+        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▼</Downvote>
         <Check>✓</Check>
       </Actions>
       <Body>{ answer && answer.body }</Body>

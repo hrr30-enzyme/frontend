@@ -11,6 +11,8 @@ import {
   GET_POST_BY_QUERY,
   GET_ALL_QUESTIONS,
   VOTE_QUESTION,
+  VOTE_QUESTION_DOWN,  
+  VOTE_ANSWER_DOWN,  
   VOTE_ANSWER,
   UPDATE_VIEWS
 } from "./types";
@@ -55,6 +57,11 @@ export const updateQuestionVote = (post) => ({
   type: VOTE_QUESTION,
   payload: axios.patch(`${ORIGIN}/post/upvotes`, post)
 });
+
+export const downvoteQuestionVote = (post) => ({
+  type: VOTE_QUESTION_DOWN,
+  payload: axios.patch(`${ORIGIN}/post/downvotes`, post)
+});
   
 export const getPostByQuery = (query) => ({
   type: GET_POST_BY_QUERY,
@@ -87,6 +94,14 @@ export const getAnswer = id => ({
 export const updateAnswerVote = (post, id) => ({
   type: VOTE_ANSWER,
   payload: axios.patch(`${ORIGIN}/post/upvotes`, post),
+  meta: {
+    id: id
+  }
+});
+
+export const downvoteAnswerVote = (post, id) => ({
+  type: VOTE_ANSWER_DOWN,
+  payload: axios.patch(`${ORIGIN}/post/downvotes`, post),
   meta: {
     id: id
   }

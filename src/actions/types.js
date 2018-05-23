@@ -68,3 +68,7 @@ export const SEARCH = 'SEARCH'
 
 export const UPDATE_VIEWS = 'UPDATE_VIEWS'
 
+export const VOTE_QUESTION_DOWN = 'VOTE_QUESTION_DOWN'
+
+export const VOTE_ANSWER_DOWN = 'VOTE_ANSWER_DOWN'
+
