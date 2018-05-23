@@ -12,28 +12,27 @@ npm install
 
 metamask for interacting with the blockchain with your own ethereum address on the client.
 Python for running web3
-AWS elastic search for getting real-time results in the search bar
+Postgresql database
 
-```
-Give examples
-```
+AWS elastic search for getting real-time results in the search bar
 
 ### Installing
 
 Clone this repo. Then run npm commands
 
-```
 git clone https://github.com/hrr30-enzyme/frontend
 npm install
-```
 
-## Running the tests
+until finished
 
-```
 npm test
-```
 
-## Deployment
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+React framework
+Redux state management 
 
 Heroku Pipelines
 
