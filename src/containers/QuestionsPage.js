@@ -99,7 +99,7 @@ const Hot = styled.h2`
 export default class QuestionsPage extends Component {
 
   componentDidMount() {
-    this.props.getPostByQuery({postTypeId: 1, sortBy: '-createdAt'})
+    this.props.getPostByQuery({postTypeId: 1, sortBy: '-createdAt'})  
   }
 
   render(props) {

@@ -9,7 +9,9 @@ import {
   GET_ANSWERS,
   GET_POSTS_BY_QUESTION,
   GET_POST_BY_QUERY,
-  GET_ALL_QUESTIONS
+  GET_ALL_QUESTIONS,
+  VOTE_QUESTION,
+  VOTE_ANSWER
 } from "./types";
 
 import { ORIGIN } from "../constants";
@@ -47,6 +49,11 @@ export const getQuestion = id => ({
   type: GET_QUESTION,
   payload: axios.get(`${ORIGIN}/questions/${id}`)
 });
+
+export const updateQuestionVote = (id, vote) => ({
+  type: VOTE_QUESTION,
+  payload: axios.patch(`${ORIGIN}/questions/${id}`, vote)
+});
   
 export const getPostByQuery = (query) => ({
   type: GET_POST_BY_QUERY,
@@ -76,11 +83,17 @@ export const getAnswer = id => ({
   payload: axios.get(`${ORIGIN}/answer/${id}`)
 });
 
-export const getAnswers = query => {
+export const updateAnswerVote = (id, type) => ({
+  type: VOTE_ANSWER,
+  payload: axios.patch(`${ORIGIN}/answers/${id}`, type)
+});
+
+export const getAnswers = (query) => {
   const str = queryString(query);
+
   return {
     type: GET_ANSWERS,
-    payload: axios.get(`${ORIGIN}/answers/${str}`)
+    payload: axios.get(`${ORIGIN}/post${str}`)
   };
 };
 
