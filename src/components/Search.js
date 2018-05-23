@@ -40,11 +40,7 @@ const Search = (props) => {
         placeholder="Search..."
         type="text"
         value={props.textInput.search}
-<<<<<<< HEAD
         onChange={e => handleChange(e, props.addText, props.suggest)}
-=======
-        onChange={e => handleChange(e, props.addText)}
->>>>>>> origin
         onKeyPress={e => handleEnter(e, props.search, props.clearText, props.history.push)}
       />
       <FaSearch onClick={e => handleClick(e, props.clearText)} />

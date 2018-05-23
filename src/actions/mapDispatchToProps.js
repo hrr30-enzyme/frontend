@@ -45,13 +45,10 @@ const mapDispatchToProps = (dispatch) => (
     clearText,
     clearAll,
     search,
-<<<<<<< HEAD
     updateViews,
     downvoteAnswerVote,
-    downvoteQuestionVote
-=======
+    downvoteQuestionVote,
     suggest
->>>>>>> Add functionality for search suggestions
   }, dispatch)
 ); 
 
