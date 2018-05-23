@@ -11,7 +11,8 @@ import {
   GET_POST_BY_QUERY,
   GET_ALL_QUESTIONS,
   VOTE_QUESTION,
-  VOTE_ANSWER
+  VOTE_ANSWER,
+  UPDATE_VIEWS
 } from "./types";
 
 import { ORIGIN } from "../constants";
@@ -90,6 +91,11 @@ export const updateAnswerVote = (post, id) => ({
     id: id
   }
 });
+
+export const updateViews = (post) => ({
+  type: UPDATE_VIEWS,
+  payload: axios.patch(`${ORIGIN}/post/views`, post)
+})
 
 export const getAnswers = (query) => {
   const str = queryString(query);

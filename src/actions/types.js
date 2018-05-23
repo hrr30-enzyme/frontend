@@ -65,3 +65,6 @@ export const CREATE_ANSWER = 'CREATE_ANSWER'
 export const CREATE_QUESTION = 'CREATE_QUESTION'
 
 export const SEARCH = 'SEARCH'
+
+export const UPDATE_VIEWS = 'UPDATE_VIEWS'
+
