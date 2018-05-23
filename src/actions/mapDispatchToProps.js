@@ -3,6 +3,7 @@ import { signin, signout, signup, checkSignin } from './authentication'
 import { addText, clearAll, clearText } from './inputText'
 import { openModal, closeModal } from './modal'
 import { search, suggest } from './search'
+<<<<<<< HEAD
 import {
   noMetaMask,
   getMinBounty,
@@ -14,6 +15,8 @@ import {
   createAnswer,
   createQuestion,
 } from './web3'
+=======
+>>>>>>> Add functionality for search suggestions
 import {
   postQuestion,
   getQuestion,
@@ -57,8 +60,10 @@ const mapDispatchToProps = (dispatch) => (
     clearText,
     clearAll,
     search,
+<<<<<<< HEAD
     updateViews,
     downvoteAnswerVote,
+<<<<<<< HEAD
     downvoteQuestionVote,
     noMetaMask,
     getMinBounty,
@@ -71,6 +76,12 @@ const mapDispatchToProps = (dispatch) => (
     createQuestion,
     suggest,
     getRecomendations,
+=======
+    downvoteQuestionVote
+=======
+    suggest
+>>>>>>> Add functionality for search suggestions
+>>>>>>> Add functionality for search suggestions
   }, dispatch)
 ); 
 

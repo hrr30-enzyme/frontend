@@ -66,12 +66,19 @@ export const CREATE_QUESTION = 'CREATE_QUESTION'
 
 export const SEARCH = 'SEARCH'
 
+<<<<<<< HEAD
 export const UPDATE_VIEWS = 'UPDATE_VIEWS'
 
 export const VOTE_QUESTION_DOWN = 'VOTE_QUESTION_DOWN'
 
 export const VOTE_ANSWER_DOWN = 'VOTE_ANSWER_DOWN'
 
+<<<<<<< HEAD
 export const SUGGEST = 'SUGGEST'
 
 export const RECOMENDATIONS = 'RECOMENDATIONS'
+=======
+=======
+export const SUGGEST = 'SUGGEST'
+>>>>>>> Add functionality for search suggestions
+>>>>>>> Add functionality for search suggestions

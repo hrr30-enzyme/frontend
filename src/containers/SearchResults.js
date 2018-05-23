@@ -31,10 +31,14 @@ export default class SearchResultsPage extends Component {
 
   render() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (!this.props.searchBar.results) {
 =======
     if (JSON.stringify(this.props.searchBar) === JSON.stringify({})) {
 >>>>>>> Add search results page
+=======
+    if (!this.props.searchBar.results) {
+>>>>>>> Add functionality for search suggestions
       return <div>Loading...</div>;
     } else {
       return (
