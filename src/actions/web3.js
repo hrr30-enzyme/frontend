@@ -44,7 +44,7 @@ export const noMetaMask = (payload) => {
  */
 
 const call = (actionName) => (method) => () => (dispatch, getState) => {
-  const contract = getState().contract;
+  const contract = getState().web3.contract;
   
   if (contract === null) {
     return dispatch({type: NO_METAMASK});
@@ -76,11 +76,16 @@ const call = (actionName) => (method) => () => (dispatch, getState) => {
 /*
  * These view functions all come from teh QuestionFactory contract.
  */
-export const getMinBounty = call(GET_MIN_BOUNTY)('getMinBounty');
-export const getDuration = call(GET_DURATION)('getDuration');
-export const getAnswerFee = call(GET_ANSWER_FEE)('getAnswerFee');
-export const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount');
+const getMinBounty = call(GET_MIN_BOUNTY)('getMinBounty');
+const getDuration = call(GET_DURATION)('getDuration');
+const getAnswerFee = call(GET_ANSWER_FEE)('getAnswerFee');
+const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount');
 
+window.getMinBounty = getMinBounty;
+window.getDuration = getDuration;
+window.getAnswerFee = getAnswerFee;
+window.getQuestionsCount = getQuestionsCount;
+export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
 /*
  * a send function is one that requires gas to run because it changes the blockchain
  * 
@@ -103,7 +108,7 @@ export const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount');
  * sending to the blockchain.
  */
 const send = (actionName) => (method) => (value, ...args) => (dispatch, getState) => {
-  const contract = getState().contract;
+  const contract = getState().web3.contract;
   
   if (contract === null) {
     return dispatch(NO_METAMASK);

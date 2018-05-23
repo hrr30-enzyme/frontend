@@ -27,6 +27,8 @@ const Actions = styled.div`
 const Upvote = styled.div`
   grid-row: 1;
   justify-self: center;
+  cursor: pointer;  
+  
 `
 const VoteCount = styled.div`
   grid-row: 2;
@@ -35,6 +37,8 @@ const VoteCount = styled.div`
 const Downvote = styled.div`
   grid-row: 3;
   justify-self: center;
+  cursor: pointer;  
+  
 `
 const Check = styled.div`
   grid-row: 4;
@@ -50,16 +54,18 @@ const Body = styled.p`
   font-size: 20px;
 `
 
-const Answer = ({ answer }) => {
+const Answer = (props) => {
+  const answer = props.answer
+  const id = answer && answer.id
   
   console.log('Answer component: ', answer)
   return (
     <Layout>
-      <Username>{ answer && answer.User.username }</Username>
+      <Username>{ answer.User.username }</Username>
       <Actions>
-        <Upvote>▲</Upvote>
-        <VoteCount>0</VoteCount>
-        <Downvote>▼</Downvote>
+        <Upvote onClick={() => props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▲</Upvote>
+        <VoteCount>{answer && answer.upvoteCount}</VoteCount>
+        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▼</Downvote>
         <Check>✓</Check>
       </Actions>
       <Body>{ answer && answer.body }</Body>
