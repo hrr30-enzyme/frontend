@@ -84,7 +84,8 @@ class QuestionPage extends Component {
     this.props.getAnswers({
       PostId: this.props.match.params.id,
       PostTypeId: 2,
-      sortBy: '-upvoteCount'
+      sortBy: '-upvoteCount',
+      include: 'all'
     })
   }
 
