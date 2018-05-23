@@ -20,8 +20,8 @@ const Search = (props) => {
     cb();
   };
 
-  const handleChange = (e, cb) => {
-    
+  const handleChange = (e, cb, func) => {
+    func(e.target.value)
     cb('search', e.target.value);
   };
 
@@ -40,7 +40,7 @@ const Search = (props) => {
         placeholder="Search..."
         type="text"
         value={props.textInput.search}
-        onChange={e => handleChange(e, props.addText)}
+        onChange={e => handleChange(e, props.addText, props.suggest)}
         onKeyPress={e => handleEnter(e, props.search, props.clearText, props.history.push)}
       />
       <FaSearch onClick={e => handleClick(e, props.clearText)} />

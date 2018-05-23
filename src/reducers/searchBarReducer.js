@@ -1,4 +1,4 @@
-import { SEARCH } from '../actions/types'
+import { SEARCH, SUGGEST } from '../actions/types'
 
 const initialState = {}
 
@@ -11,6 +11,18 @@ const searchBar = (state = initialState, action) => {
     };
 
     case `${SEARCH}_REJECTED`:
+    return {
+      ...state,
+      error: action.payload.error
+    };
+
+    case `${SUGGEST}_FULFILLED`:
+    return {
+      ...state,
+      suggestions: action.payload.data
+    };
+
+    case `${SUGGEST}_REJECTED`:
     return {
       ...state,
       error: action.payload.error

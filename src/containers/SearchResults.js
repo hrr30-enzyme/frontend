@@ -30,7 +30,7 @@ export default class SearchResultsPage extends Component {
   }
 
   render() {
-    if (JSON.stringify(this.props.searchBar) === JSON.stringify({})) {
+    if (!this.props.searchBar.results) {
       return <div>Loading...</div>;
     } else {
       return (

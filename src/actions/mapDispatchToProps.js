@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux'
 import { signin, signout, signup, checkSignin } from './authentication'
 import { addText, clearAll, clearText } from './inputText'
 import { openModal, closeModal } from './modal'
-import { search } from './search'
+import { search, suggest } from './search'
 import {
   postQuestion,
   getQuestion,
@@ -45,9 +45,13 @@ const mapDispatchToProps = (dispatch) => (
     clearText,
     clearAll,
     search,
+<<<<<<< HEAD
     updateViews,
     downvoteAnswerVote,
     downvoteQuestionVote
+=======
+    suggest
+>>>>>>> Add functionality for search suggestions
   }, dispatch)
 ); 
 

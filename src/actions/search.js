@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { SEARCH } from './types'
+import { SEARCH, SUGGEST } from './types'
 
 import { ORIGIN } from '../constants'
 
@@ -10,6 +10,14 @@ export const search = params => {
   const str = queryString({search: params});
   return {
     type: SEARCH,
-    payload: axios.get(`${ORIGIN}/search${str}`)
+    payload: axios.get(`${ORIGIN}/search/docs${str}`)
   };
-};
+}
+
+export const suggest = params => {
+  const str = queryString({search: params})
+  return {
+    type: SUGGEST,
+    payload: axios.get(`${ORIGIN}/search/suggest${str}`)
+  };
+}
