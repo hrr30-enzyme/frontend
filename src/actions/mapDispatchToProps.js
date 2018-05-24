@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux'
 import { signin, signout, signup, checkSignin } from './authentication'
 import { addText, clearAll, clearText } from './inputText'
 import { openModal, closeModal } from './modal'
+<<<<<<< HEAD
 import { search, suggest } from './search'
 <<<<<<< HEAD
 import {
@@ -17,6 +18,9 @@ import {
 } from './web3'
 =======
 >>>>>>> Add functionality for search suggestions
+=======
+import { search, suggest, clearSuggest } from './search'
+>>>>>>> Add searchbar autocomplete functionality
 import {
   postQuestion,
   getQuestion,
@@ -33,7 +37,10 @@ import {
   updateViews,
   downvoteAnswerVote,
   downvoteQuestionVote,
+<<<<<<< HEAD
   getRecomendations,
+=======
+>>>>>>> Add searchbar autocomplete functionality
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -84,8 +91,13 @@ const mapDispatchToProps = (dispatch) => (
 >>>>>>> Add functionality for search suggestions
 =======
     downvoteQuestionVote,
+<<<<<<< HEAD
     suggest
 >>>>>>> Fix merge conflicts
+=======
+    suggest,
+    clearSuggest
+>>>>>>> Add searchbar autocomplete functionality
   }, dispatch)
 ); 
 

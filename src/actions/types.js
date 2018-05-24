@@ -76,6 +76,7 @@ export const VOTE_ANSWER_DOWN = 'VOTE_ANSWER_DOWN'
 <<<<<<< HEAD
 export const SUGGEST = 'SUGGEST'
 
+<<<<<<< HEAD
 export const RECOMENDATIONS = 'RECOMENDATIONS'
 =======
 =======
@@ -85,3 +86,6 @@ export const SUGGEST = 'SUGGEST'
 =======
 export const SUGGEST = 'SUGGEST'
 >>>>>>> Fix merge conflicts
+=======
+export const SUGGEST_CLEARED = 'SUGGEST_CLEARED'
+>>>>>>> Add searchbar autocomplete functionality
