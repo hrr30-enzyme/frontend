@@ -102,7 +102,7 @@ export default class QuestionsPage extends Component {
     this.props.getPostByQuery({postTypeId: 1, sortBy: '-createdAt'})  
   }
 
-  render(props) {
+  render() {
     console.log("questionsPage", this.props);
     console.log(this.props.post.questions);
     return (
@@ -166,6 +166,7 @@ export default class QuestionsPage extends Component {
           </Hot>
         </Sidebar>
         <AskQuestion
+          { ...this.props }
           title={this.props.textInput.title}
           body={this.props.textInput.body}
           showModal={(() => {

@@ -4,6 +4,17 @@ import { addText, clearAll, clearText } from './inputText'
 import { openModal, closeModal } from './modal'
 import { search } from './search'
 import {
+  noMetaMask,
+  getMinBounty,
+  getDuration,
+  getAnswerFee,
+  getQuestionsCount,
+  upVote,
+  payoutWinner,
+  createAnswer,
+  createQuestion,
+} from './web3'
+import {
   postQuestion,
   getQuestion,
   getQuestions,
@@ -47,7 +58,16 @@ const mapDispatchToProps = (dispatch) => (
     search,
     updateViews,
     downvoteAnswerVote,
-    downvoteQuestionVote
+    downvoteQuestionVote,
+    noMetaMask,
+    getMinBounty,
+    getDuration,
+    getAnswerFee,
+    getQuestionsCount,
+    upVote,
+    payoutWinner,
+    createAnswer,
+    createQuestion,
   }, dispatch)
 ); 
 
