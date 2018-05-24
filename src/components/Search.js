@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import FaSearch from "react-icons/lib/fa/search";
+import * as styles from './StyledComponents'
 
 const SearchBar = styled.input`
-  padding: 0.5em;
-  margin: 0.5em;
+  padding: 1em;
+  margin: 1em;
   background: white;
   border: 2px solid lightgray;
   border-radius: 9px;
   width: 65%;
+  text-align: center;
 `;
 
 const Results = styled.div`

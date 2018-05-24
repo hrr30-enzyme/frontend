@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
+import * as styles from './StyledComponents'
 import Signin from './Signin'
 import Signup from './Signup'
 
@@ -14,7 +14,7 @@ const Nav = styled.nav`
   grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
   height: 2.3em;
   align-items: center;
-  background-color: #ffffff;
+  background-color: lightblue;
   border-bottom: solid #888;
   border-width: 1px;
   font-weight: bold;
@@ -31,24 +31,24 @@ const Nav = styled.nav`
     grid-column: 2 / 3;
   }
   > .nav-searchbar {
-    grid-column: 4 / 5
-    width: 65%
+    grid-column: 4 / 6;
+    justify-self: center;
   }
   > .nav-auth {
     cursor: pointer;
-    color: gray;
+    color: ${styles.LINK_COLOR};
   }
   > .nav-auth:hover {
-    color: #666666;
+    color: ${styles.PURPLE};
   }
 `;
 
 
 const StyledNavLink = styled(Link)`
   text-decoration: none;
-  color: ${(props) => props.linkColor || 'gray'}
+  color: ${(props) => props.linkColor || styles.LINK_COLOR}
   &:hover {
-    color: ${(props) => props.linkColorHover || '#666666'};
+    color: ${(props) => props.linkColorHover || styles.GREEN_HOVER};
   }
 `
 
@@ -71,8 +71,8 @@ const Navbar = (props) => {
   const signedIn = props.authentication.signedIn;
 
   let NavStyle = props.NavStyle || Nav;
-  let linkColor = 'gray';
-  let linkColorHover = '#666666';
+  let linkColor = styles.LINK_COLOR;
+  let linkColorHover = styles.PURPLE;
   if (props.NavStyle) {
     NavStyle = props.NavStyle;
     linkColor = NavStyle.linkColor;
