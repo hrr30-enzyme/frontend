@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { SEARCH, SUGGEST } from './types'
+import { SEARCH, SUGGEST, SUGGEST_CLEARED } from './types'
 
 import { ORIGIN } from '../constants'
 
@@ -20,4 +20,10 @@ export const suggest = params => {
     type: SUGGEST,
     payload: axios.get(`${ORIGIN}/search/suggest${str}`)
   };
+}
+
+export const clearSuggest = () => {
+  return {
+    type: SUGGEST_CLEARED
+  }
 }

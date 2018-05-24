@@ -1,4 +1,4 @@
-import { SEARCH, SUGGEST } from '../actions/types'
+import { SEARCH, SUGGEST, SUGGEST_CLEARED } from '../actions/types'
 
 const initialState = {}
 
@@ -27,6 +27,9 @@ const searchBar = (state = initialState, action) => {
       ...state,
       error: action.payload.error
     };
+
+    case SUGGEST_CLEARED:
+    return initialState;
 
     default:
     return state;
