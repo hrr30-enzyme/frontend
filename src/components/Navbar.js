@@ -14,7 +14,7 @@ const Nav = styled.nav`
   grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
   height: 2.3em;
   align-items: center;
-  background-color: lightblue;
+  background-color: rgb(232, 246, 255);
   border-bottom: solid #888;
   border-width: 1px;
   font-weight: bold;
@@ -36,19 +36,19 @@ const Nav = styled.nav`
   }
   > .nav-auth {
     cursor: pointer;
-    color: ${styles.LINK_COLOR};
+    color: ${styles.SECONDARY_COLOR};
   }
   > .nav-auth:hover {
-    color: ${styles.PURPLE};
+    color: ${styles.MAIN_COLOR};
   }
 `;
 
 
 const StyledNavLink = styled(Link)`
   text-decoration: none;
-  color: ${(props) => props.linkColor || styles.LINK_COLOR}
+  color: ${(props) => props.linkColor || styles.SECONDARY_COLOR}
   &:hover {
-    color: ${(props) => props.linkColorHover || styles.GREEN_HOVER};
+    color: ${(props) => props.linkColorHover || styles.MAIN_COLOR};
   }
 `
 
@@ -71,8 +71,8 @@ const Navbar = (props) => {
   const signedIn = props.authentication.signedIn;
 
   let NavStyle = props.NavStyle || Nav;
-  let linkColor = styles.LINK_COLOR;
-  let linkColorHover = styles.PURPLE;
+  let linkColor = styles.SECONDARY_COLOR;
+  let linkColorHover = styles.MAIN_COLOR;
   if (props.NavStyle) {
     NavStyle = props.NavStyle;
     linkColor = NavStyle.linkColor;

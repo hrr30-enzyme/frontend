@@ -30,7 +30,8 @@ const Div = styled.div`
     justify-content: center;
     height: 100vh;
     min-height: 650px;
-    background-color: ${styles.MAIN_COLOR};
+    background: linear-gradient(to bottom, ${'white'}, ${styles.SKY_BLUE});
+    
     margin-bottom: 0;
   }
 `;
@@ -69,10 +70,10 @@ const transparentNav = styled.nav`
   }
   > .nav-auth {
     cursor: pointer;
-    color: ${styles.SKY_BLUE};
+    color: ${styles.SECONDARY_COLOR};
   }
   > .nav-auth:hover {
-    color: ${styles.PURPLE};
+    color: ${styles.MAIN_COLOR};
   }
 `;
 
@@ -116,7 +117,7 @@ const mainNav = styled.nav`
 `;
 
 const Logo = styled.h1`
-  color: ${styles.PURPLE};
+  color: ${styles.LINK_COLOR};
   font-size: 10em;
   > span {
     font-size: .84em;
@@ -126,26 +127,49 @@ const Logo = styled.h1`
 const Tagline = styled.p`
   text-align: center;
   display: block;
-  color: #a500ff;
+  color: ${styles.LINK_COLOR};
   font-size: 3em;
   font-weight: bold;
 `
 
 const AboutSection = styled.section`
-  background: linear-gradient(to bottom, ${styles.MAIN_COLOR}, ${styles.SKY_BLUE});
+  background-color: ${styles.GRAY_1};
   margin-top: 0;
   margin-bottom: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  padding: 0;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 3fr 1fr 3fr;
   height: 100%;
-  > h2 {
-    grid-column: 1 / 2;
-  }
+  white-space: pre-wrap;
+  
   > p {
     grid-column: 1 / 2;
+    color: white
   }
+  > .title {
+    grid-column: 1 / 2;
+    color: white
+  }
+
+  > img {
+    grid-column: 2 / 4;
+    grid-row: 1 / 5;
+    justify-self: center;
+    align-self: center;
+  }
+
   padding: 3em;
 `;
+
+const UsSection = styled.section`
+  background-color: ${styles.REDISH}
+`
+
+const PortfolioSection = styled.section``
+const TechStackSection = styled.section``
+const SignUpSection = styled.section``
+
 
 export default class LandingPage extends Component {
   constructor(props) {
@@ -155,8 +179,8 @@ export default class LandingPage extends Component {
       scrolled: false,
       scroll: 0,
     }
-    transparentNav.linkColor = styles.SKY_BLUE;
-    transparentNav.linkColorHover = styles.PURPLE;
+    transparentNav.linkColor = styles.SECONDARY_COLOR;
+    transparentNav.linkColorHover = styles.MAIN_COLOR;
   }
 
   navStyle() {
@@ -195,9 +219,9 @@ export default class LandingPage extends Component {
             <Tagline className="tag-line">Accelerated Discovery</Tagline>
           </div>
         </header>
-
+  
         <AboutSection id="about">
-          <h2>Get answers fast</h2>
+          <h2 className="title">Get answers fast</h2>
           <p>
             {`
               Catalyst is a decentralized question/answer forum to get your programming questions answered.   
@@ -207,7 +231,7 @@ export default class LandingPage extends Component {
               Users upvote posts and the best answer gets payed out in ethereum.
             `}
           </p>
-          <h2>Intelligent and secure platform</h2>
+          <h2 className="title">Intelligent and secure platform</h2>
           <p>
             {`
               Answers add to the bounty when contributing their answer.   This creates intelligent high quality answers as your answerers will be putting their money where there mouth is.
@@ -215,24 +239,29 @@ export default class LandingPage extends Component {
               The ethereum network provides a secure and decentralized platform for users.
             `}
           </p>
+          <img 
+            alt="ethereum logo"
+            src="./ethereum.png"
+            height="440"
+          />
         </AboutSection>
 
-        <section id="us">
+        <UsSection id="us">
           
           this section has information about us who built the app
-        </section>
+        </UsSection>
 
-        <section id="portfolio">
+        <PortfolioSection id="portfolio">
           More information about the app
-        </section>
+        </PortfolioSection>
 
-        <section id="signup-now">
+        <TechStackSection id="signup-now">
           sign up now button
-        </section>
+        </TechStackSection>
 
-        <section id="stack">
+        <SignUpSection id="stack">
           maybe some information about the tech stack
-        </section>
+        </SignUpSection>
       </Div>
     );
   }

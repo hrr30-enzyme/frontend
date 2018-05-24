@@ -13,7 +13,7 @@ const Question = styled.div`
   text-decoration: none;
   width: auto;
   height: auto;
-  margin: 2px 2px;
+  margin: 3px 3px;
 `;
 
 const Stats = styled.div`
@@ -105,7 +105,7 @@ const QuestionPreview = ({question}) => {
 
   const username = question.User ? question.User.username : 'fake';
   return (
-    <Link to={`/question/${question.id}`} style={{textDecoration: 'none'}}>
+    <Link to={`/question/${question.id}`} className='link'>
       <Question >
         <Stats>
           <MiniCount>
