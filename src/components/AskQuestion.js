@@ -56,6 +56,8 @@ const Ask = ({
   showModal, 
   closeModal,
   postQuestion,
+  createQuestion,
+  web3,
 }) => {
   console.log('askquestion component', addText);
   const UserId = authentication.userInfo.id
@@ -82,7 +84,13 @@ const Ask = ({
         required
     />,
     <Button
-      onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })}
+      onClick={e => {
+        handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })
+        console.log('\n\n\n', web3);
+        const from = web3.web3.eth.getAccounts();
+        console.log('from', from);
+        createQuestion(100000000000000)
+      }}
     >
       Submit
     </Button>,

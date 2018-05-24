@@ -146,7 +146,7 @@ const handleClick = (e, callback, cb, id) => {
 
 
 const QuestionPreview = ({question}) => {
-  console.log('QuestionPreview: ' + JSON.stringify(question));
+
   const username = question.User ? question.User.username : 'fake';
   return (
     <Link to={`/question/${question.id}`} style={{textDecoration: 'none'}}>
