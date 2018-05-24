@@ -1,6 +1,25 @@
-export const address = '0xdcd8f5c76b88ab0c91a533403e38062732e31e72'
+export const address = '0xe91343e9136d423b9376af81c4fb6c16b199c9ff'
 
 export const abi = [
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "catalystIdToQuestionId",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
   {
     "constant": true,
     "inputs": [
@@ -18,6 +37,39 @@ export const abi = [
       {
         "name": "upvotes",
         "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "catalystId",
+        "type": "uint256"
+      }
+    ],
+    "name": "createQuestion",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_questionId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getQuestionsForAnswer",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
       }
     ],
     "payable": false,
@@ -116,15 +168,6 @@ export const abi = [
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [],
-    "name": "createQuestion",
-    "outputs": [],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [
       {
@@ -153,6 +196,10 @@ export const abi = [
       {
         "name": "_questionId",
         "type": "uint256"
+      },
+      {
+        "name": "catalystId",
+        "type": "uint256"
       }
     ],
     "name": "createAnswer",
@@ -172,12 +219,50 @@ export const abi = [
   },
   {
     "constant": true,
+    "inputs": [
+      {
+        "name": "catalystId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getQuestionId",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
     "inputs": [],
     "name": "owner",
     "outputs": [
       {
         "name": "",
         "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "catalystIdToAnswerId",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -326,6 +411,28 @@ export const abi = [
       }
     ],
     "name": "NewVote",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "winner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "questionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "bounty",
+        "type": "uint256"
+      }
+    ],
+    "name": "WinnerPayed",
     "type": "event"
   },
   {
