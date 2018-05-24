@@ -72,20 +72,8 @@ export const VOTE_QUESTION_DOWN = 'VOTE_QUESTION_DOWN'
 
 export const VOTE_ANSWER_DOWN = 'VOTE_ANSWER_DOWN'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 export const SUGGEST = 'SUGGEST'
 
-<<<<<<< HEAD
 export const RECOMENDATIONS = 'RECOMENDATIONS'
-=======
-=======
-export const SUGGEST = 'SUGGEST'
->>>>>>> Add functionality for search suggestions
->>>>>>> Add functionality for search suggestions
-=======
-export const SUGGEST = 'SUGGEST'
->>>>>>> Fix merge conflicts
-=======
-export const SUGGEST_CLEARED = 'SUGGEST_CLEARED'
->>>>>>> Add searchbar autocomplete functionality
+
+export const SUGGEST_CLEARED = 'SUGGESTED_CLEARED'

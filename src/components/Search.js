@@ -50,28 +50,6 @@ const Search = props => {
     }
   };
 
-<<<<<<< HEAD
-  return (
-    <div>
-      <SearchBar
-        placeholder="Search..."
-        type="text"
-        value={props.textInput.search}
-<<<<<<< HEAD
-<<<<<<< HEAD
-        onChange={e => handleChange(e, props.addText, props.suggest)}
-=======
-        onChange={e => handleChange(e, props.addText)}
->>>>>>> Add search results page
-=======
-        onChange={e => handleChange(e, props.addText, props.suggest)}
->>>>>>> Add functionality for search suggestions
-        onKeyPress={e => handleEnter(e, props.search, props.clearText, props.history.push)}
-      />
-      <FaSearch onClick={e => handleClick(e, props.clearText)} />
-    </div>
-  );
-=======
   if (!props.searchBar.suggestions) {
     return (
       <div>
@@ -128,7 +106,6 @@ const Search = props => {
       </div>
     );
   }
->>>>>>> Add searchbar autocomplete functionality
 };
 
 export default Search;
