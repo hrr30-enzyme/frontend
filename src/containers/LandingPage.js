@@ -144,6 +144,7 @@ const AboutSection = styled.section`
   > p {
     grid-column: 1 / 2;
   }
+  padding: 3em;
 `;
 
 export default class LandingPage extends Component {

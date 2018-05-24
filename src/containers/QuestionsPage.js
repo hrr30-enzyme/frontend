@@ -32,7 +32,7 @@ const Button = styled.button`
   margin: 1em 1em 1em 1em;
   padding: 1em 1em;
   border: 2px solid ${styles.SECONDARY_COLOR};
-  border-radius: 3px;
+  border-radius: 5px;
   justify-self: right;
   align-self: center;
   height: 60px;
@@ -43,53 +43,29 @@ const Heading = styled.div`
   grid-template-columns: 20% 15% auto;
   grid-template-rows: auto 20%; 
   grid-row: 2; 
-  grid-column: 2;
+  grid-column: 2 / 3;
   font-size: 16px;
-  align-self: center;
-  border-bottom: 1px solid black;
 `
-const Tag1 = styled.h1`
+const Divider = styled.div`
+  grid-column: 2 / 4;
+  border-bottom: 4px solid black;
+`
+const Preview = styled.h1`
+  grid-row: 1;
   grid-column: 1;
   min-width: 200px;
   color: ${styles.MAIN_COLOR};
 `
-const Tag2 = styled.h4`
-  grid-column: 3;
+const Tag = styled.h4`
+  grid-row: 1;
   color: ${styles.MAIN_COLOR};
   &:hover {
     color: ${styles.TITLE_FONT};
   } 
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 5px;  
   padding: 1em;
-  cursor: pointer;
-`
-const Tag3 = styled.h4`
-  grid-column: 4;
-  color: ${styles.MAIN_COLOR};
-  &:hover {
-    color: ${styles.TITLE_FONT};
-  } 
-  padding: 1em;
-  border-left: 1px solid black;
-  cursor: pointer;
-`
-const Tag4 = styled.h4`
-  grid-column: 5;
-  color: ${styles.MAIN_COLOR};
-  &:hover {
-    color: ${styles.TITLE_FONT};
-  } 
-  padding: 1em;
-  border-left: 1px solid black;
-  cursor: pointer;
-`
-const Tag5 = styled.h4`
-  grid-column: 6;
-  color: ${styles.MAIN_COLOR};
-  &:hover {
-    color: ${styles.TITLE_FONT};
-  } 
-  padding: 1em;
-  border-left: 1px solid black;
   cursor: pointer;
 `
 
@@ -109,10 +85,10 @@ export default class QuestionsPage extends Component {
           <Navbar {...this.props} />
         </div>
         <Heading>
-          <Tag1>
+          <Preview>
             { this.props.post.sortedBy }
-          </Tag1>
-          <Tag2
+          </Preview>
+          <Tag
             onClick={ () => {
               this.props.changeSortedBy('Newest');
               this.props.getPostByQuery({
@@ -122,8 +98,8 @@ export default class QuestionsPage extends Component {
             }}
           >
             Newest
-          </Tag2>
-          <Tag3
+          </Tag>
+          <Tag
             onClick={ () => {
               this.props.changeSortedBy('Popular');
               this.props.getPostByQuery({
@@ -133,8 +109,8 @@ export default class QuestionsPage extends Component {
             } }
           >
             Popular
-          </Tag3>
-          <Tag4
+          </Tag>
+          <Tag
             onClick={ () => {
               this.props.changeSortedBy('Bounty');
               this.props.getPostByQuery({
@@ -144,15 +120,16 @@ export default class QuestionsPage extends Component {
             } }
           >
             Bounty
-          </Tag4>
-          <Tag5
+          </Tag>
+          <Tag
             onClick={ () => {
               this.props.getRecomendations();
             }}
           >
             Recomended
-          </Tag5>
+          </Tag>
         </Heading>
+        <Divider></Divider>
         <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
 
         <AskQuestion
