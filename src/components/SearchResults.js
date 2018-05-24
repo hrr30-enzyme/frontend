@@ -1,7 +1,8 @@
 import React from 'react'
 import SearchResult from './SearchResult'
 
-const SearchResult = () => {
+
+const SearchResults = () => {
   return (
     <div>
       <SearchResult />
