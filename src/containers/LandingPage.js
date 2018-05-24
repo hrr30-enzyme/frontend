@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group' 
+import * as styles from '../components/StyledComponents'
 
 import Navbar from '../components/Navbar'
 
@@ -28,7 +29,7 @@ const Div = styled.div`
     justify-content: center;
     height: 100vh;
     min-height: 650px;
-    background-color: #FFA500
+    background-color: ${styles.MAIN_COLOR}
   }
 `;
 
@@ -66,10 +67,10 @@ const transparentNav = styled.nav`
   }
   > .nav-auth {
     cursor: pointer;
-    color: #00b273;
+    color: ${styles.SKY_BLUE};
   }
   > .nav-auth:hover {
-    color: #00ffa5;
+    color: ${styles.PURPLE};
   }
 `;
 
@@ -113,7 +114,7 @@ const mainNav = styled.nav`
 `;
 
 const Logo = styled.h1`
-  color:#a500ff;
+  color: ${styles.PURPLE};
   font-size: 10em;
   > span {
     font-size: .84em;
@@ -136,8 +137,8 @@ export default class LandingPage extends Component {
       scrolled: false,
       scroll: 0,
     }
-    transparentNav.linkColor = '#00b273';
-    transparentNav.linkColorHover = '#00ffa5';
+    transparentNav.linkColor = styles.SKY_BLUE;
+    transparentNav.linkColorHover = styles.PURPLE;
   }
 
   navStyle() {
@@ -164,17 +165,10 @@ export default class LandingPage extends Component {
     return (
       <Div>
       {/* Trying to get this to fade in */}
-      <Transition 
-        timeout={100}
-        {...this.props}
-      >
-        {(state) => (
           <Navbar 
             {...this.props} 
             NavStyle={ this.navStyle() }
           />
-        )}
-      </Transition>
           <header className="top-pic">
           <div className="logo-container">
             <Logo className="main-logo">
