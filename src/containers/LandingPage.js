@@ -11,6 +11,7 @@ const Div = styled.div`
   padding-top: 0;
   padding-bottom: 0;
   background-size: cover;
+  grid-gap: 0px;
   background-position: center center;
   -webkit-transition: all 1s linear;
   -moz-transition: all 1s linear;
@@ -29,7 +30,8 @@ const Div = styled.div`
     justify-content: center;
     height: 100vh;
     min-height: 650px;
-    background-color: ${styles.MAIN_COLOR}
+    background-color: ${styles.MAIN_COLOR};
+    margin-bottom: 0;
   }
 `;
 
@@ -129,6 +131,21 @@ const Tagline = styled.p`
   font-weight: bold;
 `
 
+const AboutSection = styled.section`
+  background: linear-gradient(to bottom, ${styles.MAIN_COLOR}, ${styles.SKY_BLUE});
+  margin-top: 0;
+  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  > h2 {
+    grid-column: 1 / 2;
+  }
+  > p {
+    grid-column: 1 / 2;
+  }
+`;
+
 export default class LandingPage extends Component {
   constructor(props) {
     super(props)
@@ -178,9 +195,26 @@ export default class LandingPage extends Component {
           </div>
         </header>
 
-        <section id="about">
-          this section has a description of our app 
-        </section>
+        <AboutSection id="about">
+          <h2>Get answers fast</h2>
+          <p>
+            {`
+              Catalyst is a decentralized question/answer forum to get your programming questions answered.   
+              
+              Question bounties help your programming questions get answered fast.  
+              
+              Users upvote posts and the best answer gets payed out in ethereum.
+            `}
+          </p>
+          <h2>Intelligent and secure platform</h2>
+          <p>
+            {`
+              Answers add to the bounty when contributing their answer.   This creates intelligent high quality answers as your answerers will be putting their money where there mouth is.
+
+              The ethereum network provides a secure and decentralized platform for users.
+            `}
+          </p>
+        </AboutSection>
 
         <section id="us">
           
