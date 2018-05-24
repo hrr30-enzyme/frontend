@@ -110,9 +110,7 @@ export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
 const send = (actionName) => (method) => (value, ...args) => async (dispatch, getState) => {
   const contract = getState().web3.contract;
   console.log('\n\n\n\nactionname\n\n\n\n',actionName)
-  if (contract === null) {
-    return dispatch(NO_METAMASK);
-  }
+  
 
   const addresses = await getState().web3.web3.eth.getAccounts();
   dispatch({
@@ -124,6 +122,11 @@ const send = (actionName) => (method) => (value, ...args) => async (dispatch, ge
     }
   })
   console.log('contract', contract)
+
+  if (!addresses[0] || contract === null) {
+    return dispatch(NO_METAMASK);
+  }
+
   contract
     .methods[method](...args)
     .send({from: addresses[0], value})
