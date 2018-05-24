@@ -14,7 +14,8 @@ import {
   VOTE_QUESTION_DOWN,  
   VOTE_ANSWER_DOWN,  
   VOTE_ANSWER,
-  UPDATE_VIEWS
+  UPDATE_VIEWS,
+  RECOMENDATIONS,
 } from "./types";
 
 import { ORIGIN } from "../constants";
@@ -125,3 +126,11 @@ export const changeSortedBy = parameter => ({
   type: 'CHANGE_SORTED_BY',
   payload: parameter,
 });
+
+export const getRecomendations = () => (dispatch, getState) => {
+  const userid = getState().authentication.userInfo.id;
+  return {
+    type: RECOMENDATIONS,
+    payload: axios.get(`${ORIGIN}/users/recomendations/${userid}`)
+  }
+};
