@@ -150,10 +150,7 @@ export default class QuestionsPage extends Component {
           <Tag5
             onClick={ () => {
               this.props.changeSortedBy('Recomended');
-              this.props.getPostByQuery({
-                special: 'recomended',
-                PostTYpeId: 1,
-              })
+              this.props.getRecomendations();
             }}
           >
             Recomended

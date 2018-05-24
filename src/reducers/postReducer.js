@@ -275,7 +275,13 @@ const postReducer = (state = exampleState, action) => {
         ...state,
         User: action.payload.data
       };
-      
+
+    case 'RECOMENDATIONS_FULFILLED':
+      return {
+        ...state,
+        posts: action.payload.data,
+        questions: action.payload.data,
+      }      
     default:
       return state;
   }

@@ -29,7 +29,8 @@ import {
   changeSortedBy,
   updateViews,
   downvoteAnswerVote,
-  downvoteQuestionVote
+  downvoteQuestionVote,
+  getRecomendations,
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -68,7 +69,8 @@ const mapDispatchToProps = (dispatch) => (
     payoutWinner,
     createAnswer,
     createQuestion,
-    suggest
+    suggest,
+    getRecomendations,
   }, dispatch)
 ); 
 
