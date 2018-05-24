@@ -89,7 +89,7 @@ const Ask = ({
         console.log('\n\n\n', web3);
         const from = web3.web3.eth.getAccounts();
         console.log('from', from);
-        createQuestion(100000000000000)
+        createQuestion(200000000000000)
       }}
     >
       Submit
