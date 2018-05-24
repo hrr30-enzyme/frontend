@@ -66,10 +66,10 @@ const transparentNav = styled.nav`
   }
   > .nav-auth {
     cursor: pointer;
-    color: #00b273;
+    color: #C0E4F8;
   }
   > .nav-auth:hover {
-    color: #00ffa5;
+    color: #C1CBD9;
   }
 `;
 
