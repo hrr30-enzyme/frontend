@@ -4,6 +4,17 @@ import { addText, clearAll, clearText } from './inputText'
 import { openModal, closeModal } from './modal'
 import { search, suggest } from './search'
 import {
+  noMetaMask,
+  getMinBounty,
+  getDuration,
+  getAnswerFee,
+  getQuestionsCount,
+  upVote,
+  payoutWinner,
+  createAnswer,
+  createQuestion,
+} from './web3'
+import {
   postQuestion,
   getQuestion,
   getQuestions,
@@ -18,7 +29,8 @@ import {
   changeSortedBy,
   updateViews,
   downvoteAnswerVote,
-  downvoteQuestionVote
+  downvoteQuestionVote,
+  getRecomendations,
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
@@ -48,7 +60,17 @@ const mapDispatchToProps = (dispatch) => (
     updateViews,
     downvoteAnswerVote,
     downvoteQuestionVote,
-    suggest
+    noMetaMask,
+    getMinBounty,
+    getDuration,
+    getAnswerFee,
+    getQuestionsCount,
+    upVote,
+    payoutWinner,
+    createAnswer,
+    createQuestion,
+    suggest,
+    getRecomendations,
   }, dispatch)
 ); 
 

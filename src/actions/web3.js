@@ -53,9 +53,9 @@ const call = (actionName) => (method) => () => (dispatch, getState) => {
     type: `${actionName}_PENDING`,
     method
   });
-
+ 
   contract
-    .methods[method]
+    .methods[method]()
     .call()
     .then((response) => dispatch({
       type: `${actionName}_FULFILLED`,
@@ -107,27 +107,29 @@ export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
  * TODO handle for when the user does not pay the min balance before
  * sending to the blockchain.
  */
-const send = (actionName) => (method) => (value, ...args) => (dispatch, getState) => {
+const send = (actionName) => (method) => (value, ...args) => async (dispatch, getState) => {
   const contract = getState().web3.contract;
-  
+  console.log('\n\n\n\nactionname\n\n\n\n',actionName)
   if (contract === null) {
     return dispatch(NO_METAMASK);
   }
 
+  const addresses = await getState().web3.web3.eth.getAccounts();
   dispatch({
-    action: `${actionName}_PENDING`,
+    type: `${actionName}_PENDING`,
     payload: {
       method,
       valueSent: value,
       args,
     }
   })
+  console.log('contract', contract)
   contract
     .methods[method](...args)
-    .send({value})
+    .send({from: addresses[0], value})
     .on('transactionHash', (hash) => {
       dispatch({
-        action: `${actionName}_HASHED`,
+        type: `${actionName}_HASHED`,
         payload: {
           method,
           hash,
@@ -138,7 +140,7 @@ const send = (actionName) => (method) => (value, ...args) => (dispatch, getState
     })
     .on('confirmation', (confirmationNumber, reciept) => {
       dispatch({
-        action: `${actionName}_CONFIRMED`,
+        type: `${actionName}_CONFIRMED`,
         payload: {
           method,
           confirmationNumber,
@@ -150,7 +152,7 @@ const send = (actionName) => (method) => (value, ...args) => (dispatch, getState
     })
     .on('reciept', (receipt) => {
       dispatch({
-        action: `${actionName}_RECIEPT`,
+        type: `${actionName}_RECIEPT`,
         payload: {
           method,
           receipt,
@@ -161,7 +163,7 @@ const send = (actionName) => (method) => (value, ...args) => (dispatch, getState
     })
     .on('error', (err) => {
       dispatch({
-        action: `${actionName}_REJECTED`,
+        type: `${actionName}_REJECTED`,
         payload: {
           method,
           valueSent: value,
