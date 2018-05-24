@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
+import * as styles from './StyledComponents'
 import Signin from './Signin'
 import Signup from './Signup'
 
@@ -31,8 +31,8 @@ const Nav = styled.nav`
     grid-column: 2 / 3;
   }
   > .nav-searchbar {
-    grid-column: 4 / 5
-    width: 65%
+    grid-column: 4 / 6;
+    justify-self: center;
   }
   > .nav-auth {
     cursor: pointer;
@@ -46,9 +46,9 @@ const Nav = styled.nav`
 
 const StyledNavLink = styled(Link)`
   text-decoration: none;
-  color: ${(props) => props.linkColor || 'gray'}
+  color: ${(props) => props.linkColor || styles.LINK_COLOR}
   &:hover {
-    color: ${(props) => props.linkColorHover || '#666666'};
+    color: ${(props) => props.linkColorHover || styles.GREEN_HOVER};
   }
 `
 

@@ -86,10 +86,6 @@ const Ask = ({
     <Button
       onClick={e => {
         handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })
-        console.log('\n\n\n', web3);
-        const from = web3.web3.eth.getAccounts();
-        console.log('from', from);
-        createQuestion(200000000000000)
       }}
     >
       Submit
