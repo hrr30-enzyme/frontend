@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import React from "react";
-
+import * as styles from '../components/StyledComponents'
 import { MAIN_COLOR } from './StyledComponents'
 /*
  *
