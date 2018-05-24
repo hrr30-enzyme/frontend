@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Div = styled.div`
   grid-column: 2;
@@ -8,21 +8,24 @@ const Div = styled.div`
   grid-template-columns: 50em;
 `;
 
-const GiveAnswer = (props) => {
-
+const GiveAnswer = props => {
   return (
     <Div>
-      <textarea 
-        value={ props.textInput.answerBody }
-        onChange={ (e) => props.addText('answerBody', e.target.value, e) } 
+      <textarea
+        value={props.textInput.answerBody}
+        onChange={e => props.addText("answerBody", e.target.value, e)}
       />
       <button
-        onClick={ () => props.postAnswer({
-          UserId: props.authentication.userInfo.id,
-          body: props.textInput.answerBody,
-          PostTypeId: 2,
-          PostId: props.match.params.id,
-        })}
+        onClick={() =>
+          props.authentication.signedIn
+            ? props.postAnswer({
+                UserId: props.authentication.userInfo.id,
+                body: props.textInput.answerBody,
+                PostTypeId: 2,
+                PostId: props.match.params.id
+              })
+            : props.openModal('signin', "Please sign in before answering a question!")
+        }
       >
         Submit
       </button>
@@ -30,4 +33,4 @@ const GiveAnswer = (props) => {
   );
 };
 
-export default GiveAnswer
+export default GiveAnswer;

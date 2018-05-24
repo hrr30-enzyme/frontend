@@ -9,11 +9,12 @@ export const closeModal = (modal) => {
   }
 }
 
-export const openModal = (modal) => {
+export const openModal = (modal, message) => {
   return {
     type: OPEN_MODAL,
     payload: {
-      modal
+      modal,
+      message
     }
   }
 }
