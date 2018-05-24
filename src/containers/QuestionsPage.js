@@ -13,7 +13,6 @@ const Layout = styled.div`
   grid-row-gap: 15px;
 
   .question {
-    background-color: ${styles.SKY_BLUE};
     border: 2px solid ${styles.SECONDARY_COLOR};
     grid-column: 2 / 4;
     min-width: 650px;
@@ -49,10 +48,10 @@ const Heading = styled.div`
   align-self: center;
   border-bottom: 1px solid black;
 `
-const Tag1 = styled.h2`
+const Tag1 = styled.h1`
   grid-column: 1;
   min-width: 200px;
-  color: ${styles.TITLE_FONT};
+  color: ${styles.MAIN_COLOR};
 `
 const Tag2 = styled.h4`
   grid-column: 3;

@@ -14,7 +14,7 @@ const Nav = styled.nav`
   grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
   height: 2.3em;
   align-items: center;
-  background-color: #ffffff;
+  background-color: lightblue;
   border-bottom: solid #888;
   border-width: 1px;
   font-weight: bold;
@@ -36,10 +36,10 @@ const Nav = styled.nav`
   }
   > .nav-auth {
     cursor: pointer;
-    color: gray;
+    color: ${styles.LINK_COLOR};
   }
   > .nav-auth:hover {
-    color: #666666;
+    color: ${styles.PURPLE};
   }
 `;
 
@@ -71,8 +71,8 @@ const Navbar = (props) => {
   const signedIn = props.authentication.signedIn;
 
   let NavStyle = props.NavStyle || Nav;
-  let linkColor = 'gray';
-  let linkColorHover = '#666666';
+  let linkColor = styles.LINK_COLOR;
+  let linkColorHover = styles.PURPLE;
   if (props.NavStyle) {
     NavStyle = props.NavStyle;
     linkColor = NavStyle.linkColor;
