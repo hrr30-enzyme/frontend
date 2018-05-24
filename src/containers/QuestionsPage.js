@@ -149,7 +149,6 @@ export default class QuestionsPage extends Component {
           </Tag4>
           <Tag5
             onClick={ () => {
-              this.props.changeSortedBy('Recomended');
               this.props.getRecomendations();
             }}
           >

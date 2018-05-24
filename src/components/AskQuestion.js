@@ -89,7 +89,11 @@ const Ask = ({
         console.log('\n\n\n', web3);
         const from = web3.web3.eth.getAccounts();
         console.log('from', from);
+<<<<<<< HEAD
         createQuestion(150000000000000)
+=======
+        createQuestion(200000000000000)
+>>>>>>> 821e375b95adc5381239b44ec3a7cf1447f4b121
       }}
     >
       Submit
