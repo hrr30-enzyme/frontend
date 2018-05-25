@@ -85,6 +85,7 @@ window.getMinBounty = getMinBounty;
 window.getDuration = getDuration;
 window.getAnswerFee = getAnswerFee;
 window.getQuestionsCount = getQuestionsCount;
+window.getQuestionId
 export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
 /*
  * a send function is one that requires gas to run because it changes the blockchain

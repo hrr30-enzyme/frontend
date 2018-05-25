@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Answer from '../components/Answer'
 
 const Layout = styled.div`
-  grid-column: 2;
+  grid-column: 2 / 4;
 `
 
 const Answers = (props) => {
