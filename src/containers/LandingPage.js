@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group' 
 import * as styles from '../components/StyledComponents'
-
+import {Link} from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 const mstyles = {
@@ -92,6 +92,22 @@ const TransparentNav = styled.nav`
     color: ${styles.PURPLE};
   }
 `;
+
+const NavAuth = styled.div`
+  cursor: pointer;
+  color: ${styles.LINK_COLOR}
+  &:hover {
+    color: ${styles.SECONDARY_COLOR}
+  }
+`
+
+const StyledNavLink = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => styles.LINK_COLOR || styles.SECONDARY_COLOR};
+  &:hover {
+    color: ${(props) => styles.SECONDARY_COLOR};
+  }
+`
 
 const MainNav = styled.nav`
   display: grid;
@@ -225,19 +241,19 @@ const Eric = styled.div`
 `
 
 const PortfolioSection = styled.section`
-  height: 60vh;
+  height: 70vh;
   margin-top: 0px;
-  background-color: ${styles.GRAY_3};
+  background-color: ${styles.GRAY_1};
   display: grid;
-  padding: 50px;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  
+  justify-items: center;
   
   grid-column-gap: 15em;
 `
 
 const Card = styled.div`
+  cursor: pointer;
   display: grid;
   grid-template-rows: 5fr 1fr;
   > img {
@@ -245,8 +261,11 @@ const Card = styled.div`
   }
   > div {
     width: 300px;
-    background-color: white;
+    background-color: ${styles.GRAY_2};
     height: 100%;
+    color: ${styles.SKY_BLUE}
+    text-align: center;
+    font-size: 3em;
   }
 `
 
@@ -264,6 +283,10 @@ const SignUpSection = styled.section`
   background-color: ${styles.GRAY_4}
   height: 25vh;
   margin-top: 0px;
+  display: grid;
+  height: 40px
+  grid-template-columns: auto auto auto auto;
+  font-size: 2.1;
 `
 
 
@@ -318,7 +341,7 @@ export default class LandingPage extends Component {
         </header>
   
         <AboutSection id="about">
-          <h2 className="title-1">Get <strong>payed</strong> for expertise</h2>
+          <h2 className="title-1">Get <strong>paid</strong> for expertise</h2>
           <p>
             Users get payed 24/7 for top answers.  Win bounties for top answers and withdraw anytime.
           </p>
@@ -328,10 +351,6 @@ export default class LandingPage extends Component {
           <p>
             Top users vote based on their expertise.  The more expertise a user shows, the more voting power they recieve.
           </p>
-
-      
-      
-          
           <img 
             alt="ethereum logo"
             src="./ethereum.png"
@@ -363,15 +382,15 @@ export default class LandingPage extends Component {
         <PortfolioSection id="portfolio">
           <Card>
           <img alt="Kyle" src="./eric.jpg" />
-          <div className="Kyle"></div>
+          <div className="Kyle">Kyle</div>
           </Card>
           <Card>
           <img alt="Eric" src="./eric.jpg" />
-          <div className="Eric"></div>
+          <div className="Eric">Eric</div>
           </Card>
           <Card>
           <img alt="Will" src="./eric.jpg" />
-          <div className="will"></div>
+          <div className="will">Will</div>
           </Card>
         </PortfolioSection>
           
@@ -437,10 +456,53 @@ export default class LandingPage extends Component {
         </TechStackSection>
 
         <SignUpSection id="stack">
-          maybe some information about the tech stack
-        </SignUpSection>
-      </Div>
-    );
+            <StyledNavLink 
+              to="/"
+              linkColor={styles.SKY_BLUE}
+              linkColorHOver={styles.SECONDARY_COLOR}
+            >HOME</StyledNavLink>
+            <StyledNavLink
+              to="/questions"
+              linkColor={styles.SKY_BLUE}
+              linkColorHOver={styles.SECONDARY_COLOR}
+            >
+              QUESTIONS
+            </StyledNavLink>
+            {this.props.authentication.signedIn 
+          ? (
+            [
+              <div className="nav-item">
+                <StyledNavLink 
+                  to={ `/user/${this.props.authentication.userInfo.username}` }
+                  linkColor={ styles.SKY_BLUE }
+                  linkColorHOver={ styles.SECONDARY_COLOR }
+                >
+                  { this.props.authentication.userInfo.username }
+                </StyledNavLink>
+              </div>,
+              <NavAuth className="nav-item">
+                <div onClick={ this.props.signout }>logout</div>
+              </NavAuth>
+            ]
+          )
+          : [
+              <NavAuth
+                className="nav-auth-signin" 
+                onClick={ () => this.props.openModal("signin") }
+              >
+                Log In
+              </NavAuth>,
+              <NavAuth 
+                className="nav-auth-signup"
+                onClick={() => this.props.openModal("signup")}
+              >
+                Sign Up
+              </NavAuth>
+          ]
+        }
+       </SignUpSection> 
+     </Div>
+    )
   }
 }
 
