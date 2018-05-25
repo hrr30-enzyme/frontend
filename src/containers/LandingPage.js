@@ -379,7 +379,7 @@ export default class LandingPage extends Component {
 
         <PortfolioSection id="portfolio">
           <Card>
-          <img alt="Kyle" src="./eric.jpg" />
+          <img alt="Kyle" src="./kyle.png" />
           <div className="Kyle">Kyle</div>
           </Card>
           <Card>
@@ -387,7 +387,7 @@ export default class LandingPage extends Component {
           <div className="Eric">Eric</div>
           </Card>
           <Card>
-          <img alt="Will" src="./eric.jpg" />
+          <img alt="Will" src="./will.jpg" />
           <div className="will">Will</div>
           </Card>
         </PortfolioSection>
