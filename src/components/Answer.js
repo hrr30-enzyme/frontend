@@ -53,8 +53,13 @@ const Body = styled.p`
   background-color: ivory;
   border: 2px solid ${styles.MAIN_COLOR};
   font-size: 20px;
+<<<<<<< HEAD
   min-height: 200px;
   white-space: pre-wrap;
+=======
+  white-space: pre-wrap;
+  padding: 25px;
+>>>>>>> b1ccbd6851e3e58dca1b222cbe5ba256ab5495b3
 `
 
 const Answer = (props) => {

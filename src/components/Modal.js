@@ -33,7 +33,7 @@ const ModalContent = styled.div`
   padding: 1rem 1.5rem;
   width: 24rem;
   border-radius: 0.17rem;
-  border-top: .3rem solid ${MAIN_COLOR}
+  border-top: .3rem solid ${"#FFBE71"}
 `;
 
 const InnerDiv = styled.div`

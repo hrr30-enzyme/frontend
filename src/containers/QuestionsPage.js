@@ -4,6 +4,7 @@ import * as styles from "../components/StyledComponents";
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
 import AskQuestion from "../components/AskQuestion";
+import { Link } from "react-router-dom";
 
 const Layout = styled.div`
   display: grid;
@@ -36,7 +37,7 @@ const Div = styled.div`
 `
 
 const Sidebar = styled.div`
-  display: grid;
+  display: ${props => (props.show ? "grid" : "none")};
   justify-self: center;
   align-self: top;
   grid-column: 3;
@@ -210,7 +211,7 @@ const UserAnswers = styled.div`
       text-align: left;
       background: #92CDEC;
       &:hover {
-        background: #67B2DA;
+        background: #67b2da;
       }
 
       .user {
@@ -391,8 +392,10 @@ export default class QuestionsPage extends Component {
         <Button onClick={() => this.props.openModal("ask")}>
           Ask a Question
         </Button>
-        <Sidebar>
-          <UserTitle>{ this.props.authentication.userInfo.username }</UserTitle>
+        <Sidebar show={this.props.authentication.signedIn}>
+          <UserTitle>
+            {`Welcome back, ${this.props.authentication.userInfo.username}!`}
+          </UserTitle>
           <UserStats>
             <div className="title">Your Stats</div>
             <div className="answers">
@@ -410,13 +413,15 @@ export default class QuestionsPage extends Component {
             <div className="title">Latest questions</div>
             <div className="questions">
               <div className="item">
-                <div className="qtitle">
-                  Spring-boot actuator - trace to file
-                </div>
+                <Link to={`/question/18`} style={{ textDecoration: "none" }}>
+                  <div className="qtitle">
+                    {"Making object face another with rotation"}
+                  </div>
+                </Link>
                 <div className="qBody">
-                  In spring boot we have trace endpoint. Is it possible to
-                  redirect these entries into file ? I was trying to find this
-                  in internet, but no effects.
+                  {
+                    "  I'm trying to make my spotlight face its target when I translate it. I've tried glm::lookAt() with limited success. Lets say the light is at (0, 16, 0) and facing the origin. I've read that I need to translate the light to the origin, apply the rotation, then translate it back to its original position. How do I implement this? I have glm::lookAt(-lightPos, glm::vec3(0.f), upVector) but this gives me the light off to the side. This gives me the rotation matrix."
+                  }
                 </div>
               </div>
               <div className="item">
@@ -429,9 +434,11 @@ export default class QuestionsPage extends Component {
                 </div>
               </div>
               <div className="item">
-                <div className="qtitle">
-                  Which character encoding Python 3.x supports for file I/O?
-                </div>
+                <Link to={`/question/37`} style={{ textDecoration: "none" }}>
+                  <div className="qtitle">
+                    {"JavaScript opening local files not working"}
+                  </div>
+                </Link>
                 <div className="qBody">
                   I understand we can add code on iOS client side to detect whether the user has disabled 
                   push notification permission, my question it, is it possible to do it in only using APN? 
@@ -442,11 +449,12 @@ export default class QuestionsPage extends Component {
           <UserAnswers>
             <div className="title">Latest answers</div>
             <div className='answers'>
-            <div className="item">
-              <div className="user">User1234</div>
-              <div className="aBody">
-                You're changing the row and column with every single iteration of the for loop. 
-                You only want to change the row...
+              <div className="item">
+                <div className="user">User1234</div>
+                <div className="aBody">
+                  You're changing the row and column with every single iteration of the for loop. 
+                  You only want to change the row...
+                </div>
               </div>
             </div>
             <div className="item">
@@ -464,7 +472,6 @@ export default class QuestionsPage extends Component {
                 Linux. It was specifically designed for beginners, but it a full 
                 featured IDE for writing and debugging Lua code. 
               </div>
-            </div>
             </div>
           </UserAnswers>
         </Sidebar>
