@@ -6,6 +6,7 @@ const Div = styled.div`
   display: grid;
   grid-template-rows: 10em auto;
   grid-template-columns: auto;
+  margin-bottom: 5em;
 `;
 
 const GiveAnswer = props => {

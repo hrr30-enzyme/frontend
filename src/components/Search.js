@@ -42,7 +42,7 @@ const Div = styled.div`
 `
 
 const Results = styled.div`
-
+  
 `;
 
 const Search = props => {

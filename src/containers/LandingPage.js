@@ -38,15 +38,15 @@ const Div = styled.div`
   }
 `;
 
-const transparentNav = styled.nav`
+const TransparentNav = styled.nav`
   width: 100%;
   position: fixed;  
   display: grid;
-  padding-left: padding-left: 4em;
+  padding-left: 4em;
+  padding: right: 5%;
   grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
-  height: 3.3em;
+  height: 30px;
   align-items: center;
-  justify-items: center;
   border-bottom: solid transparent;
   top: 0;
   border-width: 1px;
@@ -60,8 +60,6 @@ const transparentNav = styled.nav`
   }
   > .nav-title {
     grid-column: 1 / 2;
-    margin-right: 1em;
-    font-size: 20px;
   }
   > .nav-home {
     grid-column: 2 / 3;
@@ -71,39 +69,41 @@ const transparentNav = styled.nav`
   }
   > .nav-searchbar {
     grid-column: 4 / 5
-    width: 65%
+    width: 60%;
+    display: grid;
+    justify-self: center;
+    grid-columns: 1fr;
   }
   > .nav-auth {
     cursor: pointer;
-    color: ${styles.SECONDARY_COLOR};
+    color: ${styles.SKY_BLUE};
   }
   > .nav-auth:hover {
-    color: ${styles.MAIN_COLOR};
+    cursor: pointer;
+    color: ${styles.PURPLE};
   }
 `;
 
-const mainNav = styled.nav`
-  padding-left: 5%;
-  padding-right: 5%;
+const MainNav = styled.nav`
   display: grid;
   position: fixed;
   width: 100%;
   margin-top: 0px;
-  grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
-  height: 2.3em;
+  padding-left: 4em;
+  grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
+  height: 30px;
   align-items: center;
   background-color: #ffffff;
   border-bottom: solid #888;
   border-width: 1px;
   font-weight: bold;
   top: 0;
+  padding-right: 5%;
   > .nav-item {
     display: inline
   }
   > .nav-title {
     grid-column: 1 / 2;
-    margin-right: 1em;
-    font-size: 20px
   }
   > .nav-home {
     grid-column: 2 / 3;
@@ -112,23 +112,18 @@ const mainNav = styled.nav`
     grid-column: 3 / 4;
   }
   > .nav-searchbar {
-    align-self: center;
     grid-column: 4 / 5
     width: 60%
+    justify-self: center;
     display: grid;
-    grid-columns: 1fr;
+    grid-columns: 1fr
   }
-  > .nav-auth-signin {
+  > .nav-auth {
     cursor: pointer;
-    color: ${styles.SECONDARY_COLOR};
-    grid-column: 5 / 6;
-  }
-  > .nav-auth-signup {
-    cursor: pointer;
-    color: ${styles.SECONDARY_COLOR};
-    grid-column: 6 / 7;
+    color: gray;
   }
   > .nav-auth:hover {
+    cursor: pointer;
     color: #00b273;
   }
 `;
@@ -229,12 +224,12 @@ export default class LandingPage extends Component {
       scrolled: false,
       scroll: 0,
     }
-    transparentNav.linkColor = styles.SECONDARY_COLOR;
-    transparentNav.linkColorHover = styles.MAIN_COLOR;
+    TransparentNav.linkColor = styles.SECONDARY_COLOR;
+    TransparentNav.linkColorHover = styles.MAIN_COLOR;
   }
 
   navStyle() {
-    return this.state.scrolled ? mainNav : transparentNav
+    return this.state.scrolled ? MainNav : TransparentNav
   }
 
   componentDidMount() {
@@ -259,7 +254,7 @@ export default class LandingPage extends Component {
       {/* Trying to get this to fade in */}
           <Navbar 
             {...this.props} 
-            NavStyle={ this.navStyle() }
+            navStyle="transparent"
           />
           <header className="top-pic">
           <div className="logo-container">

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import * as styles from "../components/StyledComponents";
-
+import store from '../store'
 
 
 const Layout = styled.div`
@@ -16,7 +16,6 @@ const Username = styled.h3`
   grid-row: 1;
   grid-column: 3;
   justify-self: right;
-  padding: 1em;
 `
 const Actions = styled.div`
   grid-row: 2;
@@ -62,7 +61,12 @@ const Answer = (props) => {
     <Layout>
       <Username>{ answer.User.username }</Username>
       <Actions>
-        <Upvote onClick={() => props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▲</Upvote>
+        <Upvote onClick={
+          () => {
+            props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)
+            store.dispatch({type: 'UPVOTE_WEB3', payload: answer.id})
+          }
+        }>▲</Upvote>
         <VoteCount>{answer && answer.upvoteCount}</VoteCount>
         <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▼</Downvote>
         <Check>✓</Check>

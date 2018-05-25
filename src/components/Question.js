@@ -9,7 +9,7 @@ const Layout = styled.div`
   min-width: 400px;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 10% 70% auto;
+  grid-template-columns: 10% 80% 10%;
 `
 const Stats = styled.div`
   grid-row: 1;

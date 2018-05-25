@@ -19,7 +19,8 @@ const Layout = styled.div`
     grid-column: 2;
     min-width: 650px;
     max-width: 1200px;
-    margin-right: 3em;
+    margin-right: 2em;
+    max-height: 82px;
   }
 
   .nav {
@@ -30,12 +31,14 @@ const Layout = styled.div`
 
 const Sidebar = styled.div`
   display: grid;
+  justify-self: center;
   grid-column: 3;
-  grid-row: 4 / span 6;
+  grid-row: 4 / 20;
   grid-template-rows: 10% auto auto auto auto;
   grid-template-columns: 1;
-  grid-row-gap: 30px;
+  grid-row-gap: 20px;
   min-width: 250px;
+  max-width: 250px;
   font-family: Arial, Helvetica, sans-serif;
 `;
 
@@ -44,12 +47,15 @@ const UserTitle = styled.h3`
   color: ${styles.LINK_COLOR};
   justify-self: center;
 `;
+
 const UserStats = styled.div`
   grid-row: 2;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: #FFEEC2;
+  background: #ffeec2;
   border-color: #f2f2f2;
   display: grid;
+  min-height: 145px;
+  max-width: 300px;
   grid-template-columns: auto auto auto;
   grid-template-rows: 70% 30%;
   color: ${styles.GRAY_2};
@@ -60,12 +66,11 @@ const UserStats = styled.div`
     border-bottom-style: inset;
     border-bottom-color: lightgray;
     border-bottom-width: 1px;
-    text-align: left;
+    text-align: center;
     background: white;
     display: flex;
     align-items: center;
     padding-left: 10px;
-
   }
 
   .answers {
@@ -78,8 +83,8 @@ const UserStats = styled.div`
     padding: 5px;
     align-self: stretch;
     &:hover {
-      background: #FFE398
-    };
+      background: #ffe398;
+    }
   }
 
   .questions {
@@ -91,8 +96,8 @@ const UserStats = styled.div`
     padding: 5px;
     text-align: center;
     &:hover {
-      background: #FFE398
-    };
+      background: #ffe398;
+    }
   }
 
   .comments {
@@ -104,15 +109,15 @@ const UserStats = styled.div`
     grid-template-rows: 70% 30%;
     padding: 5px;
     &:hover {
-      background: #FFE398
-    };
+      background: #ffe398;
+    }
   }
 
   .number {
     text-align: center;
     font-size: 150%;
     padding: 2px;
-    grid-row: 1
+    grid-row: 1;
     align-self: center;
   }
 `;
@@ -122,8 +127,9 @@ const UserQuestions = styled.div`
   background: #c6cbf9;
   border-color: #f2f2f2;
   display: grid;
+  max-width: 350px;
   grid-template-columns: auto auto auto;
-  grid-template-rows: 70% 30%;
+  grid-template-rows: auto 50px;
   color: ${styles.GRAY_2};
 
   .title {
@@ -141,17 +147,32 @@ const UserQuestions = styled.div`
 
   .questions {
     grid-row: 1;
-    grid column: 1/4;
-    justify-self: stretch;
+    gridcolumn: 1/4;
+    justifygn-self: stretch;
     display: grid;
     grid-template-rows: auto auto auto;
 
     .item {
       grid-row: span 1;
+      border-bottom: 1px solid darkgray;
+      text-align: left;
+      padding: 3px;
+      align-self: stretch;
+      justify-self: stretch;
+      &:hover {
+        background: #a4adf9;
+      }
 
       .qtitle {
         color: white;
-        text-shadow: 2px 2px lightgray;
+        padding: 5px;
+        text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+      }
+
+      .qBody {
+        padding: 5px;
+        max-width: 300px;
+      }
     }
   }
 `;
@@ -159,11 +180,12 @@ const UserQuestions = styled.div`
 const UserAnswers = styled.div`
   grid-row: 4;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: #ffeec2;
+  background: #92CDEC;
   border-color: #f2f2f2;
   display: grid;
+  max-width: 350px;
   grid-template-columns: auto auto auto;
-  grid-template-rows: 70% 30%;
+  grid-template-rows: auto 50px;
   color: ${styles.GRAY_2};
 
   .title {
@@ -178,26 +200,58 @@ const UserAnswers = styled.div`
     align-items: center;
     padding-left: 10px;
   }
+
+  .answers {
+    grid-row: 1;
+    gridcolumn: 1/4;
+    justifygn-self: stretch;
+    display: grid;
+    grid-template-rows: auto auto auto;
+
+    .item {
+      grid-row: span 1;
+      border-bottom: 1px solid darkgray;
+      text-align: left;
+      padding: 3px;
+      align-self: stretch;
+      justify-self: stretch;
+      &:hover {
+        background: #67B2DA;
+      }
+
+      .user {
+        color: white;
+        padding: 5px;
+        text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+      }
+
+      .aBody {
+        padding: 5px;
+        max-width: 300px;
+      }
+    }
+  }
 `;
 
 const Button = styled.button`
   grid-column: 3;
   grid-row: 2;
-  background: linear-gradient(to bottom, ${"white"}, rgb(194, 231, 255));
+  background: linear-gradient(to bottom, ${"white"}, lightsteelblue);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   &:hover {
     background: rgb(233, 243, 248);
     border: 2px solid ${styles.MAIN_COLOR};
   }
   font-size: 1em;
   font-weight: bold;
-  margin-right: 4em;
+  margin-right: 2em;
   padding: 1em 1em;
   border: 2px solid ${styles.SECONDARY_COLOR};
   border-radius: 3px;
   justify-self: right;
   align-self: center;
-  height: 65px;
-  min-width: 160px;
+  height: 80px;
+  min-width: 200px;
 `;
 const Heading = styled.div`
   display: grid;
@@ -220,7 +274,7 @@ const Preview = styled.h1`
   margin-top: 1em;
   font-size: 30px;
   min-width: 200px;
-  color: ${styles.LINK_COLOR};
+  color: midnightblue;
 `;
 const Tag2 = styled.h3`
   grid-column: 3;
@@ -342,7 +396,7 @@ export default class QuestionsPage extends Component {
           Ask a Question
         </Button>
         <Sidebar>
-          <UserTitle>BrandonCantHang123</UserTitle>
+          <UserTitle>{ this.props.authentication.userInfo.username }</UserTitle>
           <UserStats>
             <div className="title">Your Stats</div>
             <div className="answers">
@@ -357,17 +411,88 @@ export default class QuestionsPage extends Component {
             </div>
           </UserStats>
           <UserQuestions>
-            <div className="title">Questions</div>
+            <div className="title">Latest questions</div>
             <div className="questions">
               <div className="item">
-                <div className='qtitle'>Question 1</div>
+                <div className="qtitle">
+                  Spring-boot actuator - trace to file
+                </div>
+                <div className="qBody">
+                  In spring boot we have trace endpoint. Is it possible to
+                  redirect these entries into file ? I was trying to find this
+                  in internet, but no effects.
+                </div>
               </div>
-              <div className="item">Question 2</div>
-              <div className="item">Question 3</div>
+              <div className="item">
+                <div className="qtitle">
+                  Trying to insert data into SQL Server database using asp.net
+                  web application, getting an error
+                </div>
+                <div className="qBody">
+                  Try using CSS to limit the width or padding of the element.
+                  Eg. .tooltip: width: 100%; padding: 0px; This could limit the
+                  width of your tooltip element. You could also just use
+                  aelement. Which would also contain the element within its own
+                  bounds.
+                </div>
+              </div>
+              <div className="item">
+                <div className="qtitle">
+                  Which character encoding Python 3.x supports for file I/O?
+                </div>
+                <div className="qBody">
+                  apoorva@apoorva-latitude-e6410:~/Documents/project$ node
+                  package.json
+                  apoorva@apoorva-latitude-e6410:~/Documents/project$ npm
+                  install npm WARN package.json @ No description npm WARN
+                  package.json @ No repository field . npm WARN package.json @
+                  No README data npm ERR! Linux 4.4.0-51-generic npm ERR! argv
+                  "/usr/local/bin/node" "/usr/local/bin/npm" "install" npm ERR!
+                  node v0.12.2 npm ERR! npm v2.7.4 npm ERR! version not found:
+                  mongodb@3.2.11 npm ERR! npm ERR! If you need help, you may
+                  report this error at: npm ERR!
+                  https://github.com/npm/npm/issues npm ERR! Please include the
+                  following file with any support request: npm ERR!
+                  /home/apoorva/Documents/project/npm-debug.log How to solve
+                  this problem?I tried a lot but unable to fix this problem.
+                </div>
+              </div>
             </div>
           </UserQuestions>
           <UserAnswers>
             <div className="title">Latest answers</div>
+            <div className='answers'>
+            <div className="item">
+              <div className="user">User1234</div>
+              <div className="aBody">
+                poorva@apoorva-latitude-e6410:~/Documents/project$ npm install
+                npm WARN package.json @ No description npm WARN package.json @
+                No repository field . npm WARN package.json @ No README data npm
+                ERR! Linux 4.4.0-51-generic npm ERR! argv "/usr/local/bin/node"
+                "/usr/local
+              </div>
+            </div>
+            <div className="item">
+              <div className="user">User1234</div>
+              <div className="aBody">
+                poorva@apoorva-latitude-e6410:~/Documents/project$ npm install
+                npm WARN package.json @ No description npm WARN package.json @
+                No repository field . npm WARN package.json @ No README data npm
+                ERR! Linux 4.4.0-51-generic npm ERR! argv "/usr/local/bin/node"
+                "/usr/local
+              </div>
+            </div>
+            <div className="item">
+              <div className="user">User1234</div>
+              <div className="aBody">
+                poorva@apoorva-latitude-e6410:~/Documents/project$ npm install
+                npm WARN package.json @ No description npm WARN package.json @
+                No repository field . npm WARN package.json @ No README data npm
+                ERR! Linux 4.4.0-51-generic npm ERR! argv "/usr/local/bin/node"
+                "/usr/local
+              </div>
+            </div>
+            </div>
           </UserAnswers>
         </Sidebar>
         <AskQuestion

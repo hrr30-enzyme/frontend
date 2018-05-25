@@ -9,19 +9,21 @@ import Search from '../components/Search'
 
 const Nav = styled.nav`
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
-  height: 3.3em;
-  align-items: center;
-  justify-items: center;
-  background-color: rgb(232, 246, 255);
-  border-bottom: 1px solid #888;
-  font-weight: bold;
   padding-left: 4em;
-
+  padding-bottom: 1em;
+  grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
+  height: 30px;
+  align-items: center;
+  background-color: white;
+  border-bottom: ${({navStyle}) => 
+    navStyle !=='transparent' ? 'solid #888888' : 'solid transparent'};
+  border-width: 1px;
+  font-weight: bold;
+  > .nav-item {
+    display: inline;
+  }
   > .nav-title {
     grid-column: 1 / 2;
-    margin-right: 1em;
-    font-size: 20px
   }
   > .nav-questions {
     grid-column: 3 / 4;
@@ -31,33 +33,34 @@ const Nav = styled.nav`
   }
   > .nav-searchbar {
     grid-column: 4 / 5;
-    align-self: center;
+    justify-self: center;
     width: 60%;
     display: grid;
     grid-columns: 1fr;
   }
-  > .nav-auth-signin {
+  > .nav-auth {
     cursor: pointer;
-    color: ${styles.SECONDARY_COLOR};
-    grid-column: 5 / 6;
-  }
-  > .nav-auth-signup {
-    cursor: pointer;
-    color: ${styles.SECONDARY_COLOR};
-    grid-column: 6 / 7;
+    color: ${styles.LINK_COLOR};
   }
   > .nav-auth:hover {
-    color: ${styles.MAIN_COLOR};
-    grid-column: 6 / 7;
+    cursor: pointer;
+    color: ${styles.SECONDARY_COLOR};
   }
 `;
 
+const NavAuth = styled.div`
+  cursor: pointer;
+  color: ${styles.LINK_COLOR}
+  &:hover {
+    color: ${styles.SECONDARY_COLOR}
+  }
+`
 
 const StyledNavLink = styled(Link)`
   text-decoration: none;
   color: ${(props) => styles.LINK_COLOR || styles.SECONDARY_COLOR};
   &:hover {
-    color: ${(props) => styles.MAIN_COLOR};
+    color: ${(props) => styles.SECONDARY_COLOR};
   }
 `
 
@@ -68,17 +71,10 @@ const Navbar = (props) => {
   let NavStyle = Nav;
   let linkColor = styles.SECONDARY_COLOR;
   let linkColorHover = styles.MAIN_COLOR;
-  if (props.NavStyle) {
-    NavStyle = props.NavStyle;
-    linkColor = NavStyle.linkColor;
-    linkColorHover = NavStyle.linkColorHover;
-  } else {
-    NavStyle = Nav;
-  }
 
   return (
     <div>
-      <NavStyle>
+      <NavStyle navStyle={props.navStyle}>
         <div className="nav-title">
           <StyledNavLink 
             to="/"
@@ -114,7 +110,7 @@ const Navbar = (props) => {
         
         {signedIn 
           ? (
-            <div>
+            [
               <div className="nav-item">
                 <StyledNavLink 
                   to={ `/user/${props.authentication.userInfo.username}` }
@@ -123,32 +119,28 @@ const Navbar = (props) => {
                 >
                   { props.authentication.userInfo.username }
                 </StyledNavLink>
-              </div>
-              <div className="nav-item">
+              </div>,
+              <NavAuth className="nav-item">
                 <div onClick={ props.signout }>logout</div>
-              </div>
-            </div>
+              </NavAuth>
+            ]
           )
           : [
-              <div
+              <NavAuth
                 className="nav-auth-signin" 
                 onClick={ () => props.openModal("signin") }
               >
                 login
-              </div>,
-              <div 
+              </NavAuth>,
+              <NavAuth 
                 className="nav-auth-signup"
                 onClick={() => props.openModal("signup")}
               >
                 signup
-              </div>,
+              </NavAuth>
           ]
         }
       </NavStyle>
-      {/*
-       * signin/signout modals
-       *
-       */}
        <Signin
           username={ props.textInput.username }
           password={ props.textInput.password }
@@ -172,7 +164,7 @@ const Navbar = (props) => {
           addText={ props.addText }
           error={ props.authentication.error }
         />
-      </div>
+    </div>
   );
 };
 

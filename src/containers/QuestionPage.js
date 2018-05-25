@@ -12,13 +12,13 @@ import Ask from '../components/AskQuestion'
 const Layout = styled.div`
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: auto auto;
+  grid-template-columns: 5% auto auto 5%;
   grid-column-gap: 30px;
   grid-row-gap: 15px;
+  min-width: 800px;
 
   > .nav {
-    background-color: red;
-    grid-column: 1 / 6;
+    grid-column: 1 / -1;
     grid-row: 1;
   }
 `
@@ -61,7 +61,7 @@ const Hot = styled.h2`
   margin-top: 2em;
 `
 const AnswerDiv = styled.div`
-  grid-column: 1 / 4;
+  grid-column: 1 / 5;
   border-bottom: solid lightgrey 1px;
   padding: 1em;
   margin-bottom: 2em;
@@ -70,8 +70,8 @@ const AnswerDiv = styled.div`
   color: ${styles.BORDER_MODAL};
 `
 const YourAnswerDiv = styled.div`
-  grid-column: 1 / 4;
-  border-top: solid lightgrey 1px;
+  grid-column: 1 / 5;
+  border-top: solid grey 1px;
   padding: 1em;
   margin: 2em;
   font-weight: bold;
