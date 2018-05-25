@@ -17,7 +17,7 @@ const Layout = styled.div`
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
     grid-column: 2;
-    min-width: 650px;
+    min-width: 760px;
     max-width: 1200px;
     margin-right: 2em;
     max-height: 82px;

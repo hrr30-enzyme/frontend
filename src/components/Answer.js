@@ -24,6 +24,8 @@ const Actions = styled.div`
   grid-template-rows: auto;
   grid-row-gap: 15px;
   font-size: 28px;
+  max-height: 100px;
+  margin-top: 1em;
 `
 const Upvote = styled.div`
   grid-row: 1;
@@ -51,6 +53,7 @@ const Body = styled.p`
   background-color: ivory;
   border: 2px solid ${styles.MAIN_COLOR};
   font-size: 20px;
+  min-height: 200px;
 `
 
 const Answer = (props) => {

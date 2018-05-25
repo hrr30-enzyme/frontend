@@ -19,8 +19,12 @@ const Layout = styled.div`
 
   .title {
     grid-row: 2;
-    grid-column: 2;
+    grid-column: 2 / 4;
     font-size: 150%;
+    margin: 1em;
+    justify-self: center;
+    color: darkblue;
+    font-weight: bold;
   }
 
   .question {

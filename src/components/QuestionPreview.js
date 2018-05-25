@@ -8,13 +8,10 @@ const Question = styled.div`
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 20% 10% auto auto;
-  grid-column-gap: 35px;
+  grid-column-gap: 40px;
   grid-row-gap: 1em;
   text-decoration: none;
-  width: auto;
-  height: auto;
-  margin: 3px 3px;
-  background-color: ivory;
+  background-color: whitesmoke;
 `;
 
 const Stats = styled.div`
@@ -23,7 +20,6 @@ const Stats = styled.div`
   grid-row: 1 / span 2;
   grid-column: 1;
   grid-column-gap: 5px;
-  justify-self: left;
   align-self: center;
   margin-bottom: 10px;
 `;
@@ -68,6 +64,7 @@ const Bounty = styled.div`
   font-weight: bolder;
   font-size: 18px;
   font-style: italic;
+  margin-top: 0.7em;
 `
 
 const Reward = styled.div`
@@ -91,6 +88,7 @@ const User = styled.div`
   font-size: 18px;
   text-decoration: none;
   justify-self: right;
+  padding: 5px;
 `
 
 const Tags = styled.div`
