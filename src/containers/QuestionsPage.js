@@ -9,19 +9,29 @@ import { Link } from "react-router-dom";
 const Layout = styled.div`
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 5% auto auto 5%;
+  grid-template-columns: auto auto auto auto;
   grid-column-gap: 30px;
-  grid-row-gap: 15px;
+  grid-row-gap: 10px;
 
   .question {
+<<<<<<< HEAD
     border: 2px solid ${styles.SECONDARY_COLOR};
     box-shadow: 0 1px 1px 0 ${styles.GRAY_1},
       0 1px 1px 0 ${styles.GRAY_1};
     grid-column: 2;
     min-width: 650px;
     max-width: 750px;
+=======
+    border: 3px solid ${styles.SECONDARY_COLOR};
+    border-radius: 8px;
+    box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
+      0 2px 5px 0 ${styles.MAIN_COLOR};
+    grid-column: 2;
+    min-width: 300px;
+    max-width: 1000px;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     margin-right: 2em;
-    max-height: 82px;
+    background-color: aliceblue;
   }
 
   .nav {
@@ -30,16 +40,26 @@ const Layout = styled.div`
   }
 `;
 
+const Div = styled.div`
+  grid-column: 2;
+  margin-top: 2em;
+`
+
 const Sidebar = styled.div`
   display: ${props => (props.show ? "grid" : "none")};
   justify-self: center;
+  align-self: top;
   grid-column: 3;
   grid-row: 4 / 20;
-  grid-template-rows: 10% auto auto auto auto;
+  grid-template-rows: 5% 10% auto auto auto;
   grid-template-columns: 1;
   grid-row-gap: 20px;
+<<<<<<< HEAD
   min-width: 250px;
   max-width: 600px;
+=======
+  min-width: 200px;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   font-family: Arial, Helvetica, sans-serif;
 `;
 
@@ -52,26 +72,29 @@ const UserTitle = styled.h3`
 const UserStats = styled.div`
   grid-row: 2;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: #ffeec2;
   border-color: #f2f2f2;
   display: grid;
+<<<<<<< HEAD
   min-height: 145px;
   max-width: 600px;
+=======
+  align-self: top;
+  max-height: auto;
+  min-width: 250px;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   grid-template-columns: auto auto auto;
-  grid-template-rows: 70% 30%;
+  grid-template-rows: 50% auto;
   color: ${styles.GRAY_2};
 
   .title {
     grid-row: 2;
-    grid-column: 1/4;
-    border-bottom-style: inset;
+    grid-column: 1/ span 3;
+    font-weight: bold;
     border-bottom-color: lightgray;
     border-bottom-width: 1px;
-    text-align: center;
+    justify-self: center;
+    align-self: center;
     background: white;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
   }
 
   .answers {
@@ -82,6 +105,7 @@ const UserStats = styled.div`
     text-align: center;
     grid-template-rows: 70% 30%;
     padding: 5px;
+    background: #ffeec2;    
     align-self: stretch;
     &:hover {
       background: #ffe398;
@@ -93,6 +117,7 @@ const UserStats = styled.div`
     grid-column: 2/3;
     align-self: stretch;
     display: grid;
+    background: #ffeec2; 
     grid-template-rows: 70% 30%;
     padding: 5px;
     text-align: center;
@@ -108,6 +133,7 @@ const UserStats = styled.div`
     display: grid;
     text-align: center;
     grid-template-rows: 70% 30%;
+    background: #ffeec2; 
     padding: 5px;
     &:hover {
       background: #ffe398;
@@ -116,7 +142,7 @@ const UserStats = styled.div`
 
   .number {
     text-align: center;
-    font-size: 150%;
+    font-size: 120%;
     padding: 2px;
     grid-row: 1;
     align-self: center;
@@ -124,57 +150,59 @@ const UserStats = styled.div`
 `;
 const UserQuestions = styled.div`
   grid-row: 3;
+<<<<<<< HEAD
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
   background: #c6cbf9;
+=======
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   border-color: #f2f2f2;
   display: grid;
-  max-width: 350px;
   grid-template-columns: auto auto auto;
-  grid-template-rows: auto 50px;
+  grid-template-rows: 40px auto;
   color: ${styles.GRAY_2};
 
   .title {
-    grid-row: 2;
-    grid-column: 1/4;
-    border-bottom-style: inset;
+    grid-row: 1;
+    grid-column: 1 / span 3;
+    font-weight: bold;
     border-bottom-color: lightgray;
     border-bottom-width: 1px;
-    text-align: left;
-    background: white;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
+    justify-self: center;
+    align-self: center;
+    background-color: white;
   }
 
   .questions {
+<<<<<<< HEAD
     grid-row: 1;
     grid-row-gap: 12px;
     gridcolumn: 1/4;
     justifygn-self: stretch;
+=======
+    grid-row: 2;
+    grid-column: 1/4;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     display: grid;
     grid-template-rows: auto auto auto;
 
     .item {
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
-      text-align: left;
-      padding: 15px;
-      align-self: stretch;
-      justify-self: stretch;
+      background: #c6cbf9;
       &:hover {
         background: #a4adf9;
       }
 
       .qtitle {
+        grid-row: 1;
         color: white;
-        padding: 5px;
         text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
+        text-align: center;
+        padding: 0.5em;
       }
 
       .qBody {
-        padding: 5px;
-        max-width: 300px;
-        white-space: pre-wrap;
       }
     }
   }
@@ -183,30 +211,32 @@ const UserQuestions = styled.div`
 const UserAnswers = styled.div`
   grid-row: 4;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: #92cdec;
   border-color: #f2f2f2;
   display: grid;
-  max-width: 350px;
   grid-template-columns: auto auto auto;
   grid-template-rows: auto 50px;
   color: ${styles.GRAY_2};
 
   .title {
     grid-row: 2;
-    grid-column: 1/4;
+    grid-column: 1 / span 3;
     border-bottom-style: inset;
     border-bottom-color: lightgray;
     border-bottom-width: 1px;
-    text-align: left;
     background: white;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
+    font-weight: bold;
+    justify-self: center;
+    align-self: center;
   }
 
   .answers {
     grid-row: 1;
+<<<<<<< HEAD
     gridcolumn: 1/4;
+=======
+    grid-column: 1 / span 3;
+    justifygn-self: stretch;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     display: grid;
     grid-template-rows: auto auto auto;
 
@@ -214,8 +244,12 @@ const UserAnswers = styled.div`
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
       text-align: left;
+<<<<<<< HEAD
       padding: 15px;
       align-self: stretch;
+=======
+      background: #92CDEC;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
       &:hover {
         background: #67b2da;
       }
@@ -223,13 +257,11 @@ const UserAnswers = styled.div`
       .user {
         color: white;
         padding: 5px;
+        text-align: center;
         text-shadow: 1px 1px 4px rgba(150, 150, 150, 1);
       }
 
       .aBody {
-        padding: 5px;
-        max-width: 300px;
-        white-space: pre-wrap;
       }
     }
   }
@@ -253,8 +285,8 @@ const Button = styled.button`
   border-radius: 3px;
   justify-self: right;
   align-self: center;
-  height: 80px;
-  min-width: 200px;
+  height: 75px;
+  min-width: 180px;
 `;
 const Heading = styled.div`
   display: grid;
@@ -265,12 +297,14 @@ const Heading = styled.div`
   grid-column: 2 / 3;
   font-size: 16px;
   align-self: center;
+  margin-right: 5em;
 `;
 const Divider = styled.div`
   grid-column: 1 / 5;
   border-bottom: 1px solid #dddddd;
   margin-left: 1.5em;
   margin-right: 1.5em;
+  margin-bottom: 2em;
 `;
 const Preview = styled.h1`
   grid-column: 1;
@@ -396,6 +430,7 @@ export default class QuestionsPage extends Component {
           </Tag5>
         </Heading>
         <Divider />
+        <Div></Div>
         <Button onClick={() => this.props.openModal("ask")}>
           Ask a Question
         </Button>
@@ -432,15 +467,12 @@ export default class QuestionsPage extends Component {
                 </div>
               </div>
               <div className="item">
-                <Link to={`/question/107`} style={{ textDecoration: "none" }}>
-                  <div className="qtitle">
-                    {"How to re-run process python in Windows/Linux?"}
-                  </div>
-                </Link>
+                <div className="qtitle">
+                Making object face another with rotation
+                </div>
                 <div className="qBody">
-                  {
-                    "I run Python script on Windows using IDE PyCharm. Sometimes process is stopped. How can I configure that process will be re-run automatically after interruption?"
-                  }
+                  I'm trying to make my spotlight face its target when I translate it. 
+                  I've tried glm::lookAt() with limited success...
                 </div>
               </div>
               <div className="item">
@@ -450,42 +482,36 @@ export default class QuestionsPage extends Component {
                   </div>
                 </Link>
                 <div className="qBody">
-                  {
-                    "I'm trying to load a 3D model into Three.js with JSONLoader, and that 3D model is in the same directory as the entire website. I'm getting the \"Cross origin requests are only supported for HTTP.\" error, but I don't know what's causing it nor how to fix it."
-                  }
+                  I understand we can add code on iOS client side to detect whether the user has disabled 
+                  push notification permission, my question it, is it possible to do it in only using APN? 
                 </div>
               </div>
             </div>
           </UserQuestions>
           <UserAnswers>
             <div className="title">Latest answers</div>
-            <div className="answers">
+            <div className='answers'>
               <div className="item">
-                <div className="user">MeowMafioso</div>
+                <div className="user">User1234</div>
                 <div className="aBody">
-                  {
-                    "category is object which has property name (and other properties){% if category.name == 'Events' %} "
-                  }
+                  You're changing the row and column with every single iteration of the for loop. 
+                  You only want to change the row...
                 </div>
               </div>
               <div className="item">
-                <div className="user">LegendaryLeo</div>
+                <div className="user">User1234</div>
                 <div className="aBody">
-                  You're trying to call the isEmpty()
-                  method on a null reference (as List test = null; ). This will
-                  surely throw a NullPointerException. You should do
-                  if(test!=null) instead (Checking for null first). The method
-                  isEmpty() returns true, if an ArrayList object contains no
-                  elements; false otherwise (for that the List must first be
-                  instantiated that is in your case is null).
+                  My crystal ball says that you are loading the model 
+                  using either file:// or C:/, which stays true to the error 
+                  message as they are not http:// So you can either...
                 </div>
               </div>
               <div className="item">
-                <div className="user">Codybot</div>
+                <div className="user">User1234</div>
                 <div className="aBody">
-                  {
-                    "I use pdoResources (which similar to getResources, but faster). Place this code in instead <!-- I need to add sibling info here --> and this is would help. [[pdoResources? &parents=`[[+id]]` &depth=`1` &tpl=`your_sibling_row_tpl` ]]"
-                  }
+                  ZeroBrane Studio is the best for Lua. It works on Windows, Mac, and 
+                  Linux. It was specifically designed for beginners, but it a full 
+                  featured IDE for writing and debugging Lua code. 
                 </div>
               </div>
             </div>

@@ -11,7 +11,7 @@ const Nav = styled.nav`
   display: grid;
   padding-left: 4em;
   padding-bottom: 1em;
-  grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr auto 7fr 1fr 1fr;
   grid-template-rows: auto;
   height: 30px;
   align-items: center;
@@ -40,7 +40,6 @@ const Nav = styled.nav`
     justify-self: center;
     width: 60%;
     display: grid;
-    grid-columns: 1fr;
     grid-row: 1;
     max-height: 39px;
   }
@@ -58,9 +57,9 @@ const Nav = styled.nav`
 
 const NavAuth = styled.div`
   cursor: pointer;
-  color: ${styles.LINK_COLOR}
+  color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${styles.SECONDARY_COLOR}
+    color: ${styles.SECONDARY_COLOR};
   }
 `
 

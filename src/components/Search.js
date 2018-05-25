@@ -36,7 +36,7 @@ const Div = styled.div`
   max-height: 47px;
   > input {
     width: 100%;
-    min-width: 8.5em;
+    min-width: 3.5em;
   }
   > svg {
     align-self: center;

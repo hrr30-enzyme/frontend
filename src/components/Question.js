@@ -48,7 +48,8 @@ const Actions = styled.div`
   grid-template-rows: auto;
   grid-row-gap: 15px;
   font-size: 28px;
-  max-height: 50px;
+  max-height: 100px;
+  margin-top: 1em;
 `
 const Upvote = styled.div`
   grid-row: 1;
@@ -78,6 +79,8 @@ const Body = styled.p`
   padding: 25px;
   white-space: pre-wrap;
   font-size: 20px;
+  min-height: 200px;
+  white-space: pre-wrap;
 `
 
 

@@ -1,0 +1,128 @@
+-title: 
+Strings whose length is multiple of three and every third symbol of string is reversed. We have to tell whether it is CFL or not
+
+
+-body: 
+Let L be some regular set in which all strings happen to have length equal to a multiple of three. Let Twist3(L) be the set of all strings in L where every three symbols are reversed. For example if
+
+L = {aag, cttgta, ttggagagc, ...} 
+then
+
+Twist3(L) = {gaa, ttcatg, gttgagcga, ...}. 
+Explain why Twist3(L) is a CFL
+
+--------------------------------------------------------------------------
+
+-title: 
+White screen after splash image before home page loads
+
+-body:
+On android device splash screen with splash.png from resources loads with loading animation, then appears white screen for longer then splash screen, before home.page loaded. How can I avoid this, my config.xml:
+
+<preference name="SplashShowOnlyFirstTime" value="false" />
+<preference name="SplashScreen" value="screen" />
+<preference name="SplashScreenDelay" value="3000" />
+As attempt, I have tried guide from belove, it works as it is, but also show white screen after animated loading, before page load:
+
+https://coursetro.com/posts/code/51/How-to-Make-an-Animated-Ionic-Splash-Page-with-HTML-&-CSS
+
+
+--------------------------------------------------------------------------
+
+
+-title:
+MATCH Query Issues after switching to MariaDB
+
+-body:
+Hello guys I was just moved to a new server running MariaDB and now it seems my fulltext searches are not working.
+
+For example...
+
+SELECT * FROM table WHERE Model = "CR-V";
+works.
+
+SELECT *, MATCH (Model) AGAINST ("CR-V") as score FROM table WHERE MATCH (Model) AGAINST ("CR-V") ORDER BY score DESC;
+does not return anything.
+
+This used to work perfectly fine in my old server, now it's not. Any help would be appreciated.
+
+
+--------------------------------------------------------------------------
+
+
+-title:
+Self-Join with Natural Join
+
+-body:
+What is the difference between
+
+select * from degreeprogram  NATURAL JOIN degreeprogram ;
+and
+
+select * from degreeprogram d1 NATURAL JOIN degreeprogram d2;
+in oracle? I expected that they return the same result set, however, they do not. The second query does what I expect: it joins the two relations using the same named attributes and so it returns the same tuples as stored in degreeprogram. However, the first query is confusing for me: here, each tuple occurs several times in the result set-> what join condition is used here?
+
+Thank you
+
+
+
+--------------------------------------------------------------------------
+
+
+-title:
+Adding CSS into mPDF just creates extra blank pages
+
+-body:
+I'm currently trying to attach CSS to my mPDF files, but i'm coming across the problem that the CSS doesn't apply but it just adds new pages? It is quite confusing.
+
+I'm first getting all the CSS content which i want to append, then I require in the mpdf classes. I'm adding the the style to sub 1 because that's where CSS is supposed to be appended, afterwards I add the HTML to the PDF.
+
+
+
+--------------------------------------------------------------------------
+
+
+-title:
+Using PyAutoGui when game resolution is different from actual resolution
+
+-body:
+Currently I have a function in python that looks like this:
+
+def click_button(self, image_name):
+    while not pyautogui.locateOnScreen(image_name):
+        print("looking for{}".format(image_name))
+    x, y = pyautogui.locateCenterOnScreen(path.join("screenshots", image_name))
+    pyautogui.click(x / 2, y / 2) #"problem" here
+As you can see since on my system the game is run at twice the resolution of the screen, I have to half the distance where it actually should click.
+
+This is not a very adaptable solution and I would have to hard code the resolution for each platform.
+
+Therefore, I was wondering if there was a native solution to clicking the screen with respect to the resolution that the current program was running at.
+
+
+
+--------------------------------------------------------------------------
+
+
+-title:
+How to translate jQuery to AngularJS
+
+-body:
+How to perform Quantity increment and decrements operation of multiple rows of a table in Angular js 1.x and rows are repeated by ng-repeat
+I have a jQuery code and i don't know how to implement it in angular js. The First code is how I implement it in jQuery and next code snippet is how I implement in in angular js but i can not increment and decrement the quantity.
+
+
+
+--------------------------------------------------------------------------
+
+
+-title:
+redux usage at general
+
+-body:
+im sorry for not-specific question, but Im confused a little bit. Im started learning redux, and now i need to implement it in Completely working project: https://github.com/CodeNinja1395/Test-task-for-inCode and there is a branch for redux-version (which is obviously isn`t working). The main logic of my app located in ContactsApp.js file:
+
+
+
+
+
