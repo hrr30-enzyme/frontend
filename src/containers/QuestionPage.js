@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import * as styles from "../components/StyledComponents";
 import Question from '../components/Question'
-import Answer from '../components/Answer'
 import Answers from './Answers'
 import GiveAnswer from '../components/GiveAnswer'
-import AskQuestion from '../components/AskQuestion'
 import Navbar from '../components/Navbar'
-import Ask from '../components/AskQuestion'
+
 
 const Layout = styled.div`
   display: grid;

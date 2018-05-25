@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import * as styles from "../components/StyledComponents";
 import QuestionPreview from "../components/QuestionPreview";
 import AnswerPreview from "../components/AnswerPreview";
-import CommentPreview from "../components/CommentPreview";
 
 const Layout = styled.div`
   display: grid;
@@ -19,11 +18,7 @@ const Layout = styled.div`
     border-radius: 8px;
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
-<<<<<<< HEAD
-    grid-column: 2 / 4;
-=======
     grid-column: 2 / 5;
->>>>>>> 531539adfb5355f0234c801938f454db38314272
     min-width: 800px;
     max-width: 800px;
     background-color: aliceblue;
@@ -34,13 +29,10 @@ const Layout = styled.div`
     border: 3px solid violet;
     border-radius: 8px;
     min-width: 800px;
-<<<<<<< HEAD
-=======
     max-width: 800px;
->>>>>>> 531539adfb5355f0234c801938f454db38314272
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
-    grid-column: 2 / 4;
+    grid-column: 2 / 5;
     background-color: lavender;
     justify-self: center;
   }
@@ -89,23 +81,12 @@ class UserPage extends Component {
   }
 
   render() {
-
+    console.log('UserPage: -------- ', this.props);
     return (
       <Layout>
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-
-          {/* Username: {this.props.authentication.userInfo.username}
-  
-          Email: {this.props.authentication.userInfo.email}
-
-          Joined:
-
-          {moment(this.props.authentication.userInfo.createdAt).format(
-            "MMM Do YYYY"
-          )}          */}
-
         <Questions>
           Questions: 
         </Questions>

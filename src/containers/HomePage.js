@@ -27,14 +27,15 @@ const Layout = styled.div`
 class HomePage extends Component {
   constructor (props){
     super(props)
-    this.props.queryPosts({})
   }
-  componentDidMount() {
-    this.props.queryPosts({});
-    this.props.checkSignin(); ///delete me
+  componentWillMount() {
+    this.props.queryPosts({
+      PostTypeId: 1
+    })
   }
 
   render() {
+    console.log('HomePage: --------  ', this.props);
     return (
       <Layout>
         <div className="nav">

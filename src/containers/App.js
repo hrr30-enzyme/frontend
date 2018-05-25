@@ -9,8 +9,9 @@ import PrivateRoute from "../components/PrivateRoute";
 import SearchResults from '../containers/SearchResults'
 
 export default class App extends Component {
+  
   componentDidMount() {
-    this.props.checkSignin();
+
   }
 
   render() {
@@ -42,7 +43,8 @@ export default class App extends Component {
         />
         <Route
           path="/search"
-          render={props => <SearchResults {...this.props} {...props} />}/>
+          render={props => <SearchResults {...this.props} {...props} />}
+        />
       </Switch>
     );
   }
