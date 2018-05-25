@@ -12,6 +12,7 @@ const Nav = styled.nav`
   padding-left: 4em;
   padding-bottom: 1em;
   grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
+  grid-template-rows: auto;
   height: 30px;
   align-items: center;
   background-color: white;
@@ -24,12 +25,15 @@ const Nav = styled.nav`
   }
   > .nav-title {
     grid-column: 1 / 2;
+    grid-row: 1;
   }
   > .nav-questions {
     grid-column: 3 / 4;
+    grid-row: 1;
   }
   > .nav-home {
     grid-column: 2 / 3;
+    grid-row: 1;
   }
   > .nav-searchbar {
     grid-column: 4 / 5;
@@ -37,14 +41,18 @@ const Nav = styled.nav`
     width: 60%;
     display: grid;
     grid-columns: 1fr;
+    grid-row: 1;
+    max-height: 39px;
   }
   > .nav-auth {
     cursor: pointer;
     color: ${styles.LINK_COLOR};
+    grid-row: 1;
   }
   > .nav-auth:hover {
     cursor: pointer;
     color: ${styles.SECONDARY_COLOR};
+    grid-row: 1;
   }
 `;
 
