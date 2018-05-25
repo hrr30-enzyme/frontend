@@ -456,21 +456,21 @@ export default class QuestionsPage extends Component {
                   You only want to change the row...
                 </div>
               </div>
-            </div>
-            <div className="item">
-              <div className="user">User1234</div>
-              <div className="aBody">
-                My crystal ball says that you are loading the model 
-                using either file:// or C:/, which stays true to the error 
-                message as they are not http:// So you can either...
+              <div className="item">
+                <div className="user">User1234</div>
+                <div className="aBody">
+                  My crystal ball says that you are loading the model 
+                  using either file:// or C:/, which stays true to the error 
+                  message as they are not http:// So you can either...
+                </div>
               </div>
-            </div>
-            <div className="item">
-              <div className="user">User1234</div>
-              <div className="aBody">
-                ZeroBrane Studio is the best for Lua. It works on Windows, Mac, and 
-                Linux. It was specifically designed for beginners, but it a full 
-                featured IDE for writing and debugging Lua code. 
+              <div className="item">
+                <div className="user">User1234</div>
+                <div className="aBody">
+                  ZeroBrane Studio is the best for Lua. It works on Windows, Mac, and 
+                  Linux. It was specifically designed for beginners, but it a full 
+                  featured IDE for writing and debugging Lua code. 
+                </div>
               </div>
             </div>
           </UserAnswers>
