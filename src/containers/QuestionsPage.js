@@ -14,22 +14,14 @@ const Layout = styled.div`
   grid-row-gap: 10px;
 
   .question {
-<<<<<<< HEAD
     border: 2px solid ${styles.SECONDARY_COLOR};
-    box-shadow: 0 1px 1px 0 ${styles.GRAY_1},
-      0 1px 1px 0 ${styles.GRAY_1};
-    grid-column: 2;
-    min-width: 650px;
-    max-width: 750px;
-=======
-    border: 3px solid ${styles.SECONDARY_COLOR};
-    border-radius: 8px;
+
+    border-radius: 5px;
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
     grid-column: 2;
     min-width: 300px;
     max-width: 1000px;
->>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     margin-right: 2em;
     background-color: aliceblue;
   }
@@ -54,12 +46,7 @@ const Sidebar = styled.div`
   grid-template-rows: 5% 10% auto auto auto;
   grid-template-columns: 1;
   grid-row-gap: 20px;
-<<<<<<< HEAD
-  min-width: 250px;
-  max-width: 600px;
-=======
   min-width: 200px;
->>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   font-family: Arial, Helvetica, sans-serif;
 `;
 
@@ -74,20 +61,15 @@ const UserStats = styled.div`
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-color: #f2f2f2;
   display: grid;
-<<<<<<< HEAD
-  min-height: 145px;
-  max-width: 600px;
-=======
   align-self: top;
   max-height: auto;
   min-width: 250px;
->>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   grid-template-columns: auto auto auto;
-  grid-template-rows: 50% auto;
+  grid-template-rows: 40px auto;
   color: ${styles.GRAY_2};
 
   .title {
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 1/ span 3;
     font-weight: bold;
     border-bottom-color: lightgray;
@@ -98,7 +80,7 @@ const UserStats = styled.div`
   }
 
   .answers {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 1/2;
     align-self: stretch;
     display: grid;
@@ -113,7 +95,7 @@ const UserStats = styled.div`
   }
 
   .questions {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 2/3;
     align-self: stretch;
     display: grid;
@@ -127,7 +109,7 @@ const UserStats = styled.div`
   }
 
   .comments {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 3/4;
     align-self: stretch;
     display: grid;
@@ -150,12 +132,7 @@ const UserStats = styled.div`
 `;
 const UserQuestions = styled.div`
   grid-row: 3;
-<<<<<<< HEAD
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
-  background: #c6cbf9;
-=======
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
->>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   border-color: #f2f2f2;
   display: grid;
   grid-template-columns: auto auto auto;
@@ -174,15 +151,8 @@ const UserQuestions = styled.div`
   }
 
   .questions {
-<<<<<<< HEAD
-    grid-row: 1;
-    grid-row-gap: 12px;
-    gridcolumn: 1/4;
-    justifygn-self: stretch;
-=======
     grid-row: 2;
     grid-column: 1/4;
->>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     display: grid;
     grid-template-rows: auto auto auto;
 
@@ -190,6 +160,7 @@ const UserQuestions = styled.div`
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
       background: #c6cbf9;
+      padding: 15px;
       &:hover {
         background: #a4adf9;
       }
@@ -214,11 +185,11 @@ const UserAnswers = styled.div`
   border-color: #f2f2f2;
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-template-rows: auto 50px;
+  grid-template-rows: 50px auto;
   color: ${styles.GRAY_2};
 
   .title {
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 1 / span 3;
     border-bottom-style: inset;
     border-bottom-color: lightgray;
@@ -230,13 +201,9 @@ const UserAnswers = styled.div`
   }
 
   .answers {
-    grid-row: 1;
-<<<<<<< HEAD
-    gridcolumn: 1/4;
-=======
+    grid-row: 2;
     grid-column: 1 / span 3;
-    justifygn-self: stretch;
->>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
+    justify-self: stretch;
     display: grid;
     grid-template-rows: auto auto auto;
 
@@ -244,12 +211,9 @@ const UserAnswers = styled.div`
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
       text-align: left;
-<<<<<<< HEAD
+      background: #92CDEC;
       padding: 15px;
       align-self: stretch;
-=======
-      background: #92CDEC;
->>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
       &:hover {
         background: #67b2da;
       }
@@ -423,7 +387,11 @@ export default class QuestionsPage extends Component {
           </Tag4>
           <Tag5
             onClick={() => {
-              this.props.getRecomendations();
+              console.log('isloggedin', this.props)
+              if (this.props.authentication.signedIn === true) {
+                this.props.getRecomendations();
+                this.props.changeSortedBy('Recomended')
+              }
             }}
           >
             Recomended

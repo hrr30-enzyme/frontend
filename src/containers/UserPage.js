@@ -19,8 +19,9 @@ const Layout = styled.div`
     border-radius: 8px;
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
-    grid-column: 2 / 3;
+    grid-column: 2 / 5;
     min-width: 800px;
+    max-width: 800px;
     background-color: aliceblue;
     justify-self: center;
   }
@@ -28,7 +29,8 @@ const Layout = styled.div`
   .answer {
     border: 3px solid violet;
     border-radius: 8px;
-    min-width: 500px;
+    min-width: 800px;
+    max-width: 800px;
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
     grid-column: 2 / 5;
