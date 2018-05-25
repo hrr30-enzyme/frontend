@@ -15,11 +15,11 @@ const Layout = styled.div`
 
   .question {
     border: 2px solid ${styles.SECONDARY_COLOR};
-    box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
-      0 2px 5px 0 ${styles.MAIN_COLOR};
+    box-shadow: 0 1px 1px 0 ${styles.GRAY_1},
+      0 1px 1px 0 ${styles.GRAY_1};
     grid-column: 2;
     min-width: 650px;
-    max-width: 1200px;
+    max-width: 750px;
     margin-right: 2em;
     max-height: 82px;
   }
@@ -39,7 +39,7 @@ const Sidebar = styled.div`
   grid-template-columns: 1;
   grid-row-gap: 20px;
   min-width: 250px;
-  max-width: 250px;
+  max-width: 600px;
   font-family: Arial, Helvetica, sans-serif;
 `;
 
@@ -56,7 +56,7 @@ const UserStats = styled.div`
   border-color: #f2f2f2;
   display: grid;
   min-height: 145px;
-  max-width: 300px;
+  max-width: 600px;
   grid-template-columns: auto auto auto;
   grid-template-rows: 70% 30%;
   color: ${styles.GRAY_2};
@@ -124,7 +124,7 @@ const UserStats = styled.div`
 `;
 const UserQuestions = styled.div`
   grid-row: 3;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
   background: #c6cbf9;
   border-color: #f2f2f2;
   display: grid;
@@ -148,6 +148,7 @@ const UserQuestions = styled.div`
 
   .questions {
     grid-row: 1;
+    grid-row-gap: 12px;
     gridcolumn: 1/4;
     justifygn-self: stretch;
     display: grid;
@@ -206,7 +207,6 @@ const UserAnswers = styled.div`
   .answers {
     grid-row: 1;
     gridcolumn: 1/4;
-    justifygn-self: stretch;
     display: grid;
     grid-template-rows: auto auto auto;
 
@@ -216,7 +216,6 @@ const UserAnswers = styled.div`
       text-align: left;
       padding: 15px;
       align-self: stretch;
-      justify-self: stretch;
       &:hover {
         background: #67b2da;
       }
@@ -239,17 +238,18 @@ const UserAnswers = styled.div`
 const Button = styled.button`
   grid-column: 3;
   grid-row: 2;
-  background: linear-gradient(to bottom, ${"white"}, lightsteelblue);
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  background: linear-gradient(to bottom, ${"white"}, ${styles.LINK_COLOR});
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
   &:hover {
     background: rgb(233, 243, 248);
-    border: 2px solid ${styles.MAIN_COLOR};
+    border: 2px solid ${styles.GRAY_2};
   }
   font-size: 1em;
   font-weight: bold;
   margin-right: 2em;
   padding: 1em 1em;
-  border: 2px solid ${styles.SECONDARY_COLOR};
+  border: 2px solid ${styles.GRAY_2};
   border-radius: 3px;
   justify-self: right;
   align-self: center;
@@ -261,13 +261,14 @@ const Heading = styled.div`
   grid-template-columns: 20% 15% auto;
   grid-template-rows: auto 20%;
   grid-row: 2;
+  grid-column-gap: 3px;
   grid-column: 2 / 3;
   font-size: 16px;
   align-self: center;
 `;
 const Divider = styled.div`
   grid-column: 1 / 5;
-  border-bottom: 2px solid ${styles.MAIN_COLOR};
+  border-bottom: 1px solid #dddddd;
   margin-left: 1.5em;
   margin-right: 1.5em;
 `;
