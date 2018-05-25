@@ -17,11 +17,20 @@ const Layout = styled.div`
   grid-row-gap: 15px;
   min-width: 800px;
 
+  > .posts {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 60%;
+    min-width: 400px;
+  }
+
   > .nav {
     grid-column: 1 / -1;
     grid-row: 1;
   }
 `
+
+
 
 const Value = styled.p`
   color: black;
@@ -102,18 +111,20 @@ class QuestionPage extends Component {
       <Layout>
         <div className="nav">
           <Navbar { ...this.props }/>
-        </div>        
-        <Question 
-          question={ this.props.post.questions[0] }
-          {...this.props} 
-        />
-        <AnswerDiv>Answers</AnswerDiv>
-        <Answers 
-          answers={ this.props.post.answers || [] }
-          {...this.props}
-        />
-        <YourAnswerDiv>Your Answer</YourAnswerDiv>
-        <GiveAnswer {...this.props}/>
+        </div>
+        <div className="posts">       
+          <Question 
+            question={ this.props.post.questions[0] }
+            {...this.props} 
+          />
+          <YourAnswerDiv>Your Answer</YourAnswerDiv>
+          <GiveAnswer {...this.props}/>
+          <Answers 
+            answers={ this.props.post.answers || [] }
+            {...this.props}
+          />
+          
+        </div>
       </Layout>
     );
   }

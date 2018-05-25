@@ -14,7 +14,7 @@ const Question = styled.div`
   width: auto;
   height: auto;
   margin: 3px 3px;
-  background-color: ivory;
+  background-color: #ffffff;
 `;
 
 const Stats = styled.div`
