@@ -108,7 +108,7 @@ export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
  * TODO handle for when the user does not pay the min balance before
  * sending to the blockchain.
  */
-const send = (actionName) => (method) => (value, ...args) => async (dispatch, getState) => {
+const send = (actionName) => (isPayable) => (method) => (value, ...args) => async (dispatch, getState) => {
   const contract = getState().web3.contract;
   console.log('\n\n\n\nactionname\n\n\n\n',actionName)
   
@@ -128,9 +128,11 @@ const send = (actionName) => (method) => (value, ...args) => async (dispatch, ge
     return dispatch(NO_METAMASK);
   }
 
+  value = isPayable ? {value} : {};
+
   contract
     .methods[method](...args)
-    .send({from: addresses[0], value})
+    .send({from: addresses[0], ...value})
     .on('transactionHash', (hash) => {
       dispatch({
         type: `${actionName}_HASHED`,
@@ -184,10 +186,10 @@ const send = (actionName) => (method) => (value, ...args) => async (dispatch, ge
  * documentation for more.
  */
 
-export const upVote = send(UP_VOTE)('upVote'); 
-export const payoutWinner = send(PAYOUT_WINNER)('payoutWinner');
-export const createAnswer = send(CREATE_ANSWER)('createAnswer');
-export const createQuestion = send(CREATE_QUESTION)('createQuestion');
+export const upVote = send(UP_VOTE)(false)('upVote'); 
+export const payoutWinner = send(PAYOUT_WINNER)(false)('payoutWinner');
+export const createAnswer = send(CREATE_ANSWER)(true)('createAnswer');
+export const createQuestion = send(CREATE_QUESTION)(true)('createQuestion');
 // possible TODO contract.methods.myMethod.estimateGas estimates the gas a execution will take.
 
 

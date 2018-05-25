@@ -66,8 +66,10 @@ const Answer = (props) => {
       <Actions>
         <Upvote onClick={
           () => {
-            props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)
             store.dispatch({type: 'UPVOTE_WEB3', payload: answer.id})
+            props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)
+
+            
           }
         }>▲</Upvote>
         <VoteCount>{answer && answer.upvoteCount}</VoteCount>
