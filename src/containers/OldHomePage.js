@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import * as FontAwesome from "react-icons/lib/fa";
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
 

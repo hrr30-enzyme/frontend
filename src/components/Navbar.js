@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
+import * as styles from './StyledComponents'
 import Signin from './Signin'
 import Signup from './Signup'
 
@@ -9,13 +9,15 @@ import Search from '../components/Search'
 
 const Nav = styled.nav`
   display: grid;
-  padding-left: 2em;
+  padding-left: 4em;
   padding-bottom: 1em;
-  grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
-  height: 2.3em;
+  grid-template-columns: 1fr 1fr auto 7fr 1fr 1fr;
+  grid-template-rows: auto;
+  height: 30px;
   align-items: center;
-  background-color: #ffffff;
-  border-bottom: solid #888;
+  background-color: white;
+  border-bottom: ${({navStyle}) => 
+    navStyle !=='transparent' ? 'solid #888888' : 'solid transparent'};
   border-width: 1px;
   font-weight: bold;
   > .nav-item {
@@ -23,68 +25,64 @@ const Nav = styled.nav`
   }
   > .nav-title {
     grid-column: 1 / 2;
+    grid-row: 1;
   }
   > .nav-questions {
     grid-column: 3 / 4;
+    grid-row: 1;
   }
   > .nav-home {
     grid-column: 2 / 3;
+    grid-row: 1;
   }
   > .nav-searchbar {
-    grid-column: 4 / 5
-    width: 65%
+    grid-column: 4 / 5;
+    justify-self: center;
+    width: 60%;
+    display: grid;
+    grid-row: 1;
+    max-height: 39px;
   }
   > .nav-auth {
     cursor: pointer;
-    color: gray;
+    color: ${styles.LINK_COLOR};
+    grid-row: 1;
   }
   > .nav-auth:hover {
-    color: #666666;
+    cursor: pointer;
+    color: ${styles.SECONDARY_COLOR};
+    grid-row: 1;
   }
 `;
 
-
-const StyledNavLink = styled(Link)`
-  text-decoration: none;
-  color: ${(props) => props.linkColor || 'gray'}
+const NavAuth = styled.div`
+  cursor: pointer;
+  color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${(props) => props.linkColorHover || '#666666'};
+    color: ${styles.SECONDARY_COLOR};
   }
 `
 
-const handleClick = (e, cb, credentials) => {
-  e.preventDefault();
-  cb(credentials);
-};
-
-const handleClose = (e, cb) => {
-  e.preventDefault();
-  cb("signin");
-};
-
-const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
+const StyledNavLink = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => styles.LINK_COLOR || styles.SECONDARY_COLOR};
+  &:hover {
+    color: ${(props) => styles.SECONDARY_COLOR};
+  }
+`
 
 const Navbar = (props) => {
   console.log('nav bar', props)
   const signedIn = props.authentication.signedIn;
 
-  let NavStyle = props.NavStyle || Nav;
-  let linkColor = 'gray';
-  let linkColorHover = '#666666';
-  if (props.NavStyle) {
-    NavStyle = props.NavStyle;
-    linkColor = NavStyle.linkColor;
-    linkColorHover = NavStyle.linkColorHover;
-  } else {
-    NavStyle = Nav;
-  }
+  let NavStyle = Nav;
+  let linkColor = styles.SECONDARY_COLOR;
+  let linkColorHover = styles.MAIN_COLOR;
 
   return (
     <div>
-      <NavStyle>
-        <div className="nav-title nav-item">
+      <NavStyle navStyle={props.navStyle}>
+        <div className="nav-title">
           <StyledNavLink 
             to="/"
             linkColor={ linkColor }
@@ -93,7 +91,7 @@ const Navbar = (props) => {
             Catalyst
           </StyledNavLink>
         </div>
-        <div className="nav-home nav-item">
+        <div className="nav-home">
           <StyledNavLink 
             to="/home"
             linkColor={ linkColor }
@@ -102,7 +100,7 @@ const Navbar = (props) => {
             Home
           </StyledNavLink>
         </div>
-        <div className="nav-questions nav-item">
+        <div className="nav-questions">
           <StyledNavLink 
             to="/questions"
             linkColor={ linkColor }
@@ -111,7 +109,7 @@ const Navbar = (props) => {
             Questions
           </StyledNavLink>
         </div>
-        <div className="nav-searchbar nav-item">
+        <div className="nav-searchbar">
             <Search {...props} />
 
 
@@ -119,7 +117,7 @@ const Navbar = (props) => {
         
         {signedIn 
           ? (
-            <div>
+            [
               <div className="nav-item">
                 <StyledNavLink 
                   to={ `/user/${props.authentication.userInfo.username}` }
@@ -128,32 +126,28 @@ const Navbar = (props) => {
                 >
                   { props.authentication.userInfo.username }
                 </StyledNavLink>
-              </div>
-              <div className="nav-item">
+              </div>,
+              <NavAuth className="nav-item">
                 <div onClick={ props.signout }>logout</div>
-              </div>
-            </div>
+              </NavAuth>
+            ]
           )
           : [
-              <div
-                className="nav-auth" 
+              <NavAuth
+                className="nav-auth-signin" 
                 onClick={ () => props.openModal("signin") }
               >
-                login
-              </div>,
-              <div 
-                className="nav-auth"
+                Log In
+              </NavAuth>,
+              <NavAuth 
+                className="nav-auth-signup"
                 onClick={() => props.openModal("signup")}
               >
-                signup
-              </div>,
+                Sign Up
+              </NavAuth>
           ]
         }
       </NavStyle>
-      {/*
-       * signin/signout modals
-       *
-       */}
        <Signin
           username={ props.textInput.username }
           password={ props.textInput.password }
@@ -177,7 +171,7 @@ const Navbar = (props) => {
           addText={ props.addText }
           error={ props.authentication.error }
         />
-      </div>
+    </div>
   );
 };
 

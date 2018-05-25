@@ -6,7 +6,7 @@ import QuestionPreview from "../components/QuestionPreview";
 
 const Layout = styled.div`
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: auto auto auto;
   grid-template-columns: 5% auto auto 5%;
   grid-column-gap: 30px;
   grid-row-gap: 15px;
@@ -14,12 +14,24 @@ const Layout = styled.div`
   .nav {
     background-color: red;
     grid-column: 1/5;
+    grid-row: 1
+  }
+
+  .title {
+    grid-row: 2;
+    grid-column: 2 / 4;
+    font-size: 150%;
+    margin: 1em;
+    justify-self: center;
+    color: darkblue;
+    font-weight: bold;
   }
 
   .question {
     background-color: oldlace;
     border: 2px solid grey;
-    grid-column: 2;
+    grid-column: 2;;
+    grid-row: 3;
     min-width: 650px;
   }
 `;
@@ -30,6 +42,7 @@ export default class SearchResultsPage extends Component {
   }
 
   render() {
+    console.log(this.props.searchBar.results);
     if (!this.props.searchBar.results) {
       return <div>Loading...</div>;
     } else {
@@ -38,7 +51,7 @@ export default class SearchResultsPage extends Component {
           <div className="nav">
             <NavBar {...this.props} />
           </div>
-          <h2>Search Results:</h2>
+          <div className='title'>Search Results:</div>
           {this.props.searchBar.results.results.map(object => {
             let question = object._source;
             return (

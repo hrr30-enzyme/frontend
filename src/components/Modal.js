@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 import React from "react";
-
-import { MAIN_ORANGE } from './StyledComponents'
+import * as styles from '../components/StyledComponents'
+import { MAIN_COLOR } from './StyledComponents'
 /*
  *
  * Use modal function to create a modal
@@ -33,7 +33,7 @@ const ModalContent = styled.div`
   padding: 1rem 1.5rem;
   width: 24rem;
   border-radius: 0.17rem;
-  border-top: .3rem solid ${MAIN_ORANGE}
+  border-top: .3rem solid ${"#FFBE71"}
 `;
 
 const InnerDiv = styled.div`

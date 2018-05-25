@@ -6,14 +6,11 @@ import { Link } from "react-router-dom";
 
 const Question = styled.div`
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto;
   grid-template-columns: 20% 10% auto auto;
-  grid-column-gap: 35px;
+  grid-column-gap: 20px;
   grid-row-gap: 1em;
   text-decoration: none;
-  width: auto;
-  height: auto;
-  margin: 2px 2px;
 `;
 
 const Stats = styled.div`
@@ -22,9 +19,9 @@ const Stats = styled.div`
   grid-row: 1 / span 2;
   grid-column: 1;
   grid-column-gap: 5px;
-  justify-self: left;
   align-self: center;
-  margin-bottom: 10px;
+  justify-self: center;
+  margin-left: 1em;
 `;
 
 const Votes = styled.div`
@@ -67,20 +64,21 @@ const Bounty = styled.div`
   font-weight: bolder;
   font-size: 18px;
   font-style: italic;
+  margin-top: 0.7em;
 `
 
 const Reward = styled.div`
   grid-row: 2;
   grid-column: 2;
-  border-bottom: solid 1px #A50104;
   margin-bottom: 10px;
   justify-self: left;  
 `
 
 const Title = styled.div`
-  grid-row: 1;
+  grid-row: 1 / span 2;
   grid-column: 3;
-  font-size: 24px;
+  font-size: 18px;
+  align-self: center;
   text-decoration: none;
 `
 
@@ -90,6 +88,7 @@ const User = styled.div`
   font-size: 18px;
   text-decoration: none;
   justify-self: right;
+  padding: 10px;
 `
 
 const Tags = styled.div`
@@ -101,55 +100,11 @@ const Tags = styled.div`
   margin-bottom: 10px;
 `
 
-const Tag1 = styled.div`
-  grid-column: 1;
-  border: solid 2px yellow;
-  border-radius: 4px;
-`
-
-const Tag2 = styled.div`
-  grid-column: 2;
-  border: solid 2px #FCBA04;
-  border-radius: 4px;  
-`
-
-const Tag3 = styled.div`
-  grid-column: 3;
-  border: solid 2px #A50104;
-  border-radius: 4px;  
-`
-
-const Tag4 = styled.div`
-  grid-column: 4;
-  border: solid 2px #590004;
-  border-radius: 4px;  
-`
-
-const Tag5 = styled.div`
-  grid-column: 5;
-  border: solid 2px #250001;
-  border-radius: 4px;  
-`
-
-const Tag6 = styled.div`
-  grid-column: 6;
-  border: solid 2px #000000;
-  border-radius: 4px;  
-`
-
-const handleClick = (e, callback, cb, id) => {
-  e.preventDefault();
-
-  callback(id);
-  cb(`/question/${id}`);
-};
-
-
 const QuestionPreview = ({question}) => {
 
   const username = question.User ? question.User.username : 'fake';
   return (
-    <Link to={`/question/${question.id}`} style={{textDecoration: 'none'}}>
+    <Link to={`/question/${question.id}`} className='link'>
       <Question >
         <Stats>
           <MiniCount>
@@ -190,12 +145,7 @@ const QuestionPreview = ({question}) => {
           {username}
         </User>
         <Tags>
-          <Tag1>TAG1</Tag1>
-          <Tag2>TAG2</Tag2>
-          <Tag3>TAG3</Tag3>
-          <Tag4>TAG4</Tag4> 
-          <Tag5>TAG5</Tag5>
-          <Tag6>TAG6</Tag6>       
+     
         </Tags>
       </Question>
     </Link>
