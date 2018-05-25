@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import * as styles from "../components/StyledComponents";
+
 
 
 const Layout = styled.div`
-  grid-column: 2;
-  min-width: 650px;
+  grid-column: 2 / 4;
+  min-width: 400px;
   display: grid;
   padding-left: 2em;
   grid-template-rows: auto;
   grid-template-columns: 10% 80% auto;
 `
-const Username = styled.h4`
+const Username = styled.h3`
   grid-row: 1;
   grid-column: 3;
   justify-self: right;
@@ -28,7 +30,6 @@ const Upvote = styled.div`
   grid-row: 1;
   justify-self: center;
   cursor: pointer;  
-  
 `
 const VoteCount = styled.div`
   grid-row: 2;
@@ -37,26 +38,24 @@ const VoteCount = styled.div`
 const Downvote = styled.div`
   grid-row: 3;
   justify-self: center;
-  cursor: pointer;  
-  
+  cursor: pointer;   
 `
 const Check = styled.div`
   grid-row: 4;
   justify-self: center;
   font-size: 40px;
-  color: grey;
+  color: ${styles.MAIN_COLOR};
 `
 const Body = styled.p`
   grid-row: 2;
-  grid-column: 2 / span 3;
-  background-color: oldlace;
-  border: 2px solid grey;
+  grid-column: 2 / 4;
+  background-color: ivory;
+  border: 2px solid ${styles.MAIN_COLOR};
   font-size: 20px;
 `
 
 const Answer = (props) => {
   const answer = props.answer
-  const id = answer && answer.id
   
   console.log('Answer component: ', answer)
   return (

@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
-  grid-column: 2;
+  grid-column: 2 / 4;
   display: grid;
   grid-template-rows: 10em auto;
-  grid-template-columns: 50em;
+  grid-template-columns: auto;
 `;
 
 const GiveAnswer = props => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
+import * as styles from "../components/StyledComponents";
 import Question from '../components/Question'
 import Answer from '../components/Answer'
 import Answers from './Answers'
@@ -12,13 +12,14 @@ import Ask from '../components/AskQuestion'
 const Layout = styled.div`
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 5% auto auto 5%;
+  grid-template-columns: auto auto;
   grid-column-gap: 30px;
   grid-row-gap: 15px;
 
   > .nav {
     background-color: red;
-    grid-column: 1/5;
+    grid-column: 1 / 6;
+    grid-row: 1;
   }
 `
 
@@ -60,20 +61,22 @@ const Hot = styled.h2`
   margin-top: 2em;
 `
 const AnswerDiv = styled.div`
-  grid-column: 1 / span 2;
+  grid-column: 1 / 4;
   border-bottom: solid lightgrey 1px;
   padding: 1em;
-  margin: 2em;
+  margin-bottom: 2em;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 28px;
+  color: ${styles.BORDER_MODAL};
 `
 const YourAnswerDiv = styled.div`
-  grid-column: 1 / span 2;
+  grid-column: 1 / 4;
   border-top: solid lightgrey 1px;
   padding: 1em;
   margin: 2em;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 28px;
+  color: ${styles.BORDER_MODAL};
 `
 
 class QuestionPage extends Component {
@@ -100,25 +103,6 @@ class QuestionPage extends Component {
         <div className="nav">
           <Navbar { ...this.props }/>
         </div>        
-        <Button onClick={() => this.props.openModal("ask")}>Ask a Question</Button>
-        <Sidebar>
-          <Hot>
-            FOR YOU
-          </Hot>
-        </Sidebar>
-        <AskQuestion
-          title={this.props.textInput.title}
-          body={this.props.textInput.body}
-          showModal={(() => {
-            console.log('this.props.showMOda.ask', this.props.showModal.ask)
-            return this.props.showModal.ask
-          })()}
-          closeModal={this.props.closeModal}
-          userInfo ={this.props.authentication.userInfo}
-          authentication = {this.props.authentication}
-          addText={ this.props.addText }
-          postQuestion= { this.props.postQuestion }
-        />
         <Question 
           question={ this.props.post.questions[0] }
           {...this.props} 

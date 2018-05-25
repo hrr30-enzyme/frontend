@@ -9,20 +9,19 @@ import Search from '../components/Search'
 
 const Nav = styled.nav`
   display: grid;
-  padding-left: 2em;
-  padding-bottom: 1em;
-  grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
-  height: 2.3em;
+  grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
+  height: 3.3em;
   align-items: center;
+  justify-items: center;
   background-color: rgb(232, 246, 255);
-  border-bottom: solid #888;
-  border-width: 1px;
+  border-bottom: 1px solid #888;
   font-weight: bold;
-  > .nav-item {
-    display: inline;
-  }
+  padding-left: 4em;
+
   > .nav-title {
     grid-column: 1 / 2;
+    margin-right: 1em;
+    font-size: 20px
   }
   > .nav-questions {
     grid-column: 3 / 4;
@@ -31,46 +30,42 @@ const Nav = styled.nav`
     grid-column: 2 / 3;
   }
   > .nav-searchbar {
-    grid-column: 4 / 6;
-    justify-self: center;
+    grid-column: 4 / 5;
+    align-self: center;
+    width: 60%;
+    display: grid;
+    grid-columns: 1fr;
   }
-  > .nav-auth {
+  > .nav-auth-signin {
     cursor: pointer;
     color: ${styles.SECONDARY_COLOR};
+    grid-column: 5 / 6;
+  }
+  > .nav-auth-signup {
+    cursor: pointer;
+    color: ${styles.SECONDARY_COLOR};
+    grid-column: 6 / 7;
   }
   > .nav-auth:hover {
     color: ${styles.MAIN_COLOR};
+    grid-column: 6 / 7;
   }
 `;
 
 
 const StyledNavLink = styled(Link)`
   text-decoration: none;
-  color: ${(props) => props.linkColor || styles.SECONDARY_COLOR}
+  color: ${(props) => styles.LINK_COLOR || styles.SECONDARY_COLOR};
   &:hover {
-    color: ${(props) => props.linkColorHover || styles.MAIN_COLOR};
+    color: ${(props) => styles.MAIN_COLOR};
   }
 `
-
-const handleClick = (e, cb, credentials) => {
-  e.preventDefault();
-  cb(credentials);
-};
-
-const handleClose = (e, cb) => {
-  e.preventDefault();
-  cb("signin");
-};
-
-const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
 
 const Navbar = (props) => {
   console.log('nav bar', props)
   const signedIn = props.authentication.signedIn;
 
-  let NavStyle = props.NavStyle || Nav;
+  let NavStyle = Nav;
   let linkColor = styles.SECONDARY_COLOR;
   let linkColorHover = styles.MAIN_COLOR;
   if (props.NavStyle) {
@@ -84,7 +79,7 @@ const Navbar = (props) => {
   return (
     <div>
       <NavStyle>
-        <div className="nav-title nav-item">
+        <div className="nav-title">
           <StyledNavLink 
             to="/"
             linkColor={ linkColor }
@@ -93,7 +88,7 @@ const Navbar = (props) => {
             Catalyst
           </StyledNavLink>
         </div>
-        <div className="nav-home nav-item">
+        <div className="nav-home">
           <StyledNavLink 
             to="/home"
             linkColor={ linkColor }
@@ -102,7 +97,7 @@ const Navbar = (props) => {
             Home
           </StyledNavLink>
         </div>
-        <div className="nav-questions nav-item">
+        <div className="nav-questions">
           <StyledNavLink 
             to="/questions"
             linkColor={ linkColor }
@@ -111,7 +106,7 @@ const Navbar = (props) => {
             Questions
           </StyledNavLink>
         </div>
-        <div className="nav-searchbar nav-item">
+        <div className="nav-searchbar">
             <Search {...props} />
 
 
@@ -136,13 +131,13 @@ const Navbar = (props) => {
           )
           : [
               <div
-                className="nav-auth" 
+                className="nav-auth-signin" 
                 onClick={ () => props.openModal("signin") }
               >
                 login
               </div>,
               <div 
-                className="nav-auth"
+                className="nav-auth-signup"
                 onClick={() => props.openModal("signup")}
               >
                 signup

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group' 
 import * as styles from '../components/StyledComponents'
+import * as FontAwesome from "react-icons/lib/fa";
 
 import Navbar from '../components/Navbar'
 
@@ -11,6 +12,7 @@ const Div = styled.div`
   padding-top: 0;
   padding-bottom: 0;
   background-size: cover;
+  display: grid;
   grid-gap: 0px;
   background-position: center center;
   -webkit-transition: all 1s linear;
@@ -25,12 +27,12 @@ const Div = styled.div`
   > .top-pic {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto auto auto auto;
     align-content: center;
     justify-content: center;
     height: 100vh;
     min-height: 650px;
-    background: linear-gradient(to bottom, ${'white'}, ${styles.SKY_BLUE});
+    background: linear-gradient(to bottom, ${"white"}, ${styles.LANDING_BLUE});
     
     margin-bottom: 0;
   }
@@ -40,10 +42,11 @@ const transparentNav = styled.nav`
   width: 100%;
   position: fixed;  
   display: grid;
-  padding-left: .6em;
-  grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
-  height: 2.3em;
+  padding-left: padding-left: 4em;
+  grid-template-columns: 1.3fr 1fr 1fr 7fr 1fr 1fr;
+  height: 3.3em;
   align-items: center;
+  justify-items: center;
   border-bottom: solid transparent;
   top: 0;
   border-width: 1px;
@@ -57,6 +60,8 @@ const transparentNav = styled.nav`
   }
   > .nav-title {
     grid-column: 1 / 2;
+    margin-right: 1em;
+    font-size: 20px;
   }
   > .nav-home {
     grid-column: 2 / 3;
@@ -78,11 +83,12 @@ const transparentNav = styled.nav`
 `;
 
 const mainNav = styled.nav`
+  padding-left: 5%;
+  padding-right: 5%;
   display: grid;
   position: fixed;
   width: 100%;
   margin-top: 0px;
-  padding-left: .6em;
   grid-template-columns: 5em 5em 6em auto 5em 5em 5em;
   height: 2.3em;
   align-items: center;
@@ -96,6 +102,8 @@ const mainNav = styled.nav`
   }
   > .nav-title {
     grid-column: 1 / 2;
+    margin-right: 1em;
+    font-size: 20px
   }
   > .nav-home {
     grid-column: 2 / 3;
@@ -104,12 +112,21 @@ const mainNav = styled.nav`
     grid-column: 3 / 4;
   }
   > .nav-searchbar {
+    align-self: center;
     grid-column: 4 / 5
-    width: 65%
+    width: 60%
+    display: grid;
+    grid-columns: 1fr;
   }
-  > .nav-auth {
+  > .nav-auth-signin {
     cursor: pointer;
-    color: gray;
+    color: ${styles.SECONDARY_COLOR};
+    grid-column: 5 / 6;
+  }
+  > .nav-auth-signup {
+    cursor: pointer;
+    color: ${styles.SECONDARY_COLOR};
+    grid-column: 6 / 7;
   }
   > .nav-auth:hover {
     color: #00b273;
@@ -117,7 +134,7 @@ const mainNav = styled.nav`
 `;
 
 const Logo = styled.h1`
-  color: ${styles.LINK_COLOR};
+  color: ${styles.GRAY_4};
   font-size: 10em;
   > span {
     font-size: .84em;
@@ -127,34 +144,48 @@ const Logo = styled.h1`
 const Tagline = styled.p`
   text-align: center;
   display: block;
-  color: ${styles.LINK_COLOR};
+  color: ${styles.GRAY_4};
   font-size: 3em;
   font-weight: bold;
 `
 
 const AboutSection = styled.section`
-  background-color: ${styles.GRAY_1};
+  background-color: ${styles.DARKPURPLE};
   margin-top: 0;
   margin-bottom: 0;
   display: grid;
   padding: 0;
+  grid-template-rows: auto auto auto auto auto auto auto;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 3fr 1fr 3fr;
-  height: 100%;
+  height: 60vh;
   white-space: pre-wrap;
   
   > p {
     grid-column: 1 / 2;
-    color: white
+    color: white;
+    text-indent: 0px;
   }
   > .title {
     grid-column: 1 / 2;
-    color: white
+    color: white;
+
   }
 
+  > .title-1 {
+    grid-column: 1 / 2;
+    color: white;
+    font-size: 2.5em;
+    text-align: left;
+    text-
+    font-weight: normal;
+  }
+
+  > .title-1 > strong {
+    font-weight: bold;
+  }
   > img {
     grid-column: 2 / 4;
-    grid-row: 1 / 5;
+    grid-row: 1 / 8;
     justify-self: center;
     align-self: center;
   }
@@ -163,12 +194,31 @@ const AboutSection = styled.section`
 `;
 
 const UsSection = styled.section`
-  background-color: ${styles.REDISH}
+  background-color: ${styles.YELLOW};
+  height: 60vh;
+  margin-top: 0px;
 `
 
-const PortfolioSection = styled.section``
-const TechStackSection = styled.section``
-const SignUpSection = styled.section``
+const PortfolioSection = styled.section`
+  background-color: ${styles.GRAY_1}
+  height: 60vh;
+  margin-top: 0px;
+`
+const TechStackSection = styled.section`
+  background-color: ${styles.REDISH}
+  height: 60vh;
+  margin-top: 0px;
+  display: grid;
+  grid-template-rows: 2;
+  grid-template-columns: auto auto auto auto auto;
+  padding: 3em;
+`
+
+const SignUpSection = styled.section`
+  background-color: ${styles.GRAY_4}
+  height: 25vh;
+  margin-top: 0px;
+`
 
 
 export default class LandingPage extends Component {
@@ -221,42 +271,104 @@ export default class LandingPage extends Component {
         </header>
   
         <AboutSection id="about">
-          <h2 className="title">Get answers fast</h2>
+          <h2 className="title-1">Get <strong>payed</strong> for expertise</h2>
           <p>
-            {`
-              Catalyst is a decentralized question/answer forum to get your programming questions answered.   
-              
-              Question bounties help your programming questions get answered fast.  
-              
-              Users upvote posts and the best answer gets payed out in ethereum.
-            `}
+            Users get payed 24/7 for top answers.  Win bounties for top answers and withdraw anytime.
           </p>
-          <h2 className="title">Intelligent and secure platform</h2>
+          <h2 className="title-1"> 
+            Vote for the top answers
+          </h2>
           <p>
-            {`
-              Answers add to the bounty when contributing their answer.   This creates intelligent high quality answers as your answerers will be putting their money where there mouth is.
+            Top users vote based on their expertise.  The more expertise a user shows, the more voting power they recieve.
+          </p>
 
-              The ethereum network provides a secure and decentralized platform for users.
-            `}
-          </p>
+      
+      
+          
           <img 
             alt="ethereum logo"
             src="./ethereum.png"
-            height="440"
+            height={ Math.min(510, this.state.scroll / 2)}
+            style={{offset: Math.max(0, this.state.scroll / 10)}}
           />
         </AboutSection>
 
         <UsSection id="us">
           
-          this section has information about us who built the app
+        <h2 className="title">Intelligent and secure platform</h2>
+          <p>
+            Answers add to the bounty when contributing their answer.   This creates intelligent high quality answers as your answerers will be putting their money where there mouth is.
+          </p>
+          <p>
+            The ethereum network provides a secure and decentralized platform for users.
+          </p>
         </UsSection>
 
         <PortfolioSection id="portfolio">
-          More information about the app
+          <FounderCard />
+          <FounderCard />
+          <FounderCard />
         </PortfolioSection>
 
         <TechStackSection id="signup-now">
-          sign up now button
+          <img 
+              alt="elastic search logo"
+              src="./elastic.png"
+              height={  Math.max(Math.sin(this.state.scroll / 50) * 11, 7) + 160 }
+              style={{offset: Math.max(.34, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="flask logo"
+              src="./flask.png"
+              height={  Math.max(Math.sin(1 + this.state.scroll / 50) * 11, 7) + 160 }
+              style={{offset: Math.max(.62, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="node-sequelize logo"
+              src="./node-sequelize.png"
+              height={  Math.max(Math.sin(2 + this.state.scroll / 50) * 11, 7) + 160 }
+              style={{offset: Math.max(.93, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="postgres logo"
+              src="./postgres.png"
+              height={ Math.max(Math.sin(3 + this.state.scroll / 50) * 11, 7) + 160 }
+              style={{offset: Math.max(1.24, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="python logo"
+              src="./python.png"
+              height={ Math.max(Math.sin(this.state.scroll / 50) * 11,7) + 160 }
+              style={{offset: Math.max(1.56, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="react-router logo"
+              src="./react-router.svg"
+              height={ Math.max(Math.sin(1 + this.state.scroll / 50) * 11, 7) + 160 }
+              style={{offset: Math.max(1.88, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="react logo"
+              src="./react.svg"
+              height={ Math.max(Math.sin(2 + this.state.scroll / 50) * 11, 7) + 160 }
+              style={{offset: Math.max(2.22, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="redux logo"
+              src="./redux.png"
+              height={ Math.max(Math.sin(3 + this.state.scroll / 50) * 11, 7) + 160 }
+              style={{offset: Math.max(2.55, this.state.scroll / 10)}}
+            />
+            <img 
+              alt="solidity logo"
+              src="./soldity.svg"
+              height={ Math.max(Math.sin(2.87 + this.state.scroll / 50) * 11, 7) + 160 }
+            />
+            <img 
+              alt="styled components"
+              src="./styled-components.png"
+              height={ Math.max(Math.sin(3.1 + this.state.scroll / 50) * 44, 7) + 160 }
+            />
         </TechStackSection>
 
         <SignUpSection id="stack">
@@ -265,4 +377,17 @@ export default class LandingPage extends Component {
       </Div>
     );
   }
+}
+
+
+const FounderCard = (props) => {
+
+  return (
+    <a href="https://github.com/roninjin10">
+      <img src="#" alt="" className="founder"/>
+      <div className="name">William Cory</div>
+      <div className="role"></div>
+      <div className="social">{FontAwesome.FaGithubAlt}</div>
+    </a>
+  )
 }

@@ -2,22 +2,47 @@ import React from "react";
 import styled from "styled-components";
 import FaSearch from "react-icons/lib/fa/search";
 import * as styles from './StyledComponents'
+//import SearchBar from 'material-ui-search-bar'
 
 const SearchBar = styled.input`
   padding: 0.5em;
   margin: 0.5em;
   background: white;
-  border: 2px solid lightgray;
+  border: 2px solid lightsteelblue;
   border-radius: 9px;
-  width: 65%;
-  justify-self: center;
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-columns: auto 3em;
+  align-items: center;
+  justify-items: center;
+  width: 80%;
+  > div {
+    justify-self: center;
+  }
+  > .fa-hour {
+    padding-top: 2em;
+    grid-column: 2 / 3;
+    align-self: center;
+  }
+  > svg {
+    align-self: center;
+  }
 `;
+const Div = styled.div`
+  display: grid;
+  grid-template-columns: auto 3em;
+  > input {
+    width: 100%;
+    min-width: 8.5em;
+  }
+  > svg {
+    align-self: center;
+    cursor: pointer;
+  }
+`
 
 const Results = styled.div`
-  margin: 0.5em;
-  padding: 0.5em;
-  background: white;
-  width: 65%;
+
 `;
 
 const Search = props => {
@@ -54,7 +79,7 @@ const Search = props => {
 
   if (!props.searchBar.suggestions) {
     return (
-      <div>
+      <Div>
         <SearchBar
           placeholder="Search..."
           type="text"
@@ -65,11 +90,11 @@ const Search = props => {
           }
         />
         <FaSearch onClick={e => handleClick(e, props.clearText)} />
-      </div>
+      </Div>
     );
   } else {
     return (
-      <div>
+      <Div>
         <SearchBar
           placeholder="Search..."
           type="text"
@@ -105,7 +130,7 @@ const Search = props => {
               </Results>
             ) : (<div></div>)
         )}
-      </div>
+      </Div>
     );
   }
 };
