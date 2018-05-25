@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import * as styles from "../components/StyledComponents";
 
 const Layout = styled.div`
-  grid-column: 2;
+  grid-column: 2 / 4;
   grid-row: 2;
-  min-width: 650px;
+  min-width: 400px;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 10% 80% auto;
+  grid-template-columns: 10% 80% 10%;
 `
 const Stats = styled.div`
   grid-row: 1;
@@ -27,11 +28,12 @@ const Value = styled.p`
 `
 const Title = styled.h2`
   grid-row: 2;
-  grid-column: 1 / span 2;
+  grid-column: 1 / 4;
   border-bottom: solid lightgrey 1px;
   margin-bottom: 1em;
+  color: 
 `
-const Username = styled.h4`
+const Username = styled.h3`
   grid-row: 2;
   grid-column: 3;
   justify-self: right;
@@ -49,7 +51,6 @@ const Upvote = styled.div`
   grid-row: 1;
   justify-self: center;
   cursor: pointer;  
-  
 `
 const VoteCount = styled.div`
   grid-row: 2;
@@ -59,21 +60,19 @@ const Downvote = styled.div`
   grid-row: 3;
   justify-self: center;
   cursor: pointer;  
-  
 `
 const Star = styled.div`
   grid-row: 4;
   justify-self: center;
   font-size: 40px;
-  color: grey;
   cursor: pointer;  
-  
+  color: ${styles.MAIN_COLOR};
 `
 const Body = styled.p`
   grid-row: 3;
-  grid-column: 2 / span 3;
-  background-color: oldlace;
-  border: 2px solid grey;
+  grid-column: 2 / 4;
+  background-color: ivory;
+  border: 2px solid ${styles.MAIN_COLOR};
   font-size: 20px;
 `
 

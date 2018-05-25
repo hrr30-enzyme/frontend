@@ -13,6 +13,11 @@ export const GRAY_1 = `#8B8B8B`
 export const GRAY_2 = `#363636`
 export const GRAY_3 = `#3B3B3B`
 export const GRAY_4 = `#1B1B1B`
+export const REDISH = `#9a6c53`
+export const YELLOW = `#9a8f53`
+export const DARKPURPLE = `#83539a`
+export const WHITE_BLUE = '#E9F3F8'
+export const LANDING_BLUE = '#537f9a'
 
 export const Input = styled.input`
   padding: 0.5em;

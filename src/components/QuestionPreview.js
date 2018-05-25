@@ -13,7 +13,8 @@ const Question = styled.div`
   text-decoration: none;
   width: auto;
   height: auto;
-  margin: 2px 2px;
+  margin: 3px 3px;
+  background-color: ivory;
 `;
 
 const Stats = styled.div`
@@ -72,15 +73,15 @@ const Bounty = styled.div`
 const Reward = styled.div`
   grid-row: 2;
   grid-column: 2;
-  border-bottom: solid 1px #A50104;
   margin-bottom: 10px;
   justify-self: left;  
 `
 
 const Title = styled.div`
-  grid-row: 1;
+  grid-row: 1 / span 2;
   grid-column: 3;
   font-size: 24px;
+  align-self: center;
   text-decoration: none;
 `
 
@@ -105,7 +106,7 @@ const QuestionPreview = ({question}) => {
 
   const username = question.User ? question.User.username : 'fake';
   return (
-    <Link to={`/question/${question.id}`} style={{textDecoration: 'none'}}>
+    <Link to={`/question/${question.id}`} className='link'>
       <Question >
         <Stats>
           <MiniCount>
