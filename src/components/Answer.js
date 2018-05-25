@@ -50,11 +50,11 @@ const Check = styled.div`
 const Body = styled.p`
   grid-row: 2;
   grid-column: 2 / 4;
-  background-color: ivory;
   border: 2px solid ${styles.MAIN_COLOR};
   font-size: 20px;
   min-height: 250px;
   white-space: pre-wrap;
+  padding: 25px;
 `
 
 const Answer = (props) => {

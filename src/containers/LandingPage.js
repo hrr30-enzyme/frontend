@@ -218,11 +218,12 @@ const UsSection = styled.section`
   height: 60vh;
   margin-top: 0px;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: auto auto;
   grid-gap: 2em;
   padding: 3em;
-  text-align: right;
+  text-align: center;
+  color: white;
   > img {
     grid-column: 1 / 2;
     grid-row: 1 / 3;
@@ -236,9 +237,6 @@ const UsSection = styled.section`
   }
 `
 
-const Eric = styled.div`
-  background-color: red;
-`
 
 const PortfolioSection = styled.section`
   height: 70vh;
@@ -381,7 +379,7 @@ export default class LandingPage extends Component {
 
         <PortfolioSection id="portfolio">
           <Card>
-          <img alt="Kyle" src="./eric.jpg" />
+          <img alt="Kyle" src="./kyle.png" />
           <div className="Kyle">Kyle</div>
           </Card>
           <Card>
@@ -389,7 +387,7 @@ export default class LandingPage extends Component {
           <div className="Eric">Eric</div>
           </Card>
           <Card>
-          <img alt="Will" src="./eric.jpg" />
+          <img alt="Will" src="./will.jpg" />
           <div className="will">Will</div>
           </Card>
         </PortfolioSection>

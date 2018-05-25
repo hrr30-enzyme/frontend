@@ -14,8 +14,9 @@ const Layout = styled.div`
   grid-row-gap: 10px;
 
   .question {
-    border: 3px solid ${styles.SECONDARY_COLOR};
-    border-radius: 8px;
+    border: 2px solid ${styles.SECONDARY_COLOR};
+
+    border-radius: 5px;
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
     grid-column: 2;
@@ -64,11 +65,11 @@ const UserStats = styled.div`
   max-height: auto;
   min-width: 250px;
   grid-template-columns: auto auto auto;
-  grid-template-rows: 50% auto;
+  grid-template-rows: 40px auto;
   color: ${styles.GRAY_2};
 
   .title {
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 1/ span 3;
     font-weight: bold;
     border-bottom-color: lightgray;
@@ -79,7 +80,7 @@ const UserStats = styled.div`
   }
 
   .answers {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 1/2;
     align-self: stretch;
     display: grid;
@@ -94,7 +95,7 @@ const UserStats = styled.div`
   }
 
   .questions {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 2/3;
     align-self: stretch;
     display: grid;
@@ -108,7 +109,7 @@ const UserStats = styled.div`
   }
 
   .comments {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 3/4;
     align-self: stretch;
     display: grid;
@@ -159,6 +160,7 @@ const UserQuestions = styled.div`
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
       background: #c6cbf9;
+      padding: 15px;
       &:hover {
         background: #a4adf9;
       }
@@ -183,11 +185,11 @@ const UserAnswers = styled.div`
   border-color: #f2f2f2;
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-template-rows: auto 50px;
+  grid-template-rows: 50px auto;
   color: ${styles.GRAY_2};
 
   .title {
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 1 / span 3;
     border-bottom-style: inset;
     border-bottom-color: lightgray;
@@ -199,9 +201,9 @@ const UserAnswers = styled.div`
   }
 
   .answers {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 1 / span 3;
-    justifygn-self: stretch;
+    justify-self: stretch;
     display: grid;
     grid-template-rows: auto auto auto;
 
@@ -210,6 +212,8 @@ const UserAnswers = styled.div`
       border-bottom: 1px solid darkgray;
       text-align: left;
       background: #92CDEC;
+      padding: 15px;
+      align-self: stretch;
       &:hover {
         background: #67b2da;
       }
@@ -230,17 +234,18 @@ const UserAnswers = styled.div`
 const Button = styled.button`
   grid-column: 3;
   grid-row: 2;
-  background: linear-gradient(to bottom, ${"white"}, lightsteelblue);
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  background: linear-gradient(to bottom, ${"white"}, ${styles.LINK_COLOR});
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
   &:hover {
     background: rgb(233, 243, 248);
-    border: 2px solid ${styles.MAIN_COLOR};
+    border: 2px solid ${styles.GRAY_2};
   }
   font-size: 1em;
   font-weight: bold;
   margin-right: 2em;
   padding: 1em 1em;
-  border: 2px solid ${styles.SECONDARY_COLOR};
+  border: 2px solid ${styles.GRAY_2};
   border-radius: 3px;
   justify-self: right;
   align-self: center;
@@ -252,6 +257,7 @@ const Heading = styled.div`
   grid-template-columns: 20% 15% auto;
   grid-template-rows: auto 20%;
   grid-row: 2;
+  grid-column-gap: 3px;
   grid-column: 2 / 3;
   font-size: 16px;
   align-self: center;
@@ -259,7 +265,7 @@ const Heading = styled.div`
 `;
 const Divider = styled.div`
   grid-column: 1 / 5;
-  border-bottom: 2px solid ${styles.MAIN_COLOR};
+  border-bottom: 1px solid #dddddd;
   margin-left: 1.5em;
   margin-right: 1.5em;
   margin-bottom: 2em;
@@ -381,7 +387,11 @@ export default class QuestionsPage extends Component {
           </Tag4>
           <Tag5
             onClick={() => {
-              this.props.getRecomendations();
+              console.log('isloggedin', this.props)
+              if (this.props.authentication.signedIn === true) {
+                this.props.getRecomendations();
+                this.props.changeSortedBy('Recomended')
+              }
             }}
           >
             Recomended

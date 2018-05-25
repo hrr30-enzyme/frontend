@@ -74,7 +74,7 @@ const Star = styled.div`
 const Body = styled.p`
   grid-row: 3;
   grid-column: 2 / 4;
-  background-color: ivory;
+  background-color: white;
   border: 2px solid ${styles.MAIN_COLOR};
   padding: 25px;
   white-space: pre-wrap;

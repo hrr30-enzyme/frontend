@@ -11,6 +11,10 @@ const Question = styled.div`
   grid-column-gap: 20px;
   grid-row-gap: 1em;
   text-decoration: none;
+  width: auto;
+  height: auto;
+  margin: 3px 3px;
+  background-color: #ffffff;
 `;
 
 const Stats = styled.div`
@@ -136,7 +140,7 @@ const QuestionPreview = ({question}) => {
           Bounty
         </Bounty>
         <Reward>
-          {Math.round(question.bounty * 100) / 100} ETH
+          {(Math.round(question.bounty * 100) / 100) || .1 } ETH
         </Reward>
         <Title>
           {question.title}

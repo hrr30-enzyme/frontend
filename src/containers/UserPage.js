@@ -19,8 +19,13 @@ const Layout = styled.div`
     border-radius: 8px;
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
+<<<<<<< HEAD
     grid-column: 2 / 4;
+=======
+    grid-column: 2 / 5;
+>>>>>>> 531539adfb5355f0234c801938f454db38314272
     min-width: 800px;
+    max-width: 800px;
     background-color: aliceblue;
     justify-self: center;
   }
@@ -29,6 +34,10 @@ const Layout = styled.div`
     border: 3px solid violet;
     border-radius: 8px;
     min-width: 800px;
+<<<<<<< HEAD
+=======
+    max-width: 800px;
+>>>>>>> 531539adfb5355f0234c801938f454db38314272
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
       0 2px 5px 0 ${styles.MAIN_COLOR};
     grid-column: 2 / 4;

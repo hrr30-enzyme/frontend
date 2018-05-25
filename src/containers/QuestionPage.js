@@ -16,7 +16,6 @@ const Layout = styled.div`
   grid-column-gap: 30px;
   grid-row-gap: 15px;
   min-width: 800px;
-
   > .nav {
     grid-column: 1 / -1;
     grid-row: 1;
@@ -102,7 +101,9 @@ class QuestionPage extends Component {
       <Layout>
         <div className="nav">
           <Navbar { ...this.props }/>
-        </div>        
+        </div>
+        <YourAnswerDiv>Your Answer</YourAnswerDiv>
+        <GiveAnswer {...this.props}/>      
         <Question 
           question={ this.props.post.questions[0] }
           {...this.props} 
@@ -112,8 +113,6 @@ class QuestionPage extends Component {
           answers={ this.props.post.answers || [] }
           {...this.props}
         />
-        <YourAnswerDiv>Your Answer</YourAnswerDiv>
-        <GiveAnswer {...this.props}/>
       </Layout>
     );
   }
