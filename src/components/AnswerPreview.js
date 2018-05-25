@@ -5,70 +5,131 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Answer = styled.div`
-  display: block
-  padding: 12px;
-  border-bottom: 1px solid #e4e6e8;
-  width: 728px;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 20% 10% auto auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 1em;
+  text-decoration: none;
 `;
 
-/* const Stats = styled.div`
-  float: left;
-  vertical-align: top;
-  margin-right: 50px;
-  cursor: pointer;
+const Stats = styled.div`
+  display: grid;
+  grid-template-columns: 40px 50px 50px;
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  grid-column-gap: 5px;
+  align-self: center;
+  justify-self: center;
+  margin-left: 1em;
 `;
+
 const Votes = styled.div`
   display: inline-block;
-  height: 38px;
-  min-width: 38px;
-  margin: 0 3px 0 0;
-  font-size: 11px;
-  color: #848d95;
+  grid-column: 1;
+  font-size: 14px;
 `;
 
 const Answers = styled.div`
   display: inline-block;
-  margin: 0 3px 0 0;
-  min-width: 44px;
-  height: auto;
-  font-size: 11px;
+  grid-column: 2;
+  font-size: 14px;
 `;
 
 const Views = styled.div`
   display: inline-block;
-  height: 38px;
-  min-width: 40px;
-  margin: 0 7px 0 0;
-  font-size: 11px;
-  color: #848d95;
+  grid-column: 3;
+  font-size: 14px;
 `;
 
 const Inner = styled.div`
-  font-size: 17px;
+  font-size: 22px;
   font-weight: 300;
   color: #6a737c;
-  margin-bottom: 2px
-  display: block
+  margin-top: 10px;
+  display: block;
+  text-align: center;
 `;
+
 const MiniCount = styled.div`
   padding: 8px 5px;
   line-height: 1;
-`; */
+`; 
 
-const handleClick = (e, callback, cb, id) => {
-  e.preventDefault();
+const Bounty = styled.div`
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: left;
+  align-self: center;
+  font-weight: bolder;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0.7em;
+`
 
-  callback(id)
-  cb(`/Answer/${id}`);
-};
+const Reward = styled.div`
+  grid-row: 2;
+  grid-column: 2;
+  margin-bottom: 10px;
+  justify-self: left;  
+`
 
-const AnswerPreview = (props) => {
-  
+const Title = styled.div`
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  font-size: 18px;
+  align-self: center;
+  text-decoration: none;
+`
+
+const User = styled.div`
+  grid-row: 1;
+  grid-column: 4;
+  font-size: 18px;
+  text-decoration: none;
+  justify-self: right;
+  padding: 10px;
+`
+
+const Tags = styled.div`
+  grid-row: 2;
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: auto;
+  grid-column-gap: 5px;
+  margin-bottom: 10px;
+`
+
+const AnswerPreview = ({answer}) => {
+  console.log(answer)
+  const username = answer.User ? answer.User.username : 'fake';
   return (
-    <Answer onClick={e => handleClick(e, props.getAnswer, props.history.push, props.qid)}>
-      <Link to="/Answer" />
-      {props.answer.body}
-    </Answer>
+    <Link to={`/question/${answer.PostId}`} className='answerlink'>
+      <Answer>
+        <Stats>
+          <MiniCount>
+            <Votes>
+              <Inner>
+                <div display="block">{answer.upvoteCount}</div>
+              </Inner>{" "}
+              votes
+            </Votes>
+          </MiniCount>
+          <MiniCount>
+            <Views>
+              <Inner>
+                <div display="block">{answer.viewCount}</div>
+              </Inner>{" "}
+              views
+            </Views>
+          </MiniCount>
+        </Stats>
+        <User>
+          {username}
+        </User>
+        <Title>Answer to Post: {answer.PostId}</Title>
+      </Answer>
+    </Link>
   );
 };
 
