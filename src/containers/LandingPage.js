@@ -2,9 +2,18 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group' 
 import * as styles from '../components/StyledComponents'
-import * as FontAwesome from "react-icons/lib/fa";
 
 import Navbar from '../components/Navbar'
+
+const mstyles = {
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+};
 
 const Div = styled.div`
   .top-pic: 100vh;
@@ -192,13 +201,55 @@ const UsSection = styled.section`
   background-color: ${styles.YELLOW};
   height: 60vh;
   margin-top: 0px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 2em;
+  padding: 3em;
+  text-align: right;
+  > img {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+  }
+  > p {
+    grid-column: 2 / 3;
+    max-width: 40px;
+  }
+  > .title {
+    grid -column: 2 / 3;
+  }
+`
+
+const Eric = styled.div`
+  background-color: red;
 `
 
 const PortfolioSection = styled.section`
-  background-color: ${styles.GRAY_1}
   height: 60vh;
   margin-top: 0px;
+  background-color: ${styles.GRAY_3};
+  display: grid;
+  padding: 50px;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  
+  
+  grid-column-gap: 15em;
 `
+
+const Card = styled.div`
+  display: grid;
+  grid-template-rows: 5fr 1fr;
+  > img {
+    width: 300px;
+  }
+  > div {
+    width: 300px;
+    background-color: white;
+    height: 100%;
+  }
+`
+
 const TechStackSection = styled.section`
   background-color: ${styles.REDISH}
   height: 60vh;
@@ -214,6 +265,7 @@ const SignUpSection = styled.section`
   height: 25vh;
   margin-top: 0px;
 `
+
 
 
 export default class LandingPage extends Component {
@@ -290,21 +342,39 @@ export default class LandingPage extends Component {
 
         <UsSection id="us">
           
-        <h2 className="title">Intelligent and secure platform</h2>
+          
+          <img 
+            alt="brain with gears"
+            src="./brain.png"
+            height={ 400 }
+          />
+          <div></div>
+          <div>
+          <h2 className="title">Intelligent and secure platform</h2>
           <p>
             Answers add to the bounty when contributing their answer.   This creates intelligent high quality answers as your answerers will be putting their money where there mouth is.
           </p>
           <p>
             The ethereum network provides a secure and decentralized platform for users.
           </p>
+          </div>
         </UsSection>
 
         <PortfolioSection id="portfolio">
-          <FounderCard />
-          <FounderCard />
-          <FounderCard />
+          <Card>
+          <img alt="Kyle" src="./eric.jpg" />
+          <div className="Kyle"></div>
+          </Card>
+          <Card>
+          <img alt="Eric" src="./eric.jpg" />
+          <div className="Eric"></div>
+          </Card>
+          <Card>
+          <img alt="Will" src="./eric.jpg" />
+          <div className="will"></div>
+          </Card>
         </PortfolioSection>
-
+          
         <TechStackSection id="signup-now">
           <img 
               alt="elastic search logo"
@@ -374,15 +444,3 @@ export default class LandingPage extends Component {
   }
 }
 
-
-const FounderCard = (props) => {
-
-  return (
-    <a href="https://github.com/roninjin10">
-      <img src="#" alt="" className="founder"/>
-      <div className="name">William Cory</div>
-      <div className="role"></div>
-      <div className="social">{FontAwesome.FaGithubAlt}</div>
-    </a>
-  )
-}

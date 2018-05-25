@@ -6,31 +6,32 @@ const InputTitle = styled.input`
   padding: 0.5em;
   margin: 0.5em;
   width: 80%;
+  height: 25px;
   color: palevioletred;
-  background: papayawhip;
+  background: #FFEEC2;
   border: none;
   border-radius: 3px;
 `;
 
-const InputBody = styled.input`
-  padding: 0.5em;
+const InputBody = styled.textarea`
   margin: 0.5em;
-  width: 80%;
-  height: 50%;
+  width: 90%;
+  height: 200px;
+  text-align: start;
   color: palevioletred;
-  background: papayawhip;
+  background: #FFEEC2;
   border: none;
   border-radius: 3px;
 `;
 
 const Button = styled.button`
-  background: red;
+  background: #FFBE71ed;
   color: white;
-
+  width: 90px;
+  justify-self: center;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
+  padding: 0.5em;
+  border: 2px solid #FFBE71;
   border-radius: 3px;
 `;
 
