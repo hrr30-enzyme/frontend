@@ -2,27 +2,81 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import moment from "moment";
 import Navbar from "../components/Navbar";
-import QuestionsPreview from "../components/QuestionPreview";
+import * as styles from "../components/StyledComponents";
+import QuestionPreview from "../components/QuestionPreview";
 import AnswerPreview from "../components/AnswerPreview";
 import CommentPreview from "../components/CommentPreview";
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 7fr 3fr;
-  grid-template-rows: auto auto auto auto auto auto auto auto;
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
+  grid-template-columns: 5% auto auto 5%;
+  grid-template-rows: auto;
+  grid-column-gap: 30px;
+  grid-row-gap: 25px;
+
+  .question {
+    border: 3px solid ${styles.SECONDARY_COLOR};
+    border-radius: 8px;
+    box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
+      0 2px 5px 0 ${styles.MAIN_COLOR};
+    grid-column: 2 / 5;
+    min-width: 1200px;
+    background-color: aliceblue;
+    justify-self: center;
+  }
+
+  .answer {
+    border: 3px solid violet;
+    border-radius: 8px;
+    min-width: 800px;
+    box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
+      0 2px 5px 0 ${styles.MAIN_COLOR};
+    grid-column: 2 / 5;
+    background-color: lavender;
+    justify-self: center;
+  }
 
   > .nav {
-    background-color: red;
-    grid-column: 1/3;
+    grid-row: 1;
+    grid-column: 1 / -1;
   }
 `;
 
+const Questions = styled.div`
+  margin: 1em;
+  font-size: 30px;
+  grid-column: 1 / 5;
+  justify-self: center;
+  font-weight: bold;
+  color: navy;
+  height: 40px;
+`;
+
+const Answers = styled.div`
+  margin: 1em;
+  font-size: 30px;
+  grid-column: 1 / 5;
+  justify-self: center;
+  font-weight: bold;
+  color: indigo;
+  height: 40px;
+`;
+
+const Info = styled.div`
+  grid-column: 1 / 5;
+  margin-bottom: 10em;
+  justify-self: center;
+  min-height: 100px;
+  font-size: 30px;
+  text-align: center;
+`
+
 class UserPage extends Component {
   componentDidMount() {
-    const username = this.props.location.pathname.split('/')[2]
-    this.props.queryPosts({username});
+    this.props.getPostByQuery({
+      UserId: this.props.authentication.userInfo.id,
+      include: 'all'
+    });
   }
 
   render() {
@@ -32,115 +86,59 @@ class UserPage extends Component {
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-        <div>
-          Username: {this.props.authentication.userInfo.username}
-          <br />
+
+          {/* Username: {this.props.authentication.userInfo.username}
+  
           Email: {this.props.authentication.userInfo.email}
-          <br />
-          Joined:{" "}
+
+          Joined:
+
           {moment(this.props.authentication.userInfo.createdAt).format(
             "MMM Do YYYY"
-          )}
-          <br />
-          Questions:
-          <br />
-          {this.props.post.questions.map(post => {
-            if (post.PostTypeId === 1) {
-              return <QuestionsPreview question={post} />;
+          )}          */}
+
+        <Questions>
+          Questions: 
+        </Questions>
+            {
+              this.props.post.questions.map(post => {
+                if (post.PostTypeId === 1 && post.User.username === this.props.authentication.userInfo.username) {
+                  return (           
+                    <div className="question">
+                      <QuestionPreview
+                        qid={post.id}
+                        question={post}
+                        style={{ textDecoration: "none" }}
+                        {...this.props}
+                      />
+                    </div>
+                  )
+                }
+              })
             }
-          })}
+        <Answers>
           Answers:
-          <br />
-          {this.props.post.questions.map(post => {
-            if (post.PostTypeId === 2) {
-              return <AnswerPreview answer={post} />;
+        </Answers>
+            {
+              this.props.post.questions.map(post => {
+                if (post.PostTypeId === 2 && post.User.username === this.props.authentication.userInfo.username) {
+                  return (           
+                    <div className="answer">
+                      <AnswerPreview
+                        qid={post.id}
+                        answer={post}
+                        style={{ textDecoration: "none" }}
+                        {...this.props}
+                      />
+                    </div>
+                  )
+                }
+              })
             }
-          })}
-          <br/>
-          Comments:
-          {this.props.post.questions.map(post => {
-            if (post.PostTypeId === 3) {
-              return <CommentPreview comment={post} />;
-            }
-          })}
-        </div>
+            <Info></Info>
       </Layout>
     );
   }
 }
 
 export default UserPage;
-
-// /* /*
-//  * not case sensitive though
-//  *
-//  * Examples of how to use filter params:
-//  *
-//  *  http://catalyst/posts/?UserId=1&PostTypeId=5
-//  *
-//  * http://catalyst/posts/?isTopAnswer=true
-//  *
-//  */
-// const camelCase = {
-//   'id': 'id',
-//   'postid': 'PostId',
-//   'userid': 'UserId',
-//   'title': 'title',
-//   'posttypeid': 'PostTypeId',
-//   'istopanswer': 'isTopAnswer',
-//   'tagname': 'tagName',
-//   'viewcount': 'viewCount',
-//   'answercount': 'answerCount',
-//   'favoritecount': 'favoriteCount',
-//   'upvotecount': 'upvoteCount',
-//   'createdat': 'createdAt',
-//   'closeddate': 'closedDate',
-//   'limitby': 'limitBy',
-// };
-
-// const filterParams = [
-//   'id',
-//   'PostId',
-//   'UserId',
-//   'title',
-//   'PostTypeId',
-//   'isTopAnswer',
-//   'tagName',
-// ];
-
-// /*
-//  * Examples of how to use sort params:
-//  *
-//  * sort by viewCount ascending
-//  * http://catalyst/posts/?sortBy=+viewCount
-//  *
-//  * sort by createdAt descending
-//  * http://catalyst/posts/?sortBy=-createdAt
-//  *
-//  */
-// const sortParams = [
-//   'viewCount',
-//   'answerCount',
-//   'favoriteCount',
-//   'upvoteCount',
-//   'createdAt',
-//   'closedDate',
-// ];
-
-// /*
-//  * Examples of how to use other params:
-//  *
-//  * get the top 50 upvoted posts
-//  *
-//  * http://catalyst/posts/?sortBy=-upVoteCount&limitBy=50
-//  *
-//  *
-//  * limitBy defaults to 50.  It can be turned off with
-//  *
-//  * limitBy=all
-//  *
-//  */
-
-// //const otherParams = [
-// //  'limitBy',
-// // ]; */
