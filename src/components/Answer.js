@@ -54,6 +54,7 @@ const Body = styled.p`
   border: 2px solid ${styles.MAIN_COLOR};
   font-size: 20px;
   min-height: 200px;
+  white-space: pre-wrap;
 `
 
 const Answer = (props) => {

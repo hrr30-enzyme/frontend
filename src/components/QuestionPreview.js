@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 
 const Question = styled.div`
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto;
   grid-template-columns: 20% 10% auto auto;
-  grid-column-gap: 40px;
+  grid-column-gap: 20px;
   grid-row-gap: 1em;
   text-decoration: none;
-  background-color: whitesmoke;
 `;
 
 const Stats = styled.div`
@@ -21,7 +20,8 @@ const Stats = styled.div`
   grid-column: 1;
   grid-column-gap: 5px;
   align-self: center;
-  margin-bottom: 10px;
+  justify-self: center;
+  margin-left: 1em;
 `;
 
 const Votes = styled.div`
@@ -77,7 +77,7 @@ const Reward = styled.div`
 const Title = styled.div`
   grid-row: 1 / span 2;
   grid-column: 3;
-  font-size: 24px;
+  font-size: 18px;
   align-self: center;
   text-decoration: none;
 `
@@ -88,7 +88,7 @@ const User = styled.div`
   font-size: 18px;
   text-decoration: none;
   justify-self: right;
-  padding: 5px;
+  padding: 10px;
 `
 
 const Tags = styled.div`
