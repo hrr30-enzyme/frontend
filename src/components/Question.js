@@ -14,19 +14,20 @@ const Layout = styled.div`
 `
 const Stats = styled.div`
   grid-row: 1;
-  grid-column: 2;
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
+  width: 50%;
   justify-self: center;
 `
 const Stat = styled.p`
   color: grey;
-  grid-column: 1;
-`
+  grid-row: 1 / 2;
+  `
 const Value = styled.p`
   color: black;
-  grid-column: 2;
-`
+  grid-row: 2 / 3;
+  `
 const Title = styled.h2`
   grid-row: 2;
   grid-column: 1 / 4;
@@ -122,13 +123,30 @@ class  Question extends Component {
     const qid = question.id;
     return (
       <Layout>
-        <Stats>
-          <Stat>Asked</Stat><Value>{question && moment(question.createdAt).from()}</Value>
-          <Stat>Views</Stat><Value>{question && question.viewCount}</Value>
-          <Stat>Active</Stat><Value>{question && moment(question.updatedAt).from()}
-          <div style={{marginTop: "10px", width: "110px"}}><button onClick={() => this.payout(qid)} style={{height: "50px", width: "140px"}}>{ this.state.transactionState }</button></div>
+          <Stat>Asked</Stat>
+          <Value>
+            {question && moment(question.createdAt).from()}
           </Value>
-        </Stats>
+          <Stat>
+            Views
+          </Stat>
+          <Value>
+            {question && question.viewCount}
+          </Value>
+          <Stat>
+            Active
+          </Stat>
+          <Value>
+            {question && moment(question.updatedAt).from()}
+            <div style={{marginTop: "10px", width: "110px"}}>
+              <button 
+                onClick={() => this.payout(qid)} 
+                style={{height: "50px", width: "140px"}}
+              >
+                { this.state.transactionState }
+              </button>
+            </div>
+          </Value>
         <Username>{ question.User && question.User.username }</Username>
         <Actions>
           <Upvote onClick={() => this.props.updateQuestionVote({id: question.id, UserId: this.props.authentication.userInfo.id})}>▲</Upvote>
