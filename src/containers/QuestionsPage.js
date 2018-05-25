@@ -14,6 +14,14 @@ const Layout = styled.div`
   grid-row-gap: 10px;
 
   .question {
+<<<<<<< HEAD
+    border: 2px solid ${styles.SECONDARY_COLOR};
+    box-shadow: 0 1px 1px 0 ${styles.GRAY_1},
+      0 1px 1px 0 ${styles.GRAY_1};
+    grid-column: 2;
+    min-width: 650px;
+    max-width: 750px;
+=======
     border: 3px solid ${styles.SECONDARY_COLOR};
     border-radius: 8px;
     box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
@@ -21,6 +29,7 @@ const Layout = styled.div`
     grid-column: 2;
     min-width: 300px;
     max-width: 1000px;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     margin-right: 2em;
     background-color: aliceblue;
   }
@@ -45,7 +54,12 @@ const Sidebar = styled.div`
   grid-template-rows: 5% 10% auto auto auto;
   grid-template-columns: 1;
   grid-row-gap: 20px;
+<<<<<<< HEAD
+  min-width: 250px;
+  max-width: 600px;
+=======
   min-width: 200px;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   font-family: Arial, Helvetica, sans-serif;
 `;
 
@@ -60,9 +74,14 @@ const UserStats = styled.div`
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-color: #f2f2f2;
   display: grid;
+<<<<<<< HEAD
+  min-height: 145px;
+  max-width: 600px;
+=======
   align-self: top;
   max-height: auto;
   min-width: 250px;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   grid-template-columns: auto auto auto;
   grid-template-rows: 50% auto;
   color: ${styles.GRAY_2};
@@ -131,7 +150,12 @@ const UserStats = styled.div`
 `;
 const UserQuestions = styled.div`
   grid-row: 3;
+<<<<<<< HEAD
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+  background: #c6cbf9;
+=======
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
   border-color: #f2f2f2;
   display: grid;
   grid-template-columns: auto auto auto;
@@ -150,8 +174,15 @@ const UserQuestions = styled.div`
   }
 
   .questions {
+<<<<<<< HEAD
+    grid-row: 1;
+    grid-row-gap: 12px;
+    gridcolumn: 1/4;
+    justifygn-self: stretch;
+=======
     grid-row: 2;
     grid-column: 1/4;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     display: grid;
     grid-template-rows: auto auto auto;
 
@@ -200,8 +231,12 @@ const UserAnswers = styled.div`
 
   .answers {
     grid-row: 1;
+<<<<<<< HEAD
+    gridcolumn: 1/4;
+=======
     grid-column: 1 / span 3;
     justifygn-self: stretch;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
     display: grid;
     grid-template-rows: auto auto auto;
 
@@ -209,7 +244,12 @@ const UserAnswers = styled.div`
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
       text-align: left;
+<<<<<<< HEAD
+      padding: 15px;
+      align-self: stretch;
+=======
       background: #92CDEC;
+>>>>>>> 09a10de1eff8563df7019be5e7500f48e5f4e881
       &:hover {
         background: #67b2da;
       }
@@ -230,17 +270,18 @@ const UserAnswers = styled.div`
 const Button = styled.button`
   grid-column: 3;
   grid-row: 2;
-  background: linear-gradient(to bottom, ${"white"}, lightsteelblue);
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  background: linear-gradient(to bottom, ${"white"}, ${styles.LINK_COLOR});
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
   &:hover {
     background: rgb(233, 243, 248);
-    border: 2px solid ${styles.MAIN_COLOR};
+    border: 2px solid ${styles.GRAY_2};
   }
   font-size: 1em;
   font-weight: bold;
   margin-right: 2em;
   padding: 1em 1em;
-  border: 2px solid ${styles.SECONDARY_COLOR};
+  border: 2px solid ${styles.GRAY_2};
   border-radius: 3px;
   justify-self: right;
   align-self: center;
@@ -252,6 +293,7 @@ const Heading = styled.div`
   grid-template-columns: 20% 15% auto;
   grid-template-rows: auto 20%;
   grid-row: 2;
+  grid-column-gap: 3px;
   grid-column: 2 / 3;
   font-size: 16px;
   align-self: center;
@@ -259,7 +301,7 @@ const Heading = styled.div`
 `;
 const Divider = styled.div`
   grid-column: 1 / 5;
-  border-bottom: 2px solid ${styles.MAIN_COLOR};
+  border-bottom: 1px solid #dddddd;
   margin-left: 1.5em;
   margin-right: 1.5em;
   margin-bottom: 2em;
