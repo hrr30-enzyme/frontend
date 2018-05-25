@@ -41,9 +41,9 @@ const web3Middleware = store => next => action => {
     store.getState().web3.contract.methods['getQuestionId'](qId)
       .call()
       .then(response => payoutWinner(response)(store.dispatch.bind(this), store.getState.bind(this)));
+  } else {
+    next(action);
   }
-
-  next(action);
 }
 
 const getMiddleware = () => {

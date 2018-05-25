@@ -14,6 +14,7 @@ const SearchBar = styled.input`
   display: grid;
   grid-template-columns: auto 3em;
   align-items: center;
+  grid-template-rows: auto;
   justify-items: center;
   width: 80%;
   > div {
@@ -31,6 +32,8 @@ const SearchBar = styled.input`
 const Div = styled.div`
   display: grid;
   grid-template-columns: auto 3em;
+  grid-template-rows: auto;
+  max-height: 47px;
   > input {
     width: 100%;
     min-width: 8.5em;
@@ -42,7 +45,8 @@ const Div = styled.div`
 `
 
 const Results = styled.div`
-  
+  padding: 10px;
+  background: white;
 `;
 
 const Search = props => {
