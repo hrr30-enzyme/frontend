@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 import * as styles from "../components/StyledComponents";
+import store from '../store'
 
 const Layout = styled.div`
   grid-column: 2 / 4;
@@ -46,6 +47,7 @@ const Actions = styled.div`
   grid-template-rows: auto;
   grid-row-gap: 15px;
   font-size: 28px;
+  max-height: 50px;
 `
 const Upvote = styled.div`
   grid-row: 1;
@@ -73,30 +75,73 @@ const Body = styled.p`
   grid-column: 2 / 4;
   background-color: ivory;
   border: 2px solid ${styles.MAIN_COLOR};
+  padding: 25px;
+  white-space: pre-wrap;
   font-size: 20px;
 `
 
-const  Question = (props) => {
-  const question = props.question
-  console.log('Question component: ', question, props)
-  return (
-    <Layout>
-      <Stats>
-        <Stat>Asked</Stat><Value>{question && moment(question.createdAt).from()}</Value>
-        <Stat>Views</Stat><Value>{question && question.viewCount}</Value>
-        <Stat>Active</Stat><Value>{question && moment(question.updatedAt).from()}</Value>
-      </Stats>
-      <Username>{ question.User && question.User.username }</Username>
-      <Actions>
-        <Upvote onClick={() => props.updateQuestionVote({id: question.id, UserId: props.authentication.userInfo.id})}>▲</Upvote>
-        <VoteCount>{question && question.upvoteCount}</VoteCount>
-        <Downvote onClick={() => {props.downvoteQuestionVote({id: question.id, UserId: props.authentication.userInfo.id})}}>▼</Downvote>
-        <Star>★</Star>
-      </Actions>
-      <Title>{ question && question.title }</Title>
-      <Body>{ question && question.body }</Body>
-    </Layout>
-  );
+
+
+class  Question extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      transactionState: 'payout'
+    }
+    this.payout = this.payout.bind(this);
+  }
+  
+  async payout(qid) {
+    const contract = store.getState().web3.contract;
+    let confirmed = false;
+  
+    const addresses = await store.getState().web3.web3.eth.getAccounts();
+  
+    contract.methods.payoutWinner(qid).send({from: addresses[0]})
+      .on('transactionHash', 
+        (hash) => this.setState({transactionState: 'transaction hashed!'})
+      )
+      .on('confirmation', (confirmation) => {
+        if (!confirmed) {
+          this.setState({transactionState: `
+            Transaction confirmed!
+            Funds payed out to account
+            ${addresses[0]}
+          `})
+        }
+        confirmed = true;
+      })
+      .on('reciept', console.log)
+      .on('error', console.log);
+  };
+
+
+  render() {
+
+    const question = this.props.question
+    console.log('Question component: ', question, this.props)
+    const qid = question.id;
+    return (
+      <Layout>
+        <Stats>
+          <Stat>Asked</Stat><Value>{question && moment(question.createdAt).from()}</Value>
+          <Stat>Views</Stat><Value>{question && question.viewCount}</Value>
+          <Stat>Active</Stat><Value>{question && moment(question.updatedAt).from()}
+          <div style={{marginTop: "10px", width: "110px"}}><button onClick={() => this.payout(qid)} style={{height: "50px", width: "140px"}}>{ this.state.transactionState }</button></div>
+          </Value>
+        </Stats>
+        <Username>{ question.User && question.User.username }</Username>
+        <Actions>
+          <Upvote onClick={() => this.props.updateQuestionVote({id: question.id, UserId: this.props.authentication.userInfo.id})}>▲</Upvote>
+          <VoteCount>{question && question.upvoteCount}</VoteCount>
+          <Downvote onClick={() => {this.props.downvoteQuestionVote({id: question.id, UserId: this.props.authentication.userInfo.id})}}>▼</Downvote>
+          <Star>★</Star>
+        </Actions>
+        <Title>{ question && question.title }</Title>
+        <Body>{ question && question.body }</Body>
+      </Layout>
+    );
+  }
 };
 
 

@@ -22,19 +22,20 @@ export const LANDING_BLUE = '#537f9a'
 export const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  background: white;
+  background: #FFEEC2
+  height: 30px;
   border: none;
   border-radius: 3px;
   border-bottom: 1px;
 `;
 
 export const Button = styled.button`
-  background: ${MAIN_COLOR};
+  background: #FFBE71;
   color: white;
 
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid ${BORDER_MODAL};
+  border: 2px solid #FFBE71;
   border-radius: 3px;
 `;

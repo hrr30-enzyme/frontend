@@ -51,6 +51,8 @@ const Body = styled.p`
   background-color: ivory;
   border: 2px solid ${styles.MAIN_COLOR};
   font-size: 20px;
+  white-space: pre-wrap;
+  padding: 25px;
 `
 
 const Answer = (props) => {

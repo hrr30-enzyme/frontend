@@ -2,9 +2,18 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group' 
 import * as styles from '../components/StyledComponents'
-import * as FontAwesome from "react-icons/lib/fa";
-
+import {Link} from 'react-router-dom'
 import Navbar from '../components/Navbar'
+
+const mstyles = {
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+};
 
 const Div = styled.div`
   .top-pic: 100vh;
@@ -83,6 +92,22 @@ const TransparentNav = styled.nav`
     color: ${styles.PURPLE};
   }
 `;
+
+const NavAuth = styled.div`
+  cursor: pointer;
+  color: ${styles.LINK_COLOR}
+  &:hover {
+    color: ${styles.SECONDARY_COLOR}
+  }
+`
+
+const StyledNavLink = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => styles.LINK_COLOR || styles.SECONDARY_COLOR};
+  &:hover {
+    color: ${(props) => styles.SECONDARY_COLOR};
+  }
+`
 
 const MainNav = styled.nav`
   display: grid;
@@ -192,13 +217,58 @@ const UsSection = styled.section`
   background-color: ${styles.YELLOW};
   height: 60vh;
   margin-top: 0px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 2em;
+  padding: 3em;
+  text-align: right;
+  > img {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+  }
+  > p {
+    grid-column: 2 / 3;
+    max-width: 40px;
+  }
+  > .title {
+    grid -column: 2 / 3;
+  }
+`
+
+const Eric = styled.div`
+  background-color: red;
 `
 
 const PortfolioSection = styled.section`
-  background-color: ${styles.GRAY_1}
-  height: 60vh;
+  height: 70vh;
   margin-top: 0px;
+  background-color: ${styles.GRAY_1};
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  
+  grid-column-gap: 15em;
 `
+
+const Card = styled.div`
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: 5fr 1fr;
+  > img {
+    width: 300px;
+  }
+  > div {
+    width: 300px;
+    background-color: ${styles.GRAY_2};
+    height: 100%;
+    color: ${styles.SKY_BLUE}
+    text-align: center;
+    font-size: 3em;
+  }
+`
+
 const TechStackSection = styled.section`
   background-color: ${styles.REDISH}
   height: 60vh;
@@ -213,7 +283,12 @@ const SignUpSection = styled.section`
   background-color: ${styles.GRAY_4}
   height: 25vh;
   margin-top: 0px;
+  display: grid;
+  height: 40px
+  grid-template-columns: auto auto auto auto;
+  font-size: 2.1;
 `
+
 
 
 export default class LandingPage extends Component {
@@ -266,7 +341,7 @@ export default class LandingPage extends Component {
         </header>
   
         <AboutSection id="about">
-          <h2 className="title-1">Get <strong>payed</strong> for expertise</h2>
+          <h2 className="title-1">Get <strong>paid</strong> for expertise</h2>
           <p>
             Users get payed 24/7 for top answers.  Win bounties for top answers and withdraw anytime.
           </p>
@@ -276,10 +351,6 @@ export default class LandingPage extends Component {
           <p>
             Top users vote based on their expertise.  The more expertise a user shows, the more voting power they recieve.
           </p>
-
-      
-      
-          
           <img 
             alt="ethereum logo"
             src="./ethereum.png"
@@ -290,21 +361,39 @@ export default class LandingPage extends Component {
 
         <UsSection id="us">
           
-        <h2 className="title">Intelligent and secure platform</h2>
+          
+          <img 
+            alt="brain with gears"
+            src="./brain.png"
+            height={ 400 }
+          />
+          <div></div>
+          <div>
+          <h2 className="title">Intelligent and secure platform</h2>
           <p>
             Answers add to the bounty when contributing their answer.   This creates intelligent high quality answers as your answerers will be putting their money where there mouth is.
           </p>
           <p>
             The ethereum network provides a secure and decentralized platform for users.
           </p>
+          </div>
         </UsSection>
 
         <PortfolioSection id="portfolio">
-          <FounderCard />
-          <FounderCard />
-          <FounderCard />
+          <Card>
+          <img alt="Kyle" src="./eric.jpg" />
+          <div className="Kyle">Kyle</div>
+          </Card>
+          <Card>
+          <img alt="Eric" src="./eric.jpg" />
+          <div className="Eric">Eric</div>
+          </Card>
+          <Card>
+          <img alt="Will" src="./eric.jpg" />
+          <div className="will">Will</div>
+          </Card>
         </PortfolioSection>
-
+          
         <TechStackSection id="signup-now">
           <img 
               alt="elastic search logo"
@@ -367,22 +456,53 @@ export default class LandingPage extends Component {
         </TechStackSection>
 
         <SignUpSection id="stack">
-          maybe some information about the tech stack
-        </SignUpSection>
-      </Div>
-    );
+            <StyledNavLink 
+              to="/"
+              linkColor={styles.SKY_BLUE}
+              linkColorHOver={styles.SECONDARY_COLOR}
+            >HOME</StyledNavLink>
+            <StyledNavLink
+              to="/questions"
+              linkColor={styles.SKY_BLUE}
+              linkColorHOver={styles.SECONDARY_COLOR}
+            >
+              QUESTIONS
+            </StyledNavLink>
+            {this.props.authentication.signedIn 
+          ? (
+            [
+              <div className="nav-item">
+                <StyledNavLink 
+                  to={ `/user/${this.props.authentication.userInfo.username}` }
+                  linkColor={ styles.SKY_BLUE }
+                  linkColorHOver={ styles.SECONDARY_COLOR }
+                >
+                  { this.props.authentication.userInfo.username }
+                </StyledNavLink>
+              </div>,
+              <NavAuth className="nav-item">
+                <div onClick={ this.props.signout }>logout</div>
+              </NavAuth>
+            ]
+          )
+          : [
+              <NavAuth
+                className="nav-auth-signin" 
+                onClick={ () => this.props.openModal("signin") }
+              >
+                Log In
+              </NavAuth>,
+              <NavAuth 
+                className="nav-auth-signup"
+                onClick={() => this.props.openModal("signup")}
+              >
+                Sign Up
+              </NavAuth>
+          ]
+        }
+       </SignUpSection> 
+     </Div>
+    )
   }
 }
 
-
-const FounderCard = (props) => {
-
-  return (
-    <a href="https://github.com/roninjin10">
-      <img src="#" alt="" className="founder"/>
-      <div className="name">William Cory</div>
-      <div className="role"></div>
-      <div className="social">{FontAwesome.FaGithubAlt}</div>
-    </a>
-  )
-}

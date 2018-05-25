@@ -4,6 +4,7 @@ import * as styles from "../components/StyledComponents";
 import Navbar from "../components/Navbar";
 import QuestionPreview from "../components/QuestionPreview";
 import AskQuestion from "../components/AskQuestion";
+import { Link } from "react-router-dom";
 
 const Layout = styled.div`
   display: grid;
@@ -30,7 +31,7 @@ const Layout = styled.div`
 `;
 
 const Sidebar = styled.div`
-  display: grid;
+  display: ${props => (props.show ? "grid" : "none")};
   justify-self: center;
   grid-column: 3;
   grid-row: 4 / 20;
@@ -156,7 +157,7 @@ const UserQuestions = styled.div`
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
       text-align: left;
-      padding: 3px;
+      padding: 15px;
       align-self: stretch;
       justify-self: stretch;
       &:hover {
@@ -172,6 +173,7 @@ const UserQuestions = styled.div`
       .qBody {
         padding: 5px;
         max-width: 300px;
+        white-space: pre-wrap;
       }
     }
   }
@@ -180,7 +182,7 @@ const UserQuestions = styled.div`
 const UserAnswers = styled.div`
   grid-row: 4;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: #92CDEC;
+  background: #92cdec;
   border-color: #f2f2f2;
   display: grid;
   max-width: 350px;
@@ -212,11 +214,11 @@ const UserAnswers = styled.div`
       grid-row: span 1;
       border-bottom: 1px solid darkgray;
       text-align: left;
-      padding: 3px;
+      padding: 15px;
       align-self: stretch;
       justify-self: stretch;
       &:hover {
-        background: #67B2DA;
+        background: #67b2da;
       }
 
       .user {
@@ -228,6 +230,7 @@ const UserAnswers = styled.div`
       .aBody {
         padding: 5px;
         max-width: 300px;
+        white-space: pre-wrap;
       }
     }
   }
@@ -395,8 +398,10 @@ export default class QuestionsPage extends Component {
         <Button onClick={() => this.props.openModal("ask")}>
           Ask a Question
         </Button>
-        <Sidebar>
-          <UserTitle>{ this.props.authentication.userInfo.username }</UserTitle>
+        <Sidebar show={this.props.authentication.signedIn}>
+          <UserTitle>
+            {`Welcome back, ${this.props.authentication.userInfo.username}!`}
+          </UserTitle>
           <UserStats>
             <div className="title">Your Stats</div>
             <div className="answers">
@@ -414,84 +419,74 @@ export default class QuestionsPage extends Component {
             <div className="title">Latest questions</div>
             <div className="questions">
               <div className="item">
-                <div className="qtitle">
-                  Spring-boot actuator - trace to file
-                </div>
+                <Link to={`/question/18`} style={{ textDecoration: "none" }}>
+                  <div className="qtitle">
+                    {"Making object face another with rotation"}
+                  </div>
+                </Link>
                 <div className="qBody">
-                  In spring boot we have trace endpoint. Is it possible to
-                  redirect these entries into file ? I was trying to find this
-                  in internet, but no effects.
+                  {
+                    "  I'm trying to make my spotlight face its target when I translate it. I've tried glm::lookAt() with limited success. Lets say the light is at (0, 16, 0) and facing the origin. I've read that I need to translate the light to the origin, apply the rotation, then translate it back to its original position. How do I implement this? I have glm::lookAt(-lightPos, glm::vec3(0.f), upVector) but this gives me the light off to the side. This gives me the rotation matrix."
+                  }
                 </div>
               </div>
               <div className="item">
-                <div className="qtitle">
-                  Trying to insert data into SQL Server database using asp.net
-                  web application, getting an error
-                </div>
+                <Link to={`/question/107`} style={{ textDecoration: "none" }}>
+                  <div className="qtitle">
+                    {"How to re-run process python in Windows/Linux?"}
+                  </div>
+                </Link>
                 <div className="qBody">
-                  Try using CSS to limit the width or padding of the element.
-                  Eg. .tooltip: width: 100%; padding: 0px; This could limit the
-                  width of your tooltip element. You could also just use
-                  aelement. Which would also contain the element within its own
-                  bounds.
+                  {
+                    "I run Python script on Windows using IDE PyCharm. Sometimes process is stopped. How can I configure that process will be re-run automatically after interruption?"
+                  }
                 </div>
               </div>
               <div className="item">
-                <div className="qtitle">
-                  Which character encoding Python 3.x supports for file I/O?
-                </div>
+                <Link to={`/question/37`} style={{ textDecoration: "none" }}>
+                  <div className="qtitle">
+                    {"JavaScript opening local files not working"}
+                  </div>
+                </Link>
                 <div className="qBody">
-                  apoorva@apoorva-latitude-e6410:~/Documents/project$ node
-                  package.json
-                  apoorva@apoorva-latitude-e6410:~/Documents/project$ npm
-                  install npm WARN package.json @ No description npm WARN
-                  package.json @ No repository field . npm WARN package.json @
-                  No README data npm ERR! Linux 4.4.0-51-generic npm ERR! argv
-                  "/usr/local/bin/node" "/usr/local/bin/npm" "install" npm ERR!
-                  node v0.12.2 npm ERR! npm v2.7.4 npm ERR! version not found:
-                  mongodb@3.2.11 npm ERR! npm ERR! If you need help, you may
-                  report this error at: npm ERR!
-                  https://github.com/npm/npm/issues npm ERR! Please include the
-                  following file with any support request: npm ERR!
-                  /home/apoorva/Documents/project/npm-debug.log How to solve
-                  this problem?I tried a lot but unable to fix this problem.
+                  {
+                    "I'm trying to load a 3D model into Three.js with JSONLoader, and that 3D model is in the same directory as the entire website. I'm getting the \"Cross origin requests are only supported for HTTP.\" error, but I don't know what's causing it nor how to fix it."
+                  }
                 </div>
               </div>
             </div>
           </UserQuestions>
           <UserAnswers>
             <div className="title">Latest answers</div>
-            <div className='answers'>
-            <div className="item">
-              <div className="user">User1234</div>
-              <div className="aBody">
-                poorva@apoorva-latitude-e6410:~/Documents/project$ npm install
-                npm WARN package.json @ No description npm WARN package.json @
-                No repository field . npm WARN package.json @ No README data npm
-                ERR! Linux 4.4.0-51-generic npm ERR! argv "/usr/local/bin/node"
-                "/usr/local
+            <div className="answers">
+              <div className="item">
+                <div className="user">MeowMafioso</div>
+                <div className="aBody">
+                  {
+                    "category is object which has property name (and other properties){% if category.name == 'Events' %} "
+                  }
+                </div>
               </div>
-            </div>
-            <div className="item">
-              <div className="user">User1234</div>
-              <div className="aBody">
-                poorva@apoorva-latitude-e6410:~/Documents/project$ npm install
-                npm WARN package.json @ No description npm WARN package.json @
-                No repository field . npm WARN package.json @ No README data npm
-                ERR! Linux 4.4.0-51-generic npm ERR! argv "/usr/local/bin/node"
-                "/usr/local
+              <div className="item">
+                <div className="user">LegendaryLeo</div>
+                <div className="aBody">
+                  You're trying to call the isEmpty()
+                  method on a null reference (as List test = null; ). This will
+                  surely throw a NullPointerException. You should do
+                  if(test!=null) instead (Checking for null first). The method
+                  isEmpty() returns true, if an ArrayList object contains no
+                  elements; false otherwise (for that the List must first be
+                  instantiated that is in your case is null).
+                </div>
               </div>
-            </div>
-            <div className="item">
-              <div className="user">User1234</div>
-              <div className="aBody">
-                poorva@apoorva-latitude-e6410:~/Documents/project$ npm install
-                npm WARN package.json @ No description npm WARN package.json @
-                No repository field . npm WARN package.json @ No README data npm
-                ERR! Linux 4.4.0-51-generic npm ERR! argv "/usr/local/bin/node"
-                "/usr/local
+              <div className="item">
+                <div className="user">Codybot</div>
+                <div className="aBody">
+                  {
+                    "I use pdoResources (which similar to getResources, but faster). Place this code in instead <!-- I need to add sibling info here --> and this is would help. [[pdoResources? &parents=`[[+id]]` &depth=`1` &tpl=`your_sibling_row_tpl` ]]"
+                  }
+                </div>
               </div>
-            </div>
             </div>
           </UserAnswers>
         </Sidebar>

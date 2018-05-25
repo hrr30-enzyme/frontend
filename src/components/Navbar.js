@@ -138,13 +138,13 @@ const Navbar = (props) => {
                 className="nav-auth-signin" 
                 onClick={ () => props.openModal("signin") }
               >
-                login
+                Log In
               </NavAuth>,
               <NavAuth 
                 className="nav-auth-signup"
                 onClick={() => props.openModal("signup")}
               >
-                signup
+                Sign Up
               </NavAuth>
           ]
         }
