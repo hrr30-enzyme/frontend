@@ -126,20 +126,20 @@ const Layout = styled.div`
 
 const Button = styled.button`
   grid-column: 6;
-  color: midnightblue;
+  color: ${styles.LINK_COLOR};
   cursor: pointer;
   background: ivory;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 2px 1px rgba(0, 0, 0, 0.25);
   &:hover {
-    color: ${styles.DARK};
-    background: lightsteelblue;
-    border: 2px solid ${styles.LINK_COLOR};
+    color: ${styles.NAVY};
+    background: ${styles.WHITE_BLUE};
+    border: 3px solid ${styles.LINK_COLOR};
   }
   font-size: 1.1em;
   font-weight: bold;
   margin: 1em;
   border: 2px solid ${styles.LINK_COLOR};
-  border-radius: 4px;
+  border-radius: 5px;
   justify-self: center;
   align-self: center;
   min-height: 80px;

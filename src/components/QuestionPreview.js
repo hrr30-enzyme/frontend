@@ -75,6 +75,7 @@ const Title = styled.div`
   grid-column: 3;
   font-size: 20px;
   align-self: center;
+  font-family: Arial Narrow, sans-serif;
 `
 const User = styled.div`
   grid-row: 1;

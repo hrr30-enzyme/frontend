@@ -30,7 +30,7 @@ const AnswerPreview = ({answer}) => {
         <User>
           {username}
         </User>
-        <Title>Answer to Post: {answer.PostId}</Title>
+        <Title>{answer.body}</Title>
       </Answer>
     </Link>
   );
@@ -42,10 +42,11 @@ const Answer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 4fr 1fr;
   grid-column-gap: 20px;
-  background-color: lavender;
+  background-color: aliceblue;
   border-radius: 8px; 
+  padding: 0.5em;
   &:hover {
-      background-color: rgb(228, 245, 255);
+      background-color: lavender;
   }
 `
 const Title = styled.div`
@@ -53,6 +54,7 @@ const Title = styled.div`
   grid-column: 3;
   font-size: 20px;
   align-self: center;
+  font-family: Arial Narrow, sans-serif;
 `
 const Stats = styled.div`
   display: grid;
