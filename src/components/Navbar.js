@@ -9,23 +9,27 @@ import Search from '../components/Search'
 
 const Nav = styled.nav`
   display: grid;
-  grid-template-columns: 25% 1fr 1fr 20% 1fr 1fr 5%;
+  grid-template-columns: 25% 1fr 1fr 25% 1fr 1fr 5%;
   grid-template-rows: auto;
   height: 70px;
-  padding-bottom: 2em;
+  padding-bottom: 1em;
   align-items: center;
   justify-items: center;
-  border-bottom: 2px solid ${styles.DARK};
+  border-bottom: 2px solid ${styles.GREEN};
   background-color: ${styles.DARK};
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
   font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
 
   .nav-title {
     grid-column: 1;
     grid-row: 1;
     justify-self: center;
-    font-size: 40px;
+    font-size: 30px;
+    color: ${styles.PURPLE};
+    &:hover {
+      color: ${styles.LINK_COLOR};
+    }
   }
   .nav-home {
     grid-column: 2;
@@ -61,7 +65,7 @@ const NavAuth = styled.div`
   cursor: pointer;
   color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${styles.PURPLE};
+    color: ${styles.POOL};
   }
 `
 const NavLink = styled(Link)`
@@ -69,7 +73,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
   color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${styles.PURPLE};
+    color: ${styles.POOL};
   }
 `
 const Navbar = (props) => {

@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 
 const Question = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr 1fr;
+  grid-template-columns: 1fr 1.2fr 4fr 1fr;
   grid-column-gap: 20px;
   background-color: aliceblue;
   border-radius: 8px; 
+  padding: 5px;
   &:hover {
       background-color: rgb(228, 245, 255);
   }

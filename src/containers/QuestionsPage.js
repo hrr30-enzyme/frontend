@@ -106,13 +106,13 @@ const Layout = styled.div`
   grid-template-columns: 25% auto auto 10%;
   grid-column-gap: 5px;
   grid-row-gap: 10px;
-  background-color: ${styles.LANDING_BLUE};
+  background-color: ${styles.SECONDARY_COLOR};
 
   .question {
     border: 2px solid ${styles.SKY_BLUE};
     border-radius: 10px;
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.9);
-    margin-right: 2em;
+    margin-right: 1em;
     grid-column: 2 / 5;
     &:hover {
       border: 2px solid ${styles.GREEN};
@@ -126,20 +126,20 @@ const Layout = styled.div`
 
 const Button = styled.button`
   grid-column: 6;
-  color: ${styles.LINK_COLOR};
+  color: ${styles.LANDING_BLUE};
   cursor: pointer;
   background: ivory;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 2px 1px rgba(0, 0, 0, 0.25);
   &:hover {
-    color: ${styles.NAVY};
+    color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 3px solid ${styles.LINK_COLOR};
+    border: 3px solid ${styles.POOL};
   }
   font-size: 1.1em;
   font-weight: bold;
   margin: 1em;
-  border: 2px solid ${styles.LINK_COLOR};
-  border-radius: 5px;
+  border: 3px solid ${styles.SKY_BLUE};
+  border-radius: 10px;
   justify-self: center;
   align-self: center;
   min-height: 80px;
@@ -154,21 +154,26 @@ const Heading = styled.div`
   grid-column: 1 / 5;
   align-items: center;
   background-color: ${styles.NAVY};
+  border: 1.2px solid ${styles.MAIN_FONT};
 `;
 const Preview = styled.h1`
   grid-column: 1;
-  font-size: 40px;
+  font-size: 32px;
   color: ${styles.MAIN_FONT};
+  background-color: ${styles.DARK};
+  border: 1.5px solid ${styles.LINK_COLOR};
   text-align: center;
   margin: 1em;
+  padding: 0.5em;
 `;
 const Tag2 = styled.h3`
   grid-column: 2;
   color: white;
-  background: rgb(163, 195, 255);
+  background: rgb(126, 171, 255);
   &:hover {
-    color: ${styles.LINK_COLOR};
+    color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
   }
   padding: 1em;
   text-align: center;
@@ -179,8 +184,9 @@ const Tag3 = styled.h3`
   color: white;
   background: rgb(126, 171, 255);
   &:hover {
-    color: ${styles.NAVY};
-    background: ghostwhite;
+    color: ${styles.GREEN};
+    background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
   }
   padding: 1em;
   text-align: center;
@@ -189,10 +195,11 @@ const Tag3 = styled.h3`
 const Tag4 = styled.h3`
   grid-column: 4;
   color: white;
-  background: rgb(163, 195, 255);
+  background: rgb(126, 171, 255);
   &:hover {
-    color: ${styles.LINK_COLOR};
+    color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
   }
   padding: 1em;
   text-align: center;
@@ -203,8 +210,9 @@ const Tag5 = styled.h3`
   color: white;
   background: rgb(126, 171, 255);
   &:hover {
-    color: ${styles.NAVY};
-    background: ghostwhite;
+    color: ${styles.GREEN};
+    background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
   }
   padding: 1em;
   text-align: center;
