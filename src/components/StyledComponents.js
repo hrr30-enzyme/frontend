@@ -19,6 +19,13 @@ export const DARKPURPLE = `#83539a`
 export const WHITE_BLUE = '#E9F3F8'
 export const LANDING_BLUE = '#537f9a'
 
+export const DARK = '#0B0C10'
+export const NAVY = '#1F2833'
+export const STEEL = '#C5C6C7'
+export const CYAN = '66FCF1'
+export const POOL = '#45A29E'
+export const GREEN = '#0E1A1F'
+
 export const Input = styled.input`
   padding: 0.5em;
   margin: 1.5em;

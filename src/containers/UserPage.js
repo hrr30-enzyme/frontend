@@ -26,7 +26,7 @@ const Layout = styled.div`
   }
 
   .answer {
-    border: 3px solid violet;
+    border: 3px solid ${styles.DARKPURPLE};
     border-radius: 8px;
     min-width: 800px;
     max-width: 800px;

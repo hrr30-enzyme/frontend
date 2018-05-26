@@ -66,12 +66,10 @@ export default class QuestionsPage extends Component {
           >
             Recomended
           </Tag5>
+          <Button onClick={() => this.props.openModal("ask")}>
+            Ask a Question
+          </Button>
         </Heading>
-        <Divider />
-        <Div></Div>
-        <Button onClick={() => this.props.openModal("ask")}>
-          Ask a Question
-        </Button>
 
         <AskQuestion
           {...this.props}
@@ -104,18 +102,21 @@ export default class QuestionsPage extends Component {
 
 const Layout = styled.div`
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: auto auto auto auto;
-  grid-column-gap: 30px;
+  grid-auto-rows: minmax(40px, auto);
+  grid-template-columns: 25% auto auto 10%;
+  grid-column-gap: 5px;
   grid-row-gap: 10px;
+  background-color: ${styles.LANDING_BLUE};
 
   .question {
-    border: 2px solid ${styles.SECONDARY_COLOR};
-    border-radius: 5px;
-    box-shadow: 0 2px 3px 0 ${styles.MAIN_COLOR},
-      0 2px 5px 0 ${styles.MAIN_COLOR};
-    grid-column: 2 / 4;
-    background-color: aliceblue;
+    border: 2px solid ${styles.SKY_BLUE};
+    border-radius: 10px;
+    box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.9);
+    margin-right: 2em;
+    grid-column: 2 / 5;
+    &:hover {
+      border: 2px solid ${styles.GREEN};
+    }
   }
   .nav {
     grid-row: 1;
@@ -123,112 +124,89 @@ const Layout = styled.div`
   }
 `;
 
-const Div = styled.div`
-  grid-column: 2;
-  margin-top: 2em;
-`
 const Button = styled.button`
-  grid-column: 3;
-  grid-row: 2;
+  grid-column: 6;
+  color: midnightblue;
   cursor: pointer;
-  background: linear-gradient(to bottom, ${"white"}, ${styles.LINK_COLOR});
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+  background: ivory;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 2px 1px rgba(0, 0, 0, 0.25);
   &:hover {
-    background: rgb(233, 243, 248);
-    border: 2px solid ${styles.GRAY_2};
+    color: ${styles.DARK};
+    background: lightsteelblue;
+    border: 2px solid ${styles.LINK_COLOR};
   }
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: bold;
-  margin-right: 2em;
-  padding: 1em 1em;
-  border: 2px solid ${styles.GRAY_2};
-  border-radius: 3px;
-  justify-self: right;
+  margin: 1em;
+  border: 2px solid ${styles.LINK_COLOR};
+  border-radius: 4px;
+  justify-self: center;
   align-self: center;
-  height: 75px;
-  min-width: 180px;
+  min-height: 80px;
+  min-width: 100px;
 `;
 const Heading = styled.div`
   display: grid;
-  grid-template-columns: 20% 15% auto;
-  grid-template-rows: auto 20%;
+  grid-template-columns: 25% 1fr 1fr 1fr 1fr 1.2fr;
+  grid-template-rows: auto;
   grid-row: 2;
-  grid-column-gap: 3px;
-  grid-column: 2 / 3;
-  font-size: 16px;
-  align-self: center;
-  margin-right: 5em;
-`;
-const Divider = styled.div`
+  grid-column-gap: 10px;
   grid-column: 1 / 5;
-  border-bottom: 1px solid #dddddd;
-  margin-left: 1.5em;
-  margin-right: 1.5em;
-  margin-bottom: 2em;
+  align-items: center;
+  background-color: ${styles.NAVY};
 `;
 const Preview = styled.h1`
   grid-column: 1;
-  margin-left: 1em;
-  margin-top: 1em;
-  font-size: 30px;
-  min-width: 200px;
-  color: midnightblue;
+  font-size: 40px;
+  color: ${styles.MAIN_FONT};
+  text-align: center;
+  margin: 1em;
 `;
 const Tag2 = styled.h3`
-  grid-column: 3;
-  color: ${styles.MAIN_COLOR};
-  background: white;
+  grid-column: 2;
+  color: white;
+  background: rgb(163, 195, 255);
   &:hover {
     color: ${styles.LINK_COLOR};
-    background: linear-gradient(to bottom, ${"white"}, rgb(233, 243, 248));
+    background: ${styles.WHITE_BLUE};
   }
-  border: 1px solid black;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
   padding: 1em;
   text-align: center;
   cursor: pointer;
 `;
 const Tag3 = styled.h3`
-  grid-column: 4;
-  color: ${styles.MAIN_COLOR};
-  background: white;
+  grid-column: 3;
+  color: white;
+  background: rgb(126, 171, 255);
   &:hover {
-    color: ${styles.LINK_COLOR};
-    background: linear-gradient(to bottom, ${"white"}, rgb(233, 243, 248));
+    color: ${styles.NAVY};
+    background: ghostwhite;
   }
   padding: 1em;
   text-align: center;
-  border: 1px solid black;
-  border-top: 1px solid white;
   cursor: pointer;
 `;
 const Tag4 = styled.h3`
-  grid-column: 5;
-  color: ${styles.MAIN_COLOR};
-  background: white;
+  grid-column: 4;
+  color: white;
+  background: rgb(163, 195, 255);
   &:hover {
     color: ${styles.LINK_COLOR};
-    background: linear-gradient(to bottom, ${"white"}, rgb(233, 243, 248));
+    background: ${styles.WHITE_BLUE};
   }
   padding: 1em;
   text-align: center;
-  border: 1px solid black;
-  border-top: 1px solid white;
   cursor: pointer;
 `;
 const Tag5 = styled.h3`
-  grid-column: 6;
-  color: ${styles.MAIN_COLOR};
-  background: white;
+  grid-column: 5;
+  color: white;
+  background: rgb(126, 171, 255);
   &:hover {
-    color: ${styles.LINK_COLOR};
-    background: linear-gradient(to bottom, ${"white"}, rgb(233, 243, 248));
+    color: ${styles.NAVY};
+    background: ghostwhite;
   }
   padding: 1em;
   text-align: center;
-  border: 1px solid black;
-  border-top: 1px solid white;
-  border-right: 1px solid white;
   cursor: pointer;
 `;

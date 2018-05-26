@@ -9,49 +9,49 @@ import Search from '../components/Search'
 
 const Nav = styled.nav`
   display: grid;
-  grid-template-columns: 5% 1fr 1fr 1fr 20% 1fr 1fr 5%;
+  grid-template-columns: 25% 1fr 1fr 20% 1fr 1fr 5%;
   grid-template-rows: auto;
-  height: 75px;
+  height: 70px;
+  padding-bottom: 2em;
   align-items: center;
-  justify-items: left;
-  border-bottom: 2px solid ${styles.MAIN_COLOR};
+  justify-items: center;
+  border-bottom: 2px solid ${styles.DARK};
+  background-color: ${styles.DARK};
   font-weight: bold;
   font-size: 18px;
   font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
 
   .nav-title {
-    grid-column: 1 / span 2;
-    grid-row: span 1;
+    grid-column: 1;
+    grid-row: 1;
     justify-self: center;
-    margin-right: 1em;
-    margin-left: 1em;
+    font-size: 40px;
   }
   .nav-home {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 1;
-    margin-left: 1em;
   }
   .nav-questions {
-    grid-column: 4;
+    grid-column: 3;
     grid-row: 1;
   }
   .nav-user {
-    grid-column: 6;
+    grid-column: 5;
     grid-row: 1;
     justify-self: left;
   }
   .nav-auth-login {
-    grid-column: 6;
+    grid-column: 5;
     grid-row: 1;
     justify-self: left;
   }
   .nav-auth-logout {
-    grid-column: 7;
+    grid-column: 6;
     grid-row: 1;
     justify-self: left;
   }
   .nav-auth-signup {
-    grid-column: 7;
+    grid-column: 6;
     grid-row: 1;
     justify-self: left;
   }
@@ -61,7 +61,7 @@ const NavAuth = styled.div`
   cursor: pointer;
   color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${styles.MAIN_COLOR};
+    color: ${styles.PURPLE};
   }
 `
 const NavLink = styled(Link)`
@@ -69,7 +69,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
   color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${styles.MAIN_COLOR};
+    color: ${styles.PURPLE};
   }
 `
 const Navbar = (props) => {

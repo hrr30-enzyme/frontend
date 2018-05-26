@@ -1,4 +1,5 @@
 import React from "react";
+import * as styles from "../components/StyledComponents";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -39,56 +40,54 @@ export default AnswerPreview;
 
 const Answer = styled.div`
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 20% 10% auto auto;
+  grid-template-columns: 1fr 1fr 4fr 1fr;
   grid-column-gap: 20px;
-  grid-row-gap: 1em;
-  text-decoration: none;
-`;
-const Stats = styled.div`
-  display: grid;
-  grid-template-columns: 40px 50px 50px;
-  grid-row: 1 / span 2;
-  grid-column: 1;
-  grid-column-gap: 5px;
-  align-self: center;
-  justify-self: center;
-  margin-left: 1em;
-`;
-const Votes = styled.div`
-  display: inline-block;
-  grid-column: 1;
-  font-size: 14px;
-`;
-const Views = styled.div`
-  display: inline-block;
-  grid-column: 3;
-  font-size: 14px;
-`;
-const Inner = styled.div`
-  font-size: 22px;
-  font-weight: 300;
-  color: #6a737c;
-  margin-top: 10px;
-  display: block;
-  text-align: center;
-`;
-const MiniCount = styled.div`
-  padding: 8px 5px;
-  line-height: 1;
-`; 
+  background-color: lavender;
+  border-radius: 8px; 
+  &:hover {
+      background-color: rgb(228, 245, 255);
+  }
+`
 const Title = styled.div`
   grid-row: 1 / span 2;
   grid-column: 3;
-  font-size: 18px;
+  font-size: 20px;
   align-self: center;
-  text-decoration: none;
+`
+const Stats = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 10px;
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  align-items: center;
+  justify-items: center;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+`
+const Votes = styled.div`
+  grid-column: 1;
+  font-size: 14px;
+  font-weight: bold;
+`
+const Views = styled.div`
+  grid-column: 3;
+  font-size: 14px;
+  font-weight: bold;
+`
+const Inner = styled.div`
+  font-size: 18px;
+  color: ${styles.DARK};
+  text-align: center;
+`
+const MiniCount = styled.div`
 `
 const User = styled.div`
   grid-row: 1;
   grid-column: 4;
-  font-size: 18px;
-  text-decoration: none;
+  font-size: 14px;
   justify-self: right;
-  padding: 10px;
+  padding-right: 1em;
+  padding-top: 1em;
+  font-weight: bold;
 `

@@ -1,108 +1,91 @@
 import React from "react";
-
+import * as styles from "../components/StyledComponents";
 import styled from "styled-components";
-
 import { Link } from "react-router-dom";
 
 const Question = styled.div`
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 20% 10% auto auto;
+  grid-template-columns: 1fr 1fr 4fr 1fr;
   grid-column-gap: 20px;
-  grid-row-gap: 1em;
-  text-decoration: none;
-  width: auto;
-  height: auto;
-  margin: 3px 3px;
-  background-color: #ffffff;
-`;
+  background-color: aliceblue;
+  border-radius: 8px; 
+  &:hover {
+      background-color: rgb(228, 245, 255);
+  }
+`
 
 const Stats = styled.div`
   display: grid;
-  grid-template-columns: 40px 50px 50px;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 10px;
   grid-row: 1 / span 2;
   grid-column: 1;
-  grid-column-gap: 5px;
-  align-self: center;
-  justify-self: center;
-  margin-left: 1em;
-`;
+  align-items: center;
+  justify-items: center;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+`
 
 const Votes = styled.div`
-  display: inline-block;
   grid-column: 1;
   font-size: 14px;
-`;
+  font-weight: bold;
+`
 
 const Answers = styled.div`
-  display: inline-block;
   grid-column: 2;
   font-size: 14px;
-`;
+  font-weight: bold;
+`
 
 const Views = styled.div`
-  display: inline-block;
   grid-column: 3;
   font-size: 14px;
-`;
+  font-weight: bold;
+`
 
 const Inner = styled.div`
-  font-size: 22px;
-  font-weight: 300;
-  color: #6a737c;
-  margin-top: 10px;
-  display: block;
+  font-size: 18px;
+  color: ${styles.DARK};
   text-align: center;
-`;
+`
 
 const MiniCount = styled.div`
-  padding: 8px 5px;
-  line-height: 1;
-`; 
+`
 
 const Bounty = styled.div`
   grid-row: 1;
   grid-column: 2;
-  justify-self: left;
+  justify-self: center;
   align-self: center;
-  font-weight: bolder;
-  font-size: 18px;
-  font-style: italic;
-  margin-top: 0.7em;
+  font-weight: bold;
+  font-size: 20px;
 `
-
 const Reward = styled.div`
   grid-row: 2;
   grid-column: 2;
-  margin-bottom: 10px;
-  justify-self: left;  
+  justify-self: center; 
+  align-self: top;   
+  font-size: 12px;
+  padding-bottom: 0.5em;
+  font-weight: bolder;
 `
-
 const Title = styled.div`
   grid-row: 1 / span 2;
   grid-column: 3;
-  font-size: 18px;
+  font-size: 20px;
   align-self: center;
-  text-decoration: none;
 `
-
 const User = styled.div`
   grid-row: 1;
   grid-column: 4;
-  font-size: 18px;
-  text-decoration: none;
+  font-size: 14px;
   justify-self: right;
-  padding: 10px;
+  padding-right: 1em;
+  padding-top: 1em;
+  font-weight: bold;
 `
 
-const Tags = styled.div`
-  grid-row: 2;
-  grid-column: 3;
-  display: grid;
-  grid-template-columns: auto;
-  grid-column-gap: 5px;
-  margin-bottom: 10px;
-`
 
 const QuestionPreview = ({question}) => {
 
@@ -114,8 +97,8 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Votes>
               <Inner>
-                <div display="block">{question.upvoteCount}</div>
-              </Inner>{" "}
+                {question.upvoteCount}
+              </Inner>
               votes
             </Votes>
           </MiniCount>
@@ -130,8 +113,8 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Views>
               <Inner>
-                <div display="block">{question.viewCount}</div>
-              </Inner>{" "}
+                {question.viewCount}
+              </Inner>
               views
             </Views>
           </MiniCount>
@@ -148,9 +131,6 @@ const QuestionPreview = ({question}) => {
         <User>
           {username}
         </User>
-        <Tags>
-     
-        </Tags>
       </Question>
     </Link>
   );
