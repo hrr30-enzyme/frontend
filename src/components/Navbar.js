@@ -9,49 +9,51 @@ import Search from '../components/Search'
 
 const Nav = styled.nav`
   display: grid;
-  padding-left: 4em;
-  padding-bottom: 1em;
-  grid-template-columns: 1fr 1fr auto 7fr 1fr 1fr;
+  grid-template-columns: 5% 1fr 1fr 1fr 20% 1fr 1fr 5%;
   grid-template-rows: auto;
-  height: 30px;
+  height: 75px;
   align-items: center;
-  background-color: white;
-  border-bottom: ${({navStyle}) => 
-    navStyle !=='transparent' ? 'solid #888888' : 'solid transparent'};
-  border-width: 1px;
+  justify-items: left;
+  border-bottom: 2px solid ${styles.MAIN_COLOR};
   font-weight: bold;
-  > .nav-item {
-    display: inline;
-  }
-  > .nav-title {
-    grid-column: 1 / 2;
-    grid-row: 1;
-  }
-  > .nav-questions {
-    grid-column: 3 / 4;
-    grid-row: 1;
-  }
-  > .nav-home {
-    grid-column: 2 / 3;
-    grid-row: 1;
-  }
-  > .nav-searchbar {
-    grid-column: 4 / 5;
+  font-size: 18px;
+  font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+
+  .nav-title {
+    grid-column: 1 / span 2;
+    grid-row: span 1;
     justify-self: center;
-    width: 60%;
-    display: grid;
-    grid-row: 1;
-    max-height: 39px;
+    margin-right: 1em;
+    margin-left: 1em;
   }
-  > .nav-auth {
-    cursor: pointer;
-    color: ${styles.LINK_COLOR};
+  .nav-home {
+    grid-column: 3;
+    grid-row: 1;
+    margin-left: 1em;
+  }
+  .nav-questions {
+    grid-column: 4;
     grid-row: 1;
   }
-  > .nav-auth:hover {
-    cursor: pointer;
-    color: ${styles.SECONDARY_COLOR};
+  .nav-user {
+    grid-column: 6;
     grid-row: 1;
+    justify-self: left;
+  }
+  .nav-auth-login {
+    grid-column: 6;
+    grid-row: 1;
+    justify-self: left;
+  }
+  .nav-auth-logout {
+    grid-column: 7;
+    grid-row: 1;
+    justify-self: left;
+  }
+  .nav-auth-signup {
+    grid-column: 7;
+    grid-row: 1;
+    justify-self: left;
   }
 `;
 
@@ -59,95 +61,88 @@ const NavAuth = styled.div`
   cursor: pointer;
   color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${styles.SECONDARY_COLOR};
+    color: ${styles.MAIN_COLOR};
   }
 `
-
-const StyledNavLink = styled(Link)`
+const NavLink = styled(Link)`
+  cursor: pointer;
   text-decoration: none;
-  color: ${(props) => styles.LINK_COLOR || styles.SECONDARY_COLOR};
+  color: ${styles.LINK_COLOR};
   &:hover {
-    color: ${(props) => styles.SECONDARY_COLOR};
+    color: ${styles.MAIN_COLOR};
   }
 `
-
 const Navbar = (props) => {
   console.log('nav bar', props)
   const signedIn = props.authentication.signedIn;
 
-  let NavStyle = Nav;
-  let linkColor = styles.SECONDARY_COLOR;
+  let linkColor = styles.LINK_COLOR;
   let linkColorHover = styles.MAIN_COLOR;
 
   return (
     <div>
-      <NavStyle navStyle={props.navStyle}>
-        <div className="nav-title">
-          <StyledNavLink 
+      <Nav>
+        <h1 className="nav-title">
+          <NavLink 
             to="/"
             linkColor={ linkColor }
             linkColorHover={ linkColorHover }
           >
-            Catalyst
-          </StyledNavLink>
-        </div>
-        <div className="nav-home">
-          <StyledNavLink 
+            {"Catalyst"}
+          </NavLink>
+        </h1>
+        <h4 className="nav-home">
+          <NavLink 
             to="/home"
             linkColor={ linkColor }
             linkColorHover={ linkColorHover }
           >
             Home
-          </StyledNavLink>
-        </div>
-        <div className="nav-questions">
-          <StyledNavLink 
+          </NavLink>
+        </h4>
+        <h4 className="nav-questions">
+          <NavLink 
             to="/questions"
             linkColor={ linkColor }
             linkColorHover={ linkColorHover }
           >
             Questions
-          </StyledNavLink>
-        </div>
-        <div className="nav-searchbar">
-            <Search {...props} />
-
-
-        </div>
+          </NavLink>
+        </h4>
         
         {signedIn 
           ? (
             [
-              <div className="nav-item">
-                <StyledNavLink 
-                  to={ `/user/${props.authentication.userInfo.username}` }
+              <div className="nav-user">
+                <NavLink 
+                  to={`/user/${props.authentication.userInfo.username}`}
                   linkColor={ linkColor }
-                  linkColorHOver={ linkColorHover }
+                  linkColorHover={ linkColorHover }
                 >
-                  { props.authentication.userInfo.username }
-                </StyledNavLink>
+                  { props.authentication.userInfo.username }                  
+                </NavLink>
               </div>,
-              <NavAuth className="nav-item">
+              <NavAuth className="nav-auth-logout">
                 <div onClick={ props.signout }>logout</div>
               </NavAuth>
             ]
           )
           : [
               <NavAuth
-                className="nav-auth-signin" 
+                className="nav-auth-login" 
                 onClick={ () => props.openModal("signin") }
               >
-                Log In
+                Login
               </NavAuth>,
               <NavAuth 
                 className="nav-auth-signup"
-                onClick={() => props.openModal("signup")}
+                onClick={ () => props.openModal("signup")}
               >
-                Sign Up
+                Signup
               </NavAuth>
           ]
         }
-      </NavStyle>
+      </Nav>
        <Signin
           username={ props.textInput.username }
           password={ props.textInput.password }
