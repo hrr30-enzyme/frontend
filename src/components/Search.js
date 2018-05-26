@@ -77,7 +77,6 @@ const Search = props => {
       lookFor(e.target.value);
       clear("search");
       changePath("/search");
-      clearBar();
     }
   };
 

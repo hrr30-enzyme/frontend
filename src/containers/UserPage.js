@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import * as styles from "../components/StyledComponents";
 import QuestionPreview from "../components/QuestionPreview";
 import AnswerPreview from "../components/AnswerPreview";
-import CommentPreview from "../components/CommentPreview";
 
 const Layout = styled.div`
   display: grid;
@@ -27,7 +26,7 @@ const Layout = styled.div`
   }
 
   .answer {
-    border: 3px solid violet;
+    border: 3px solid ${styles.DARKPURPLE};
     border-radius: 8px;
     min-width: 800px;
     max-width: 800px;
@@ -82,23 +81,12 @@ class UserPage extends Component {
   }
 
   render() {
-
+    console.log('UserPage: -------- ', this.props);
     return (
       <Layout>
         <div className="nav">
           <Navbar {...this.props} />
         </div>
-
-          {/* Username: {this.props.authentication.userInfo.username}
-  
-          Email: {this.props.authentication.userInfo.email}
-
-          Joined:
-
-          {moment(this.props.authentication.userInfo.createdAt).format(
-            "MMM Do YYYY"
-          )}          */}
-
         <Questions>
           Questions: 
         </Questions>

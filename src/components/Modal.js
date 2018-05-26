@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import React from "react";
 import * as styles from '../components/StyledComponents'
 import { MAIN_COLOR } from './StyledComponents'
@@ -13,58 +12,63 @@ import { MAIN_COLOR } from './StyledComponents'
  * the modal
  * 
  */
-const Modal = styled.div`
+const Container = styled.div`
   display: ${ props => props.showModal ? "block" : "none"};
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  
+  background: rgba(0, 0, 0, 0.7);
 `;
 
-const ModalContent = styled.div`
+const Content = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 1rem 1.5rem;
-  width: 24rem;
-  border-radius: 0.17rem;
-  border-top: .3rem solid ${"#FFBE71"}
+  padding: 1.5rem 1.5rem;
+  width: 35rem;
+  border-radius: 0.5rem;
+  border: .3rem solid ${styles.MAIN_COLOR};
 `;
 
-const InnerDiv = styled.div`
+const Inner = styled.div`
   display: grid;
-  padding: 1em;
   grid-template-columns: auto;
-  align-items: center;
-  grid-row-gap: 1em;
-  > modal-title {
-    align-self: center;
+  grid-row-gap: 0.5em;
+  margin: 1em;
+  padding: 0.5em;
+
+  .modal-title {
+    justify-self: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #0a0d54;
   }
-  > error {
+
+  .error {
     color: red;
-    font-size: 40%
+    font-size: 150%;
+    justify-self: center;
   }
 `
 
 const modal = ({ showModal, handleClose }) => (component) => (
-  <Modal
+  <Container
     showModal={ showModal }
     onClick={ handleClose }
   >
-    <ModalContent>
-      <InnerDiv 
+    <Content>
+      <Inner 
         className="modal-content"
         onClick={ e => e.stopPropagation() }  
       >
         { component }
-      </InnerDiv>
-    </ModalContent>
-  </Modal>
+      </Inner>
+    </Content>
+  </Container>
 );
 
 export default modal

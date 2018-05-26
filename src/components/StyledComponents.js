@@ -19,23 +19,36 @@ export const DARKPURPLE = `#83539a`
 export const WHITE_BLUE = '#E9F3F8'
 export const LANDING_BLUE = '#537f9a'
 
+export const DARK = '#0B0C10'
+export const NAVY = '#1F2833'
+export const STEEL = '#C5C6C7'
+export const CYAN = '66FCF1'
+export const POOL = '#45A29E'
+export const GREEN = '#0E1A1F'
+
 export const Input = styled.input`
   padding: 0.5em;
-  margin: 0.5em;
-  background: #FFEEC2
+  margin: 1.5em;
+  background: ghostwhite;
   height: 30px;
-  border: none;
+  font-size: 16px;
+  border: solid 2px ${MAIN_COLOR};
   border-radius: 3px;
-  border-bottom: 1px;
 `;
 
 export const Button = styled.button`
-  background: #FFBE71;
-  color: white;
-
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid #FFBE71;
-  border-radius: 3px;
+  background: ${WHITE_BLUE};
+  color: midnightblue;
+  width: 120px;
+  justify-self: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.5em;
+  border: 2px solid ${MAIN_COLOR};
+  border-radius: 8px;
+  &:hover {
+    background: lightcyan;
+    color: ${MAIN_COLOR};
+    cursor: pointer;
+  }
 `;
