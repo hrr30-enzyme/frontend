@@ -8,6 +8,20 @@ import { Link } from "react-router-dom";
 
 export default class QuestionsPage extends Component {
   
+  constructor() {
+    super()
+    this.state = {
+      tags: []
+    }
+
+    this.clickTag = this.clickTag.bind(this)
+  }
+
+  clickTag(tag) {
+    var tags = [tag];
+    this.setState({ tags: tags });
+  }
+
   componentDidMount() {
     this.props.getPostByQuery({ postTypeId: 1, sortBy: "-createdAt" });
   }
@@ -21,43 +35,50 @@ export default class QuestionsPage extends Component {
           <Navbar {...this.props} />
         </div>
         <Heading>
-          <Preview>{this.props.post.sortedBy}</Preview>
           <Tag2
+            active={this.state.tags[0] === 'newest'}
             onClick={() => {
               this.props.changeSortedBy("Newest");
               this.props.getPostByQuery({
                 sortBy: "-createdAt",
                 PostTypeId: 1
               });
+              this.clickTag('newest')
             }}
           >
             Newest
           </Tag2>
           <Tag3
+            active={this.state.tags[0] === 'popular'}
             onClick={() => {
               this.props.changeSortedBy("Popular");
               this.props.getPostByQuery({
                 sortBy: "-viewCount",
                 PostTypeId: 1
               });
+              this.clickTag('popular')
             }}
           >
             Popular
           </Tag3>
           <Tag4
+            active={this.state.tags[0] === 'bounty'}
             onClick={() => {
               this.props.changeSortedBy("Bounty");
               this.props.getPostByQuery({
                 sortBy: "-bounty",
                 PostTypeId: 1
               });
+              this.clickTag('bounty')
             }}
           >
             Bounty
           </Tag4>
           <Tag5
+            active={this.state.tags[0] === 'recomended'}
             onClick={() => {
               console.log('isloggedin', this.props)
+              this.clickTag('recomended')
               if (this.props.authentication.signedIn === true) {
                 this.props.getRecomendations();
                 this.props.changeSortedBy('Recomended')
@@ -70,7 +91,8 @@ export default class QuestionsPage extends Component {
             Ask a Question
           </Button>
         </Heading>
-
+        <Preview>
+        </Preview>
         <AskQuestion
           {...this.props}
           title={this.props.textInput.title}
@@ -104,7 +126,6 @@ const Layout = styled.div`
   display: grid;
   grid-auto-rows: minmax(40px, auto);
   grid-template-columns: 25% auto auto 10%;
-  grid-column-gap: 5px;
   grid-row-gap: 10px;
   background-color: ${styles.SECONDARY_COLOR};
 
@@ -113,6 +134,7 @@ const Layout = styled.div`
     border-radius: 10px;
     box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.9);
     margin-right: 1em;
+    margin-left: 1em;
     grid-column: 2 / 5;
     &:hover {
       border: 2px solid ${styles.GREEN};
@@ -125,17 +147,17 @@ const Layout = styled.div`
 `;
 
 const Button = styled.button`
-  grid-column: 6;
-  color: ${styles.LANDING_BLUE};
+  grid-column: 5;
+  color: ${styles.LINK_COLOR};
   cursor: pointer;
   background: ivory;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2), 0 1px 2px 1px rgba(0, 0, 0, 0.25);
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 3px solid ${styles.POOL};
+    border: 3px solid ${styles.PURPLE};
   }
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   margin: 1em;
   border: 3px solid ${styles.SKY_BLUE};
@@ -147,73 +169,103 @@ const Button = styled.button`
 `;
 const Heading = styled.div`
   display: grid;
-  grid-template-columns: 25% 1fr 1fr 1fr 1fr 1.2fr;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 117px auto;
   grid-row: 2;
   grid-column-gap: 10px;
-  grid-column: 1 / 5;
+  grid-column: 2 / 5;
   align-items: center;
   background-color: ${styles.NAVY};
+  border-bottom: 1.2px solid ${styles.MAIN_FONT};
+  border-top: 1.2px solid ${styles.MAIN_FONT};
+  font-family: Arial Narrow, sans-serif;
+  font-weight: bold;
+`;
+const Preview = styled.div`
+  grid-row: 2 / span 9;
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: auto;
+  font-size: 26px;
+  color: ${styles.MAIN_FONT};
+  background-color: ${styles.NAVY};
+  text-align: center;
   border: 1.2px solid ${styles.MAIN_FONT};
 `;
-const Preview = styled.h1`
+
+const Tag2 = styled.div`
   grid-column: 1;
-  font-size: 32px;
-  color: ${styles.MAIN_FONT};
-  background-color: ${styles.DARK};
-  border: 1.5px solid ${styles.LINK_COLOR};
+  color: white;
+  background: rgb(126, 171, 255);
+  border: 1.5px solid ${styles.TITLE_FONT};
+  &:hover {
+    color: ${styles.GREEN};
+    background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
+  };
+  ${({ active }) => active && `
+    color: ${styles.GREEN};
+    background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
+  `};
+  padding: 1em;
+  margin-left: 2em;
   text-align: center;
-  margin: 1em;
-  padding: 0.5em;
+  cursor: pointer;
 `;
-const Tag2 = styled.h3`
+const Tag3 = styled.div`
   grid-column: 2;
   color: white;
   background: rgb(126, 171, 255);
+  border: 1.5px solid ${styles.TITLE_FONT};
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
     border: 2px solid ${styles.PURPLE};
-  }
+  };
+  ${({ active }) => active && `
+    color: ${styles.GREEN};
+    background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
+  `};
   padding: 1em;
   text-align: center;
   cursor: pointer;
 `;
-const Tag3 = styled.h3`
+const Tag4 = styled.div`
   grid-column: 3;
   color: white;
   background: rgb(126, 171, 255);
+  border: 1.5px solid ${styles.TITLE_FONT};
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
     border: 2px solid ${styles.PURPLE};
-  }
+  };
+  ${({ active }) => active && `
+    color: ${styles.GREEN};
+    background: ${styles.WHITE_BLUE};
+    border: 2px solid ${styles.PURPLE};
+  `};
   padding: 1em;
   text-align: center;
   cursor: pointer;
 `;
-const Tag4 = styled.h3`
+const Tag5 = styled.div`
   grid-column: 4;
   color: white;
   background: rgb(126, 171, 255);
+  border: 1.5px solid ${styles.TITLE_FONT};
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
     border: 2px solid ${styles.PURPLE};
-  }
-  padding: 1em;
-  text-align: center;
-  cursor: pointer;
-`;
-const Tag5 = styled.h3`
-  grid-column: 5;
-  color: white;
-  background: rgb(126, 171, 255);
-  &:hover {
+  };
+  ${({ active }) => active && `
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
     border: 2px solid ${styles.PURPLE};
-  }
+  `};
   padding: 1em;
   text-align: center;
   cursor: pointer;

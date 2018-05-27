@@ -25,6 +25,7 @@ export const STEEL = '#C5C6C7'
 export const CYAN = '66FCF1'
 export const POOL = '#45A29E'
 export const GREEN = '#0E1A1F'
+export const AQUA = '#00FFFF'
 
 export const Input = styled.input`
   padding: 0.5em;
@@ -44,11 +45,12 @@ export const Button = styled.button`
   font-size: 1.2em;
   font-weight: bold;
   padding: 0.5em;
-  border: 2px solid ${MAIN_COLOR};
+  border: 2px solid ${POOL};
   border-radius: 8px;
   &:hover {
-    background: lightcyan;
+    background: ${'lavender'};
     color: ${MAIN_COLOR};
+    border: 2px solid ${PURPLE};
     cursor: pointer;
   }
 `;

@@ -19,7 +19,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
 `;
 
 const Content = styled.div`
@@ -27,11 +27,11 @@ const Content = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: azure;
   padding: 1.5rem 1.5rem;
-  width: 35rem;
+  width: 30rem;
   border-radius: 0.5rem;
-  border: .3rem solid ${styles.MAIN_COLOR};
+  border: .3rem solid ${styles.SECONDARY_COLOR};
 `;
 
 const Inner = styled.div`
