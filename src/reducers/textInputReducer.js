@@ -5,6 +5,7 @@ import {
   SIGN_IN,
   SIGN_UP,
   POST_QUESTION,
+  POST_ANSWER
 } from '../actions/types'
 
 const initialState = {
@@ -19,12 +20,13 @@ const initialState = {
 }
 
 const textInput = (state = initialState, action) => {
-  switch(action.type){
+  switch(action.type) {
     case INPUT_CHANGE:
       return {
         ...state,
         [action.payload.inputType]: action.payload.input
       }
+
     case CLEAR_ALL_INPUTS:
       return {
         ...initialState
@@ -41,10 +43,13 @@ const textInput = (state = initialState, action) => {
       
     case `${POST_QUESTION}_FULFILLED`:
       return initialState
+
+    case `${POST_ANSWER}_FULFILLED`:
+      return initialState
       
     default:
       return state
-  
+       
   }
 }
 
