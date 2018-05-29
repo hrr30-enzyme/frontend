@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import HomePage from "./HomePage";
-import LandingPage from "./LandingPage";
-import QuestionPage from "./QuestionPage";
-import QuestionsPage from "./QuestionsPage";
-import UserPage from "./UserPage";
-import PrivateRoute from "../components/PrivateRoute";
-import SearchResults from '../containers/SearchResults'
+import React, { Component } from "react"
+import { Switch, Route, Redirect } from "react-router-dom"
+import HomePage from "./HomePage"
+import LandingPage from "./LandingPage"
+import QuestionPage from "./QuestionPage"
+import QuestionsPage from "./QuestionsPage"
+import UserPage from "./UserPage"
+import PrivateRoute from "../components/PrivateRoute"
 
 export default class App extends Component {
   
@@ -41,11 +40,7 @@ export default class App extends Component {
           component={UserPage}
           {...this.props}
         />
-        <Route
-          path="/search"
-          render={props => <SearchResults {...this.props} {...props} />}
-        />
       </Switch>
-    );
+    )
   }
 }

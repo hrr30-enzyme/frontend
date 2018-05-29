@@ -20,23 +20,23 @@ const showModal = (state = initialState, action) => {
         ...state,
         [action.payload.modal]: true,
         message: action.payload.message
-      };
+      }
       
     case CLOSE_MODAL:
-      return initialState;
+      return initialState
     
     case `${SIGN_IN}_FULFILLED`:
-      return initialState;
+      return initialState
 
     case `${SIGN_UP}_FULFILLED`:
-      return initialState;
+      return initialState
 
     case `${POST_QUESTION}_FULFILLED`:
-      return initialState;
+      return initialState
 
     default:
       return state
   }
 }
 
-export default showModal;
+export default showModal

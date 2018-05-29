@@ -16,7 +16,7 @@ const initialState = {
   answerBody: '',
   commentBody: '',
   search: ''
-};
+}
 
 const textInput = (state = initialState, action) => {
   switch(action.type){
@@ -31,16 +31,16 @@ const textInput = (state = initialState, action) => {
       }
 
     case CLOSE_MODAL:
-      return initialState;
+      return initialState
 
     case `${SIGN_IN}_FULFILLED`:
-      return initialState;
+      return initialState
 
     case `${SIGN_UP}_FULFILLED`:
-      return initialState;
+      return initialState
       
     case `${POST_QUESTION}_FULFILLED`:
-      return initialState;
+      return initialState
       
     default:
       return state

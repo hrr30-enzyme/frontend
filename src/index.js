@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Root from './Root.js';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Root from './Root.js'
 import { Provider, connect } from 'react-redux'
 import store from './store'
 import mapDispatchToProps from './actions/mapDispatchToProps'
 import mapStateToProps from './store/mapStateToProps'
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker'
 import getWeb3 from './web3'
 
 getWeb3
@@ -15,14 +15,13 @@ getWeb3
 const ConnectedApp = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Root);
+)(Root)
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedApp  />
-  </Provider>
-  , 
+  </Provider>, 
   document.getElementById('root')
-);
+)
 
-registerServiceWorker();
+registerServiceWorker()

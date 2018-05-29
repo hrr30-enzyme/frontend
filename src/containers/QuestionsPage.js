@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import styled, { keyframes } from "styled-components";
-import * as styles from "../components/StyledComponents";
-import Navbar from "../components/Navbar";
-import QuestionPreview from "../components/QuestionPreview";
-import AskQuestion from "../components/AskQuestion";
-import { Link } from "react-router-dom";
+import React, { Component } from "react"
+import styled, { keyframes } from "styled-components"
+import * as styles from "../components/StyledComponents"
+import Navbar from "../components/Navbar"
+import QuestionPreview from "../components/QuestionPreview"
+import AskQuestion from "../components/AskQuestion"
+import { Link } from "react-router-dom"
 
 export default class QuestionsPage extends Component {
   
@@ -19,16 +19,16 @@ export default class QuestionsPage extends Component {
 
   clickTag(tag) {
     var tags = [tag];
-    this.setState({ tags: tags });
+    this.setState({ tags: tags })
   }
 
   componentDidMount() {
-    this.props.getPostByQuery({ postTypeId: 1, sortBy: "-createdAt" });
+    this.props.getPostByQuery({ postTypeId: 1, sortBy: "-createdAt" })
   }
 
   render() {
-    console.log("questionsPage", this.props);
-    console.log(this.props.post.questions);
+    console.log("questionsPage", this.props)
+    console.log(this.props.post.questions)
     return (
       <Layout>
         <div className="nav">
@@ -38,7 +38,7 @@ export default class QuestionsPage extends Component {
           <Tag2
             active={this.state.tags[0] === 'newest'}
             onClick={() => {
-              this.props.changeSortedBy("Newest");
+              this.props.changeSortedBy("Newest")
               this.props.getPostByQuery({
                 sortBy: "-createdAt",
                 PostTypeId: 1
@@ -51,7 +51,7 @@ export default class QuestionsPage extends Component {
           <Tag3
             active={this.state.tags[0] === 'popular'}
             onClick={() => {
-              this.props.changeSortedBy("Popular");
+              this.props.changeSortedBy("Popular")
               this.props.getPostByQuery({
                 sortBy: "-viewCount",
                 PostTypeId: 1
@@ -64,7 +64,7 @@ export default class QuestionsPage extends Component {
           <Tag4
             active={this.state.tags[0] === 'bounty'}
             onClick={() => {
-              this.props.changeSortedBy("Bounty");
+              this.props.changeSortedBy("Bounty")
               this.props.getPostByQuery({
                 sortBy: "-bounty",
                 PostTypeId: 1
@@ -98,7 +98,7 @@ export default class QuestionsPage extends Component {
           title={this.props.textInput.title}
           body={this.props.textInput.body}
           showModal={(() => {
-            console.log("this.props.showMOda.ask", this.props.showModal.ask);
+            console.log("this.props.showMOda.ask", this.props.showModal.ask)
             return this.props.showModal.ask;
           })()}
           closeModal={this.props.closeModal}
@@ -144,8 +144,7 @@ const Layout = styled.div`
     grid-row: 1;
     grid-column: 1 / -1;
   }
-`;
-
+`
 const Button = styled.button`
   grid-column: 5;
   color: ${styles.LINK_COLOR};
@@ -155,7 +154,7 @@ const Button = styled.button`
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 3px solid ${styles.PURPLE};
+    border: 3px solid ${styles.GREEN_HOVER};
   }
   font-size: 1em;
   font-weight: bold;
@@ -166,7 +165,7 @@ const Button = styled.button`
   align-self: center;
   min-height: 80px;
   min-width: 100px;
-`;
+`
 const Heading = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -180,7 +179,7 @@ const Heading = styled.div`
   border-top: 1.2px solid ${styles.MAIN_FONT};
   font-family: Arial Narrow, sans-serif;
   font-weight: bold;
-`;
+`
 const Preview = styled.div`
   grid-row: 2 / span 9;
   grid-column: 1;
@@ -191,8 +190,7 @@ const Preview = styled.div`
   background-color: ${styles.NAVY};
   text-align: center;
   border: 1.2px solid ${styles.MAIN_FONT};
-`;
-
+`
 const Tag2 = styled.div`
   grid-column: 1;
   color: white;
@@ -201,18 +199,18 @@ const Tag2 = styled.div`
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   };
   ${({ active }) => active && `
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   `};
   padding: 1em;
   margin-left: 2em;
   text-align: center;
   cursor: pointer;
-`;
+`
 const Tag3 = styled.div`
   grid-column: 2;
   color: white;
@@ -221,17 +219,17 @@ const Tag3 = styled.div`
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   };
   ${({ active }) => active && `
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   `};
   padding: 1em;
   text-align: center;
   cursor: pointer;
-`;
+`
 const Tag4 = styled.div`
   grid-column: 3;
   color: white;
@@ -240,17 +238,17 @@ const Tag4 = styled.div`
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   };
   ${({ active }) => active && `
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   `};
   padding: 1em;
   text-align: center;
   cursor: pointer;
-`;
+`
 const Tag5 = styled.div`
   grid-column: 4;
   color: white;
@@ -259,14 +257,14 @@ const Tag5 = styled.div`
   &:hover {
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   };
   ${({ active }) => active && `
     color: ${styles.GREEN};
     background: ${styles.WHITE_BLUE};
-    border: 2px solid ${styles.PURPLE};
+    border: 2px solid ${styles.GREEN_HOVER};
   `};
   padding: 1em;
   text-align: center;
   cursor: pointer;
-`;
+`

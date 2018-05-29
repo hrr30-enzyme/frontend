@@ -1,16 +1,15 @@
 import React from "react";
-
 import modal from "./Modal";
 import { Input, Button } from "./StyledComponents";
 
 const handleClick = (e, cb, credentials) => {
-  e.preventDefault();
-  cb(credentials);
-};
+  e.preventDefault()
+  cb(credentials)
+}
 
 const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
+  cb(inputType, input)
+}
 
 const Signin = ({
   signin,
@@ -23,7 +22,7 @@ const Signin = ({
   message
 }) => {
   const enterInput = e =>
-    e.key === "Enter" && handleClick(e, signin, { username, password });
+    e.key === "Enter" && handleClick(e, signin, { username, password })
   return modal({
     showModal,
     handleClose: () => closeModal("signin")
@@ -49,7 +48,7 @@ const Signin = ({
     <Button onClick={e => handleClick(e, signin, { username, password })}>
       Submit
     </Button>
-  ]);
-};
+  ])
+}
 
-export default Signin;
+export default Signin

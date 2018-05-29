@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 
 import {
   POST_QUESTION,
@@ -16,7 +16,7 @@ import {
   VOTE_ANSWER,
   UPDATE_VIEWS,
   RECOMENDATIONS,
-} from "./types";
+} from "./types"
 
 import { ORIGIN } from "../constants";
 
@@ -25,15 +25,15 @@ export const queryString = params =>
   Object.keys(params)
     .filter(key => params[key] !== undefined)
     .map(key => key + "=" + params[key])
-    .join("&");
+    .join("&")
 
 export const getPostsByQuestion = postref => {
   const str = queryString({ postref });
   return {
     type: GET_POSTS_BY_QUESTION,
     payload: axios.post(`${ORIGIN}/post${str}`)
-  };
-};
+  }
+}
 
 export const queryPosts = (query) => {
   const str = queryString(query);
@@ -41,56 +41,56 @@ export const queryPosts = (query) => {
   return {
     type: GET_POST_BY_QUERY,
     payload: axios.get(`${ORIGIN}/post${str}`)
-  };
-};
+  }
+}
 
 export const postQuestion = (question) => ({
   type: POST_QUESTION,
   payload: axios.post(`${ORIGIN}/question`, question)
-});
+})
 
 export const getQuestion = id => ({
   type: GET_QUESTION,
   payload: axios.get(`${ORIGIN}/questions/${id}`)
-});
+})
 
 export const updateQuestionVote = (post) => ({
   type: VOTE_QUESTION,
   payload: axios.patch(`${ORIGIN}/post/upvotes`, post)
-});
+})
 
 export const downvoteQuestionVote = (post) => ({
   type: VOTE_QUESTION_DOWN,
   payload: axios.patch(`${ORIGIN}/post/downvotes`, post)
-});
+})
   
 export const getPostByQuery = (query) => ({
   type: GET_POST_BY_QUERY,
   payload: axios.get(`${ORIGIN}/post${queryString(query)}`) 
-});
+})
 
 export const getQuestions = () => {
   //const str = queryString();
   return {
     type: GET_QUESTIONS,
     payload: axios.get(`${ORIGIN}/questions/all`)
-  };
-};
+  }
+}
 
 export const getAllQuestions = () => ({
   type: GET_ALL_QUESTIONS,
   payload: axios.get(`${ORIGIN}/questions/all`)
-});
+})
 
 export const postAnswer = answer => ({
   type: POST_ANSWER,
   payload: axios.post(`${ORIGIN}/answer`, answer)
-});
+})
 
 export const getAnswer = id => ({
   type: GET_ANSWER,
   payload: axios.get(`${ORIGIN}/answer/${id}`)
-});
+})
 
 export const updateAnswerVote = (post, id) => ({
   type: VOTE_ANSWER,
@@ -98,7 +98,7 @@ export const updateAnswerVote = (post, id) => ({
   meta: {
     id: id
   }
-});
+})
 
 export const downvoteAnswerVote = (post, id) => ({
   type: VOTE_ANSWER_DOWN,
@@ -106,7 +106,7 @@ export const downvoteAnswerVote = (post, id) => ({
   meta: {
     id: id
   }
-});
+})
 
 export const updateViews = (post) => ({
   type: UPDATE_VIEWS,
@@ -119,13 +119,13 @@ export const getAnswers = (query) => {
   return {
     type: GET_ANSWERS,
     payload: axios.get(`${ORIGIN}/post${str}`)
-  };
-};
+  }
+}
 
 export const changeSortedBy = parameter => ({
   type: 'CHANGE_SORTED_BY',
   payload: parameter,
-});
+})
 
 export const getRecomendations = () => (dispatch, getState) => {
   const userid = getState().authentication.userInfo.id;
@@ -133,4 +133,4 @@ export const getRecomendations = () => (dispatch, getState) => {
     type: RECOMENDATIONS,
     payload: axios.get(`${ORIGIN}/user/recomendations/${userid}`)
   })
-};
+}

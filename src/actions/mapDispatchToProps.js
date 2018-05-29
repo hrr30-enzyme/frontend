@@ -1,7 +1,11 @@
 import { bindActionCreators } from 'redux'
+
 import { signin, signout, signup, checkSignin } from './authentication'
+
 import { addText, clearAll, clearText } from './inputText'
+
 import { openModal, closeModal } from './modal'
+
 import {
   noMetaMask,
   getMinBounty,
@@ -13,7 +17,7 @@ import {
   createAnswer,
   createQuestion,
 } from './web3'
-import { search, suggest, clearSuggest } from './search'
+
 import {
   postQuestion,
   getQuestion,
@@ -28,7 +32,6 @@ import {
   queryPosts,
   changeSortedBy,
   updateViews,
-  downvoteAnswerVote,
   downvoteQuestionVote,
   getRecomendations,
 } from './posts'
@@ -56,7 +59,6 @@ const mapDispatchToProps = (dispatch) => (
     changeSortedBy,
     clearText,
     clearAll,
-    search,
     updateViews,
     downvoteQuestionVote,
     noMetaMask,
@@ -68,12 +70,8 @@ const mapDispatchToProps = (dispatch) => (
     payoutWinner,
     createAnswer,
     createQuestion,
-    suggest,
-    getRecomendations,
-    downvoteQuestionVote,
-    suggest,
-    clearSuggest
+    getRecomendations
   }, dispatch)
-); 
+)
 
 export default mapDispatchToProps

@@ -44,15 +44,16 @@ export const noMetaMask = (payload) => {
  */
 
 const call = (actionName) => (method) => () => (dispatch, getState) => {
-  const contract = getState().web3.contract;
+  const contract = getState().web3.contract
   
   if (contract === null) {
-    return dispatch({type: NO_METAMASK});
+    return dispatch({type: NO_METAMASK})
   }
+
   dispatch({
     type: `${actionName}_PENDING`,
     method
-  });
+  })
  
   contract
     .methods[method]()
@@ -70,23 +71,25 @@ const call = (actionName) => (method) => () => (dispatch, getState) => {
         method,
         err,
       }
-    }));
+    }))
 }
 
 /*
  * These view functions all come from teh QuestionFactory contract.
  */
-const getMinBounty = call(GET_MIN_BOUNTY)('getMinBounty');
-const getDuration = call(GET_DURATION)('getDuration');
-const getAnswerFee = call(GET_ANSWER_FEE)('getAnswerFee');
-const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount');
+const getMinBounty = call(GET_MIN_BOUNTY)('getMinBounty')
+const getDuration = call(GET_DURATION)('getDuration')
+const getAnswerFee = call(GET_ANSWER_FEE)('getAnswerFee')
+const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount')
 
-window.getMinBounty = getMinBounty;
-window.getDuration = getDuration;
-window.getAnswerFee = getAnswerFee;
-window.getQuestionsCount = getQuestionsCount;
+window.getMinBounty = getMinBounty
+window.getDuration = getDuration
+window.getAnswerFee = getAnswerFee
+window.getQuestionsCount = getQuestionsCount
 window.getQuestionId
+
 export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
+
 /*
  * a send function is one that requires gas to run because it changes the blockchain
  * 
@@ -108,12 +111,12 @@ export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
  * TODO handle for when the user does not pay the min balance before
  * sending to the blockchain.
  */
+
 const send = (actionName) => (isPayable) => (method) => (value, ...args) => async (dispatch, getState) => {
-  const contract = getState().web3.contract;
+  const contract = getState().web3.contract
   console.log('\n\n\n\nactionname\n\n\n\n',actionName)
   
-
-  const addresses = await getState().web3.web3.eth.getAccounts();
+  const addresses = await getState().web3.web3.eth.getAccounts()
   dispatch({
     type: `${actionName}_PENDING`,
     payload: {
@@ -122,13 +125,14 @@ const send = (actionName) => (isPayable) => (method) => (value, ...args) => asyn
       args,
     }
   })
+
   console.log('contract', contract)
 
   if (!addresses[0] || contract === null) {
-    return dispatch(NO_METAMASK);
+    return dispatch(NO_METAMASK)
   }
 
-  value = isPayable ? {value} : {};
+  value = isPayable ? {value} : {}
 
   contract
     .methods[method](...args)
@@ -177,7 +181,7 @@ const send = (actionName) => (isPayable) => (method) => (value, ...args) => asyn
           err,
         }
       })
-    });
+    })
 }
 
 /*
@@ -186,12 +190,12 @@ const send = (actionName) => (isPayable) => (method) => (value, ...args) => asyn
  * documentation for more.
  */
 
-export const upVote = send(UP_VOTE)(false)('upVote'); 
-export const payoutWinner = send(PAYOUT_WINNER)(false)('payoutWinner');
-export const createAnswer = send(CREATE_ANSWER)(true)('createAnswer');
-export const createQuestion = send(CREATE_QUESTION)(true)('createQuestion');
-// possible TODO contract.methods.myMethod.estimateGas estimates the gas a execution will take.
+export const upVote = send(UP_VOTE)(false)('upVote')
+export const payoutWinner = send(PAYOUT_WINNER)(false)('payoutWinner')
+export const createAnswer = send(CREATE_ANSWER)(true)('createAnswer')
+export const createQuestion = send(CREATE_QUESTION)(true)('createQuestion')
 
+// possible TODO contract.methods.myMethod.estimateGas estimates the gas a execution will take.
 
 // possible TODO contract.events.eventName([options][, callback]) allows us to subscribe
 // to events similar to a socket.  Might be a backend thing.

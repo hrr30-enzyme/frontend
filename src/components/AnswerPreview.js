@@ -1,11 +1,11 @@
-import React from "react";
-import * as styles from "../components/StyledComponents";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from "react"
+import * as styles from "../components/StyledComponents"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 const AnswerPreview = ({answer}) => {
   console.log(answer)
-  const username = answer.User ? answer.User.username : 'fake';
+  const username = answer.User ? answer.User.username : 'fake'
   return (
     <Link to={`/question/${answer.PostId}`} className='answerlink'>
       <Answer>
@@ -33,8 +33,8 @@ const AnswerPreview = ({answer}) => {
         <Title>{answer.body}</Title>
       </Answer>
     </Link>
-  );
-};
+  )
+}
 
 export default AnswerPreview;
 

@@ -14,7 +14,7 @@ import {
   VOTE_QUESTION_DOWN,
   VOTE_ANSWER,
   VOTE_ANSWER_DOWN
-} from "../actions/types";
+} from "../actions/types"
 
 
 const exampleState = {
@@ -74,7 +74,7 @@ const exampleState = {
       ]
     }
   ]
-};
+}
 
 const initialState = {
   User: {
@@ -87,7 +87,7 @@ const initialState = {
   posts: [],
   questions: [],
   answers: []
-};
+}
 
 /*
  * We might not need a lot of these reducers to do anything
@@ -97,34 +97,34 @@ const postReducer = (state = exampleState, action) => {
     case `${POST_QUESTION}_FULFILLED`:
       return {
         ...state,
-      };
+      }
 
     case `${POST_QUESTION}_REJECTED`:
       return {
         ...state,
-      };
+      }
 
     case `${GET_QUESTION}_FULFILLED`:
       return {
         ...state,
         posts: action.payload.data
-      };
+      }
 
     case `${GET_QUESTION}_REJECTED`:
       return {
         ...state,
-      };
+      }
 
     case `${GET_QUESTIONS}_FULFILLED`:
       return {
         ...state,
         questions: action.payload.data        
-      };
+      }
 
     case `${GET_QUESTIONS}_REJECTED`:
       return {
         ...state,
-      };
+      }
 
     case `${POST_ANSWER}_FULFILLED`:
       const newPost = action.payload.data.post;
@@ -134,22 +134,22 @@ const postReducer = (state = exampleState, action) => {
         ...state,
         User: state.User,
         answers: [...state.answers, newPost] //, newPost]
-      };
+      }
 
     case `${POST_ANSWER}_REJECTED`:
       return {
         ...state,
-      };
+      }
 
     case `${VOTE_QUESTION}_REJECTED`:
       return {
         ...state,
-      };
+      }
 
     case `${VOTE_ANSWER}_REJECTED`:
       return {
         ...state,
-      };
+      }
 
     case `${VOTE_QUESTION}_FULFILLED`:
       let newQuestions = []
@@ -158,7 +158,7 @@ const postReducer = (state = exampleState, action) => {
       return {
         ...state, 
         questions: newQuestions //, newPost],              
-      };
+      }
 
     case `${VOTE_QUESTION_DOWN}_FULFILLED`:
       let newQuestionsDown = []
@@ -167,7 +167,7 @@ const postReducer = (state = exampleState, action) => {
       return {
         ...state, 
         questions: newQuestionsDown //, newPost],              
-      };
+      }
 
 
     case `${VOTE_ANSWER}_FULFILLED`:
@@ -183,7 +183,7 @@ const postReducer = (state = exampleState, action) => {
       return {
         ...state,   
         answers: answerCopy       
-      };
+      }
 
     case `${VOTE_ANSWER_DOWN}_FULFILLED`:
       let answerCopyDown = []
@@ -198,24 +198,23 @@ const postReducer = (state = exampleState, action) => {
       return {
         ...state,   
         answers: answerCopyDown       
-      };
+      }
 
     case `${GET_ANSWER}_FULFILLED`:
       return {
-        ...state,
-        
-      };
+        ...state,  
+      }
     
     case `${GET_ANSWER}_REJECTED`:
       return {
         ...state,
-      };  
+      }
 
     case `${GET_ANSWERS}_FULFILLED`:
       return {
         ...state,
         answers: action.payload.data
-      };
+      }
 
     case `${GET_ANSWERS}_REJECTED`:
       return {
@@ -225,15 +224,15 @@ const postReducer = (state = exampleState, action) => {
       return {
         ...state,
         questions: action.payload.data
-      };
+      }
 
     case `${GET_POSTS_BY_QUESTION}_REJECTED`:
       return {
         ...state,
-      };
+      }
 
     case `${GET_POST_BY_QUERY}_PENDING`:
-      console.log('getpostbyquery', action);
+      console.log('getpostbyquery', action)
       return {
         sortedBy: 'pending',
         ...state,
@@ -244,46 +243,48 @@ const postReducer = (state = exampleState, action) => {
         ...state,
         posts: action.payload.data,
         questions: action.payload.data,
-      };
+      }
 
     case `${GET_POST_BY_QUERY}_REJECTED`:
       return {
         sortedBy: 'unable to find posts',
         ...state,
-      };
+      }
 
     case `${GET_ALL_QUESTIONS}_FULFILLED`:
       return {
         ...state,
         questions: action.payload.data
-      };
+      }
 
     case `${GET_ALL_QUESTIONS}_REJECTED`:
       return {
         ...state,
-      };
+      }
     
     case CHANGE_SORTED_BY:
       return {
         ...state,
         sortedBy: action.payload,
-      };
+      }
 
     case `SIGN_IN_FULFILLED`:
       console.log('sign in fulfilled', action)
       return {
         ...state,
         User: action.payload.data
-      };
+      }
 
     case 'RECOMENDATIONS_FULFILLED':
       return {
         ...state,
         posts: action.payload.data,
         questions: action.payload.data,
-      }      
+      }
+
     default:
-      return state;
+      return state
+      
   }
 }
 

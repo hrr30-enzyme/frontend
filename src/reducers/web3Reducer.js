@@ -10,6 +10,7 @@ import {
   CREATE_ANSWER,
   CREATE_QUESTION,
 } from '../actions/types'
+
 import { getContract } from '../web3'
 
 const initialState = {
@@ -27,67 +28,68 @@ const web3Reducer = (state = initialState, action) => {
         ...state, 
         web3,
         contract: getContract(web3),
-      };
+      }
     
 
     case `${GET_MIN_BOUNTY}_PENDING`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_MIN_BOUNTY}_FULFILLED`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_MIN_BOUNTY}_REJECTED`:
       return {
         ...state, 
-      };
+      }
     
       case `${GET_DURATION}_PENDING`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_DURATION}_FULFILLED`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_DURATION}_REJECTED`:
       return {
         ...state, 
-      };
-      case `${GET_ANSWER_FEE}_PENDING`:
+      }
+
+    case `${GET_ANSWER_FEE}_PENDING`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_ANSWER_FEE}_FULFILLED`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_ANSWER_FEE}_REJECTED`:
       return {
         ...state, 
-      };
+      }
 
     case `${GET_QUESTIONS_COUNT}_PENDING`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_QUESTIONS_COUNT}_FULFILLED`:
       return {
         ...state, 
-      };
+      }
     
     case `${GET_QUESTIONS_COUNT}_REJECTED`:
       return {
         ...state, 
-      };
+      }
    
     case `${UP_VOTE}_PENDING`:
       return {
@@ -190,7 +192,7 @@ const web3Reducer = (state = initialState, action) => {
       }
     
     default:
-      return state;
+      return state
   }
 }
 

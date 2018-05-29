@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MAIN_COLOR = `#16252A`;
+export const MAIN_COLOR = `#16252A`
 export const BORDER_MODAL = `#5F89A4` 
 export const SECONDARY_COLOR = `#537F9A`
 export const SKY_BLUE = `#C0E4F8`
@@ -35,7 +35,7 @@ export const Input = styled.input`
   font-size: 16px;
   border: solid 2px ${MAIN_COLOR};
   border-radius: 3px;
-`;
+`
 
 export const Button = styled.button`
   background: ${WHITE_BLUE};
@@ -53,4 +53,4 @@ export const Button = styled.button`
     border: 2px solid ${PURPLE};
     cursor: pointer;
   }
-`;
+`

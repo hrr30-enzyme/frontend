@@ -2,8 +2,71 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group' 
 import * as styles from '../components/StyledComponents'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+
+export default class LandingPage extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      scrolled: false,
+      scroll: 0,
+    }
+  }
+
+  componentDidMount() {
+    window.onscroll = () => {
+      if (window.pageYOffset > 20) {
+        this.setState({
+          scrolled: true,
+          scroll: window.pageYOffset,
+        })
+      } else {
+        this.setState({
+          scrolled: false,
+          scroll: window.pageYOffset,
+        })
+      }
+    }
+  }
+
+  render() {
+    return (
+      <Div>
+        <div className="nav">
+          <Navbar {...this.props} />
+        </div>
+        <header className="top-pic">
+          <div className="logo-container">
+            <Logo className="main-logo">
+              {"<"}<span>CATALYST</span> {"/>"}
+            </Logo>
+            <Tagline className="tag-line">Accelerated Knowledge</Tagline>
+          </div>
+        </header>
+        <AboutSection id="about">
+          <h2 className="title-1">Get <strong>paid</strong> for expertise</h2>
+          <p>
+            Users get payed 24/7 for top answers.  Win bounties for top answers and withdraw anytime.
+          </p>
+          <h2 className="title-1"> 
+            Vote for the top answers
+          </h2>
+          <p>
+            Top users vote based on their expertise.  The more expertise a user shows, the more voting power they recieve.
+          </p>
+          <img 
+            alt="ethereum logo"
+            src="./ethereum.png"
+            height={ Math.min(510, this.state.scroll / 2)}
+            style={{offset: Math.max(0, this.state.scroll / 10)}}
+          />
+        </AboutSection>
+     </Div>
+    )
+  }
+}
 
 const mstyles = {
   card: {
@@ -13,7 +76,7 @@ const mstyles = {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-};
+}
 
 const Div = styled.div`
   .top-pic: 100vh;
@@ -49,16 +112,14 @@ const Div = styled.div`
     grid-row: 1;
     grid-column: 1 / -1;
   }
-`;
-
+`
 const Logo = styled.h1`
   color: ${styles.TITLE_FONT};
   font-size: 8em;
   > span {
     font-size: .84em;
   }
-`;
-
+`
 const Tagline = styled.p`
   text-align: center;
   display: block;
@@ -66,7 +127,6 @@ const Tagline = styled.p`
   font-size: 3em;
   font-weight: bold;
 `
-
 const AboutSection = styled.section`
   background-color: ${styles.DARKPURPLE};
   margin-top: 0;
@@ -78,27 +138,26 @@ const AboutSection = styled.section`
   height: 60vh;
   white-space: pre-wrap;
   
-  > p {
+  p {
     grid-column: 1 / 2;
     color: white;
     text-indent: 0px;
   }
-  > .title {
+  .title {
     grid-column: 1 / 2;
     color: white;
-
   }
-  > .title-1 {
+  .title-1 {
     grid-column: 1 / 2;
     color: white;
     font-size: 2.5em;
     text-align: left;
     font-weight: normal;
   }
-  > .title-1 > strong {
+  .title-1 > strong {
     font-weight: bold;
   }
-  > img {
+  img {
     grid-column: 2 / 4;
     grid-row: 1 / 8;
     justify-self: center;
@@ -106,71 +165,4 @@ const AboutSection = styled.section`
   }
 
   padding: 3em;
-`;
-
-export default class LandingPage extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      scrolled: false,
-      scroll: 0,
-    }
-  }
-
-  componentDidMount() {
-    window.onscroll = () => {
-      if (window.pageYOffset > 20) {
-        this.setState({
-          scrolled: true,
-          scroll: window.pageYOffset,
-        });
-      } else {
-        this.setState({
-          scrolled: false,
-          scroll: window.pageYOffset,
-        });
-      }
-    }
-  }
-
-  render() {
-    return (
-      <Div>
-      {/* Trying to get this to fade in */}
-        <div className="nav">
-          <Navbar {...this.props} />
-        </div>
-          <header className="top-pic">
-          <div className="logo-container">
-            <Logo className="main-logo">
-              {"<"}<span>CATALYST</span> {"/>"}
-            </Logo>
-            <Tagline className="tag-line">Accelerated Knowledge</Tagline>
-          </div>
-        </header>
-  
-        <AboutSection id="about">
-          <h2 className="title-1">Get <strong>paid</strong> for expertise</h2>
-          <p>
-            Users get payed 24/7 for top answers.  Win bounties for top answers and withdraw anytime.
-          </p>
-          <h2 className="title-1"> 
-            Vote for the top answers
-          </h2>
-          <p>
-            Top users vote based on their expertise.  The more expertise a user shows, the more voting power they recieve.
-          </p>
-          <img 
-            alt="ethereum logo"
-            src="./ethereum.png"
-            height={ Math.min(510, this.state.scroll / 2)}
-            style={{offset: Math.max(0, this.state.scroll / 10)}}
-          />
-        </AboutSection>
-
-     </Div>
-    )
-  }
-}
-
+`
