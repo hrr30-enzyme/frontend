@@ -23,7 +23,7 @@ class QuestionPage extends Component {
 
   render() {
     console.log('Question page:', this.props)
-    const question = this.props.post.posts.filter(post => post.PostTypeId === 1)[0]
+    const question = this.props.post.questions[0]
     console.log(question);
     return (
       <Layout>

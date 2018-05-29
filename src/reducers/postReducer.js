@@ -1,14 +1,9 @@
 
 import { 
   POST_QUESTION, 
-  GET_QUESTION, 
-  GET_QUESTIONS,
   POST_ANSWER,
-  GET_ANSWER,
   GET_ANSWERS,
-  GET_POSTS_BY_QUESTION,
   GET_POST_BY_QUERY,
-  GET_ALL_QUESTIONS,
   CHANGE_SORTED_BY,
   VOTE_QUESTION,
   VOTE_QUESTION_DOWN,
@@ -16,83 +11,15 @@ import {
   VOTE_ANSWER_DOWN
 } from "../actions/types"
 
-
-const exampleState = {
-  /*
-    we could use view to change how the pages are viewed
-    we might need it to diferentiate between looking at a 
-    home page of questions or looking at a single question
-    with extra details for example.
-    chance we don't need it though
-  */
-  User: {
-    createdAt: undefined,
-    email: 'notloggedin@gmail.com',
-    id: 1,
-    updatedAt: undefined,
-    username: 'not logged in!',
-  },
-  posts: [],
-  sortedBy: 'Newest', 
-  questions: [
-    {
-      question: {
-        title: 'Title',
-        User: {
-          createdAt: undefined,
-          email: 'notloggedin@gmail.com',
-          id: 1,
-          updatedAt: undefined,
-          username: 'not logged in!',
-        },
-        body: 'Hey I have a question',
-        date: new Date()
-      },
-      answers: [
-        {
-          body: 'here is a answer',
-          User: {
-            createdAt: undefined,
-            email: 'notloggedin@gmail.com',
-            id: 1,
-            updatedAt: undefined,
-            username: 'not logged in!',
-          },
-          date: new Date()
-        },
-        {
-          body: 'here is a 2nd answer',
-          User: {
-            createdAt: undefined,
-            email: 'notloggedin@gmail.com',
-            id: 1,
-            updatedAt: undefined,
-            username: 'not logged in!',
-          },
-          date: new Date()
-        }
-      ]
-    }
-  ]
-}
-
 const initialState = {
-  User: {
-    createdAt: undefined,
-    email: 'notloggedin@gmail.com',
-    id: 1,
-    updatedAt: undefined,
-    username: 'not logged in!',
-  },
-  posts: [],
-  questions: [],
-  answers: []
+  questions: [{}],
+  answers: [{}]
 }
 
 /*
  * We might not need a lot of these reducers to do anything
  */
-const postReducer = (state = exampleState, action) => {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case `${POST_QUESTION}_FULFILLED`:
       return {
@@ -100,28 +27,6 @@ const postReducer = (state = exampleState, action) => {
       }
 
     case `${POST_QUESTION}_REJECTED`:
-      return {
-        ...state,
-      }
-
-    case `${GET_QUESTION}_FULFILLED`:
-      return {
-        ...state,
-        posts: action.payload.data
-      }
-
-    case `${GET_QUESTION}_REJECTED`:
-      return {
-        ...state,
-      }
-
-    case `${GET_QUESTIONS}_FULFILLED`:
-      return {
-        ...state,
-        questions: action.payload.data        
-      }
-
-    case `${GET_QUESTIONS}_REJECTED`:
       return {
         ...state,
       }
@@ -200,12 +105,7 @@ const postReducer = (state = exampleState, action) => {
         answers: answerCopyDown       
       }
 
-    case `${GET_ANSWER}_FULFILLED`:
-      return {
-        ...state,  
-      }
-    
-    case `${GET_ANSWER}_REJECTED`:
+    case `${GET_ANSWERS}_PENDING`:
       return {
         ...state,
       }
@@ -217,16 +117,6 @@ const postReducer = (state = exampleState, action) => {
       }
 
     case `${GET_ANSWERS}_REJECTED`:
-      return {
-        ...state,
-      };
-    case `${GET_POSTS_BY_QUESTION}_FULFILLED`:
-      return {
-        ...state,
-        questions: action.payload.data
-      }
-
-    case `${GET_POSTS_BY_QUESTION}_REJECTED`:
       return {
         ...state,
       }
@@ -250,29 +140,11 @@ const postReducer = (state = exampleState, action) => {
         sortedBy: 'unable to find posts',
         ...state,
       }
-
-    case `${GET_ALL_QUESTIONS}_FULFILLED`:
-      return {
-        ...state,
-        questions: action.payload.data
-      }
-
-    case `${GET_ALL_QUESTIONS}_REJECTED`:
-      return {
-        ...state,
-      }
     
-    case CHANGE_SORTED_BY:
+    case `${CHANGE_SORTED_BY}`:
       return {
         ...state,
         sortedBy: action.payload,
-      }
-
-    case `SIGN_IN_FULFILLED`:
-      console.log('sign in fulfilled', action)
-      return {
-        ...state,
-        User: action.payload.data
       }
 
     case 'RECOMENDATIONS_FULFILLED':
@@ -284,7 +156,7 @@ const postReducer = (state = exampleState, action) => {
 
     default:
       return state
-      
+
   }
 }
 

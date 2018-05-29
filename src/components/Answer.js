@@ -4,11 +4,11 @@ import * as styles from "../components/StyledComponents"
 import store from '../store'
 
 const Answer = (props) => {
-  const answer = props.answer
   console.log('Answer component: ', answer)
+  const answer = props.answer
   return (
     <Layout>
-      <Username>{ answer.User.username }</Username>
+      <Username>{ answer.User && answer.User.username }</Username>
       <Actions>
         <Upvote onClick={
           () => {
