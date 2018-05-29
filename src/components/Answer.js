@@ -4,8 +4,8 @@ import * as styles from "../components/StyledComponents"
 import store from '../store'
 
 const Answer = (props) => {
-  console.log('Answer component: ', answer)
   const answer = props.answer
+  console.log('Answer component: ', answer)
   return (
     <Layout>
       <Username>{ answer.User && answer.User.username }</Username>

@@ -1,10 +1,9 @@
 import React, { Component } from "react"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import * as styles from "../components/StyledComponents"
 import Navbar from "../components/Navbar"
 import QuestionPreview from "../components/QuestionPreview"
 import AskQuestion from "../components/AskQuestion"
-import { Link } from "react-router-dom"
 
 export default class QuestionsPage extends Component {
   

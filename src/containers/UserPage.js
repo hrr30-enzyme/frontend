@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import moment from "moment"
 import Navbar from "../components/Navbar"
 import * as styles from "../components/StyledComponents"
 import QuestionPreview from "../components/QuestionPreview"
@@ -25,41 +24,33 @@ class UserPage extends Component {
           Questions: 
         </Questions>
             {
-              this.props.post.questions.map(post => {
-                if (post.PostTypeId === 1 && post.User.username === this.props.authentication.userInfo.username) {
-                  return (           
-                    <div className="question">
-                      <QuestionPreview
-                        qid={post.id}
-                        question={post}
-                        style={{ textDecoration: "none" }}
-                        {...this.props}
-                      />
-                    </div>
-                  )
-                }
-              })
+              this.props.post.questions.map(post => post.PostTypeId === 1 ?          
+                <div className="question">
+                  <QuestionPreview
+                    qid={post.id}
+                    question={post}
+                    style={{ textDecoration: "none" }}
+                    {...this.props}
+                  />
+                </div> : null                 
+              )
             }
         <Answers>
           Answers:
         </Answers>
             {
-              this.props.post.questions.map(post => {
-                if (post.PostTypeId === 2 && post.User.username === this.props.authentication.userInfo.username) {
-                  return (           
-                    <div className="answer">
-                      <AnswerPreview
-                        qid={post.id}
-                        answer={post}
-                        style={{ textDecoration: "none" }}
-                        {...this.props}
-                      />
-                    </div>
-                  )
-                }
-              })
+              this.props.post.questions.map(post => post.PostTypeId === 2 ?                           
+                <div className="answer">
+                  <AnswerPreview
+                    qid={post.id}
+                    answer={post}
+                    style={{ textDecoration: "none" }}
+                    {...this.props}
+                  />
+                </div> : null                                 
+              )
             }
-            <Info></Info>
+        <Info></Info>
       </Layout>
     );
   }

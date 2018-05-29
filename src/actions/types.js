@@ -56,6 +56,8 @@ export const GET_ANSWER_FEE = 'GET_ANSWER_FEE'
 
 export const GET_QUESTIONS_COUNT = 'GET_QUESTIONS_COUNT'
 
+export const GET_QUESTION_ID = 'GET_QUESTION_ID'
+
 export const UP_VOTE = 'UP_VOTE'
 
 export const PAYOUT_WINNER = 'PAYOUT_WINNER'

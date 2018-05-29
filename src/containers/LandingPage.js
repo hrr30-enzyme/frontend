@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Transition } from 'react-transition-group' 
 import * as styles from '../components/StyledComponents'
-import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 export default class LandingPage extends Component {
@@ -66,16 +64,6 @@ export default class LandingPage extends Component {
      </Div>
     )
   }
-}
-
-const mstyles = {
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
 }
 
 const Div = styled.div`

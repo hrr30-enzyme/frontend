@@ -5,6 +5,7 @@ import {
   GET_DURATION,
   GET_ANSWER_FEE,
   GET_QUESTIONS_COUNT,
+  GET_QUESTION_ID,
   UP_VOTE,
   PAYOUT_WINNER,
   CREATE_ANSWER,
@@ -81,12 +82,13 @@ const getMinBounty = call(GET_MIN_BOUNTY)('getMinBounty')
 const getDuration = call(GET_DURATION)('getDuration')
 const getAnswerFee = call(GET_ANSWER_FEE)('getAnswerFee')
 const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount')
+const getQuestionId = call(GET_QUESTION_ID)('getQuestionId')
 
 window.getMinBounty = getMinBounty
 window.getDuration = getDuration
 window.getAnswerFee = getAnswerFee
 window.getQuestionsCount = getQuestionsCount
-window.getQuestionId
+window.getQuestionId = getQuestionId
 
 export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
 
