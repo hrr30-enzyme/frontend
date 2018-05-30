@@ -34,6 +34,9 @@ const showModal = (state = initialState, action) => {
     case `${POST_QUESTION}_FULFILLED`:
       return initialState
 
+    case `${SIGN_IN}`:
+      return initialState
+
     default:
       return state
   }

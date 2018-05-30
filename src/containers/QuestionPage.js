@@ -18,7 +18,7 @@ class QuestionPage extends Component {
       sortBy: '-upvoteCount',
       include: 'all'
     })
-    this.props.updateViews({id: this.props.match.params.id, UserId: this.props.authentication.userInfo.id })
+    this.props.updateViews({id: this.props.match.params.id, UserId: this.props.auth.user.id })
   }
 
   render() {

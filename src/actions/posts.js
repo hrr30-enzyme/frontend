@@ -92,7 +92,7 @@ export const changeSortedBy = parameter => ({
 })
 
 export const getRecomendations = () => (dispatch, getState) => {
-  const userid = getState().authentication.userInfo.id;
+  const userid = getState().auth.user.id;
   return dispatch({
     type: RECOMENDATIONS,
     payload: axios.get(`${ORIGIN}/user/recomendations/${userid}`)

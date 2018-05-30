@@ -16,7 +16,7 @@ const Ask = ({
   title, 
   body, 
   addText, 
-  authentication, 
+  auth, 
   showModal, 
   closeModal,
   postQuestion,
@@ -24,7 +24,7 @@ const Ask = ({
   web3,
 }) => {
   console.log('askquestion component', addText)
-  const UserId = authentication.userInfo.id
+  const UserId = auth.user.id
   console.log(title, body)
   console.log('show moda', showModal)
   return modal ({

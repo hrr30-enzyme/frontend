@@ -2,7 +2,7 @@ import axios from 'axios'
 import moxios from 'moxios'
 
 import store from '../store'
-import { signin, signout, signup } from '../actions/authentication'
+import { signin, signout, signup } from '../actions/auth'
 
 describe('Test createUser', () => {
   
@@ -29,12 +29,12 @@ describe('Test createUser', () => {
       })
     })
 
-    expect(store.getState().authentication.signedIn).toBeFalsy()
+    expect(store.getState().auth.signedIn).toBeFalsy()
 
     const action = signin({username, email, password});
 /*
     store.dispatch(action).then(() => {
-      expect(store.getState().authentication.signedIn).toBeTruthy();
+      expect(store.getState().auth.signedIn).toBeTruthy();
       done();
     })
 */  done()

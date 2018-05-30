@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 
-import { signin, signout, signup, checkSignin } from './authentication'
+import { signout, signup, login } from './auth'
 
 import { addText, clearAll, clearText } from './inputText'
 
@@ -29,13 +29,13 @@ import {
   changeSortedBy,
   updateViews,
   downvoteQuestionVote,
+  downvoteAnswerVote,
   getRecomendations,
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({ 
-    checkSignin,
-    signin,
+    login,
     signout,
     signup,
     addText,
@@ -53,6 +53,7 @@ const mapDispatchToProps = (dispatch) => (
     clearAll,
     updateViews,
     downvoteQuestionVote,
+    downvoteAnswerVote,
     noMetaMask,
     getMinBounty,
     getDuration,

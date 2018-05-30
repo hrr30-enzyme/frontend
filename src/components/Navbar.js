@@ -7,7 +7,7 @@ import Signup from './Signup'
 
 const Navbar = (props) => {
   console.log('nav bar', props)
-  const signedIn = props.authentication.signedIn
+  const signedIn = props.auth.isAuthenticated
   let linkColor = styles.LINK_COLOR
   let linkColorHover = styles.MAIN_COLOR
 
@@ -47,11 +47,11 @@ const Navbar = (props) => {
             [
               <div className="nav-user">
                 <NavLink 
-                  to={`/user/${props.authentication.userInfo.username}`}
+                  to={`/user/${props.auth.user.username}`}
                   linkColor={ linkColor }
                   linkColorHover={ linkColorHover }
                 >
-                  { props.authentication.userInfo.username }                  
+                  { props.auth.user.username }                  
                 </NavLink>
               </div>,
               <NavAuth className="nav-auth-logout">
@@ -81,10 +81,11 @@ const Navbar = (props) => {
           openModal={ props.openModal }
           closeModal={ props.closeModal }
           signin={ props.signin }
+          login={ props.login }
           showModal={ props.showModal.signin }
           message={props.showModal.message}
           addText={ props.addText }
-          error={ props.authentication.error }
+          error={ props.auth.error }
         />
         <Signup
           username={ props.textInput.username }
@@ -96,7 +97,7 @@ const Navbar = (props) => {
           showModal={ props.showModal.signup }
           message={props.showModal.message}
           addText={ props.addText }
-          error={ props.authentication.error }
+          error={ props.auth.error }
         />
     </div>
   )

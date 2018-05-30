@@ -8,7 +8,7 @@ import AnswerPreview from "../components/AnswerPreview"
 class UserPage extends Component {
   componentDidMount() {
     this.props.getPostByQuery({
-      UserId: this.props.authentication.userInfo.id,
+      UserId: this.props.auth.user.id,
       include: 'all'
     })
   }

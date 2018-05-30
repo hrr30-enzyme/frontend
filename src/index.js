@@ -7,6 +7,9 @@ import mapDispatchToProps from './actions/mapDispatchToProps'
 import mapStateToProps from './store/mapStateToProps'
 import registerServiceWorker from './registerServiceWorker'
 import getWeb3 from './web3'
+import setAuthorizationToken from './utils/setAuthorizationToken'
+import { setCurrentUser } from './actions/auth.js'
+import jwt from 'jsonwebtoken'
 
 getWeb3
   .then((results) => console.log('Web3 initialized'))
@@ -16,6 +19,11 @@ const ConnectedApp = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Root)
+
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken)
+  store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)))
+}
 
 ReactDOM.render(
   <Provider store={store}>

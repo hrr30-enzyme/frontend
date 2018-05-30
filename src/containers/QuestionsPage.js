@@ -78,7 +78,7 @@ export default class QuestionsPage extends Component {
             onClick={() => {
               console.log('isloggedin', this.props)
               this.clickTag('recomended')
-              if (this.props.authentication.signedIn === true) {
+              if (this.props.auth.isAuthenticated === true) {
                 this.props.getRecomendations();
                 this.props.changeSortedBy('Recomended')
               }
@@ -101,8 +101,8 @@ export default class QuestionsPage extends Component {
             return this.props.showModal.ask;
           })()}
           closeModal={this.props.closeModal}
-          userInfo={this.props.authentication.userInfo}
-          authentication={this.props.authentication}
+          user={this.props.auth.user}
+          auth={this.props.auth}
           addText={this.props.addText}
           postQuestion={this.props.postQuestion}
         />

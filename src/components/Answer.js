@@ -13,11 +13,11 @@ const Answer = (props) => {
         <Upvote onClick={
           () => {
             store.dispatch({type: 'UPVOTE_WEB3', payload: answer.id})
-            props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)       
+            props.updateAnswerVote({id: answer.id, UserId: props.auth.user.id}, answer.id)       
           }
         }>▲</Upvote>
         <VoteCount>{answer && answer.upvoteCount}</VoteCount>
-        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▼</Downvote>
+        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.auth.user.id}, answer.id)}>▼</Downvote>
         <Check>✓</Check>
       </Actions>
       <Body>{ answer && answer.body }</Body>

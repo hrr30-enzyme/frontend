@@ -23,9 +23,9 @@ const Signup = ({
 }) => {
 
   const enterInput =
-    (e) =>
-    e.key === 'Enter'
-    && handleClick(e, signup, { username, password, email })
+  (e) =>
+  e.key === 'Enter'
+  && handleClick(e, signup, { username, password, email })
 
   return modal({
     showModal,

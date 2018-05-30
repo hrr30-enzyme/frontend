@@ -10,9 +10,9 @@ const GiveAnswer = props => {
       />
       <button
         onClick={() =>
-          props.authentication.signedIn
+          props.auth.isAuthenticated
             ? props.postAnswer({
-                UserId: props.authentication.userInfo.id,
+                UserId: props.auth.user.id,
                 body: props.textInput.answerBody,
                 PostTypeId: 2,
                 PostId: props.match.params.id

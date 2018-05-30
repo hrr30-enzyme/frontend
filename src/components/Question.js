@@ -53,9 +53,9 @@ class  Question extends Component {
         </Stats>
         <Username>{ question.User && question.User.username }</Username>
         <Actions>
-          <Upvote onClick={() => this.props.updateQuestionVote({id: question.id, UserId: this.props.authentication.userInfo.id})}>▲</Upvote>
+          <Upvote onClick={() => this.props.updateQuestionVote({id: question.id, UserId: this.props.auth.user.id})}>▲</Upvote>
           <VoteCount>{question && question.upvoteCount}</VoteCount>
-          <Downvote onClick={() => {this.props.downvoteQuestionVote({id: question.id, UserId: this.props.authentication.userInfo.id})}}>▼</Downvote>
+          <Downvote onClick={() => {this.props.downvoteQuestionVote({id: question.id, UserId: this.props.auth.user.id})}}>▼</Downvote>
           <Star>★</Star>
         </Actions>
         <Title>{ question && question.title }</Title>
@@ -95,7 +95,6 @@ const Title = styled.h2`
   grid-column: 1 / 4;
   border-bottom: solid lightgrey 1px;
   margin-bottom: 1em;
-  color: 
 `
 const Username = styled.h3`
   grid-row: 2;
