@@ -30,6 +30,7 @@ const AnswerPreview = ({answer}) => {
         <User>
           {username}
         </User>
+        <Reference>{`REF: [${answer.PostId}]`}</Reference>
         <Title>{answer.body}</Title>
       </Answer>
     </Link>
@@ -52,6 +53,13 @@ const Answer = styled.div`
 const Title = styled.div`
   grid-row: 1 / span 2;
   grid-column: 3;
+  font-size: 20px;
+  align-self: center;
+  font-family: Arial Narrow, sans-serif;
+`
+const Reference = styled.div`
+  grid-row: 1 / span 2;
+  grid-column: 2;
   font-size: 20px;
   align-self: center;
   font-family: Arial Narrow, sans-serif;
@@ -89,7 +97,7 @@ const User = styled.div`
   grid-column: 4;
   font-size: 14px;
   justify-self: right;
-  padding-right: 1em;
-  padding-top: 1em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
   font-weight: bold;
 `

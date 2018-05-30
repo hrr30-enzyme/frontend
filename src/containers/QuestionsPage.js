@@ -106,18 +106,20 @@ export default class QuestionsPage extends Component {
           addText={this.props.addText}
           postQuestion={this.props.postQuestion}
         />
-        {this.props.post.questions.map(question => (
-          <div className="question">
-            <QuestionPreview
-              qid={question.id}
-              question={question}
-              style={{ textDecoration: "none" }}
-              {...this.props}
-            />
-          </div>
-        ))}
+        {
+          this.props.post.questions.map(question => 
+            <div className="question">
+              <QuestionPreview
+                qid={question.id}
+                question={question}
+                style={{ textDecoration: "none" }}
+                {...this.props}
+              />
+            </div>
+          )
+        }
       </Layout>
-    );
+    )
   }
 }
 

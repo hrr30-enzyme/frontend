@@ -8,8 +8,8 @@ import Signup from './Signup'
 const Navbar = (props) => {
   console.log('nav bar', props)
   const signedIn = props.auth.isAuthenticated
-  let linkColor = styles.LINK_COLOR
-  let linkColorHover = styles.MAIN_COLOR
+  let linkcolor = styles.LINK_COLOR
+  let linkcolorhover = styles.MAIN_COLOR
 
   return (
     <div>
@@ -17,8 +17,8 @@ const Navbar = (props) => {
         <h1 className="nav-title">
           <NavLink 
             to="/"
-            linkColor={ linkColor }
-            linkColorHover={ linkColorHover }
+            linkcolor={ linkcolor }
+            linkcolorhover={ linkcolorhover }
           >
             {"Catalyst"}
           </NavLink>
@@ -26,8 +26,8 @@ const Navbar = (props) => {
         <h4 className="nav-home">
           <NavLink 
             to="/home"
-            linkColor={ linkColor }
-            linkColorHover={ linkColorHover }
+            linkcolor={ linkcolor }
+            linkcolorhover={ linkcolorhover }
           >
             Home
           </NavLink>
@@ -35,8 +35,8 @@ const Navbar = (props) => {
         <h4 className="nav-questions">
           <NavLink 
             to="/questions"
-            linkColor={ linkColor }
-            linkColorHover={ linkColorHover }
+            linkcolor={ linkcolor }
+            linkcolorhover={ linkcolorhover }
           >
             Questions
           </NavLink>
@@ -45,29 +45,31 @@ const Navbar = (props) => {
         {signedIn 
           ? (
             [
-              <div className="nav-user">
+              <div className="nav-user" key={'user'}>
                 <NavLink 
                   to={`/user/${props.auth.user.username}`}
-                  linkColor={ linkColor }
-                  linkColorHover={ linkColorHover }
+                  linkcolor={ linkcolor }
+                  linkcolorhover={ linkcolorhover }
                 >
                   { props.auth.user.username }                  
                 </NavLink>
               </div>,
-              <NavAuth className="nav-auth-logout">
+              <NavAuth className="nav-auth-logout" key={'logout'}>
                 <div onClick={ props.signout }>logout</div>
               </NavAuth>
             ]
           )
           : [
               <NavAuth
-                className="nav-auth-login" 
+                className="nav-auth-login"
+                key={'login'} 
                 onClick={ () => props.openModal("signin") }
               >
                 Login
               </NavAuth>,
               <NavAuth 
                 className="nav-auth-signup"
+                key={'signup'}
                 onClick={ () => props.openModal("signup")}
               >
                 Signup

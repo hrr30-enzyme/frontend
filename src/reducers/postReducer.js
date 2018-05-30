@@ -131,7 +131,6 @@ const postReducer = (state = initialState, action) => {
     case `${GET_POST_BY_QUERY}_FULFILLED`:
       return {
         ...state,
-        posts: action.payload.data,
         questions: action.payload.data,
       }
 
