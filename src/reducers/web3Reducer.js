@@ -13,7 +13,7 @@ import { getContract } from '../web3'
 const initialState = {
   web3: null,
   contract: null,
-  status: 'Waiting',
+  status: 'Waiting'
 }
 
 const web3Reducer = (state = initialState, action) => {
@@ -24,7 +24,7 @@ const web3Reducer = (state = initialState, action) => {
       return {
         ...state, 
         web3,
-        contract: getContract(web3),
+        contract: getContract(web3)
       }
 
     case `${GET_QUESTION_COUNT}_PENDING`:

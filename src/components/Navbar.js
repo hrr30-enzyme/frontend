@@ -51,7 +51,7 @@ const Navbar = (props) => {
                   linkcolor={ linkcolor }
                   linkcolorhover={ linkcolorhover }
                 >
-                  { props.auth.user.username }                  
+                  { props.auth.address || props.auth.username }                  
                 </NavLink>
               </div>,
               <NavAuth className="nav-auth-logout" key={'logout'}>
@@ -109,7 +109,8 @@ export default Navbar
 
 const Nav = styled.nav`
   display: grid;
-  grid-template-columns: 25% 1fr 1fr 25% 1fr 1fr 5%;
+  grid-template-columns: 25% 1fr 1fr 1fr 3fr 1fr 1fr 5%;
+  grid-column-gap: 3em;
   grid-template-rows: auto;
   height: 70px;
   padding-bottom: 1em;
@@ -142,17 +143,17 @@ const Nav = styled.nav`
   .nav-user {
     grid-column: 5;
     grid-row: 1;
-    justify-self: left;
+    justify-self: right;
   }
   .nav-auth-login {
     grid-column: 5;
     grid-row: 1;
-    justify-self: left;
+    justify-self: right;
   }
   .nav-auth-logout {
     grid-column: 6;
     grid-row: 1;
-    justify-self: left;
+    justify-self: right;
   }
   .nav-auth-signup {
     grid-column: 6;

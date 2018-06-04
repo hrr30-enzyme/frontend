@@ -9,12 +9,20 @@ import isEmpty from 'lodash/isEmpty'
 
 const intialState = {
   user: {},
+  address: '',
   isAuthenticated: false,
   error: ''
 }
 
 const auth = (state = intialState, action) => {
   switch (action.type) {
+    
+    case `WEB3_INITIALIZED`:
+      return {
+        ...state,
+        address: action.payload.account[0]
+      }
+
     case `${SIGN_IN}`:
       return {
         isAuthenticated: !isEmpty(action.user),
