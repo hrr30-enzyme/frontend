@@ -1,12 +1,9 @@
 import { 
   WEB3_INITIALIZED, 
   NO_METAMASK,
-  GET_MIN_BOUNTY,
-  GET_DURATION,
-  GET_ANSWER_FEE,
-  GET_QUESTIONS_COUNT,
+  GET_QUESTION_COUNT,
   UP_VOTE,
-  PAYOUT_WINNER,
+  PAYOUT,
   CREATE_ANSWER,
   CREATE_QUESTION,
 } from '../actions/types'
@@ -23,70 +20,24 @@ const web3Reducer = (state = initialState, action) => {
   
   switch (action.type) {
     case WEB3_INITIALIZED:
-      const web3 = action.payload.web3Instance;
+      const web3 = action.payload.web3Instance
       return {
         ...state, 
         web3,
         contract: getContract(web3),
       }
-    
 
-    case `${GET_MIN_BOUNTY}_PENDING`:
+    case `${GET_QUESTION_COUNT}_PENDING`:
       return {
         ...state, 
       }
     
-    case `${GET_MIN_BOUNTY}_FULFILLED`:
+    case `${GET_QUESTION_COUNT}_FULFILLED`:
       return {
         ...state, 
       }
     
-    case `${GET_MIN_BOUNTY}_REJECTED`:
-      return {
-        ...state, 
-      }
-    
-      case `${GET_DURATION}_PENDING`:
-      return {
-        ...state, 
-      }
-    
-    case `${GET_DURATION}_FULFILLED`:
-      return {
-        ...state, 
-      }
-    
-    case `${GET_DURATION}_REJECTED`:
-      return {
-        ...state, 
-      }
-
-    case `${GET_ANSWER_FEE}_PENDING`:
-      return {
-        ...state, 
-      }
-    
-    case `${GET_ANSWER_FEE}_FULFILLED`:
-      return {
-        ...state, 
-      }
-    
-    case `${GET_ANSWER_FEE}_REJECTED`:
-      return {
-        ...state, 
-      }
-
-    case `${GET_QUESTIONS_COUNT}_PENDING`:
-      return {
-        ...state, 
-      }
-    
-    case `${GET_QUESTIONS_COUNT}_FULFILLED`:
-      return {
-        ...state, 
-      }
-    
-    case `${GET_QUESTIONS_COUNT}_REJECTED`:
+    case `${GET_QUESTION_COUNT}_REJECTED`:
       return {
         ...state, 
       }
@@ -116,27 +67,27 @@ const web3Reducer = (state = initialState, action) => {
         ...state,
       }
     
-    case `${PAYOUT_WINNER}_PENDING`:
+    case `${PAYOUT}_PENDING`:
       return {
         ...state,
       }
     
-    case `${PAYOUT_WINNER}_HASHED`:
+    case `${PAYOUT}_HASHED`:
       return {
         ...state,
       }
 
-    case `${PAYOUT_WINNER}_CONFIRMED`:
+    case `${PAYOUT}_CONFIRMED`:
       return {
         ...state,
       }
 
-    case `${PAYOUT_WINNER}_RECIEPT`:
+    case `${PAYOUT}_RECIEPT`:
       return {
         ...state,
       }
 
-    case `${PAYOUT_WINNER}_REJECTED`:
+    case `${PAYOUT}_REJECTED`:
       return {
         ...state,
       }

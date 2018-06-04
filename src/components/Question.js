@@ -19,7 +19,7 @@ class  Question extends Component {
   
     const addresses = await store.getState().web3.web3.eth.getAccounts()
   
-    contract.methods.payoutWinner(qid).send({from: addresses[0]})
+    contract.methods.payout(qid).send({from: addresses[0]})
       .on('transactionHash', 
         (hash) => this.setState({transactionState: 'transaction hashed!'})
       )
@@ -41,7 +41,7 @@ class  Question extends Component {
   render() {
     const question = this.props.question
     console.log('Question component: ', question, this.props)
-    const qid = question.id
+    const qid = question && question.id
     return (
       <Layout>
         <Stats>

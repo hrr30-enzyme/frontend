@@ -4,61 +4,55 @@ import thunk from 'redux-thunk'
 import promise from 'redux-promise-middleware'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
-import { createQuestion,  upVote, payoutWinner, createAnswer, getQuestionId } from '../actions/web3'
+import { createQuestion,  upVote, payout, createAnswer } from '../actions/web3'
+
 import { PRODUCTION } from '../constants'
 import rootReducer from '../reducers'
 
-const initialState = {}
-const MIN_FEE = 2000000000000000
+const initialState = {};
+
+const MIN_FEE = 2000000000000000;
 
 const web3Middleware = store => next => action => {
   if (action.type === 'POST_QUESTION_FULFILLED') {
     const qId = action.payload.data.post.id
     createQuestion(MIN_FEE, qId)(store.dispatch.bind(this), store.getState.bind(this))
-    next(action)
-  } else if (action.type === 'POST_ANSWER_FULFILLED') {   
+    next(action);
+  } else if (action.type === 'POST_ANSWER_FULFILLED') {
+    
     const qId = action.payload.data.post.PostId
     const aId = action.payload.data.post.id
-    store.getState().web3.contract.methods['getQuestionId'](qId)
-      .call()
-      .then(response => createAnswer(MIN_FEE, response, aId)(store.dispatch.bind(this), store.getState.bind(this)))
+    createAnswer(MIN_FEE, aId, qId)(store.dispatch.bind(this), store.getState.bind(this))
     next(action)
 
-  } else if (action.type === 'UPVOTE_WEB3') {
-    console.log('vote answer', action.payload)
-    store.getState().web3.contract.methods['getAnswerId'](action.payload)
-      .call()
-      .then(response => upVote(MIN_FEE, response)(store.dispatch.bind(this), store.getState.bind(this)))
+  } else if (action.type === 'UP_VOTE') {
+    const aId = action.payload
+    upVote(0, aId)(store.dispatch.bind(this), store.getState.bind(this))
     next(action)
-  
-  } else if (action.type === 'PAYOUTWINNER') {
+  } else if (action.type === 'PAYOUT') {
     console.log('payout winner', action.payload) 
-    const qId = action.payload
-    store.getState().web3.contract.methods['getQuestionId'](qId)
-      .call()
-      .then(response => payoutWinner(response)(store.dispatch.bind(this), store.getState.bind(this)))
-
+    const qId = action.payload;
+    payout(qId)(store.dispatch.bind(this), store.getState.bind(this))
   } else {
     next(action)
   }
 }
 
 const getMiddleware = () => {
-  const middleware = [web3Middleware, promise(), thunk]
-  const devMiddleware = [...middleware, createLogger()]
+  const middleware = [web3Middleware, promise(), thunk];
+  const devMiddleware = [...middleware, createLogger()];
 
   if (PRODUCTION) {
     return applyMiddleware(...middleware)
   } else {
-    return composeWithDevTools(applyMiddleware(...devMiddleware))
+    return composeWithDevTools(applyMiddleware(...devMiddleware));
   }
-}
+};
 
 const store = createStore(
   rootReducer,
   initialState, 
   getMiddleware()
-)
-
+);
 window.store = store
 export default store

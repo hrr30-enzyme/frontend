@@ -8,12 +8,9 @@ import { openModal, closeModal } from './modal'
 
 import {
   noMetaMask,
-  getMinBounty,
-  getDuration,
-  getAnswerFee,
-  getQuestionsCount,
+  getQuestionCount,
   upVote,
-  payoutWinner,
+  payout,
   createAnswer,
   createQuestion,
 } from './web3'
@@ -55,12 +52,9 @@ const mapDispatchToProps = (dispatch) => (
     downvoteQuestionVote,
     downvoteAnswerVote,
     noMetaMask,
-    getMinBounty,
-    getDuration,
-    getAnswerFee,
-    getQuestionsCount,
+    getQuestionCount,
     upVote,
-    payoutWinner,
+    payout,
     createAnswer,
     createQuestion,
     getRecomendations

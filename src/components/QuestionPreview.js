@@ -13,7 +13,7 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Votes>
               <Inner>
-                {question.upvoteCount}
+                {question.upvoteCount || 0}
               </Inner>
               votes
             </Votes>
@@ -21,7 +21,7 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Answers>
               <Inner>
-                {question.commentCount}
+                {question.commentCount || 0}
               </Inner>
               answers
             </Answers>
@@ -29,7 +29,7 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Views>
               <Inner>
-                {question.viewCount}
+                {question.viewCount || 0}
               </Inner>
               views
             </Views>

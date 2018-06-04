@@ -1,13 +1,10 @@
 import { 
   WEB3_INITIALIZED, 
   NO_METAMASK,  
-  GET_MIN_BOUNTY,
-  GET_DURATION,
-  GET_ANSWER_FEE,
-  GET_QUESTIONS_COUNT,
+  GET_QUESTION_COUNT,
   GET_QUESTION_ID,
   UP_VOTE,
-  PAYOUT_WINNER,
+  PAYOUT,
   CREATE_ANSWER,
   CREATE_QUESTION,
 } from './types'
@@ -78,19 +75,15 @@ const call = (actionName) => (method) => () => (dispatch, getState) => {
 /*
  * These view functions all come from teh QuestionFactory contract.
  */
-const getMinBounty = call(GET_MIN_BOUNTY)('getMinBounty')
-const getDuration = call(GET_DURATION)('getDuration')
-const getAnswerFee = call(GET_ANSWER_FEE)('getAnswerFee')
-const getQuestionsCount = call(GET_QUESTIONS_COUNT)('getQuestionsCount')
+
+const getQuestionCount = call(GET_QUESTION_COUNT)('getQuestionCount')
 const getQuestionId = call(GET_QUESTION_ID)('getQuestionId')
 
-window.getMinBounty = getMinBounty
-window.getDuration = getDuration
-window.getAnswerFee = getAnswerFee
-window.getQuestionsCount = getQuestionsCount
+
+window.getQuestionCount = getQuestionCount
 window.getQuestionId = getQuestionId
 
-export { getMinBounty, getDuration, getAnswerFee, getQuestionsCount }
+export { getQuestionCount }
 
 /*
  * a send function is one that requires gas to run because it changes the blockchain
@@ -193,8 +186,8 @@ const send = (actionName) => (isPayable) => (method) => (value, ...args) => asyn
  */
 
 export const upVote = send(UP_VOTE)(false)('upVote')
-export const payoutWinner = send(PAYOUT_WINNER)(false)('payoutWinner')
-export const createAnswer = send(CREATE_ANSWER)(true)('createAnswer')
+export const payout = send(PAYOUT)(false)('payout')
+export const createAnswer = send(CREATE_ANSWER)(false)('createAnswer')
 export const createQuestion = send(CREATE_QUESTION)(true)('createQuestion')
 
 // possible TODO contract.methods.myMethod.estimateGas estimates the gas a execution will take.

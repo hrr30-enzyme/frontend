@@ -12,7 +12,7 @@ const Answer = (props) => {
       <Actions>
         <Upvote onClick={
           () => {
-            store.dispatch({type: 'UPVOTE_WEB3', payload: answer.id})
+            store.dispatch({type: 'UP_VOTE', payload: answer.id})
             props.updateAnswerVote({id: answer.id, UserId: props.auth.user.id}, answer.id)       
           }
         }>▲</Upvote>
