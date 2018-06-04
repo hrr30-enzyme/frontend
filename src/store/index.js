@@ -16,15 +16,15 @@ const MIN_FEE = 2000000000000000;
 const web3Middleware = store => next => action => {
   if (action.type === 'POST_QUESTION_FULFILLED') {
     const qId = action.payload.data.post.id
-    createQuestion(MIN_FEE, qId)(store.dispatch.bind(this), store.getState.bind(this))
+    const bounty = action.payload.data.post.bounty
+    console.log(bounty);
+    createQuestion(bounty, qId)(store.dispatch.bind(this), store.getState.bind(this))
     next(action);
-  } else if (action.type === 'POST_ANSWER_FULFILLED') {
-    
+  } else if (action.type === 'POST_ANSWER_FULFILLED') {   
     const qId = action.payload.data.post.PostId
     const aId = action.payload.data.post.id
     createAnswer(MIN_FEE, aId, qId)(store.dispatch.bind(this), store.getState.bind(this))
     next(action)
-
   } else if (action.type === 'UP_VOTE') {
     const aId = action.payload
     upVote(0, aId)(store.dispatch.bind(this), store.getState.bind(this))

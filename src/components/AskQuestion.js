@@ -14,7 +14,8 @@ const handleClick = (e, cb, question) => {
 
 const Ask = ({
   title, 
-  body, 
+  body,
+  bounty, 
   addText, 
   auth, 
   showModal, 
@@ -47,9 +48,16 @@ const Ask = ({
         type="text"
         required
     />,
+    <InputTitle
+        value={bounty}
+        onChange={e => handleChange(addText, "bounty", e.target.value)}
+        placeholder="Bounty"
+        type="text"
+        required
+    />,
     <Button
       onClick={e => {
-        handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })
+        handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1, bounty: bounty * Math.pow(10, 18)})
       }}
     >
       Submit

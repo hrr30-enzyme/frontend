@@ -14,6 +14,7 @@ const initialState = {
   email: '',
   title: '',
   body: '',
+  bounty: '',
   answerBody: '',
   commentBody: '',
   search: ''

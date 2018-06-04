@@ -96,6 +96,7 @@ export default class QuestionsPage extends Component {
           {...this.props}
           title={this.props.textInput.title}
           body={this.props.textInput.body}
+          bounty={this.props.textInput.bounty}
           showModal={(() => {
             console.log("this.props.showMOda.ask", this.props.showModal.ask)
             return this.props.showModal.ask;

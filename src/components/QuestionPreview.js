@@ -39,7 +39,7 @@ const QuestionPreview = ({question}) => {
           Bounty
         </Bounty>
         <Reward>
-          {(Math.round(question.bounty * 100) / 100) || .1 } ETH
+          {(Math.round(question.bounty) / 1000000000000000000)} ETH
         </Reward>
         <Title>
           {question.title}
