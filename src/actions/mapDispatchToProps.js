@@ -1,38 +1,64 @@
 import { bindActionCreators } from 'redux'
-import { signin, signout, signup, checkSignin } from './authentication'
-import { addText } from './inputText'
+
+import { signout, signup, login } from './auth'
+
+import { addText, clearAll, clearText } from './inputText'
+
 import { openModal, closeModal } from './modal'
+
+import {
+  noMetaMask,
+  getQuestionCount,
+  upVote,
+  payout,
+  createAnswer,
+  createQuestion,
+} from './web3'
+
 import {
   postQuestion,
-  getQuestion,
-  getQuestions,
+  updateQuestionVote,
   getPostByQuery,
   postAnswer,
-  getAnswer,
   getAnswers,
-  getAllQuestions,
-  queryPosts
+  updateAnswerVote,
+  queryPosts,
+  changeSortedBy,
+  updateViews,
+  downvoteQuestionVote,
+  downvoteAnswerVote,
+  getRecomendations,
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({ 
-    checkSignin,
-    signin,
+    login,
     signout,
     signup,
     addText,
     postQuestion,
-    getQuestion,
-    getQuestions,
+    updateQuestionVote,
     getPostByQuery,
     postAnswer,
-    getAnswer,
     getAnswers,
+    updateAnswerVote,
     openModal,
     closeModal,
-    getAllQuestions,
-    queryPosts
+    queryPosts,
+    changeSortedBy,
+    clearText,
+    clearAll,
+    updateViews,
+    downvoteQuestionVote,
+    downvoteAnswerVote,
+    noMetaMask,
+    getQuestionCount,
+    upVote,
+    payout,
+    createAnswer,
+    createQuestion,
+    getRecomendations
   }, dispatch)
-); 
+)
 
 export default mapDispatchToProps

@@ -1,24 +1,56 @@
 import styled from 'styled-components'
 
-export const MAIN_ORANGE = `#FFA500`;
-export const BORDER_ORANGE = `#F19100` 
+export const MAIN_COLOR = `#16252A`
+export const BORDER_MODAL = `#5F89A4` 
+export const SECONDARY_COLOR = `#537F9A`
+export const SKY_BLUE = `#C0E4F8`
+export const MAIN_FONT = '#C1CBD9'
+export const TITLE_FONT = '#A5C4E3'
+export const LINK_COLOR = '#3375B0'
+export const PURPLE = `#a500ff`
+export const GREEN_HOVER = `#00ffa5`
+export const GRAY_1 = `#8B8B8B`
+export const GRAY_2 = `#363636`
+export const GRAY_3 = `#3B3B3B`
+export const GRAY_4 = `#1B1B1B`
+export const REDISH = `#9a6c53`
+export const YELLOW = `#9a8f53`
+export const DARKPURPLE = `#83539a`
+export const WHITE_BLUE = '#E9F3F8'
+export const LANDING_BLUE = '#537f9a'
+
+export const DARK = '#0B0C10'
+export const NAVY = '#1F2833'
+export const STEEL = '#C5C6C7'
+export const CYAN = '66FCF1'
+export const POOL = '#45A29E'
+export const GREEN = '#0E1A1F'
+export const AQUA = '#00FFFF'
 
 export const Input = styled.input`
   padding: 0.5em;
-  margin: 0.5em;
-  background: white;
-  border: none;
+  margin: 1.5em;
+  background: ghostwhite;
+  height: 30px;
+  font-size: 16px;
+  border: solid 2px ${MAIN_COLOR};
   border-radius: 3px;
-  border-bottom: 1px;
-`;
+`
 
 export const Button = styled.button`
-  background: ${MAIN_ORANGE};
-  color: white;
-
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid ${BORDER_ORANGE};
-  border-radius: 3px;
-`;
+  background: ${WHITE_BLUE};
+  color: midnightblue;
+  width: 120px;
+  justify-self: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.5em;
+  border: 2px solid ${POOL};
+  border-radius: 8px;
+  &:hover {
+    background: ${'lavender'};
+    color: ${MAIN_COLOR};
+    border: 2px solid ${PURPLE};
+    cursor: pointer;
+  }
+`

@@ -1,157 +1,93 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
+import * as styles from './StyledComponents'
 import Signin from './Signin'
 import Signup from './Signup'
 
-const Nav = styled.nav`
-  display: grid;
-  padding-left: .6em;
-  grid-template-columns: 6em 6em auto  5em 5em 5em;
-  height: 2.3em;
-  align-items: center;
-  background-color: #ffffff;
-  border-bottom: solid #888;
-  border-width: 1px;
-  font-weight: bold;
-  > .nav-item {
-    display: inline;
-  }
-  > .nav-title {
-    grid-column: 1 / 2;
-  }
-  > .nav-questions {
-    grid-column: 3 / 4;
-  }
-  > .nav-home {
-    grid-column: 2 / 3;
-  }
-  > .nav-auth {
-    cursor: pointer;
-    color: gray;
-  }
-  > .nav-auth:hover {
-    color: #666666;
-  }
-`;
-
-
-
-const StyledNavLink = styled(Link)`
-  text-decoration: none;
-  color: ${(props) => props.linkColor || 'gray'}
-  &:hover {
-    color: ${(props) => props.linkColorHover || '#666666'};
-  }
-`
-
-const handleClick = (e, cb, credentials) => {
-  e.preventDefault();
-  cb(credentials);
-};
-
-const handleClose = (e, cb) => {
-  e.preventDefault();
-  cb("signin");
-};
-
-const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
-
 const Navbar = (props) => {
   console.log('nav bar', props)
-  const signedIn = props.authentication.signedIn;
-
-  let NavStyle = props.NavStyle || Nav;
-  let linkColor = 'gray';
-  let linkColorHover = '#666666';
-  if (props.NavStyle) {
-    NavStyle = props.NavStyle;
-    linkColor = NavStyle.linkColor;
-    linkColorHover = NavStyle.linkColorHover;
-  } else {
-    NavStyle = Nav;
-  }
+  const signedIn = props.auth.isAuthenticated
+  let linkcolor = styles.LINK_COLOR
+  let linkcolorhover = styles.MAIN_COLOR
 
   return (
     <div>
-      <NavStyle>
-        <div className="nav-title nav-item">
-          <StyledNavLink 
+      <Nav>
+        <h1 className="nav-title">
+          <NavLink 
             to="/"
-            linkColor={ linkColor }
-            linkColorHover={ linkColorHover }
+            linkcolor={ linkcolor }
+            linkcolorhover={ linkcolorhover }
           >
-            Catalyst
-          </StyledNavLink>
-        </div>
-        <div className="nav-home nav-item">
-          <StyledNavLink 
+            {"Catalyst"}
+          </NavLink>
+        </h1>
+        <h4 className="nav-home">
+          <NavLink 
             to="/home"
-            linkColor={ linkColor }
-            linkColorHover={ linkColorHover }
+            linkcolor={ linkcolor }
+            linkcolorhover={ linkcolorhover }
           >
             Home
-          </StyledNavLink>
-        </div>
-        <div className="nav-questions nav-item">
-          <StyledNavLink 
+          </NavLink>
+        </h4>
+        <h4 className="nav-questions">
+          <NavLink 
             to="/questions"
-            linkColor={ linkColor }
-            linkColorHover={ linkColorHover }
+            linkcolor={ linkcolor }
+            linkcolorhover={ linkcolorhover }
           >
             Questions
-          </StyledNavLink>
-        </div>
+          </NavLink>
+        </h4>
         
         {signedIn 
           ? (
-            <div>
-              <div className="nav-item">
-                <StyledNavLink 
-                  to="/user" 
-                  linkColor={ linkColor }
-                  linkColorHOver={ linkColorHover }
+            [
+              <div className="nav-user" key={'user'}>
+                <NavLink 
+                  to={`/user/${props.auth.user.username}`}
+                  linkcolor={ linkcolor }
+                  linkcolorhover={ linkcolorhover }
                 >
-                  { props.authentication.userInfo.username }
-                </StyledNavLink>
-              </div>
-              <div className="nav-item">
+                  { props.auth.address || props.auth.username }                  
+                </NavLink>
+              </div>,
+              <NavAuth className="nav-auth-logout" key={'logout'}>
                 <div onClick={ props.signout }>logout</div>
-              </div>
-            </div>
+              </NavAuth>
+            ]
           )
           : [
-              <div
-                className="nav-auth" 
+              <NavAuth
+                className="nav-auth-login"
+                key={'login'} 
                 onClick={ () => props.openModal("signin") }
               >
-                login
-              </div>,
-              <div 
-                className="nav-auth"
-                onClick={() => props.openModal("signup")}
+                Login
+              </NavAuth>,
+              <NavAuth 
+                className="nav-auth-signup"
+                key={'signup'}
+                onClick={ () => props.openModal("signup")}
               >
-                signup
-              </div>,
+                Signup
+              </NavAuth>
           ]
         }
-      </NavStyle>
-      {/*
-       * signin/signout modals
-       *
-       */}
+      </Nav>
        <Signin
           username={ props.textInput.username }
           password={ props.textInput.password }
           openModal={ props.openModal }
           closeModal={ props.closeModal }
           signin={ props.signin }
+          login={ props.login }
           showModal={ props.showModal.signin }
+          message={props.showModal.message}
           addText={ props.addText }
-          error={ props.authentication.error }
+          error={ props.auth.error }
         />
         <Signup
           username={ props.textInput.username }
@@ -161,11 +97,83 @@ const Navbar = (props) => {
           closeModal={ props.closeModal }
           signup={ props.signup }
           showModal={ props.showModal.signup }
+          message={props.showModal.message}
           addText={ props.addText }
-          error={ props.authentication.error }
+          error={ props.auth.error }
         />
-      </div>
-  );
-};
+    </div>
+  )
+}
 
 export default Navbar
+
+const Nav = styled.nav`
+  display: grid;
+  grid-template-columns: 25% 1fr 1fr 1fr 3fr 1fr 1fr 5%;
+  grid-column-gap: 3em;
+  grid-template-rows: auto;
+  height: 70px;
+  padding-bottom: 1em;
+  align-items: center;
+  justify-items: center;
+  border-bottom: 2px solid ${styles.GREEN};
+  background-color: ${styles.DARK};
+  font-weight: bold;
+  font-size: 14px;
+  font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+
+  .nav-title {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    font-size: 30px;
+    color: ${styles.PURPLE};
+    &:hover {
+      color: ${styles.LINK_COLOR};
+    }
+  }
+  .nav-home {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .nav-questions {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .nav-user {
+    grid-column: 5;
+    grid-row: 1;
+    justify-self: right;
+  }
+  .nav-auth-login {
+    grid-column: 5;
+    grid-row: 1;
+    justify-self: right;
+  }
+  .nav-auth-logout {
+    grid-column: 6;
+    grid-row: 1;
+    justify-self: right;
+  }
+  .nav-auth-signup {
+    grid-column: 6;
+    grid-row: 1;
+    justify-self: left;
+  }
+`
+
+const NavAuth = styled.div`
+  cursor: pointer;
+  color: ${styles.LINK_COLOR};
+  &:hover {
+    color: ${styles.POOL};
+  }
+`
+const NavLink = styled(Link)`
+  cursor: pointer;
+  text-decoration: none;
+  color: ${styles.LINK_COLOR};
+  &:hover {
+    color: ${styles.POOL};
+  }
+`

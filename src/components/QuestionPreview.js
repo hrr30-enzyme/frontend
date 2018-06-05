@@ -1,103 +1,133 @@
-import React from "react";
+import React from "react"
+import * as styles from "../components/StyledComponents"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-import styled from "styled-components";
+const QuestionPreview = ({question}) => {
 
-import { Link } from "react-router-dom";
+  const username = question.User ? question.User.username : 'fake'
+  return (
+    <Link to={`/question/${question.id}`} className='link'>
+      <Question >
+        <Stats>
+          <MiniCount>
+            <Votes>
+              <Inner>
+                {question.upvoteCount || 0}
+              </Inner>
+              votes
+            </Votes>
+          </MiniCount>
+          <MiniCount>
+            <Answers>
+              <Inner>
+                {question.commentCount || 0}
+              </Inner>
+              answers
+            </Answers>
+          </MiniCount>
+          <MiniCount>
+            <Views>
+              <Inner>
+                {question.viewCount || 0}
+              </Inner>
+              views
+            </Views>
+          </MiniCount>
+        </Stats>
+        <Bounty>
+          Bounty
+        </Bounty>
+        <Reward>
+          {(Math.round(question.bounty) / 1000000000000000000)} ETH
+        </Reward>
+        <Title>
+          {question.title}
+        </Title>
+        <User>
+          {username}
+        </User>
+      </Question>
+    </Link>
+  )
+}
+
+export default QuestionPreview
 
 const Question = styled.div`
-  display: block
-  padding: 12px;
-  border-bottom: 1px solid #e4e6e8;
-  width: 728px;
-`;
-
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 4fr 1fr;
+  grid-column-gap: 20px;
+  background-color: aliceblue;
+  border-radius: 8px; 
+  padding: 5px;
+  &:hover {
+      background-color: rgb(228, 245, 255);
+  }
+`
 const Stats = styled.div`
-  float: left;
-  vertical-align: top;
-  margin-right: 50px;
-  cursor: pointer;
-`;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 10px;
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  align-items: center;
+  justify-items: center;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+`
 const Votes = styled.div`
-  display: inline-block;
-  height: 38px;
-  min-width: 38px;
-  margin: 0 3px 0 0;
-  font-size: 11px;
-`;
-
+  grid-column: 1;
+  font-size: 14px;
+  font-weight: bold;
+`
 const Answers = styled.div`
-  display: inline-block;
-  margin: 0 3px 0 0;
-  min-width: 44px;
-  height: auto;
-  font-size: 11px;
-`;
-
+  grid-column: 2;
+  font-size: 14px;
+  font-weight: bold;
+`
 const Views = styled.div`
-  display: inline-block;
-  height: 38px;
-  min-width: 40px;
-  margin: 0 7px 0 0;
-  font-size: 11px;
-`;
-
+  grid-column: 3;
+  font-size: 14px;
+  font-weight: bold;
+`
 const Inner = styled.div`
-  font-size: 17px;
-  font-weight: 300;
-  color: #6a737c;
-  margin-bottom: 2px
-  display: block
-`;
+  font-size: 18px;
+  color: ${styles.DARK};
+  text-align: center;
+`
 const MiniCount = styled.div`
-  padding: 8px 5px;
-  line-height: 1;
-`; 
-
-const handleClick = (e, callback, cb, id) => {
-  e.preventDefault();
-
-  callback(id);
-  cb(`/question/${id}`);
-};
-
-
-const QuestionPreview = (props) => {
-  console.log('QuestionPreview: ' + props);
-  return (
-    <Link to={`/question/${props.id}`} >
-      <Question >
-      <Stats>
-        <MiniCount>
-          <Votes>
-            <Inner>
-              <div display="block">{props.upvoteCount}</div>
-            </Inner>{" "}
-            vote
-          </Votes>
-        </MiniCount>
-        <MiniCount>
-          <Answers>
-            <Inner>
-              <div display="block">{props.answerCount}</div>
-            </Inner>{" "}
-            answers
-          </Answers>
-        </MiniCount>
-        <MiniCount>
-          <Views>
-            <Inner>
-              <div display="block">{props.viewCount}</div>
-            </Inner>{" "}
-            views
-          </Views>
-        </MiniCount>
-      </Stats>
-      Title: {props.title}
-      <br/>
-      Body: {props.body}
-    </Question>
-    </Link>
-  );
-};
-
-export default QuestionPreview;
+`
+const Bounty = styled.div`
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+  font-weight: bold;
+  font-size: 20px;
+`
+const Reward = styled.div`
+  grid-row: 2;
+  grid-column: 2;
+  justify-self: center; 
+  align-self: top;   
+  font-size: 12px;
+  padding-bottom: 0.5em;
+  font-weight: bolder;
+`
+const Title = styled.div`
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  font-size: 20px;
+  align-self: center;
+  font-family: Arial Narrow, sans-serif;
+`
+const User = styled.div`
+  grid-row: 1;
+  grid-column: 4;
+  font-size: 14px;
+  justify-self: right;
+  padding-right: 1em;
+  padding-top: 1em;
+  font-weight: bold;
+`

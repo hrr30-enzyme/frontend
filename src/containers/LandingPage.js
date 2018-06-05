@@ -1,8 +1,70 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Transition } from 'react-transition-group' 
-
+import * as styles from '../components/StyledComponents'
 import Navbar from '../components/Navbar'
+
+export default class LandingPage extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      scrolled: false,
+      scroll: 0,
+    }
+  }
+
+  componentDidMount() {
+    window.onscroll = () => {
+      if (window.pageYOffset > 20) {
+        this.setState({
+          scrolled: true,
+          scroll: window.pageYOffset,
+        })
+      } else {
+        this.setState({
+          scrolled: false,
+          scroll: window.pageYOffset,
+        })
+      }
+    }
+  }
+
+  render() {
+    return (
+      <Div>
+        <div className="nav">
+          <Navbar {...this.props} />
+        </div>
+        <header className="top-pic">
+          <div className="logo-container">
+            <Logo className="main-logo">
+              {"<"}<span>CATALYST</span> {"/>"}
+            </Logo>
+            <Tagline className="tag-line">Accelerated Knowledge</Tagline>
+          </div>
+        </header>
+        <AboutSection id="about">
+          <h2 className="title-1">Get <strong>paid</strong> for expertise</h2>
+          <p>
+            Users get payed 24/7 for top answers.  Win bounties for top answers and withdraw anytime.
+          </p>
+          <h2 className="title-1"> 
+            Vote for the top answers
+          </h2>
+          <p>
+            Top users vote based on their expertise.  The more expertise a user shows, the more voting power they recieve.
+          </p>
+          <img 
+            alt="ethereum logo"
+            src="./ethereum.png"
+            height={ Math.min(510, this.state.scroll / 2)}
+            style={{offset: Math.max(0, this.state.scroll / 10)}}
+          />
+        </AboutSection>
+     </Div>
+    )
+  }
+}
 
 const Div = styled.div`
   .top-pic: 100vh;
@@ -10,6 +72,8 @@ const Div = styled.div`
   padding-top: 0;
   padding-bottom: 0;
   background-size: cover;
+  display: grid;
+  grid-gap: 0px;
   background-position: center center;
   -webkit-transition: all 1s linear;
   -moz-transition: all 1s linear;
@@ -23,181 +87,70 @@ const Div = styled.div`
   > .top-pic {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto auto auto auto;
     align-content: center;
     justify-content: center;
     height: 100vh;
     min-height: 650px;
-    background-color: #FFA500
+    background: linear-gradient(to bottom, ${styles.NAVY}, ${styles.GREEN});
+    
+    margin-bottom: 0;
   }
-`;
-
-const transparentNav = styled.nav`
-  width: 100%;
-  position: fixed;  
-  display: grid;
-  padding-left: .6em;
-  grid-template-columns: 5em 5em auto 5em 5em 5em;
-  height: 2.3em;
-  align-items: center;
-  border-bottom: solid transparent;
-  top: 0;
-  border-width: 1px;
-  font-weight: bold;
-  -webkit-transition: all 1s linear;
-  -moz-transition: all 1s linear;
-  -o-transition: all 1s linear;
-  transition: all 1s linear;
-  > .nav-item {
-    display: inline
+  .nav {
+    grid-row: 1;
+    grid-column: 1 / -1;
   }
-  > .nav-title {
-    grid-column: 1 / 2;
-  }
-  > .nav-home {
-    grid-column: 2 / 3;
-  }
-  > .nav-questions {
-    grid-column: 3 / 4;
-  }
-  > .nav-auth {
-    cursor: pointer;
-    color: #00b273;
-  }
-  > .nav-auth:hover {
-    color: #00ffa5;
-  }
-`;
-
-const mainNav = styled.nav`
-  display: grid;
-  position: fixed;
-  width: 100%;
-  margin-top: 0px;
-  padding-left: .6em;
-  grid-template-columns: 5em 5em auto 5em 5em 5em;
-  height: 2.3em;
-  align-items: center;
-  background-color: #ffffff;
-  border-bottom: solid #888;
-  border-width: 1px;
-  font-weight: bold;
-  top: 0;
-  > .nav-item {
-    display: inline
-  }
-  > .nav-title {
-    grid-column: 1 / 2;
-  }
-  > .nav-home {
-    grid-column: 2 / 3;
-  }
-  > .nav-questions {
-    grid-column: 3 / 4;
-  }
-  > .nav-auth {
-    cursor: pointer;
-    color: gray;
-  }
-  > .nav-auth:hover {
-    color: #00b273;
-  }
-`;
-
+`
 const Logo = styled.h1`
-  color:#a500ff;
-  font-size: 10em;
+  color: ${styles.TITLE_FONT};
+  font-size: 8em;
   > span {
     font-size: .84em;
   }
-`;
-
+`
 const Tagline = styled.p`
   text-align: center;
   display: block;
-  color: #a500ff;
+  color: ${styles.POOL};
   font-size: 3em;
   font-weight: bold;
 `
-
-export default class LandingPage extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      scrolled: false,
-      scroll: 0,
-    }
-    transparentNav.linkColor = '#00b273';
-    transparentNav.linkColorHover = '#00ffa5';
+const AboutSection = styled.section`
+  background-color: ${styles.DARKPURPLE};
+  margin-top: 0;
+  margin-bottom: 0;
+  display: grid;
+  padding: 0;
+  grid-template-rows: auto auto auto auto auto auto auto;
+  grid-template-columns: 1fr 2fr;
+  height: 60vh;
+  white-space: pre-wrap;
+  
+  p {
+    grid-column: 1 / 2;
+    color: white;
+    text-indent: 0px;
+  }
+  .title {
+    grid-column: 1 / 2;
+    color: white;
+  }
+  .title-1 {
+    grid-column: 1 / 2;
+    color: white;
+    font-size: 2.5em;
+    text-align: left;
+    font-weight: normal;
+  }
+  .title-1 > strong {
+    font-weight: bold;
+  }
+  img {
+    grid-column: 2 / 4;
+    grid-row: 1 / 8;
+    justify-self: center;
+    align-self: center;
   }
 
-  navStyle() {
-    return this.state.scrolled ? mainNav : transparentNav
-  }
-
-  componentDidMount() {
-    window.onscroll = () => {
-      console.log(window.pageYOffset);
-      if (window.pageYOffset > 20) {
-        this.setState({
-          scrolled: true,
-          scroll: window.pageYOffset,
-        });
-      } else {
-        this.setState({
-          scrolled: false,
-          scroll: window.pageYOffset,
-        });
-      }
-    }
-  }
-
-  render() {
-    return (
-      <Div>
-      {/* Trying to get this to fade in */}
-      <Transition 
-        timeout={100}
-        {...this.props}
-      >
-        {(state) => (
-          <Navbar 
-            {...this.props} 
-            NavStyle={ this.navStyle() }
-          />
-        )}
-      </Transition>
-          <header className="top-pic">
-          <div className="logo-container">
-            <Logo className="main-logo">
-              {"<"}<span>CATALYST</span> {"/>"}
-            </Logo>
-            <Tagline className="tag-line">Accelerated Discovery</Tagline>
-          </div>
-        </header>
-
-        <section id="about">
-          this section has a description of our app 
-        </section>
-
-        <section id="us">
-          
-          this section has information about us who built the app
-        </section>
-
-        <section id="portfolio">
-          More information about the app
-        </section>
-
-        <section id="signup-now">
-          sign up now button
-        </section>
-
-        <section id="stack">
-          maybe some information about the tech stack
-        </section>
-      </Div>
-    );
-  }
-}
+  padding: 3em;
+`

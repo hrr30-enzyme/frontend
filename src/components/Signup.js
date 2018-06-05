@@ -1,17 +1,15 @@
-import React from "react";
-
+import React from "react"
 import modal from './Modal'
 import { Input, Button } from './StyledComponents'
 
-
 const handleClick = (e, cb, credentials) => {
-  e.preventDefault();
-  cb(credentials);
-};
+  e.preventDefault()
+  cb(credentials)
+}
 
 const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
+  cb(inputType, input)
+}
 
 const Signup = ({
   signup,
@@ -23,6 +21,11 @@ const Signup = ({
   addText,
   error,
 }) => {
+
+  const enterInput =
+  (e) =>
+  e.key === 'Enter'
+  && handleClick(e, signup, { username, password, email })
 
   return modal({
     showModal,
@@ -37,6 +40,7 @@ const Signup = ({
         placeholder="Email"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Input
         value={ username }
@@ -44,6 +48,7 @@ const Signup = ({
         placeholder="Username"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Input
         value={ password }
@@ -51,6 +56,7 @@ const Signup = ({
         placeholder="Password"
         type="text"
         required
+        onKeyPress={ enterInput }
       />,
       <Button
         onClick={ e => 
@@ -60,7 +66,7 @@ const Signup = ({
         Submit
       </Button>
     ]
-  );
-};
+  )
+}
 
-export default Signup;
+export default Signup

@@ -1,72 +1,39 @@
 import React from 'react'
 import styled from 'styled-components'
 import modal from './Modal'
-
-const InputTitle = styled.input`
-  padding: 0.5em;
-  margin: 0.5em;
-  width: 80%;
-  color: palevioletred;
-  background: papayawhip;
-  border: none;
-  border-radius: 3px;
-`;
-
-const InputBody = styled.input`
-  padding: 0.5em;
-  margin: 0.5em;
-  width: 80%;
-  height: 50%;
-  color: palevioletred;
-  background: papayawhip;
-  border: none;
-  border-radius: 3px;
-`;
-
-const Button = styled.button`
-  background: red;
-  color: white;
-
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`;
+import * as styles from '../components/StyledComponents'
 
 const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
+  cb(inputType, input)
+}
 
 const handleClick = (e, cb, question) => {
-  e.preventDefault();
-  cb(question);
-};
-
-const handleClose = (e, cb) => {
-  e.preventDefault();
-  cb("ask");
-};
+  e.preventDefault()
+  cb(question)
+}
 
 const Ask = ({
   title, 
-  body, 
+  body,
+  bounty, 
   addText, 
-  authentication, 
+  auth, 
   showModal, 
   closeModal,
   postQuestion,
+  createQuestion,
+  web3,
 }) => {
-  console.log('askquestion component', addText);
-  const UserId = authentication.userInfo.id
-  console.log(title, body);
-  console.log('show moda', showModal);
+  console.log('askquestion component', addText)
+  const UserId = auth.user.id
+  console.log(title, body)
+  console.log('show moda', showModal)
   return modal ({
     showModal,
     handleClose: () => closeModal('ask')
    })(
    [
-    <div>Ask your own...</div>,
+    <div className="modal-title">Ask your own...</div>,
     <InputTitle
         value={title}
         onChange={e => handleChange(addText, "title", e.target.value)}
@@ -81,8 +48,17 @@ const Ask = ({
         type="text"
         required
     />,
+    <InputTitle
+        value={bounty}
+        onChange={e => handleChange(addText, "bounty", e.target.value)}
+        placeholder="Bounty"
+        type="text"
+        required
+    />,
     <Button
-      onClick={e => handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1 })}
+      onClick={e => {
+        handleClick(e, postQuestion, { title: title, body: body, UserId: UserId, PostTypeId: 1, bounty: bounty * Math.pow(10, 18)})
+      }}
     >
       Submit
     </Button>,
@@ -90,3 +66,27 @@ const Ask = ({
 };
 
 export default Ask
+
+const Button = styles.Button
+
+const InputTitle = styled.input`
+  padding: 0.5em;
+  margin: 1.5em;
+  width: 85%;
+  height: 30px;
+  font-size: 16px;
+  background: ghostwhite;
+  border: 2px solid ${styles.MAIN_COLOR};
+  border-radius: 3px;
+`
+const InputBody = styled.textarea`
+  padding: 0.5em;
+  margin: 1.5em;
+  width: 85%;
+  height: 200px;
+  font-size: 16px;
+  text-align: start;
+  background: ghostwhite;
+  border: 2px solid ${styles.MAIN_COLOR};
+  border-radius: 3px;
+`

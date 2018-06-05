@@ -1,11 +1,28 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from "react"
+import styled from "styled-components"
+import Navbar from "../components/Navbar"
 
+class HomePage extends Component {
 
-import Navbar from "../components/Navbar";
-import AskQuestion from "../components/AskQuestion";
+  componentWillMount() {
+    this.props.queryPosts({
+      PostTypeId: 1
+    })
+  }
 
-import QuestionPreview from "../components/QuestionPreview";
+  render() {
+    console.log('HomePage: --------  ', this.props)
+    return (
+      <Layout>
+        <div className="nav">
+          <Navbar {...this.props} />
+        </div>
+      </Layout>
+    )
+  }
+}
+
+export default HomePage
 
 const Layout = styled.div`
   display: grid;
@@ -22,26 +39,4 @@ const Layout = styled.div`
     background-color: orange;
     grid-column: 1/2;
   }
-`;
-
-class HomePage extends Component {
-  componentDidMount() {
-    this.props.queryPosts({});
-    this.props.checkSignin(); ///delete me
-  }
-
-  render() {
-    return (
-      <Layout>
-        <div className="nav">
-          <Navbar {...this.props} />
-        </div>
-        <div className="question">
-          <QuestionPreview {...this.props} />
-        </div>
-      </Layout>
-    );
-  }
-}
-
-export default HomePage;
+`

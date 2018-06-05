@@ -1,53 +1,81 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
+import * as styles from "../components/StyledComponents"
+import store from '../store'
 
-const Div = styled.div`
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 2em auto;
-  padding: 1em;
-
-  > .usertag {
-    background-color: white;
-    grid-column: 1/3;
-  }
-`;
-
-const UserTag = styled.div`
-  display: grid;
-  grid-template-columns: auto auto;
-`;
-
-const Answer = ({ 
-  PostId, 
-  PostTypeId, 
-  UserId,
-  answerCount,
-  body,
-  closedDate,
-  commentCount,
-  createdAt,
-  favoriteCount,
-  id,
-  isTopAnswer,
-  title,
-  updatedAt,
-  upvoteCount,
-  viewCount,
-}) => {
+const Answer = (props) => {
+  const answer = props.answer
+  console.log('Answer component: ', answer)
   return (
-    <Div>
-      <div className="usertag">
-        <UserTag>
-          <div>{UserId} TODO make this Username</div>
-          <div>User description</div>
-        </UserTag>
-      </div>
-      <p>
-        { body }
-      </p>
-    </Div>
-  );
-};
+    <Layout>
+      <Username>{ answer.User && answer.User.username }</Username>
+      <Actions>
+        <Upvote onClick={
+          () => {
+            store.dispatch({type: 'UP_VOTE', payload: answer.id})
+            props.updateAnswerVote({id: answer.id, UserId: props.auth.user.id}, answer.id)       
+          }
+        }>▲</Upvote>
+        <VoteCount>{answer && answer.upvoteCount}</VoteCount>
+        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.auth.user.id}, answer.id)}>▼</Downvote>
+        <Check>✓</Check>
+      </Actions>
+      <Body>{ answer && answer.body }</Body>
+    </Layout>
+  )
+}
 
-export default Answer;
+export default Answer
+
+const Layout = styled.div`
+  grid-column: 2 / 4;
+  min-width: 400px;
+  display: grid;
+  padding-left: 2em;
+  grid-template-rows: auto;
+  grid-template-columns: 10% 80% auto;
+`
+const Username = styled.h3`
+  grid-row: 1;
+  grid-column: 3;
+  justify-self: right;
+`
+const Actions = styled.div`
+  grid-row: 2;
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 15px;
+  font-size: 28px;
+  max-height: 100px;
+  margin-top: 1em;
+`
+const Upvote = styled.div`
+  grid-row: 1;
+  justify-self: center;
+  cursor: pointer;  
+`
+const VoteCount = styled.div`
+  grid-row: 2;
+  justify-self: center;
+`
+const Downvote = styled.div`
+  grid-row: 3;
+  justify-self: center;
+  cursor: pointer;   
+`
+const Check = styled.div`
+  grid-row: 4;
+  justify-self: center;
+  font-size: 40px;
+  color: ${styles.MAIN_COLOR};
+`
+const Body = styled.p`
+  grid-row: 2;
+  grid-column: 2 / 4;
+  border: 2px solid ${styles.MAIN_COLOR};
+  font-size: 20px;
+  min-height: 250px;
+  white-space: pre-wrap;
+  padding: 25px;
+`

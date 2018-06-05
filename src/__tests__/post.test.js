@@ -2,7 +2,7 @@ import axios from 'axios'
 import moxios from 'moxios'
 
 import store from '../store'
-import { signin, signout, signup } from '../actions/authentication'
+import { signin, signout, signup } from '../actions/auth'
 
 describe('Test createUser', () => {
   
