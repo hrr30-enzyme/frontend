@@ -12,15 +12,17 @@ class  Question extends Component {
     }
     this.payout = this.payout.bind(this)
   }
-  
+
   async payout(qid) {
     const contract = store.getState().web3.contract
     let confirmed = false
-  
+
     const addresses = await store.getState().web3.web3.eth.getAccounts()
-  
+    if (!addresses[0]) {
+      return store.dispatch({type: 'NO_METAMASK'})
+    }
     contract.methods.payout(qid).send({from: addresses[0]})
-      .on('transactionHash', 
+      .on('transactionHash',
         (hash) => this.setState({transactionState: 'transaction hashed!'})
       )
       .on('confirmation', (confirmation) => {
@@ -115,7 +117,7 @@ const Actions = styled.div`
 const Upvote = styled.div`
   grid-row: 1;
   justify-self: center;
-  cursor: pointer;  
+  cursor: pointer;
 `
 const VoteCount = styled.div`
   grid-row: 2;
@@ -124,13 +126,13 @@ const VoteCount = styled.div`
 const Downvote = styled.div`
   grid-row: 3;
   justify-self: center;
-  cursor: pointer;  
+  cursor: pointer;
 `
 const Star = styled.div`
   grid-row: 4;
   justify-self: center;
   font-size: 40px;
-  cursor: pointer;  
+  cursor: pointer;
   color: ${styles.MAIN_COLOR};
 `
 const Body = styled.p`

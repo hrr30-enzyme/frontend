@@ -1,6 +1,6 @@
-import { 
-  WEB3_INITIALIZED, 
-  NO_METAMASK,  
+import {
+  WEB3_INITIALIZED,
+  NO_METAMASK,
   GET_QUESTION_COUNT,
   GET_QUESTION_ID,
   UP_VOTE,
@@ -35,15 +35,15 @@ export const noMetaMask = (payload) => {
 /*
  * call functions are functions that do not cost any eth and just query for the current
  * state of the blockchain.
- * 
+ *
  * views will dispatch a pending right away, a _FULFILLED when fulfilled and
  * a _REJECTED on an error.
- * 
+ *
  */
 
 const call = (actionName) => (method) => () => (dispatch, getState) => {
   const contract = getState().web3.contract
-  
+
   if (contract === null) {
     return dispatch({type: NO_METAMASK})
   }
@@ -52,7 +52,7 @@ const call = (actionName) => (method) => () => (dispatch, getState) => {
     type: `${actionName}_PENDING`,
     method
   })
- 
+
   contract
     .methods[method]()
     .call()
@@ -87,22 +87,22 @@ export { getQuestionCount }
 
 /*
  * a send function is one that requires gas to run because it changes the blockchain
- * 
+ *
  * For some payable functions they must send a value in addition to the gas to be
  * added to the contracts bounty.
- * 
- * The function may require arguments which are ...args 
- * 
+ *
+ * The function may require arguments which are ...args
+ *
  * It will dispatch a _DISPATCHED as soon as it is called.
- * 
+ *
  * It will dispatch a _HASHED when it is hashed.
- * 
+ *
  * It will dispatch a _CONFIRMED when it is confirmed.
- * 
+ *
  * It will dispatch a _RECIEPT when it gets a reciept
- * 
+ *
  * It will dispatch a _REJECTED if there is an error.
- * 
+ *
  * TODO handle for when the user does not pay the min balance before
  * sending to the blockchain.
  */
@@ -110,7 +110,7 @@ export { getQuestionCount }
 const send = (actionName) => (isPayable) => (method) => (value, ...args) => async (dispatch, getState) => {
   const contract = getState().web3.contract
   console.log('\n\n\n\nactionname\n\n\n\n',actionName)
-  
+
   const addresses = await getState().web3.web3.eth.getAccounts()
   dispatch({
     type: `${actionName}_PENDING`,
@@ -124,7 +124,7 @@ const send = (actionName) => (isPayable) => (method) => (value, ...args) => asyn
   console.log('contract', contract)
 
   if (!addresses[0] || contract === null) {
-    return dispatch(NO_METAMASK)
+    return dispatch({type: NO_METAMASK})
   }
 
   value = isPayable ? {value} : {}
