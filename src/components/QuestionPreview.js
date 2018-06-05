@@ -1,112 +1,11 @@
-import React from "react";
-
-import styled from "styled-components";
-
-import { Link } from "react-router-dom";
-
-const Question = styled.div`
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 20% 10% auto auto;
-  grid-column-gap: 20px;
-  grid-row-gap: 1em;
-  text-decoration: none;
-  width: auto;
-  height: auto;
-  margin: 3px 3px;
-  background-color: #ffffff;
-`;
-
-const Stats = styled.div`
-  display: grid;
-  grid-template-columns: 40px 50px 50px;
-  grid-row: 1 / span 2;
-  grid-column: 1;
-  grid-column-gap: 5px;
-  align-self: center;
-  justify-self: center;
-  margin-left: 1em;
-`;
-
-const Votes = styled.div`
-  display: inline-block;
-  grid-column: 1;
-  font-size: 14px;
-`;
-
-const Answers = styled.div`
-  display: inline-block;
-  grid-column: 2;
-  font-size: 14px;
-`;
-
-const Views = styled.div`
-  display: inline-block;
-  grid-column: 3;
-  font-size: 14px;
-`;
-
-const Inner = styled.div`
-  font-size: 22px;
-  font-weight: 300;
-  color: #6a737c;
-  margin-top: 10px;
-  display: block;
-  text-align: center;
-`;
-
-const MiniCount = styled.div`
-  padding: 8px 5px;
-  line-height: 1;
-`; 
-
-const Bounty = styled.div`
-  grid-row: 1;
-  grid-column: 2;
-  justify-self: left;
-  align-self: center;
-  font-weight: bolder;
-  font-size: 18px;
-  font-style: italic;
-  margin-top: 0.7em;
-`
-
-const Reward = styled.div`
-  grid-row: 2;
-  grid-column: 2;
-  margin-bottom: 10px;
-  justify-self: left;  
-`
-
-const Title = styled.div`
-  grid-row: 1 / span 2;
-  grid-column: 3;
-  font-size: 18px;
-  align-self: center;
-  text-decoration: none;
-`
-
-const User = styled.div`
-  grid-row: 1;
-  grid-column: 4;
-  font-size: 18px;
-  text-decoration: none;
-  justify-self: right;
-  padding: 10px;
-`
-
-const Tags = styled.div`
-  grid-row: 2;
-  grid-column: 3;
-  display: grid;
-  grid-template-columns: auto;
-  grid-column-gap: 5px;
-  margin-bottom: 10px;
-`
+import React from "react"
+import * as styles from "../components/StyledComponents"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 const QuestionPreview = ({question}) => {
 
-  const username = question.User ? question.User.username : 'fake';
+  const username = question.User ? question.User.username : 'fake'
   return (
     <Link to={`/question/${question.id}`} className='link'>
       <Question >
@@ -114,15 +13,15 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Votes>
               <Inner>
-                <div display="block">{question.upvoteCount}</div>
-              </Inner>{" "}
+                {question.upvoteCount || 0}
+              </Inner>
               votes
             </Votes>
           </MiniCount>
           <MiniCount>
             <Answers>
               <Inner>
-                {question.commentCount}
+                {question.commentCount || 0}
               </Inner>
               answers
             </Answers>
@@ -130,8 +29,8 @@ const QuestionPreview = ({question}) => {
           <MiniCount>
             <Views>
               <Inner>
-                <div display="block">{question.viewCount}</div>
-              </Inner>{" "}
+                {question.viewCount || 0}
+              </Inner>
               views
             </Views>
           </MiniCount>
@@ -140,7 +39,7 @@ const QuestionPreview = ({question}) => {
           Bounty
         </Bounty>
         <Reward>
-          {(Math.round(question.bounty * 100) / 100) || .1 } ETH
+          {(Math.round(question.bounty) / 1000000000000000000)} ETH
         </Reward>
         <Title>
           {question.title}
@@ -148,12 +47,87 @@ const QuestionPreview = ({question}) => {
         <User>
           {username}
         </User>
-        <Tags>
-     
-        </Tags>
       </Question>
     </Link>
-  );
-};
+  )
+}
 
-export default QuestionPreview;
+export default QuestionPreview
+
+const Question = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 4fr 1fr;
+  grid-column-gap: 20px;
+  background-color: aliceblue;
+  border-radius: 8px; 
+  padding: 5px;
+  &:hover {
+      background-color: rgb(228, 245, 255);
+  }
+`
+const Stats = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 10px;
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  align-items: center;
+  justify-items: center;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+`
+const Votes = styled.div`
+  grid-column: 1;
+  font-size: 14px;
+  font-weight: bold;
+`
+const Answers = styled.div`
+  grid-column: 2;
+  font-size: 14px;
+  font-weight: bold;
+`
+const Views = styled.div`
+  grid-column: 3;
+  font-size: 14px;
+  font-weight: bold;
+`
+const Inner = styled.div`
+  font-size: 18px;
+  color: ${styles.DARK};
+  text-align: center;
+`
+const MiniCount = styled.div`
+`
+const Bounty = styled.div`
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+  font-weight: bold;
+  font-size: 20px;
+`
+const Reward = styled.div`
+  grid-row: 2;
+  grid-column: 2;
+  justify-self: center; 
+  align-self: top;   
+  font-size: 12px;
+  padding-bottom: 0.5em;
+  font-weight: bolder;
+`
+const Title = styled.div`
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  font-size: 20px;
+  align-self: center;
+  font-family: Arial Narrow, sans-serif;
+`
+const User = styled.div`
+  grid-row: 1;
+  grid-column: 4;
+  font-size: 14px;
+  justify-self: right;
+  padding-right: 1em;
+  padding-top: 1em;
+  font-weight: bold;
+`

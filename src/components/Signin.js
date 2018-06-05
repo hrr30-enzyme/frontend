@@ -1,35 +1,36 @@
 import React from "react";
-
 import modal from "./Modal";
 import { Input, Button } from "./StyledComponents";
 
 const handleClick = (e, cb, credentials) => {
-  e.preventDefault();
-  cb(credentials);
-};
+  e.preventDefault()
+  cb(credentials)
+}
 
 const handleChange = (cb, inputType, input) => {
-  cb(inputType, input);
-};
+  cb(inputType, input)
+}
 
 const Signin = ({
-  signin,
+  login,
   closeModal,
   username,
   password,
   showModal,
   addText,
-  error,
-  message
+  message,
+  error
 }) => {
-  const enterInput = e =>
-    e.key === "Enter" && handleClick(e, signin, { username, password });
+
+  const enterInput = e => 
+    e.key === "Enter" && handleClick(e, login, { username, password })
+
   return modal({
     showModal,
     handleClose: () => closeModal("signin")
   })([
     <div className="modal-title">LOGIN</div>,
-    <div className="error">{error ? error : message}</div>,
+    <div className="error">{ error ? error : message }</div>,
     <Input
       value={username}
       onChange={e => handleChange(addText, "username", e.target.value)}
@@ -46,10 +47,10 @@ const Signin = ({
       required
       onKeyPress={enterInput}
     />,
-    <Button onClick={e => handleClick(e, signin, { username, password })}>
+    <Button onClick={e => login({username, password}) }>
       Submit
     </Button>
-  ]);
-};
+  ])
+}
 
-export default Signin;
+export default Signin

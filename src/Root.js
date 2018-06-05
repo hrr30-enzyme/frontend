@@ -8,10 +8,13 @@ import App from './containers/App'
 
 const Root = (props) => {
   return (
-    <Router >
-      <Route {...props} path="/" render={(routeProps) => <App {...props} {...routeProps} />}/>
+    <Router>
+      <Route {...props} 
+        path="/" 
+        render={ (routeProps) => <App {...props} {...routeProps} /> }
+      />
     </Router>
   )
-};
+}
 
 export default Root

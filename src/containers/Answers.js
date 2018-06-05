@@ -1,16 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import Answer from '../components/Answer'
-
-const Layout = styled.div`
-  grid-column: 2 / 4;
-`
 
 const Answers = (props) => {
   let answers = props.answers
 
-  console.log('answers', answers)
+  console.log('answers   ---------------   ', props)
   return (
     answers.length > 0 &&
       <Layout>
@@ -20,3 +15,7 @@ const Answers = (props) => {
 };
 
 export default Answers
+
+const Layout = styled.div`
+  grid-column: 2 / 4;
+`

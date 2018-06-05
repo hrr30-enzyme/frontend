@@ -1,13 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-
-const Div = styled.div`
-  grid-column: 2 / 4;
-  display: grid;
-  grid-template-rows: 10em auto;
-  grid-template-columns: auto;
-  margin-bottom: 5em;
-`;
+import React from "react"
+import styled from "styled-components"
 
 const GiveAnswer = props => {
   return (
@@ -18,9 +10,9 @@ const GiveAnswer = props => {
       />
       <button
         onClick={() =>
-          props.authentication.signedIn
+          props.auth.isAuthenticated
             ? props.postAnswer({
-                UserId: props.authentication.userInfo.id,
+                UserId: props.auth.user.id,
                 body: props.textInput.answerBody,
                 PostTypeId: 2,
                 PostId: props.match.params.id
@@ -31,7 +23,15 @@ const GiveAnswer = props => {
         Submit
       </button>
     </Div>
-  );
-};
+  )
+}
 
-export default GiveAnswer;
+export default GiveAnswer
+
+const Div = styled.div`
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-rows: 10em auto;
+  grid-template-columns: auto;
+  margin-bottom: 5em;
+`

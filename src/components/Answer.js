@@ -1,8 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
-import * as styles from "../components/StyledComponents";
+import * as styles from "../components/StyledComponents"
 import store from '../store'
 
+const Answer = (props) => {
+  const answer = props.answer
+  console.log('Answer component: ', answer)
+  return (
+    <Layout>
+      <Username>{ answer.User && answer.User.username }</Username>
+      <Actions>
+        <Upvote onClick={
+          () => {
+            store.dispatch({type: 'UP_VOTE', payload: answer.id})
+            props.updateAnswerVote({id: answer.id, UserId: props.auth.user.id}, answer.id)       
+          }
+        }>▲</Upvote>
+        <VoteCount>{answer && answer.upvoteCount}</VoteCount>
+        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.auth.user.id}, answer.id)}>▼</Downvote>
+        <Check>✓</Check>
+      </Actions>
+      <Body>{ answer && answer.body }</Body>
+    </Layout>
+  )
+}
+
+export default Answer
 
 const Layout = styled.div`
   grid-column: 2 / 4;
@@ -56,31 +79,3 @@ const Body = styled.p`
   white-space: pre-wrap;
   padding: 25px;
 `
-
-const Answer = (props) => {
-  const answer = props.answer
-  
-  console.log('Answer component: ', answer)
-  return (
-    <Layout>
-      <Username>{ answer.User.username }</Username>
-      <Actions>
-        <Upvote onClick={
-          () => {
-            store.dispatch({type: 'UPVOTE_WEB3', payload: answer.id})
-            props.updateAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)
-
-            
-          }
-        }>▲</Upvote>
-        <VoteCount>{answer && answer.upvoteCount}</VoteCount>
-        <Downvote onClick={() => props.downvoteAnswerVote({id: answer.id, UserId: props.authentication.userInfo.id}, answer.id)}>▼</Downvote>
-        <Check>✓</Check>
-      </Actions>
-      <Body>{ answer && answer.body }</Body>
-    </Layout>
-  );
-};
-
-
-export default Answer

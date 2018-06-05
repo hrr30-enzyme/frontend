@@ -1,79 +1,64 @@
 import { bindActionCreators } from 'redux'
-import { signin, signout, signup, checkSignin } from './authentication'
+
+import { signout, signup, login } from './auth'
+
 import { addText, clearAll, clearText } from './inputText'
+
 import { openModal, closeModal } from './modal'
+
 import {
   noMetaMask,
-  getMinBounty,
-  getDuration,
-  getAnswerFee,
-  getQuestionsCount,
+  getQuestionCount,
   upVote,
-  payoutWinner,
+  payout,
   createAnswer,
   createQuestion,
 } from './web3'
-import { search, suggest, clearSuggest } from './search'
+
 import {
   postQuestion,
-  getQuestion,
-  getQuestions,
   updateQuestionVote,
   getPostByQuery,
   postAnswer,
-  getAnswer,
   getAnswers,
   updateAnswerVote,
-  getAllQuestions,
   queryPosts,
   changeSortedBy,
   updateViews,
-  downvoteAnswerVote,
   downvoteQuestionVote,
+  downvoteAnswerVote,
   getRecomendations,
 } from './posts'
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({ 
-    checkSignin,
-    signin,
+    login,
     signout,
     signup,
     addText,
     postQuestion,
-    getQuestion,
-    getQuestions,
     updateQuestionVote,
     getPostByQuery,
     postAnswer,
-    getAnswer,
     getAnswers,
     updateAnswerVote,
     openModal,
     closeModal,
-    getAllQuestions,
     queryPosts,
     changeSortedBy,
     clearText,
     clearAll,
-    search,
     updateViews,
     downvoteQuestionVote,
+    downvoteAnswerVote,
     noMetaMask,
-    getMinBounty,
-    getDuration,
-    getAnswerFee,
-    getQuestionsCount,
+    getQuestionCount,
     upVote,
-    payoutWinner,
+    payout,
     createAnswer,
     createQuestion,
-    suggest,
-    getRecomendations,
-    downvoteQuestionVote,
-    suggest,
-    clearSuggest
+    getRecomendations
   }, dispatch)
-); 
+)
 
 export default mapDispatchToProps
